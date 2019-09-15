@@ -14,4 +14,13 @@ export const environment = {
   native: false,
   supportSignIn: false,
   store_version: 0,
+
+  server: 'http://10.0.12.171:19000',
+  store_env: {
+    arch: 'amd64',
+    mode: 'desktop',
+    platform: 'community',
+    region: 'CN',
+    language: 'zh_CN',
+  },
 };

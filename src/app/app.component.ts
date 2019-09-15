@@ -16,6 +16,6 @@ export class AppComponent implements OnInit {
   }
   async init() {
     const code = await this.region.region();
-    environment.region = code;
+    environment.store_env.region = code;
   }
 }

@@ -41,16 +41,19 @@ export class SoftwareService {
     ids = [] as number[],
     active = true as boolean | '',
   }) {
-    const stats = await this.statService.list({ order, offset, limit, category, tag, id: ids });
+    const stats = await this.statService.list({ order, offset, limit, category, tag, keyword, id: ids });
     const apps = await this.appService.list({ id: stats.items.map(stat => stat.app_id), active });
-    const m = new Map<Number, AppJSON>(apps.items.map(app => [app.id, app]));
-    return stats.items.filter(stat => m.has(stat.app_id)).map(stat => this.convertApp(m.get(stat.app_id), stat));
+    const m = new Map<number, AppJSON>(apps.items.map(app => [app.id, app]));
+    return stats.items
+      .filter(stat => m.has(stat.app_id))
+      .map(stat => this.convertApp(m.get(stat.app_id), stat))
+      .filter(Boolean);
   }
   private coverImage(img: string) {
     if (!img) {
       return '';
     }
-    return 'http://10.0.12.171:19000/api/public/blob/' + img;
+    return environment.server + '/api/public/blob/' + img;
   }
   private convertApp(app: AppJSON, stat: AppStat) {
     let locale = app.info.locales.find(l => l.language === environment.locale);
@@ -59,6 +62,10 @@ export class SoftwareService {
     }
     if (!locale) {
       locale = app.info.locales[0];
+      if (!locale) {
+        console.error('Not found locale', app);
+        return null;
+      }
     }
     const soft: Software = {
       id: app.id,
@@ -87,7 +94,7 @@ export class SoftwareService {
         tags: locale.tags,
       },
       package: {
-        remoteVersion: app.version,
+        remoteVersion: app.packages[0].version,
         localVersion: '',
       },
     };

@@ -3,6 +3,7 @@ import { enableProdMode, TRANSLATIONS, TRANSLATIONS_FORMAT, MissingTranslationSt
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from 'environments/environment';
+import { transition } from '@angular/animations';
 
 if (environment.production) {
   enableProdMode();
@@ -60,17 +61,25 @@ async function main() {
     environment.operationList = settings.operationServerMap;
     environment.metadataServer = settings.metadataServer;
     environment.operationServer = environment.operationList[environment.region];
+
+    environment.store_env.arch = settings.arch;
+    environment.store_env.mode = settings.desktopMode;
+    environment.store_env.platform = settings.product;
   }
 
   // if (!Boolean(settings['aot'])) {
   // loading i18n files
   for (let language of navigator.languages) {
     language = language.replace('-', '_');
+    if (language === 'zh') {
+      language = 'zh_CN';
+    }
     try {
-      const translations = require(`raw-loader!./locale/messages.${language}.xlf`);
+      const translations: { default: string } = require(`raw-loader!./locale/messages.${language}.xlf`);
       if (translations) {
         environment.locale = language;
-        return bootstrap(translations);
+        environment.store_env.language = language;
+        return bootstrap(translations.default);
       }
     } catch (err) {
       console.error('cannot load locale', language, err);
@@ -116,4 +125,8 @@ interface Settings {
   supportSignIn: boolean;
   themeName: string;
   upyunBannerVisible: boolean;
+
+  arch: string;
+  desktopMode: string;
+  product: string;
 }

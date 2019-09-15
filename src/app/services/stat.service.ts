@@ -20,6 +20,7 @@ interface StatListOption extends ListOption {
   category?: string;
   tag?: string;
   author?: number;
+  keyword: string;
 }
 export interface AppStat {
   app_id: number;

@@ -28,9 +28,9 @@ export interface AppJSON {
   active: boolean;
   info: Info;
   operation?: any;
-  packages: any[];
+  packages: Package[];
   version: string;
-  pricings: any[];
+  pricings: Pricing[];
 }
 
 interface Info {
@@ -53,4 +53,14 @@ interface Locale {
   cover: string;
   tags: string[];
   screenshots: string[];
+}
+
+interface Package {
+  name: string;
+  blob: string;
+  version: string;
+}
+interface Pricing {
+  price: number;
+  region_id: number;
 }

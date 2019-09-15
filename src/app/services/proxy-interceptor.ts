@@ -9,14 +9,8 @@ export class ProxyInterceptor implements HttpInterceptor {
     if (req.url[0] !== '/') {
       return next.handle(req);
     }
-    const url = 'http://10.0.12.171:19000' + req.url;
-    const env = {
-      arch: 'amd64',
-      mode: 'desktop',
-      platform: 'community',
-      region: environment.region,
-      language: environment.locale,
-    };
+    const url = environment.server + req.url;
+    const env = environment.store_env;
     let params = req.params;
     Object.keys(env).forEach(key => (params = params.set(key, env[key])));
     return next.handle(req.clone({ url, params }));
