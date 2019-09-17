@@ -7,7 +7,8 @@ Build-Depends:
  cmake,
  debhelper (>= 9),
  npm,
- nodejs-bin (>=10) [amd64] | nodejs (>=10) [amd64] | node (>=10) [amd64]
+ nodejs-bin (>=10) [amd64] | nodejs (>=10) [amd64] | node (>=10) [amd64],
+ git
 Standards-Version: 3.9.5
 Homepage: https://www.deepin.com
 
