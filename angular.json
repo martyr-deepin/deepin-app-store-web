@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "deepin-appstore-web": {
+    "deepin-app-store-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/deepin-appstore-web",
+            "outputPath": "dist/deepin-app-store-web",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "deepin-appstore-web:build"
+            "browserTarget": "deepin-app-store-web:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "deepin-appstore-web:build:production"
+              "browserTarget": "deepin-app-store-web:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "deepin-appstore-web:build"
+            "browserTarget": "deepin-app-store-web:build"
           }
         },
         "test": {
@@ -115,15 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "deepin-appstore-web:serve"
+            "devServerTarget": "deepin-app-store-web:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "deepin-appstore-web:serve:production"
+              "devServerTarget": "deepin-app-store-web:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "deepin-appstore-web"
+  "defaultProject": "deepin-app-store-web"
 }

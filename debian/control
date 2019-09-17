@@ -1,0 +1,18 @@
+Source: deepin-app-store-web
+Maintainer: Deepin Packages Builder <packages@deepin.com>
+Section: admin
+Priority: optional
+Build-Depends:
+ ca-certificates,
+ cmake,
+ debhelper (>= 9),
+ npm,
+ nodejs-bin (>=10) [amd64] | nodejs (>=10) [amd64] | node (>=10) [amd64]
+Standards-Version: 3.9.5
+Homepage: https://www.deepin.com
+
+Package: deepin-app-store-data
+Architecture: all
+Depends:${shlibs:Depends}, ${misc:Depends}
+Description: Deepin App Store Web
+ Deepin App Store Client Web.

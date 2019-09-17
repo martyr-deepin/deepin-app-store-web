@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'deepin-appstore-web'`, () => {
+  it(`should have as title 'deepin-app-store-web'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('deepin-appstore-web');
+    expect(app.title).toEqual('deepin-app-store-web');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('deepin-appstore-web app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('deepin-app-store-web app is running!');
   });
 });

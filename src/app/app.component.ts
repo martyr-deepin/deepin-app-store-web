@@ -9,7 +9,7 @@ import { environment } from 'environments/environment';
 })
 export class AppComponent implements OnInit {
   constructor(private region: RegionService) {}
-  title = 'deepin-appstore-web';
+  title = 'deepin-app-store-web';
   installing = true;
   ngOnInit() {
     this.init().finally(() => (this.installing = false));

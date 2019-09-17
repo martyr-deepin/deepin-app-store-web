@@ -25,7 +25,7 @@ export class LocalAppComponent implements OnInit {
     'dde-control-center',
     'dde-introduction',
     'dde-file-manager',
-    'deepin-appstore',
+    'deepin-app-store',
     'deepin-manual',
   ];
   readonly pageSize = 13;
