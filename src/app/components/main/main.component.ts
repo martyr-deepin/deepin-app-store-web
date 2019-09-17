@@ -67,8 +67,8 @@ export class MainComponent implements OnInit {
   }
   // search navigate
   searchNavigate() {
-    this.searchService.openApp$.subscribe(name => {
-      this.router.navigate(['/list', 'keyword', name, name]);
+    this.searchService.openApp$.subscribe(id => {
+      this.router.navigate(['/list', 'keyword', id, id]);
     });
     this.searchService.openAppList$.subscribe(keyword => {
       this.router.navigate(['/list', 'keyword', keyword]);
@@ -80,7 +80,9 @@ export class MainComponent implements OnInit {
         if (softs.length === 0) {
           break;
         }
-        list = list.concat(softs.map(soft => ({ name: soft.name, local_name: soft.info.name }))).slice(0, 10);
+        list = list
+          .concat(softs.map(soft => ({ id: soft.id, name: soft.id.toString(), local_name: soft.info.name })))
+          .slice(0, 10);
       }
       this.searchService.setComplementList(list);
     });
