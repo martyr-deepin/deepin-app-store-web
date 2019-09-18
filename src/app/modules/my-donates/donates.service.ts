@@ -2,7 +2,6 @@ import { map, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
-import { DstoreApp, RawApp } from 'app/model';
 import { SoftwareService, Software } from 'app/services/software.service';
 
 @Injectable({

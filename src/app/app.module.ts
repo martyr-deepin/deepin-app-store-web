@@ -20,6 +20,7 @@ import { ProxyInterceptor } from './services/proxy-interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AppComponent } from './app.component';
     NotifyComponent,
     PrivacyAgreementComponent,
     MainComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

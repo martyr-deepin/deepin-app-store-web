@@ -68,26 +68,21 @@ export class AppCommentComponent implements OnInit {
   });
 
   loading = true;
-  loading_count = 0;
+  loadCount = 0;
   info: UserInfo;
   info$ = this.auth.info$;
   own: AppComment;
 
+  CommentType = CommentType;
   CommentError = CommentError;
-  comment = {
-    content: '',
-    rate: 0,
-    error: null,
-  };
   haveNewComment = false;
   total: { [key: number]: number } = {};
-  CommentType = CommentType;
   select = CommentType.News;
   list: AppComment[];
   page = { index: 0, size: 20 };
 
-  login = this.authService.login;
-  logout = this.authService.logout;
+  login = () => this.authService.login();
+  logout = () => this.authService.logout();
 
   register = () => this.authService.register();
 
@@ -143,8 +138,8 @@ export class AppCommentComponent implements OnInit {
         return;
       }
     }
-    this.loading_count++;
-    const mark = this.loading_count;
+    this.loadCount++;
+    const mark = this.loadCount;
     this.loading = true;
     const opt = {
       limit: 20,
@@ -179,21 +174,19 @@ export class AppCommentComponent implements OnInit {
       });
       resp.items = [...topResp.items, ...resp.items];
 
-      const userResp = await this.userAPI.list({ app_id: this.appID, ...this.selectVersion });
-      if (this.select === CommentType.News) {
-        this.own = userResp.items[0];
-      }
       const info = await this.info$.pipe(first()).toPromise();
-      resp.items = [...userResp.items, ...resp.items.filter(c => c.commenter !== info.uid)];
+      if (info) {
+        console.log(info);
+        const userResp = await this.userAPI.list({ app_id: this.appID, ...this.selectVersion });
+        if (this.select === CommentType.News) {
+          this.own = userResp.items[0];
+        }
+        resp.items = [...userResp.items, ...resp.items.filter(c => c.commenter !== info.uid)];
+      }
     }
-    if (this.loading_count === mark) {
+    if (this.loadCount === mark) {
       this.list = resp.items;
       this.loading = false;
-    }
-  }
-  findFormError(f: FormGroup | FormArray) {
-    for (const control of Object.values(f.controls)) {
-      console.log(control);
     }
   }
   async submitComment() {

@@ -6,7 +6,6 @@
         <span i18n>Please post your comment after sign in</span>
         <a (click)="register()" i18n>Sign Up</a>
       </ng-container>
-
       <ng-template #logged>
         <ng-container *ngIf="own; else starEdit">
           <span class="star">
@@ -133,7 +132,12 @@
                       &nbsp;&nbsp;
                       <div class="like">
                         <span [class.hidden]="c.likes?.length <= 0">({{ c.likes?.length }})</span>
-                        <img class="thumbUp" [class.active]="likeByMe(c.likes, info?.uid)" (click)="thumbUpClick(c)" />
+                        <img
+                          class="thumbUp"
+                          [class.hidden]="c.commenter == info?.uid"
+                          [class.active]="likeByMe(c.likes, info?.uid)"
+                          (click)="thumbUpClick(c)"
+                        />
                       </div>
                     </div>
                   </div>
