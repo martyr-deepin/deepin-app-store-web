@@ -13,6 +13,6 @@ export class ProxyInterceptor implements HttpInterceptor {
     const env = environment.store_env;
     let params = req.params;
     Object.keys(env).forEach(key => (params = params.set(key, env[key])));
-    return next.handle(req.clone({ url, params, withCredentials: true }));
+    return next.handle(req.clone({ url, params }));
   }
 }

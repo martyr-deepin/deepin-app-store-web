@@ -15,7 +15,7 @@ export const environment = {
   supportSignIn: false,
   store_version: 0,
 
-  server: 'http://10.0.12.171:19000',
+  server: 'http://test.store.deepin.com',
   store_env: {
     arch: 'amd64',
     mode: 'desktop',
