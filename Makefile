@@ -1,3 +1,5 @@
+PREFIX=/usr
+
 all: build
 run:
 	yarn start
