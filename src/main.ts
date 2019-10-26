@@ -62,6 +62,7 @@ async function main() {
     environment.metadataServer = settings.metadataServer;
     environment.operationServer = environment.operationList[environment.region];
 
+    environment.server = settings.server;
     environment.store_env.arch = settings.arch;
     environment.store_env.mode = settings.desktopMode;
     environment.store_env.platform = settings.product;
@@ -85,7 +86,6 @@ async function main() {
       console.error('cannot load locale', language, err);
     }
   }
-  environment.locale = 'en_US';
   return bootstrap();
 }
 
@@ -126,6 +126,7 @@ interface Settings {
   themeName: string;
   upyunBannerVisible: boolean;
 
+  server: string;
   arch: string;
   desktopMode: string;
   product: string;
