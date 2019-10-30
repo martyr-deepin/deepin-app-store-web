@@ -92,6 +92,7 @@ export class SoftwareService {
         slogan: locale.slogan,
         description: locale.description,
         tags: locale.tags,
+        packages: app.packages.map(pkg => ({ packageURI: pkg.name })),
       },
       package: {
         remoteVersion: app.packages[0].version,

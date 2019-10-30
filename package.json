@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~8.2.5",
     "@angular/platform-browser-dynamic": "~8.2.5",
     "@angular/router": "~8.2.5",
+    "@types/lodash": "^4.14.144",
     "perfect-scrollbar": "^1.4.0",
     "qrcode": "^1.4.1",
     "rxjs": "~6.4.0",
