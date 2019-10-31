@@ -10,7 +10,7 @@ export class APIBase<RModel, WModel = RModel> {
     return this._http.get<RModel>(this.api + '/' + id).toPromise();
   }
   post(v: Partial<WModel>) {
-    return this._http.post<void>(this.api, v).toPromise();
+    return this._http.post<RModel>(this.api, v).toPromise();
   }
   patch(id: number, v: Partial<RModel>) {
     return this._http.patch<void>(this.api + '/' + id, v).toPromise();

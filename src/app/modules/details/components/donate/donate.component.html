@@ -19,20 +19,20 @@
             <div class="rand" (click)="rand()" i18n>Random</div>
           </div>
         </div>
-        <div class="formField">
+        <div>
           <label class="paymentLabel" i18n>Payment:</label>
+          <br />
           <div class="payment">
             <label>
-              <input type="radio" name="payment" [(ngModel)]="payment" [value]="Payment.WeChat" />
+              <input type="radio" name="payment" disabled [(ngModel)]="payment" [value]="Payment.WeChat" />
               <img class="paymentIcon wechat" />
             </label>
             <label>
               <input type="radio" name="payment" [(ngModel)]="payment" [value]="Payment.AliPay" />
               <img class="paymentIcon alipay" />
             </label>
-            <br />
             <label>
-              <input type="radio" name="payment" [(ngModel)]="payment" [value]="Payment.PayPal" />
+              <input type="radio" name="payment" disabled [(ngModel)]="payment" [value]="Payment.PayPal" />
               <img class="paymentIcon paypal" />
             </label>
           </div>
@@ -47,7 +47,7 @@
     <ng-template #paying>
       <ng-template #loading>
         <br />
-        <app-wait></app-wait>
+        <app-wait [timeout]="10000"></app-wait>
       </ng-template>
       <ng-container *ngIf="waitPay$ | async as check; else loading">
         <div class="waitPay">

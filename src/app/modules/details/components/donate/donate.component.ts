@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef, NgZo
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { Observable, of, iif, timer } from 'rxjs';
-import { map, catchError, switchMap, tap, find, takeWhile, pairwise } from 'rxjs/operators';
+import { map, catchError, switchMap, share, find, takeWhile, pairwise } from 'rxjs/operators';
 import { debounce } from 'lodash';
 
 import * as QRCode from 'qrcode';
@@ -13,6 +13,7 @@ import { AuthService } from 'app/services/auth.service';
 import { DstoreObject } from 'app/modules/client/utils/dstore-objects';
 import { DonorsComponent } from '../donors/donors.component';
 import { environment } from 'environments/environment';
+import { OrderService, OrderStatus } from '../../services/order.service';
 
 @Component({
   selector: 'app-donate',
@@ -24,6 +25,7 @@ export class DonateComponent implements OnInit {
     private authService: AuthService,
     private donateService: DonateService,
     private sanitizer: DomSanitizer,
+    private orderService: OrderService,
   ) {}
   @ViewChild(DonorsComponent, { static: true })
   donors: DonorsComponent;
@@ -31,7 +33,7 @@ export class DonateComponent implements OnInit {
   appName: string;
   amount = 9.9;
   Payment = Payment;
-  payment: Payment = Payment.WeChat;
+  payment: Payment = Payment.AliPay;
   randAmount = [2.0, 5.2, 8.88, 6.66, 9.9, 18.0, 12.0, 66.0, 25.5, 9.99, 15.2];
   loading: boolean;
   qrImg: SafeResourceUrl;
@@ -43,7 +45,7 @@ export class DonateComponent implements OnInit {
   close() {
     this.amount = 9.9;
     this.waitPay$ = null;
-    this.payment = Payment.WeChat;
+    this.payment = Payment.AliPay;
     this.loading = false;
     this.qrImg = null;
   }
@@ -56,59 +58,20 @@ export class DonateComponent implements OnInit {
     this.amount = r;
   }
 
-  pay() {
-    console.log('start');
-    // this.loading = true;
-    // this.authService.info$
-    //   .pipe(
-    //     map(info => {
-    //       console.log('get');
-    //       const req: PayReq = {
-    //         appStore: environment.region === 'Default' ? 'international' : 'china',
-    //         appName: this.appName,
-    //         amount: this.amount * 100,
-    //       };
-    //       if (info) {
-    //         req.userID = info.UserID;
-    //       }
-    //       return req;
-    //     }),
-    //     switchMap(
-    //       req => this.donateService.donate(this.payment, req),
-    //       (req, resp) => {
-    //         return { req, resp };
-    //       },
-    //     ),
-    //   )
-    //   .subscribe(({ req, resp }) => {
-    //     if (resp.error) {
-    //       console.error(resp);
-    //       return;
-    //     }
-    //     if (this.payment === Payment.WeChat) {
-    //       if (!resp.shortURL) {
-    //         return;
-    //       }
-    //       QRCode.toDataURL(resp.shortURL).then(
-    //         url => (this.qrImg = this.sanitizer.bypassSecurityTrustResourceUrl(url)),
-    //       );
-    //     } else {
-    //       DstoreObject.openURL(resp.url);
-    //     }
-    //     this.loading = false;
-    //     this.waitPay$ = timer(0, 2000).pipe(
-    //       switchMap(() => this.donateService.check(this.payment, resp.tradeID)),
-    //       pairwise(),
-    //       takeWhile(result => !result[0].isExist),
-    //       map(result => result[1]),
-    //       tap(c => {
-    //         if (c.isExist) {
-    //           DstoreObject.raiseWindow();
-    //           this.donors.add(req.userID);
-    //         }
-    //       }),
-    //     );
-    //   });
+  async pay() {
+    this.loading = true;
+    const result = await this.orderService.post({});
+    DstoreObject.openURL(result.pay_url);
+    this.waitPay$ = timer(0, 3000).pipe(
+      switchMap(async () => {
+        const order = await this.orderService.get(result.order_number as any);
+        return {
+          isExist: order.status === OrderStatus.OrderStatusSuccess,
+          isPaying: order.status === OrderStatus.OrderStatusWaiting,
+        } as PayCheck;
+      }),
+      share(),
+    );
   }
 
   inputChange(e: Event) {
