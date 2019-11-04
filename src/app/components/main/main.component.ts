@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'environments/environment';
+import { switchMap } from 'rxjs/operators';
 
 import { DstoreObject } from 'app/modules/client/utils/dstore-objects';
 import { ThemeService } from 'app/services/theme.service';
@@ -8,6 +9,7 @@ import { SearchService } from 'app/services/search.service';
 import { SysFontService } from 'app/services/sys-font.service';
 import { MenuService } from 'app/services/menu.service';
 import { SoftwareService } from 'app/services/software.service';
+import { ClientService, RequestErrorType } from 'app/services/client.service';
 
 @Component({
   selector: 'dstore-main',
@@ -16,20 +18,23 @@ import { SoftwareService } from 'app/services/software.service';
 })
 export class MainComponent implements OnInit {
   constructor(
+    private router: Router,
     private themeService: ThemeService,
     private sysFontService: SysFontService,
     private menuService: MenuService,
     private searchService: SearchService,
     private softwareService: SoftwareService,
-    private router: Router,
+    private clientService: ClientService,
   ) {}
 
   ngOnInit(): void {
+    console.log(this.clientService.store);
     this.switchTheme();
     if (!environment.native) {
       return;
     }
     this.searchNavigate();
+    this.controlNavigate();
     this.switchFont();
     this.screenshotPreview();
     this.menuService.serve();
@@ -85,6 +90,50 @@ export class MainComponent implements OnInit {
           .slice(0, 10);
       }
       this.searchService.setComplementList(list);
+    });
+  }
+  // control navigate
+  async controlNavigate() {
+    const packages = await this.softwareService.packages;
+    const handler = switchMap(async ([id, pkg_url]: [string, number]) => {
+      if (!packages[pkg_url]) {
+        this.clientService.requestFinished({ id, error_type: RequestErrorType.AppNotFound });
+        throw 'app_not_found';
+      }
+      const app_id = packages[pkg_url].id;
+      try {
+        const apps = await this.softwareService.list({ ids: [Number(app_id)] });
+        if (apps.length === 0) {
+          this.clientService.requestFinished({ id, error_type: RequestErrorType.AppNotFound });
+          throw 'app_not_found';
+        }
+        this.router.navigate(['/list', 'keyword', app_id, app_id]);
+        return { req_id: id, app: apps[0] };
+      } catch (err) {
+        this.clientService.requestFinished({ id, error_type: RequestErrorType.NetworkError });
+        throw err;
+      }
+    });
+    this.clientService
+      .onRequestInstallApp()
+      .pipe(handler)
+      .subscribe(v => {
+        console.log('requestOpenApp', v);
+      });
+    this.clientService
+      .onRequestUninstallApp()
+      .pipe(handler)
+      .subscribe(v => {
+        console.log('requestUninstallApp', v);
+      });
+    this.clientService
+      .onRequestUpdateApp()
+      .pipe(handler)
+      .subscribe(v => {
+        console.log('onRequestUpdateApp', v);
+      });
+    this.clientService.onRequestUpdateAllApp().subscribe(v => {
+      this.router.navigate(['/my/apps/local']);
     });
   }
 }

@@ -18,19 +18,13 @@ export class Channel {
       connect(callback) {},
       disconnect(callback) {},
     };
-    return _.get(
-      window,
-      'dstore.channel.objects.' + path,
-      emptySignal,
-    ) as Signal;
+    return _.get(window, 'dstore.channel.objects.' + path, emptySignal) as Signal;
   }
 
   static exec<T>(method: string, ...args: any[]): Promise<T> {
     if (debug) {
       const t = performance.now();
-      return new Promise<T>(resolve =>
-        Channel.getSlot(method)(...args, resolve),
-      ).then(resp => {
+      return new Promise<T>(resolve => Channel.getSlot(method)(...args, resolve)).then(resp => {
         const consumes = performance.now() - t;
         console.warn('exec', method, { consumes, args, resp });
         return resp;
@@ -38,6 +32,7 @@ export class Channel {
     }
     return new Promise<T>(resolve => Channel.getSlot(method)(...args, resolve));
   }
+
   static connect<T>(method: string): Observable<T> {
     if (debug) {
       console.warn('connect', method);

@@ -27,7 +27,7 @@ export class SoftwareService {
   private readonly metadataURL = environment.metadataServer + '/api/v3/apps';
   // operation app url
   private readonly operationURL = environment.operationServer + '/api/v3/apps';
-  packages = this.http.get<PackagesURL>(environment.metadataServer + '/api/v3/packages').toPromise();
+  packages = this.http.get<PackagesURL>('/api/public/packages').toPromise();
 
   async list({
     order = 'download' as 'download' | 'score',
@@ -45,10 +45,14 @@ export class SoftwareService {
     const stats = await this.statService.list({ order, offset, limit, category, tag, keyword, id: ids });
     const apps = await this.appService.list({ id: stats.items.map(stat => stat.app_id), active });
     const m = new Map<number, AppJSON>(apps.items.map(app => [app.id, app]));
-    return stats.items
+    const softs = stats.items
       .filter(stat => m.has(stat.app_id))
       .map(stat => this.convertApp(m.get(stat.app_id), stat))
       .filter(Boolean);
+    for (const soft of softs) {
+      this.packageService.query(this.toQuery(soft)).toPromise();
+    }
+    return softs;
   }
   private coverImage(img: string) {
     if (!img) {
@@ -56,6 +60,7 @@ export class SoftwareService {
     }
     return environment.server + '/api/public/blob/' + img;
   }
+
   private convertApp(app: AppJSON, stat: AppStat) {
     let locale = app.info.locales.find(l => l.language === environment.locale);
     if (!locale) {
@@ -222,6 +227,10 @@ export enum Source {
 
 export interface PackagesURL {
   [key: string]: {
+    category: string;
+    id: number;
     name: string;
+    updated_at: string;
+    locale: { [key: string]: { description: { name: string } } };
   };
 }
