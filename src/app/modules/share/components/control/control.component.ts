@@ -42,7 +42,7 @@ import { StoreJobInfo, StoreJobStatus } from 'app/modules/client/models/store-jo
         ),
       ),
     ]),
-    trigger('button', [
+    trigger('button1', [
       transition(
         ':enter',
         animate(
@@ -131,6 +131,10 @@ export class ControlComponent implements OnInit {
   installApp(e: Event) {
     e.stopPropagation();
     this.softwareService.install(this.soft);
+  }
+
+  buyApp(e: Event) {
+    e.stopPropagation();
   }
 
   trgger(e: Event, job: StoreJobInfo) {

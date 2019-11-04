@@ -25,15 +25,25 @@
 
 <ng-template #controlRef>
   <ng-container *ngIf="package$ | async as pkg">
-    <button @button class="control" *ngIf="pkg.upgradable; else elseRef" (click)="installApp($event)">
-      <ng-container i18n>Update</ng-container>
-    </button>
-    <ng-template #elseRef>
-      <button @button class="control" *ngIf="pkg.localVersion" (click)="openApp($event)">
+    <ng-container *ngIf="!pkg.upgradable; else upgradableRef">
+      <button class="control" *ngIf="pkg.localVersion; else installRef" (click)="openApp($event)">
         <ng-container i18n>Open</ng-container>
       </button>
-      <button @button class="control" *ngIf="!pkg.localVersion" (click)="installApp($event)">
-        <ng-container i18n>Install</ng-container>
+      <ng-template #installRef>
+        <button class="control" *ngIf="soft.free; else priceRef" (click)="installApp($event)">
+          <ng-container i18n>Install</ng-container>
+        </button>
+        <ng-template #priceRef>
+          <button class="control" (click)="buyApp($event)" hidden #buyRef>购买</button>
+          <button class="control price" (click)="buyRef.hidden = false; $event.stopPropagation()" *ngIf="buyRef.hidden">
+            {{ soft?.pricing?.price / 100 | currency: 'CNY':'symbol-narrow' }}
+          </button>
+        </ng-template>
+      </ng-template>
+    </ng-container>
+    <ng-template #upgradableRef>
+      <button class="control" (click)="installApp($event)">
+        <ng-container i18n>Update</ng-container>
       </button>
     </ng-template>
   </ng-container>

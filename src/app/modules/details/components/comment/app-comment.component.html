@@ -106,13 +106,24 @@
             <ng-container *ngFor="let c of list; index as $index; first as first">
               <tr [@myComment]="haveNewComment && first && c.commenter === info?.uid ? 'in' : ''">
                 <td rowspan="2">
-                  <div class="head" *ngIf="c.commenter | deepinid | async as $userInfo; else deepinInfoDefault">
-                    <img [src]="$userInfo.profile_image" class="profile" />
-                    <span>{{ $userInfo.nickname }}</span>
+                  <div class="head" *ngIf="c.commenter | deepinid | async as info; else deepinInfoDefault">
+                    <ng-container *ngIf="info.uid; else deletedRef">
+                      <img
+                        [src]="info.profile_image"
+                        #avatarRef
+                        (error)="avatarRef.src = '/assets/images/default_avatar.jpeg?default'"
+                        class="profile"
+                      />
+                      <span>{{ info.nickname }}</span>
+                    </ng-container>
+                    <ng-template #deletedRef>
+                      <img [src]="'/assets/images/default_avatar.jpeg?default'" class="profile" />
+                      <span i18n>[账户已注销]</span>
+                    </ng-template>
                   </div>
                   <ng-template #deepinInfoDefault>
                     <div class="head">
-                      <img src="/assets/images/default.jpeg" class="profile default" />
+                      <img src="/assets/images/default_avatar.jpeg" class="profile default" />
                       <span>&nbsp;</span>
                     </div>
                   </ng-template>

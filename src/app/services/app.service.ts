@@ -30,6 +30,7 @@ export interface AppJSON {
   operation?: any;
   packages: Package[];
   version: string;
+  free: boolean;
   pricings: Pricing[];
 }
 
@@ -60,7 +61,7 @@ interface Package {
   blob: string;
   version: string;
 }
-interface Pricing {
+export interface Pricing {
   price: number;
   region_id: number;
 }

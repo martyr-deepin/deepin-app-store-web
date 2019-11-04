@@ -11,7 +11,7 @@ import { Software } from 'app/services/software.service';
 })
 export class RemoteAppComponent implements OnInit {
   constructor(private route: ActivatedRoute, public router: Router, private remoteAppService: RemoteAppService) {}
-  readonly pageSize = 13;
+  readonly pageSize = 12;
   pageIndex$ = this.route.queryParamMap.pipe(map(query => Number(query.get('page')) || 0));
   result$ = this.pageIndex$.pipe(
     switchMap(pageIndex => this.remoteAppService.list({ offset: pageIndex * this.pageSize, limit: this.pageSize })),
@@ -21,9 +21,7 @@ export class RemoteAppComponent implements OnInit {
   apps$ = this.result$.pipe(map(result => result.items));
   count$ = this.result$.pipe(map(result => Math.ceil(result.count / this.pageSize)));
   installing$ = this.remoteAppService.installingList();
-  ngOnInit() {
-    this.remoteAppService.list();
-  }
+  ngOnInit() {}
 
   installApp(soft: Software) {
     this.installed.add(soft.name);

@@ -7,7 +7,7 @@ import { StoreService, Package } from 'app/modules/client/services/store.service
 import { Category, CategoryService } from './category.service';
 import { PackageService } from './package.service';
 import { DownloadTotalService } from './download-total.service';
-import { AppService, AppJSON } from './app.service';
+import { AppService, AppJSON, Pricing } from './app.service';
 import { StatService, AppStat } from './stat.service';
 
 @Injectable({
@@ -41,6 +41,7 @@ export class SoftwareService {
     ids = [] as number[],
     active = true as boolean | '',
   }) {
+    console.log('ids', ids);
     const stats = await this.statService.list({ order, offset, limit, category, tag, keyword, id: ids });
     const apps = await this.appService.list({ id: stats.items.map(stat => stat.app_id), active });
     const m = new Map<number, AppJSON>(apps.items.map(app => [app.id, app]));
@@ -98,6 +99,8 @@ export class SoftwareService {
         remoteVersion: app.packages[0].version,
         localVersion: '',
       },
+      free: app.free,
+      pricing: app.pricings[0],
     };
     return soft;
   }
@@ -171,6 +174,8 @@ export interface Software {
   name: string;
   info: Info;
   stat: Stat;
+  free: boolean;
+  pricing: Pricing;
   package?: {
     localVersion: string;
     remoteVersion: string;

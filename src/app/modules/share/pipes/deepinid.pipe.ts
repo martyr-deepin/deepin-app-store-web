@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Subject } from 'rxjs';
-import { bufferTime, mergeMap, filter, map, share } from 'rxjs/operators';
+import { Subject, of } from 'rxjs';
+import { debounceTime, timeoutWith, map, share, switchMap } from 'rxjs/operators';
 import { DeepinidInfoService, DeepinInfo } from '../services/deepinid.service';
 
 @Pipe({
@@ -8,28 +8,36 @@ import { DeepinidInfoService, DeepinInfo } from '../services/deepinid.service';
 })
 export class DeepinidPipe implements PipeTransform {
   constructor(private deepinid: DeepinidInfoService) {}
-  query = new Subject<number>();
-  result$ = this.query.pipe(
-    bufferTime(100, -1, 20),
-    filter(arr => arr.length > 0),
-    mergeMap(async arr => {
-      const uids = [...new Set(arr.sort())];
-      const list = await this.deepinid.getDeepinUserInfo(uids);
-      const m = new Map(list.map(info => [info.uid, info] as [number, DeepinInfo]));
-      uids.forEach(uid => {
-        if (!m.has(uid)) {
-          m.set(uid, null);
-        }
-      });
-      return m;
+  private cache = new Map<number, DeepinInfo>();
+  private ids = new Set<number>();
+  query$ = new Subject<void>();
+  result$ = this.query$.pipe(
+    debounceTime(300),
+    switchMap(() => {
+      const ids = [...this.ids.values()].filter(id => !this.cache.has(id));
+      this.ids.clear();
+      if (ids.length === 0) {
+        return of(this.cache);
+      }
+      return this.deepinid.getDeepinUserInfo(ids).pipe(
+        map(result => {
+          result.forEach(info => this.cache.set(info.uid, info));
+          return this.cache;
+        }),
+      );
     }),
     share(),
   );
-  transform(uid: number): any {
-    setTimeout(() => this.query.next(uid));
+  transform(uid: number) {
+    this.ids.add(uid);
+    this.query$.next();
     return this.result$.pipe(
-      filter(m => m.has(uid)),
-      map(m => m.get(uid)),
+      map(() => {
+        if (!this.cache.has(uid)) {
+          this.cache.set(uid, { uid: 0 } as DeepinInfo);
+        }
+        return this.cache.get(uid);
+      }),
     );
   }
 }
