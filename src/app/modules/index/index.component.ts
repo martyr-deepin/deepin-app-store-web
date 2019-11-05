@@ -10,7 +10,7 @@ import { SectionService, SectionType } from './services/section.service';
 export class IndexComponent implements OnInit {
   constructor(private sectionService: SectionService) {}
   SectionType = SectionType;
-  sectionList$ = this.sectionService.getList();
+  sectionList$ = null; // this.sectionService.getList();
   loadedCount = 0;
 
   ngOnInit() {}
