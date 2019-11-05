@@ -49,10 +49,14 @@ export class SoftwareService {
       .filter(stat => m.has(stat.app_id))
       .map(stat => this.convertApp(m.get(stat.app_id), stat))
       .filter(Boolean);
-    for (const soft of softs) {
-      this.packageService.query(this.toQuery(soft)).toPromise();
-    }
-    return softs;
+    const pkgMap = await this.packageService.querys(softs.map(this.toQuery));
+    return softs.map(soft => {
+      const pkg = pkgMap.get(soft.name);
+      if (pkg) {
+        soft.package = { localVersion: pkg.localVersion, remoteVersion: pkg.remoteVersion, upgradable: pkg.upgradable };
+      }
+      return soft;
+    });
   }
   private coverImage(img: string) {
     if (!img) {
@@ -101,8 +105,9 @@ export class SoftwareService {
         packages: app.packages.map(pkg => ({ packageURI: pkg.name })),
       },
       package: {
-        remoteVersion: app.packages[0].version,
+        remoteVersion: '',
         localVersion: '',
+        upgradable: false,
       },
       free: app.free,
       pricing: app.pricings[0],
@@ -184,6 +189,7 @@ export interface Software {
   package?: {
     localVersion: string;
     remoteVersion: string;
+    upgradable: boolean;
   };
   // 下面是服务器返回结构，全部解析到info内部
   desc?: Desc;

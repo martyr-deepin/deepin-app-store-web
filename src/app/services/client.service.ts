@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { merge } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { get } from 'lodash';
 import { Channel } from 'app/modules/client/utils/channel';
 
@@ -8,26 +10,54 @@ import { Channel } from 'app/modules/client/utils/channel';
 export class ClientService {
   store = get(window, 'dstore.channel.objects');
   constructor() {}
-  onRequestInstallApp() {
-    return Channel.connect<[string, number]>('storeDaemon.requestInstallApp');
+  private onRequestInstallApp() {
+    return Channel.connect<[string, string]>('storeDaemon.requestInstallApp').pipe(
+      map(args => {
+        return { type: 'install', req_id: args[0], pkg_url: args[1] } as RequestBody;
+      }),
+    );
   }
-  onRequestUninstallApp() {
-    return Channel.connect<[string, number]>('storeDaemon.requestUninstallApp');
+  private onRequestUninstallApp() {
+    return Channel.connect<[string, string]>('storeDaemon.requestUninstallApp').pipe(
+      map(args => {
+        return { type: 'uninstall', req_id: args[0], pkg_url: args[1] } as RequestBody;
+      }),
+    );
   }
-  onRequestUpdateApp() {
-    return Channel.connect<[string, number]>('storeDaemon.requestUpdateApp');
+  private onRequestUpdateApp() {
+    return Channel.connect<[string, string]>('storeDaemon.requestUpdateApp').pipe(
+      map(args => {
+        return { type: 'update', req_id: args[0], pkg_url: args[1] } as RequestBody;
+      }),
+    );
   }
-  onRequestUpdateAllApp() {
-    return Channel.connect<string>('storeDaemon.requestUpdateAllApp');
+  private onRequestUpdateAllApp() {
+    return Channel.connect<string>('storeDaemon.requestUpdateAllApp').pipe(
+      map(args => {
+        return { type: 'update_all', req_id: args } as RequestBody;
+      }),
+    );
+  }
+  onRequest() {
+    return merge(
+      this.onRequestInstallApp(),
+      this.onRequestUninstallApp(),
+      this.onRequestUpdateApp(),
+      this.onRequestUpdateAllApp(),
+    );
   }
   requestFinished(result: FinishedResult) {
     console.log('request finished');
-    return Channel.exec('storeDaemon.onRequestFinished', result);
+    return Channel.exec('storeDaemon.onRequestFinished', { id: result.req_id, error_type: result.error_type });
   }
 }
-
+interface RequestBody {
+  type: 'install' | 'uninstall' | 'update' | 'update_all';
+  req_id: string;
+  pkg_url?: string;
+}
 interface FinishedResult {
-  id: string;
+  req_id: string;
   error_type?: RequestErrorType;
 }
 export enum RequestErrorType {

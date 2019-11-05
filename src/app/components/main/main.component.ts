@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { switchMap } from 'rxjs/operators';
 
@@ -8,7 +9,7 @@ import { ThemeService } from 'app/services/theme.service';
 import { SearchService } from 'app/services/search.service';
 import { SysFontService } from 'app/services/sys-font.service';
 import { MenuService } from 'app/services/menu.service';
-import { SoftwareService } from 'app/services/software.service';
+import { SoftwareService, Software } from 'app/services/software.service';
 import { ClientService, RequestErrorType } from 'app/services/client.service';
 
 @Component({
@@ -95,45 +96,57 @@ export class MainComponent implements OnInit {
   // control navigate
   async controlNavigate() {
     const packages = await this.softwareService.packages;
-    const handler = switchMap(async ([id, pkg_url]: [string, number]) => {
-      if (!packages[pkg_url]) {
-        this.clientService.requestFinished({ id, error_type: RequestErrorType.AppNotFound });
-        throw 'app_not_found';
-      }
-      const app_id = packages[pkg_url].id;
-      try {
-        const apps = await this.softwareService.list({ ids: [Number(app_id)] });
-        if (apps.length === 0) {
-          this.clientService.requestFinished({ id, error_type: RequestErrorType.AppNotFound });
-          throw 'app_not_found';
-        }
-        this.router.navigate(['/list', 'keyword', app_id, app_id]);
-        return { req_id: id, app: apps[0] };
-      } catch (err) {
-        this.clientService.requestFinished({ id, error_type: RequestErrorType.NetworkError });
-        throw err;
-      }
-    });
     this.clientService
-      .onRequestInstallApp()
-      .pipe(handler)
-      .subscribe(v => {
-        console.log('requestOpenApp', v);
-      });
-    this.clientService
-      .onRequestUninstallApp()
-      .pipe(handler)
-      .subscribe(v => {
-        console.log('requestUninstallApp', v);
-      });
-    this.clientService
-      .onRequestUpdateApp()
-      .pipe(handler)
-      .subscribe(v => {
-        console.log('onRequestUpdateApp', v);
-      });
-    this.clientService.onRequestUpdateAllApp().subscribe(v => {
-      this.router.navigate(['/my/apps/local']);
-    });
+      .onRequest()
+      .pipe(
+        switchMap(async body => {
+          try {
+            let soft: Software;
+            if (body.pkg_url) {
+              if (!packages[body.pkg_url]) {
+                throw RequestErrorType.AppNotFound;
+              }
+              [soft] = await this.softwareService.list({ ids: [Number(packages[body.pkg_url].id)] });
+            }
+            if (['install', 'uninstall', 'update'].includes(body.type)) {
+              this.router.navigate(['/list', 'keyword', soft.id, soft.id]);
+            }
+            switch (body.type) {
+              case 'install':
+                if (soft.package.localVersion) {
+                  throw RequestErrorType.AppInstalled;
+                }
+                break;
+              case 'uninstall':
+                if (!soft.package.localVersion) {
+                  throw RequestErrorType.AppNotInstalled;
+                }
+                break;
+              case 'update':
+                if (!soft.package.localVersion) {
+                  throw RequestErrorType.AppNotInstalled;
+                }
+                if (!soft.package.upgradable) {
+                  throw RequestErrorType.AppIsLatest;
+                }
+                break;
+              case 'update_all':
+                this.router.navigate(['/my/apps/local']);
+            }
+            this.clientService.requestFinished({ req_id: body.req_id });
+          } catch (err) {
+            if (typeof err === 'string') {
+              this.clientService.requestFinished({ req_id: body.req_id, error_type: err as RequestErrorType });
+              return;
+            }
+            if (err instanceof HttpErrorResponse) {
+              this.clientService.requestFinished({ req_id: body.req_id, error_type: RequestErrorType.NetworkError });
+              return;
+            }
+            console.log('err', err);
+          }
+        }),
+      )
+      .subscribe();
   }
 }
