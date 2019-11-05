@@ -22,12 +22,12 @@ export const environment = {
   supportSignIn: true, // support sign in
   store_version: 0,
 
-  server: 'http://localhost:19000',
-  // server: 'http://test.store.deepin.com',
+  // server: 'http://localhost:19000',
+  server: 'http://test.store.deepin.com',
   store_env: {
     arch: 'amd64',
     mode: 'desktop',
-    platform: 'community',
+    platform: 'professional',
     region: 'CN',
     language: 'zh_CN',
   },

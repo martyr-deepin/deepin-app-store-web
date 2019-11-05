@@ -107,6 +107,9 @@ export class MainComponent implements OnInit {
                 throw RequestErrorType.AppNotFound;
               }
               [soft] = await this.softwareService.list({ ids: [Number(packages[body.pkg_url].id)] });
+              if (!soft) {
+                throw RequestErrorType.AppNotFound;
+              }
             }
             if (['install', 'uninstall', 'update'].includes(body.type)) {
               this.router.navigate(['/list', 'keyword', soft.id, soft.id]);
@@ -143,6 +146,8 @@ export class MainComponent implements OnInit {
               this.clientService.requestFinished({ req_id: body.req_id, error_type: RequestErrorType.NetworkError });
               return;
             }
+            // 未知错误，也返回网络错误
+            this.clientService.requestFinished({ req_id: body.req_id, error_type: RequestErrorType.NetworkError });
             console.log('err', err);
           }
         }),
