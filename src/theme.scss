@@ -55,34 +55,44 @@ $control-button: ('cancel' 'pause' 'restart' 'start');
     background: linear-gradient(180deg, rgba(79, 189, 255, 1) 0%, rgba(25, 159, 243, 1) 100%);
     box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.05), 0px 2px 0px 0px rgba(255, 255, 255, 0.15);
     border-radius: 4px;
-    &:hover,
-    &.hover {
-      color: rgba(255, 255, 255, 0.8);
-    }
-    &:active,
-    &.active {
-      &:after {
-        display: block;
-        background: rgba(0, 0, 0, 0.1);
-        content: ' ';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
+    &:enabled {
+      &:hover,
+      &.hover {
+        color: rgba(255, 255, 255, 0.8);
+      }
+      &:active,
+      &.active {
+        &:after {
+          display: block;
+          background: rgba(0, 0, 0, 0.1);
+          content: ' ';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+        }
       }
     }
     &:disabled,
     &.disabled {
       background: #e6e6e6;
+      cursor: not-allowed;
     }
 
     &.primary {
       font-weight: 500;
       border: 1px solid rgba(29, 130, 255, 0.3);
     }
+    &.secondary:enabled {
+      &:not(:hover):not(:active) {
+        color: black;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(253, 253, 253, 1) 100%);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+    }
   }
-  .button {
+  .___button {
     background-color: white;
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(0, 0, 0, 0.02);
     color: rgba(48, 48, 48, 1);
@@ -185,6 +195,7 @@ $control-button: ('cancel' 'pause' 'restart' 'start');
     &:disabled {
       color: #5e5e5e;
       background-color: #2d2d2d;
+      cursor: not-allowed;
     }
     &.primary {
       color: #0699ff;

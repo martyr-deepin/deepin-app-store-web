@@ -44,3 +44,14 @@
     }
   }
 }
+.refund {
+  min-width: 100px;
+  .secondary {
+    width: 100%;
+  }
+}
+.refund-waiting {
+  min-width: 100px;
+  text-align: center;
+  color: gray;
+}

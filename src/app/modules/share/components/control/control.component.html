@@ -24,7 +24,7 @@
 </ng-container>
 
 <ng-template #controlRef>
-  <ng-container *ngIf="package$ | async as pkg">
+  <ng-container *ngIf="package$ | async as pkg; else unavailableRef">
     <ng-container *ngIf="!pkg.upgradable; else upgradableRef">
       <button class="control" *ngIf="pkg.localVersion; else installRef" (click)="openApp($event)">
         <ng-container i18n>Open</ng-container>
@@ -47,4 +47,7 @@
       </button>
     </ng-template>
   </ng-container>
+  <ng-template #unavailableRef>
+    <button class="control" disabled i18n>不可用</button>
+  </ng-template>
 </ng-template>

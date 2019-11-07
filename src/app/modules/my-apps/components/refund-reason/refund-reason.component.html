@@ -1,0 +1,8 @@
+<ng-container [ngSwitch]="reason">
+  <ng-container *ngSwitchCase="RefundReason.reason1" i18n>应用经常报错或崩溃</ng-container>
+  <ng-container *ngSwitchCase="RefundReason.reason2" i18n>应用操作复杂</ng-container>
+  <ng-container *ngSwitchCase="RefundReason.reason3" i18n>应用占用电脑内存过高</ng-container>
+  <ng-container *ngSwitchCase="RefundReason.reason4" i18n>通知和广告过多</ng-container>
+  <ng-container *ngSwitchCase="RefundReason.reason5" i18n>应用体验不好</ng-container>
+  <ng-container *ngSwitchCase="RefundReason.reason6" i18n>应用内容质量糟糕</ng-container>
+</ng-container>

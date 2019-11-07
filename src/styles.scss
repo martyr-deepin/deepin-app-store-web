@@ -79,15 +79,18 @@ a {
 [tabindex] {
   outline: none;
 }
+
 button {
   cursor: pointer;
   border-radius: 4px;
-  outline: none;
   user-select: none;
   border: none;
   font-size: 1rem;
   white-space: nowrap;
   height: 2rem;
+  &:hover {
+    outline: 0;
+  }
 }
 
 dialog {
@@ -100,8 +103,12 @@ dialog {
   border: 1px solid var(--main-title-hr-color);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 16px 40px rgba(0, 0, 0, 0.4);
   background-color: var(--main-bg-color);
+  z-index: 9999;
   body {
     background-color: red;
+  }
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
   }
 }
 img {

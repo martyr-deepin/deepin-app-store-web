@@ -10,7 +10,7 @@ export class OrderService extends APIBase<OrderJSON> {
   }
 }
 
-interface OrderJSON {
+export interface OrderJSON {
   amount: number;
   app_author: number;
   app_id: number;

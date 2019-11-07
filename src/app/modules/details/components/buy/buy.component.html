@@ -1,0 +1,57 @@
+<dialog class="buy-dialog" #dialogRef>
+  <dstore-close-button [dialog]="dialogRef"></dstore-close-button>
+  <ng-container *ngIf="payment$ | async as order; else formRef">
+    <ng-container *ngIf="order.status === OrderStatus.OrderStatusSuccess; else waitPayRef">
+      <div class="pay-success">
+        <div class="success-title">
+          <img class="icon" dstoreCover="icon" src="/assets/icons/ok.svg" /> <br />
+          <div i18n>Payment Successful!</div>
+        </div>
+        <div class="order-info">
+          <span>订单编号</span>
+          <span class="order-number">{{ order.order_number }}</span>
+          <span>下单时间</span>
+          <span>{{ order.created_at | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
+          <span>支付方式</span>
+          <span [ngSwitch]="order.pay_method">
+            <ng-container *ngSwitchCase="Payment.AliPay" i18n>AliPay</ng-container>
+            <ng-container *ngSwitchCase="Payment.WeChat" i18n>WeChat</ng-container>
+            <ng-container *ngSwitchCase="Payment.PayPal" i18n>PayPal</ng-container>
+          </span>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #waitPayRef>
+    <div class="wait-pay">
+      <img class="wait" [style.width.rem]="4" />
+      <div i18n>Processing payment, please wait...</div>
+    </div>
+  </ng-template>
+
+  <ng-template #formRef>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="formField">
+        <label i18n>Amount:</label>
+        <div class="amount">
+          {{ form.value.amount / 100 | currency: 'CNY':'symbol-narrow' }}
+        </div>
+      </div>
+      <div>
+        <label class="paymentLabel" i18n>Payment:</label>
+        <br />
+        <div class="payment-methods">
+          <label>
+            <input type="radio" name="method" formControlName="method" [value]="Payment.AliPay" />
+            <img class="paymentIcon alipay" />
+          </label>
+        </div>
+      </div>
+
+      <button class="btn" [disabled]="form.invalid">
+        <ng-container i18n>Pay Now</ng-container>
+      </button>
+    </form>
+  </ng-template>
+</dialog>

@@ -1,0 +1,26 @@
+<dialog #dialogRef>
+  <dstore-close-button [dialog]="dialogRef"></dstore-close-button>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <h3 i18n>退款理由</h3>
+    <div class="refundGrid">
+      <span class="required" i18n>退款原因：</span>
+      <div>
+        <div class="reason-select">
+          <div formArrayName="reason" *ngFor="let kv of RefundReason | keyvalue; index as index">
+            <m-checkbox [formControlName]="index">
+              <m-refund-reason [reason]="kv.value"></m-refund-reason>
+            </m-checkbox>
+          </div>
+        </div>
+      </div>
+      <span i1n8>意见建议：</span>
+      <div>
+        <textarea formControlName="content"></textarea>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="secondary" (click)="close()">取消</button>
+        <button [disabled]="form.invalid">提交</button>
+      </div>
+    </div>
+  </form>
+</dialog>

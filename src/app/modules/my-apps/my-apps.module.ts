@@ -10,6 +10,9 @@ import { RemoteInstallComponent } from './components/remote-install/remote-insta
 import { SwitchButtonComponent } from './components/switch-button/switch-button.component';
 import { BatchInstallComponent } from './components/batch-install/batch-install.component';
 import { CheckboxButtonComponent } from './components/checkbox-button/checkbox-button.component';
+import { RefundComponent } from './components/refund/refund.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { RefundReasonComponent } from './components/refund-reason/refund-reason.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import { CheckboxButtonComponent } from './components/checkbox-button/checkbox-b
     SwitchButtonComponent,
     BatchInstallComponent,
     CheckboxButtonComponent,
+    RefundComponent,
+    CheckboxComponent,
+    RefundReasonComponent,
   ],
   imports: [CommonModule, MyAppRoutingModule, ShareModule],
 })

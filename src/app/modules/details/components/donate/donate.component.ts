@@ -13,7 +13,7 @@ import { AuthService } from 'app/services/auth.service';
 import { DstoreObject } from 'app/modules/client/utils/dstore-objects';
 import { DonorsComponent } from '../donors/donors.component';
 import { environment } from 'environments/environment';
-import { OrderService, OrderStatus } from '../../services/order.service';
+import { OrderService, OrderStatus } from '../../../../services/order.service';
 
 @Component({
   selector: 'app-donate',

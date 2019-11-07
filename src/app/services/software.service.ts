@@ -49,6 +49,9 @@ export class SoftwareService {
       .filter(stat => m.has(stat.app_id))
       .map(stat => this.convertApp(m.get(stat.app_id), stat))
       .filter(Boolean);
+    if (!environment.native) {
+      return softs;
+    }
     const pkgMap = await this.packageService.querys(softs.map(this.toQuery));
     return softs.map(soft => {
       const pkg = pkgMap.get(soft.name);
@@ -80,6 +83,7 @@ export class SoftwareService {
     const soft: Software = {
       id: app.id,
       name: app.name,
+      author: app.author,
       active: app.active,
       created_at: app.created_at,
       updated_at: app.updated_at,
@@ -102,14 +106,14 @@ export class SoftwareService {
         slogan: locale.slogan,
         description: locale.description,
         tags: locale.tags,
-        packages: app.packages.map(pkg => ({ packageURI: pkg.name })),
+        packages: app.packages.map(pkg => ({ packageURI: 'dpk://deb/' + pkg.name })),
       },
       package: {
         remoteVersion: '',
         localVersion: '',
         upgradable: false,
       },
-      free: app.free,
+      free: false && app.free,
       pricing: app.pricings[0],
     };
     return soft;
@@ -182,6 +186,7 @@ export interface Software {
   updated_at: string;
   active: boolean;
   name: string;
+  author: number;
   info: Info;
   stat: Stat;
   free: boolean;

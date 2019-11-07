@@ -1,0 +1,95 @@
+.buy-dialog {
+  width: 470px;
+  height: 260px;
+}
+.amount {
+  font-size: 16px;
+  color: rgba(255, 83, 83, 1);
+}
+.paymentIcon {
+  width: 100px;
+  height: 28px;
+  &.wechat {
+    content: var(--wechat-icon);
+  }
+  &.alipay {
+    content: var(--alipay-icon);
+  }
+  &.paypal {
+    content: var(--paypal-icon);
+  }
+}
+form {
+  margin: 3rem;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0px 50px;
+  .formField {
+    display: flex;
+    align-items: center;
+  }
+  .payment-methods {
+    display: flex;
+  }
+  label {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.wait-pay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  .icon {
+    width: 3rem;
+  }
+  .amount {
+    font-weight: bold;
+    color: #e79305;
+  }
+  .wait {
+    content: url('/assets/images/spinner.svg');
+    animation: loop 2s infinite linear;
+  }
+  @keyframes loop {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+.pay-success {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  .success-title {
+    display: flex;
+    align-items: center;
+    & > * {
+      margin: 1rem 0.5rem;
+    }
+  }
+  .order-info {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 5px;
+    span:nth-child(odd) {
+      color: gray;
+      &:after {
+        content: '：';
+      }
+    }
+    .order-number {
+      user-select: all;
+    }
+  }
+}

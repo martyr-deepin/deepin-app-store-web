@@ -16,7 +16,9 @@ export class SectionService {
       map(ss => ss.filter(s => s.show)),
     )
     .toPromise();
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.http.get('/api/public/section').toPromise();
+  }
   getList() {
     return this.list;
   }

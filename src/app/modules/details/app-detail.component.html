@@ -4,6 +4,7 @@
       <img class="icon" dstoreCover="icon" [src]="app.info.icon" /> <br />
       <div>
         <dstore-control class="control" [soft]="app" #controlRef [hidden]="controlRef.job$ | async"></dstore-control>
+        <m-buy [soft]="app"></m-buy>
       </div>
       <ng-container *ngIf="controlRef.job$ | async as job">
         <dstore-progress-button
@@ -49,12 +50,12 @@
           <div i18n>Updated Date:</div>
           <div>
             {{ app.updated_at | date: 'yyyy-MM-dd HH:mm' }}
-            <ng-container *ngIf="supportSignIn && package.remoteVersion">
+            <!-- <ng-container *ngIf="supportSignIn && package.remoteVersion">
               <span class="toRight">&lt;</span>
               <button class="reminder" (click)="reminder(app.name, package.remoteVersion)">
                 <ng-container i18n>Ask for update</ng-container>
               </button>
-            </ng-container>
+            </ng-container> -->
           </div>
         </ng-container>
         <ng-container *ngIf="app.info.author">
