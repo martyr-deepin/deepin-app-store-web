@@ -76,7 +76,7 @@ export class MainComponent implements OnInit {
     this.searchService.openApp$.subscribe(id => {
       this.router.navigate(['/list', 'keyword', id, id]);
     });
-    this.searchService.openAppList$.subscribe(keyword => {
+    this.searchService.openSearchResult$.subscribe(keyword => {
       this.router.navigate(['/list', 'keyword', keyword]);
     });
     this.searchService.requestComplement$.subscribe(async keyword => {
@@ -90,12 +90,12 @@ export class MainComponent implements OnInit {
           .concat(softs.map(soft => ({ id: soft.id, name: soft.id.toString(), local_name: soft.info.name })))
           .slice(0, 10);
       }
+      console.log('search result', { list });
       this.searchService.setComplementList(list);
     });
   }
   // control navigate
   async controlNavigate() {
-    const packages = await this.softwareService.packages;
     this.clientService
       .onRequest()
       .pipe(
@@ -103,10 +103,15 @@ export class MainComponent implements OnInit {
           try {
             let soft: Software;
             if (body.pkg_url) {
-              if (!packages[body.pkg_url]) {
-                throw RequestErrorType.AppNotFound;
+              let softs = await this.softwareService.list({}, { locale_name: body.pkg_url });
+              if (softs.length !== 1) {
+                softs = await this.softwareService.list({ keyword: body.pkg_url });
               }
-              [soft] = await this.softwareService.list({ ids: [Number(packages[body.pkg_url].id)] });
+              if (softs.length > 1) {
+                this.router.navigate(['/list', 'keyword', body.pkg_url]);
+                throw RequestErrorType.AppMultiple;
+              }
+              soft = softs[0];
               if (!soft) {
                 throw RequestErrorType.AppNotFound;
               }

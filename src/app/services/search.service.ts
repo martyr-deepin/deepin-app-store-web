@@ -9,7 +9,7 @@ import { Channel } from 'app/modules/client/utils/channel';
 export class SearchService {
   constructor(private zone: NgZone) {}
   openApp$ = Channel.connect<string>('search.openApp');
-  openAppList$ = Channel.connect<string>('search.openAppList');
+  openSearchResult$ = Channel.connect<string>('search.openSearchResult');
   requestComplement$ = Channel.connect<string>('search.requestComplement');
 
   setComplementList(list: { name: string; localName: string }[]) {

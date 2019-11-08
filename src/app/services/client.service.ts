@@ -65,5 +65,6 @@ export enum RequestErrorType {
   NetworkError = 'network_error',
   AppIsLatest = 'app_is_latest',
   AppInstalled = 'app_installed',
+  AppMultiple = 'app_multiple',
   AppNotInstalled = 'app_not_installed',
 }

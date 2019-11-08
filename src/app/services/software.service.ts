@@ -29,22 +29,30 @@ export class SoftwareService {
   private readonly operationURL = environment.operationServer + '/api/v3/apps';
   packages = this.http.get<PackagesURL>('/api/public/packages').toPromise();
 
-  async list({
-    order = 'download' as 'download' | 'score',
-    offset = 0,
-    limit = 20,
-    category = '',
-    tag = '',
-    keyword = '',
-    author = '',
-    names = [] as string[],
-    ids = [] as number[],
-    active = true as boolean | '',
-  }) {
+  async list(
+    {
+      order = 'download' as 'download' | 'score',
+      offset = 0,
+      limit = 20,
+      category = '',
+      tag = '',
+      keyword = '',
+      author = '',
+      names = [] as string[],
+      ids = [] as number[],
+      active = true as boolean | '',
+    },
+    opt2?: { locale_name?: string },
+  ) {
     console.log('ids', ids);
-    const stats = await this.statService.list({ order, offset, limit, category, tag, keyword, id: ids });
-    const apps = await this.appService.list({ id: stats.items.map(stat => stat.app_id), active });
-    const m = new Map<number, AppJSON>(apps.items.map(app => [app.id, app]));
+    const stats = await this.statService.list(
+      (opt2 as any) || { order, offset, limit, category, tag, keyword, id: ids },
+    );
+    const m = new Map<number, AppJSON>();
+    if (stats.count > 0) {
+      const apps = await this.appService.list({ id: stats.items.map(stat => stat.app_id), active });
+      apps.items.forEach(app => m.set(app.id, app));
+    }
     const softs = stats.items
       .filter(stat => m.has(stat.app_id))
       .map(stat => this.convertApp(m.get(stat.app_id), stat))
