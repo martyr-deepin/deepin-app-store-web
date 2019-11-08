@@ -34,7 +34,7 @@
           <ng-container i18n>Install</ng-container>
         </button>
         <ng-template #priceRef>
-          <button class="control" (click)="buyApp($event)" hidden #buyRef>购买</button>
+          <button class="control" (click)="buyApp($event); buyRef.hidden = true" hidden #buyRef>购买</button>
           <button class="control price" (click)="buyRef.hidden = false; $event.stopPropagation()" *ngIf="buyRef.hidden">
             {{ soft?.pricing?.price / 100 | currency: 'CNY':'symbol-narrow' }}
           </button>

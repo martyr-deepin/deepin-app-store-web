@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { timer, Observable } from 'rxjs';
 import { switchMap, share } from 'rxjs/operators';
@@ -18,6 +18,7 @@ export class BuyComponent implements OnInit {
   readonly OrderStatus = OrderStatus;
   @ViewChild('dialogRef', { static: true }) dialogRef: ElementRef<HTMLDialogElement>;
   @Input() soft: Software;
+  @Output() cancel = new EventEmitter<void>();
   payment$: Observable<OrderJSON> = null;
   form = this.fb.group({
     app_id: [0, Validators.required],
@@ -27,6 +28,7 @@ export class BuyComponent implements OnInit {
   });
   ngOnInit() {
     this.dialogRef.nativeElement.showModal();
+    this.dialogRef.nativeElement.addEventListener('close', () => this.cancel.next());
     this.form.patchValue({
       app_id: this.soft.id,
       app_version: this.soft.package.remoteVersion,

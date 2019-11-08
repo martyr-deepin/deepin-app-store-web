@@ -49,6 +49,7 @@ export class AppDetailComponent implements OnInit {
     share(),
   );
   allowName$ = this.storeService.getAllowShowPackageName();
+  buy = false;
 
   ngOnInit() {}
   reminder(name: string, version: string) {

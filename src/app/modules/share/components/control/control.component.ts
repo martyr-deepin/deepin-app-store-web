@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Software, SoftwareService } from 'app/services/software.service';
 import { PackageService } from 'app/services/package.service';
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
@@ -87,8 +87,9 @@ export class ControlComponent implements OnInit {
     private jobService: JobService,
   ) {}
   @Input() soft: Software;
-  package$ = new BehaviorSubject(null);
   @Output() job$: Observable<any>;
+  @Output() buy = new EventEmitter<void>();
+  package$ = new BehaviorSubject(null);
   JobStatus = StoreJobStatus;
   show = false;
   ngOnInit() {
@@ -135,6 +136,7 @@ export class ControlComponent implements OnInit {
 
   buyApp(e: Event) {
     e.stopPropagation();
+    this.buy.next();
   }
 
   trgger(e: Event, job: StoreJobInfo) {

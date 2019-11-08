@@ -3,8 +3,14 @@
     <div class="info-left">
       <img class="icon" dstoreCover="icon" [src]="app.info.icon" /> <br />
       <div>
-        <dstore-control class="control" [soft]="app" #controlRef [hidden]="controlRef.job$ | async"></dstore-control>
-        <m-buy [soft]="app"></m-buy>
+        <dstore-control
+          class="control"
+          [soft]="app"
+          #controlRef
+          [hidden]="controlRef.job$ | async"
+          (buy)="buy = true"
+        ></dstore-control>
+        <m-buy [soft]="app" *ngIf="buy" (cancel)="buy = false"></m-buy>
       </div>
       <ng-container *ngIf="controlRef.job$ | async as job">
         <dstore-progress-button
