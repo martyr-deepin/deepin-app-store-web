@@ -1,12 +1,10 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { concat, BehaviorSubject } from 'rxjs';
-import { map, shareReplay, tap } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { throttle } from 'lodash';
 
 import { DstoreObject } from 'app/modules/client/utils/dstore-objects';
-import { Channel } from 'app/modules/client/utils/channel';
 
 @Injectable({
   providedIn: 'root',

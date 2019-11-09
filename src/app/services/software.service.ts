@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { environment } from 'environments/environment';
 import { map, tap, switchMap, first } from 'rxjs/operators';
-import { StoreService, Package } from 'app/modules/client/services/store.service';
+import { StoreService, Package, QueryParam } from 'app/modules/client/services/store.service';
 import { Category, CategoryService } from './category.service';
 import { PackageService } from './package.service';
 import { DownloadTotalService } from './download-total.service';
@@ -42,7 +42,7 @@ export class SoftwareService {
       ids = [] as number[],
       active = true as boolean | '',
     },
-    opt2?: { locale_name?: string },
+    opt2?: { locale_name?: string; package_name?: string[] },
   ) {
     console.log('ids', ids);
     const stats = await this.statService.list(
@@ -121,7 +121,7 @@ export class SoftwareService {
         localVersion: '',
         upgradable: false,
       },
-      free: false && app.free,
+      free: app.pricings.length < 0,
       pricing: app.pricings[0],
     };
     return soft;
@@ -130,10 +130,10 @@ export class SoftwareService {
   // software convert to package query
   private toQuery(soft: Software) {
     return {
-      name: soft.name,
+      name: soft.id.toString(),
       localName: soft.info.name,
       packages: soft.info.packages,
-    };
+    } as QueryParam;
   }
 
   // software download size

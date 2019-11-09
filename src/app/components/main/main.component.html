@@ -11,4 +11,5 @@
   <app-recommend></app-recommend>
   <app-notify></app-notify>
   <dstore-privacy-agreement></dstore-privacy-agreement>
+  <m-buy *ngIf="buyDialogShow$ | async as soft" [soft]="soft" (cancel)="buyDialogShow$.next(null)"></m-buy>
 </div>

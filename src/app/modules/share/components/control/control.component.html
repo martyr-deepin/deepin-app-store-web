@@ -25,27 +25,30 @@
 
 <ng-template #controlRef>
   <ng-container *ngIf="package$ | async as pkg; else unavailableRef">
-    <ng-container *ngIf="!pkg.upgradable; else upgradableRef">
-      <button class="control" *ngIf="pkg.localVersion; else installRef" (click)="openApp($event)">
-        <ng-container i18n>Open</ng-container>
-      </button>
-      <ng-template #installRef>
-        <button class="control" *ngIf="soft.free; else priceRef" (click)="installApp($event)">
-          <ng-container i18n>Install</ng-container>
+    <ng-container *ngIf="pkg.remoteVersion; else unavailableRef">
+      <ng-container *ngIf="!pkg.upgradable; else upgradableRef">
+        <button class="control" *ngIf="pkg.localVersion; else installRef" (click)="openApp($event)">
+          <ng-container i18n>Open</ng-container>
         </button>
-        <ng-template #priceRef>
-          <button class="control" (click)="buyApp($event); buyRef.hidden = true" hidden #buyRef>购买</button>
-          <button class="control price" (click)="buyRef.hidden = false; $event.stopPropagation()" *ngIf="buyRef.hidden">
-            {{ soft?.pricing?.price / 100 | currency: 'CNY':'symbol-narrow' }}
+        <ng-template #installRef>
+          <button class="control" *ngIf="soft.free; else priceRef" (click)="installApp($event)">
+            <ng-container i18n>Install</ng-container>
           </button>
+          <ng-template #priceRef>
+            <ng-container *ngIf="userAppIDs$ | async as ids"> {{ ids | json }} 123 </ng-container>
+            <button class="control" (click)="buyApp($event); buyRef.hidden = true" hidden #buyRef>购买</button>
+            <button class="control price" (click)="buyRef.hidden = false" *ngIf="buyRef.hidden">
+              {{ soft?.pricing?.price / 100 | currency: 'CNY':'symbol-narrow' }}
+            </button>
+          </ng-template>
         </ng-template>
+      </ng-container>
+      <ng-template #upgradableRef>
+        <button class="control" (click)="installApp($event)">
+          <ng-container i18n>Update</ng-container>
+        </button>
       </ng-template>
     </ng-container>
-    <ng-template #upgradableRef>
-      <button class="control" (click)="installApp($event)">
-        <ng-container i18n>Update</ng-container>
-      </button>
-    </ng-template>
   </ng-container>
   <ng-template #unavailableRef>
     <button class="control" disabled i18n>不可用</button>

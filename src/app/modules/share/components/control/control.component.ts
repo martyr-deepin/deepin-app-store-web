@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, HostListener } from '@angular/core';
 import { Software, SoftwareService } from 'app/services/software.service';
 import { PackageService } from 'app/services/package.service';
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
@@ -6,6 +6,9 @@ import { share, map, switchMap, pairwise, startWith, tap, first } from 'rxjs/ope
 import { JobService } from 'app/services/job.service';
 import { trigger, animate, style, transition, keyframes } from '@angular/animations';
 import { StoreJobInfo, StoreJobStatus } from 'app/modules/client/models/store-job-info';
+import { BuyService } from 'app/services/buy.service';
+import { UserAppsService } from 'app/services/user-apps.service';
+import { AuthService } from 'app/services/auth.service';
 
 @Component({
   selector: 'dstore-control',
@@ -85,11 +88,14 @@ export class ControlComponent implements OnInit {
     private softwareService: SoftwareService,
     private packageService: PackageService,
     private jobService: JobService,
+    private buyService: BuyService,
+    private userAppService: UserAppsService,
+    private authService: AuthService,
   ) {}
   @Input() soft: Software;
   @Output() job$: Observable<any>;
-  @Output() buy = new EventEmitter<void>();
   package$ = new BehaviorSubject(null);
+  userAppIDs$ = this.userAppService.userAllApp$;
   JobStatus = StoreJobStatus;
   show = false;
   ngOnInit() {
@@ -125,18 +131,16 @@ export class ControlComponent implements OnInit {
   }
 
   openApp(e: Event) {
-    e.stopPropagation();
     this.softwareService.open(this.soft);
   }
 
   installApp(e: Event) {
-    e.stopPropagation();
     this.softwareService.install(this.soft);
   }
 
   buyApp(e: Event) {
-    e.stopPropagation();
-    this.buy.next();
+    console.log(e);
+    this.buyService.buyDialogShow$.next(this.soft);
   }
 
   trgger(e: Event, job: StoreJobInfo) {

@@ -1,10 +1,10 @@
-<section class="item" *ngFor="let soft of list" [routerLink]="[soft.id]" [class.hover]="controlRef.show">
+<section class="item" *ngFor="let soft of list" [class.hover]="controlRef.show">
   <ng-container>
-    <main>
+    <main [routerLink]="[soft.id]">
       <img dstoreCover="cover" [src]="soft?.info?.cover" />
     </main>
     <footer>
-      <div class="info">
+      <div class="info" [routerLink]="[soft.id]">
         <div class="name" [style.color]="nameColor">
           {{ soft?.info?.name }}
         </div>

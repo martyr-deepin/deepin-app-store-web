@@ -11,6 +11,7 @@ import { SysFontService } from 'app/services/sys-font.service';
 import { MenuService } from 'app/services/menu.service';
 import { SoftwareService, Software } from 'app/services/software.service';
 import { ClientService, RequestErrorType } from 'app/services/client.service';
+import { BuyService } from 'app/services/buy.service';
 
 @Component({
   selector: 'dstore-main',
@@ -26,7 +27,10 @@ export class MainComponent implements OnInit {
     private searchService: SearchService,
     private softwareService: SoftwareService,
     private clientService: ClientService,
+    private buyService: BuyService,
   ) {}
+
+  buyDialogShow$ = this.buyService.buyDialogShow$;
 
   ngOnInit(): void {
     console.log(this.clientService.store);

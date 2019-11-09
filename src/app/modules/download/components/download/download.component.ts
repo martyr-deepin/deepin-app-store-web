@@ -43,12 +43,10 @@ export class DownloadComponent implements OnInit {
     switchMap(async jobs => {
       const names = jobs
         .filter(job => [StoreJobType.install, StoreJobType.download].includes(job.type))
-        .reduce((acc, job) => [...acc, ...job.names], [] as string[])
+        .reduce((acc, job) => [...acc, ...job.packages], [] as string[])
         .filter(name => !this.soft_cache.has(name));
       if (names.length > 0) {
-        const softs = await this.softwareService.list({
-          /*names*/
-        });
+        const softs = await this.softwareService.list({}, { package_name: names });
         softs.forEach(soft => this.soft_cache.set(soft.name, soft));
       }
       return jobs.reduce(
