@@ -12,8 +12,13 @@ export class ProxyInterceptor implements HttpInterceptor {
     const url = environment.server + req.url;
     const env = environment.store_env;
     let params = req.params;
-    params = params.set('__debug', 'true');
     Object.keys(env).forEach(key => (params = params.set(key, env[key])));
-    return next.handle(req.clone({ url, params }));
+    req = req.clone({ url, params });
+
+    const token = localStorage.getItem('token');
+    if (token) {
+      req = req.clone({ setHeaders: { Authorization: 'Bearer ' + token } });
+    }
+    return next.handle(req);
   }
 }
