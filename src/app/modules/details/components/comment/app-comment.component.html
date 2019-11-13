@@ -33,7 +33,26 @@
     </div>
 
     <div class="edit">
-      <textarea [readOnly]="!info || own" formControlName="content" (keyup.control.enter)="submitComment()"></textarea>
+      <div class="tags" *ngIf="tags.length > 0; else tagSelectRef">
+        <label for="" i18n>Tags:</label>
+        <span *ngFor="let control of tags.controls; index as index" (click)="tags.removeAt(index)">
+          {{ control.value.tag }}
+        </span>
+      </div>
+      <ng-template #tagSelectRef>
+        <div class="tag-select" *ngIf="content.value === '#'">
+          <label for="" i18n>评论标签</label>
+          <ng-container *ngFor="let kv of { bug: 'Bug' } | keyvalue; first as first">
+            <button [mAuthfocus]="first" (click)="selectTag(kv.key); commentTextRef.focus()">{{ kv.value }}</button>
+          </ng-container>
+        </div>
+      </ng-template>
+      <textarea
+        #commentTextRef
+        [readOnly]="!info || own"
+        formControlName="content"
+        (keyup.control.enter)="submitComment()"
+      ></textarea>
     </div>
 
     <div class="fixed">

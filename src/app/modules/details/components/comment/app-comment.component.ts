@@ -61,10 +61,12 @@ export class AppCommentComponent implements OnInit {
   content = this.fb.control('', Validators.required);
   score = this.fb.control(0, Validators.min(0.5));
   submitted = this.fb.control(null);
+  tags = this.fb.array([]);
   commentGroup = this.fb.group({
     content: this.content,
     score: this.score,
     submitted: this.submitted,
+    tags: this.tags,
   });
 
   loading = true;
@@ -198,7 +200,12 @@ export class AppCommentComponent implements OnInit {
     }
     try {
       this.commentGroup.disable();
-      await this.userAPI.post({ app_id: this.appID, content: this.content.value, score: this.score.value });
+      await this.userAPI.post({
+        app_id: this.appID,
+        content: this.content.value,
+        score: this.score.value,
+        tags: this.tags.value,
+      });
       this.haveNewComment = true;
       await this.selectChange(CommentType.News);
       setTimeout(() => (this.haveNewComment = false), 1000);
@@ -232,5 +239,10 @@ export class AppCommentComponent implements OnInit {
   }
   likeByMe(likes: { liker: number }[], uid: number) {
     return likes.find(like => like.liker === uid);
+  }
+
+  selectTag(tag: string) {
+    this.content.setValue('');
+    this.tags.push(this.fb.control({ tag }));
   }
 }

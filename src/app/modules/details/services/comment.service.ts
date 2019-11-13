@@ -55,7 +55,7 @@ export interface AppComment {
   score: number;
   app_id: number;
   app_version: string;
-  tags?: string[];
+  tags?: { tag: string }[];
   likes?: { liker: number }[];
   reply?: any;
 

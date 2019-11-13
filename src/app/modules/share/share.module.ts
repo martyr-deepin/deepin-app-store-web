@@ -29,6 +29,7 @@ import { DeepinidPipe } from './pipes/deepinid.pipe';
 import { CategoryTextPipe } from './pipes/category-text.pipe';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { BuyComponent } from './components/buy/buy.component';
+import { AuthfocusDirective } from './directives/authfocus.directive';
 
 const components = [
   WaitComponent,
@@ -43,7 +44,7 @@ const components = [
   DialogComponent,
   BuyComponent,
 ];
-const directives = [DialogDirective, HoverDirective, ResizeDirective, CoverDirective];
+const directives = [DialogDirective, HoverDirective, ResizeDirective, CoverDirective, AuthfocusDirective];
 const pipes = [RangePipe, FitImage, FitLanguage, SizeHuman, DeepinidPipe, CategoryTextPipe];
 const modules = [ClientModule, FormsModule, ReactiveFormsModule];
 @NgModule({
