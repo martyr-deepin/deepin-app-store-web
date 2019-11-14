@@ -17,12 +17,14 @@ export class AuthService {
     this.init();
   }
   private userInfo$ = new BehaviorSubject<UserInfo>(null);
-  private login$ = fromEvent(window, 'message');
   info$ = this.userInfo$.asObservable();
   logged$ = this.info$.pipe(map(Boolean));
   // 初始化
   async init() {
     await this.getInfo();
+    Channel.connect('account.requestLogin').subscribe(() => {
+      this.login();
+    });
     Channel.connect('account.onAuthorized').subscribe(([code, state]) => this.auth(code, state));
     this.unauthorized.unauthorized$.pipe(throttleTime(1000)).subscribe(() => {
       this.login();
