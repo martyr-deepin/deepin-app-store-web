@@ -46,7 +46,7 @@ export class AuthService {
       });
   }
   // 登录方法
-  private async login() {
+  async login() {
     interface LoginResult {
       client_id: string;
       scopes: string[];
@@ -78,9 +78,12 @@ export class AuthService {
     } catch {}
   }
   // 登出商店用户
-  logout() {
+  logout(accountLogout = false) {
     localStorage.removeItem('token');
     this.userInfo$.next(null);
+    if (accountLogout) {
+      return this.accountLogout;
+    }
   }
   // 登出系统用户
   accountLogout() {

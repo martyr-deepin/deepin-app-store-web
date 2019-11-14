@@ -13,9 +13,5 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.init();
   }
-  async init() {
-    const [code, state] = ['code', 'state'].map(name => this.route.snapshot.queryParamMap.get(name));
-    await this.auth.auth(code, state);
-    location.href = '/';
-  }
+  async init() {}
 }
