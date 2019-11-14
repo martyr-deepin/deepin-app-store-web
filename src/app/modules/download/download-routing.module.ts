@@ -8,7 +8,7 @@ const routes: Routes = [
     component: DownloadComponent,
   },
   {
-    path: ':appName',
+    path: ':id',
     loadChildren: 'app/modules/details/details.module#DetailsModule',
   },
 ];

@@ -35,11 +35,19 @@
             <ng-container i18n>Install</ng-container>
           </button>
           <ng-template #priceRef>
-            <ng-container *ngIf="userAppIDs$ | async as ids"> {{ ids | json }} 123 </ng-container>
-            <button class="control" (click)="buyApp($event); buyRef.hidden = true" hidden #buyRef>购买</button>
-            <button class="control price" (click)="buyRef.hidden = false" *ngIf="buyRef.hidden">
-              {{ soft?.pricing?.price / 100 | currency: 'CNY':'symbol-narrow' }}
-            </button>
+            <ng-container *ngIf="(userAppIDs$ | async)?.includes(soft.id); else buyRef">
+              <button class="control" (click)="installApp($event)">
+                <ng-container i18n>Install</ng-container>
+              </button>
+            </ng-container>
+            <ng-template #buyRef>
+              <button class="control" (click)="buyApp($event); buyButtonRef.hidden = true" hidden #buyButtonRef>
+                <ng-container i18n>购买</ng-container>
+              </button>
+              <button class="control price" (click)="buyButtonRef.hidden = false" *ngIf="buyButtonRef.hidden">
+                {{ soft?.pricing?.price / 100 | currency: 'CNY':'symbol-narrow' }}
+              </button>
+            </ng-template>
           </ng-template>
         </ng-template>
       </ng-container>

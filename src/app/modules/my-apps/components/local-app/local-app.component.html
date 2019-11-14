@@ -17,14 +17,19 @@
       <ng-container *ngFor="let installed of installedList">
         <div class="installed-app">
           <ng-container *ngIf="installed.software as software; else noSoftwareRef">
-            <img class="icon" dstoreCover="icon" [routerLink]="['/app', installed.name]" [src]="software.info.icon" />
+            <img
+              class="icon"
+              dstoreCover="icon"
+              [routerLink]="['/app', installed.software.id]"
+              [src]="software.info.icon"
+            />
             <div class="info">
               <span>{{ software.info.name }}</span>
               <span class="size">{{ installed.package.size | sizeHuman }}</span>
             </div>
           </ng-container>
           <ng-template #noSoftwareRef>
-            <img class="icon" dstoreCover="icon" [routerLink]="['/app', installed.localName]" />
+            <img class="icon" dstoreCover="icon" [routerLink]="['/app', 0]" />
             <div class="info">
               <span>{{ installed.localName }}</span>
               <span class="size">{{ installed.package.size | sizeHuman }}</span>

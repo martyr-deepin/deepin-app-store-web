@@ -5,6 +5,10 @@
 }
 .bg {
   width: 8rem;
+  color: var(--main-color);
+  background: var(--main-bg-color);
+  box-shadow: 0px 0px 1px 0px var(--main-color);
+  border-radius: 4px;
 }
 .fg {
   width: 8rem;
