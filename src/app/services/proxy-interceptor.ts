@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
+import { HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 import { environment } from 'environments/environment';
+import { UnauthorizedService } from './unauthorized.service';
 
 @Injectable()
 export class ProxyInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(private unauthorized: UnauthorizedService) {}
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     if (req.url[0] !== '/') {
       return next.handle(req);
@@ -19,6 +21,15 @@ export class ProxyInterceptor implements HttpInterceptor {
     if (token) {
       req = req.clone({ setHeaders: { Authorization: 'Bearer ' + token } });
     }
-    return next.handle(req);
+    return next.handle(req).pipe(
+      catchError(err => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            this.unauthorized.unauthorized$.next();
+          }
+        }
+        throw err;
+      }),
+    );
   }
 }
