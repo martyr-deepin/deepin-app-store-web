@@ -1,14 +1,13 @@
 :host {
   height: 180px;
   transform: translateX(13%);
+  display: block;
 }
 
 img {
   position: absolute;
   box-shadow: 0 0 1px 1px var(--main-title-hr-color);
 }
-
-
 
 .indicationList {
   position: absolute;

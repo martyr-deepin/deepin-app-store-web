@@ -60,6 +60,9 @@ export class SoftwareService {
     if (!environment.native) {
       return softs;
     }
+    if (ids.length > 0) {
+      softs.sort((a, b) => ids.indexOf(a.id) - ids.indexOf(b.id));
+    }
     const pkgMap = await this.packageService.querys(softs.map(this.toQuery));
     return softs.map(soft => {
       const pkg = pkgMap.get(soft.name);
@@ -121,7 +124,7 @@ export class SoftwareService {
         localVersion: '',
         upgradable: false,
       },
-      free: app.pricings.length < 0,
+      free: app.free,
       pricing: app.pricings[0],
     };
     return soft;

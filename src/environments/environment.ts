@@ -27,7 +27,7 @@ export const environment = {
   store_env: {
     arch: 'amd64',
     mode: 'desktop',
-    platform: 'community',
+    platform: 'professional',
     region: 'CN',
     language: 'zh_CN',
   },

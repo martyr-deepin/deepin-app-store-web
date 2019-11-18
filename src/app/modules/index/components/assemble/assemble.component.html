@@ -1,17 +1,24 @@
 <index-title [titles]="section.name"></index-title>
 <div class="list">
-  <section class="assemble" *ngFor="let assemble of this.assembles;index as index">
-    <ng-container *ngIf="section.rows * section.cols>index">
-
+  <section class="assemble" *ngFor="let assemble of this.assembles; index as index">
+    <ng-container *ngIf="section.rows * section.cols > index">
       <header class="category cursor" [routerLink]="'/list/category/' + assemble.category">
         {{ assemble.category | categoryText | async }}
       </header>
       <main>
-        <section class="item cursor" *ngFor="let soft of softs.get(assemble.category) | async; first as first"
-          [class.first]="first" [routerLink]="['app', soft.name]">
+        <section
+          class="item cursor"
+          *ngFor="let soft of softs.get(assemble.category) | async; first as first"
+          [class.first]="first"
+          [routerLink]="['app', soft.id]"
+        >
           <header>
-            <img [src]="first ? soft.info.cover : soft.info.icon" [dstoreCover]="first ? 'cover' : 'icon'"
-              [class.cover]="first" [class.icon]="!first" />
+            <img
+              [src]="first ? soft.info.cover : soft.info.icon"
+              [dstoreCover]="first ? 'cover' : 'icon'"
+              [class.cover]="first"
+              [class.icon]="!first"
+            />
           </header>
           <main>
             <div class="info">
@@ -24,4 +31,5 @@
       </main>
     </ng-container>
   </section>
+  <section class="item empty" *ngFor="let empty of 7 | range"></section>
 </div>

@@ -75,6 +75,8 @@ export class AuthService {
   // 获取商店用户信息
   private async getInfo() {
     try {
+      const sysUserInfo = await Channel.exec('account.getUserInfo');
+      console.log({ sysUserInfo });
       const resp = await this.http.get<UserInfo>('/api/user/info').toPromise();
       this.userInfo$.next(resp);
     } catch {}

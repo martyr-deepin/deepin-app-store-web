@@ -1,12 +1,14 @@
 <index-title [titles]="section.name"></index-title>
-<div class="list" *ngFor="let topic of topics; index as index">
-  <ng-container *ngIf="section.cols * section.rows>index">
-    <section class="cursor" [routerLink]="['topic',ids.get(index)]">
-      <header>{{ topic.name }}</header>
-      <main>
-        <img [src]="topic.cover" />
-      </main>
-    </section>
-    <section class="empty" *ngFor="let i of 5 | range"></section>
+<div class="list">
+  <ng-container *ngFor="let topic of topics; index as index">
+    <ng-container *ngIf="section.cols * section.rows > index">
+      <section class="cursor" [routerLink]="['topic', ids.get(index)]">
+        <header>{{ topic.name }}</header>
+        <main>
+          <img [src]="topic.cover" />
+        </main>
+      </section>
+    </ng-container>
   </ng-container>
+  <section class="empty" *ngFor="let i of 5 | range"></section>
 </div>

@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class SectionService {
-  url = `/api/public/section?debug_store_id=11`;
+  url = `/api/public/section`;
   list = this.http
     .get(this.url)
     .pipe(

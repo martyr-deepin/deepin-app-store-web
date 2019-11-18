@@ -11,6 +11,10 @@ const routes: Routes = [
     component: IndexComponent,
   },
   {
+    path: 'app/:id',
+    loadChildren: 'app/modules/details/details.module#DetailsModule',
+  },
+  {
     path: 'more/:key',
     component: MoreComponent,
   },
