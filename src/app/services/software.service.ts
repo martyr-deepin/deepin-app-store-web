@@ -44,7 +44,7 @@ export class SoftwareService {
     },
     opt2?: { locale_name?: string; package_name?: string[] },
   ) {
-    console.log('ids', ids);
+    //获取应用统计信息接口
     const stats = await this.statService.list(
       (opt2 as any) || { order, offset, limit, category, tag, keyword, id: ids },
     );

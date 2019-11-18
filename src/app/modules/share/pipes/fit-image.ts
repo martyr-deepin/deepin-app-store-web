@@ -9,9 +9,10 @@ export class FitImage implements PipeTransform {
     if (value.length === 0) {
       return '';
     }
+    console.log('px', devicePixelRatio);
     if (devicePixelRatio > 1) {
       value.reverse();
     }
-    return value.filter(Boolean).map(v => environment.operationServer + '/images/' + v)[0];
+    return value.filter(Boolean).map(v => environment.server + '/api/public/blob/' + v)[0];
   }
 }

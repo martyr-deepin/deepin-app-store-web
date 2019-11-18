@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { first, switchMap } from 'rxjs/operators';
 import { KeyvalueService } from 'app/services/keyvalue.service';
-import { Section, SectionApp } from '../../services/section.service';
+import { Section, SectionItem } from '../../services/section.service';
 import { SoftwareService } from 'app/services/software.service';
 @Component({
   selector: 'index-more',
@@ -20,12 +20,14 @@ export class MoreComponent implements OnInit {
     .toPromise()
     .then(param => param.get('key'))
     .then(key => this.keyvalue.get<Section>(key));
-  title$ = this.section$.then(section => section.title);
+
+  title$ = this.section$.then(section => section.name);
   softs$ = this.route.queryParamMap.pipe(
     switchMap(async query => {
       const section = await this.section$;
-      const names = (<SectionApp[]>section.items).filter(app => app.show).map(app => app.name);
-      let list = await this.softwareService.list({ names });
+      const ids = (<SectionItem[]>section.items).filter(app => app.show).map(app => app.app_id);
+
+      let list = await this.softwareService.list({ ids });
       list = list.filter(Boolean);
       switch (query.get('order')) {
         case 'download':

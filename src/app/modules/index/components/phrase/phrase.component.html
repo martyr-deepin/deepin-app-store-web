@@ -1,19 +1,24 @@
-<index-title [titles]="section.title" [more]="more"></index-title>
-<div class="list count-{{ section.colSpan * section.rowSpan }}">
-  <section class="item cursor" *ngFor="let soft of softs$ | async" [routerLink]="['app', soft.name]">
-    <header>
-      <img class="icon" dstoreCover="icon" [src]="soft.info.icon" dstoreCover="icon" />
-    </header>
-    <main>
-      <div class="info">
-        <span class="name">{{ soft.info.name }}</span>
-        <span class="subtitle">{{ phrase.get(soft.name) }}&nbsp;</span>
-      </div>
-      <div class="control">
-        <dstore-control #controlRef [soft]="soft"></dstore-control>
-      </div>
-    </main>
+<index-title [titles]="section.name" [more]="more"></index-title>
+<div class="list count-{{ section.cols * section.rows }}">
+
+  <section class="item cursor" *ngFor="let soft of softs$ | async; index as index" [routerLink]="['/app', soft.id]">
+    <ng-container *ngIf="section.cols * section.rows>index">
+
+      <header>
+        <img class="icon" dstoreCover="icon" [src]="soft.info.icon" dstoreCover="icon" />
+      </header>
+      <main>
+
+        <div class="info">
+          <span class="name">{{ soft.info.name }}</span>
+          <span class="subtitle">{{ phraseData[index].phrase}}&nbsp;</span>
+        </div>
+        <div class="control">
+          <dstore-control #controlRef [soft]="soft"></dstore-control>
+        </div>
+      </main>
+    </ng-container>
   </section>
 
-  <section class="item empty" *ngFor="let empty of 7 | range"></section>
+  <section class="item empty" *ngFor="let empty of 2 | range"></section>
 </div>

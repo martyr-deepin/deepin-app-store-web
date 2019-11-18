@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SectionItemBase } from '../section-item-base';
-import { SectionTopic } from '../../services/section.service';
+import { SectionTopic, SectionTopicItem } from '../../services/section.service';
 import { KeyvalueService } from 'app/services/keyvalue.service';
 
 @Component({
@@ -13,12 +13,13 @@ export class TopicComponent extends SectionItemBase implements OnInit {
     super();
   }
   ids = new Map<number, string>();
-  topics: SectionTopic[];
+  topics: SectionTopicItem[];
   ngOnInit() {
-    this.topics = (this.section.items as SectionTopic[])
+    this.topics = (this.section.items as SectionTopicItem[])
       .filter(topic => topic.show)
       .map((topic, index) => {
         const id = this.keyvalue.add(topic);
+
         this.ids.set(index, id);
         return topic;
       });

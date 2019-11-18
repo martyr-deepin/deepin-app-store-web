@@ -15,10 +15,13 @@ export class CoverComponent extends SectionItemBase implements OnInit {
   }
   more: string;
   ngOnInit() {
-    const apps: SectionApp[] = this.section.items;
+    const apps: { app_id: number; show: boolean }[] = this.section.items;
     this.more = `more/${this.keyvalue.add(this.section)}`;
     this.softs$ = this.softwareService
-      .list({ names: apps.filter(app => app.show).map(app => app.name) })
+      .list({ ids: apps.filter(app => app.show).map(app => app.app_id) })
+      .then(data => {
+        return data;
+      })
       .finally(() => this.loaded.emit(true));
   }
 }

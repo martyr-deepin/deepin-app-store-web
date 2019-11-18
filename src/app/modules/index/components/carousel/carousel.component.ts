@@ -6,9 +6,16 @@ import { throttleTime, switchMap, filter, startWith, map } from 'rxjs/operators'
 import { get } from 'lodash';
 
 import { SectionItemBase } from '../section-item-base';
-import { SectionCarousel, CarouselType, SectionService } from '../../services/section.service';
+import {
+  SectionCarousel,
+  CarouselType,
+  SectionService,
+  SectionList,
+  SectionItem,
+} from '../../services/section.service';
 import { SoftwareService } from 'app/services/software.service';
 import { KeyvalueService } from 'app/services/keyvalue.service';
+import { environment } from 'environments/environment';
 
 const timings = 500;
 
@@ -65,10 +72,12 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
     private softwareService: SoftwareService,
   ) {
     super();
+    this.imgUrlOrigin = environment.server;
   }
+  imgUrlOrigin = '';
   click$ = new Subject<string>();
-  carousels: SectionCarousel[];
-  current: Ring<SectionCarousel>;
+  carousels: SectionItem[];
+  current: Ring<SectionItem>;
   state: { [key: number]: string } = {
     0: 'left',
     1: 'center',
@@ -93,10 +102,10 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
             return;
           }
           const c = this.current.value();
-          if (c.type === CarouselType.App) {
-            this.router.navigate(['app', c.link]);
+          if (c.type === 'app') {
+            this.router.navigate(['app', c.app_id]);
           } else {
-            const [, , sindex, tindex] = c.link.split('/').map(Number);
+            const [, , sindex, tindex] = c.topic_index.split('/').map(Number);
             this.sectionService.list.then(list => {
               const topic = get(list, [sindex, 'items', tindex]);
               if (!topic) {
@@ -115,19 +124,27 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
   }
   // filter soft
   async init() {
-    this.carousels = (this.section.items as SectionCarousel[]) || [];
+    this.carousels = (this.section.items as SectionItem[]) || [];
     if (this.carousels.length === 0) {
       return;
     }
     this.carousels = this.carousels.filter(c => c.show);
-    const names = this.carousels.filter(c => c.type === CarouselType.App).map(c => c.link);
-    const softs = await this.softwareService.list({ names });
+    //标记app:现已从number改为string
+    // const names = this.carousels.filter(c => c.type === CarouselType.Topic).map(c => c.app_id);
+    const ids = this.carousels.filter(c => c.type === 'app').map(c => c.app_id);
+    const softs = await this.softwareService.list({ ids });
     this.carousels = this.carousels.filter(c => {
-      if (c.type === CarouselType.Topic) {
+      //CarouselType.Topic改为字符串
+      //   if (c.type === CarouselType.Topic) {
+      if (c.type === 'Topic') {
         return true;
       }
-      return softs.some(soft => soft.name === c.link);
+      return softs.some(soft => soft.id === c.app_id);
     });
+    if (!this.carousels || this.carousels.length === 0) {
+      this.carousels = [];
+      return;
+    }
     while (this.carousels.length < 5) {
       this.carousels = [...this.carousels, ...this.carousels];
     }
@@ -143,7 +160,6 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
     }
     const sorttest = [right, left].sort((a, b) => a.length - b.length)[0];
     for (const i of sorttest) {
-      console.log(i);
       this.move(i);
       this.click$.next('');
       await new Promise(resolve => setTimeout(resolve, 200));
@@ -180,4 +196,28 @@ class Ring<T> {
   value() {
     return this.data[this.index];
   }
+}
+interface Seciton {
+  x: number;
+  y: number;
+  cols: number;
+  name: Name[];
+  rows: number;
+  type: number;
+  items: Item[];
+  width: number;
+  height: number;
+}
+
+interface Item {
+  show: boolean;
+  type: string;
+  image: string[];
+  app_id: number;
+  topic_index?: any;
+}
+
+interface Name {
+  name: string;
+  language: string;
 }

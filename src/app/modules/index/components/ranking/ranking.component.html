@@ -1,14 +1,8 @@
-<index-title
-  [titles]="section.title"
-  [more]="section.ranking.category ? '/list/category/' + section.ranking.category : '/list/ranking/ranking'"
-></index-title>
+<index-title [titles]="section.name" [more]=" '/list/ranking/ranking'">
+</index-title>
 <div class="list">
-  <section
-    class="cursor"
-    *ngFor="let soft of softs$ | async; index as index"
-    [class.hover]="controlRef.show"
-    [routerLink]="['app', soft.name]"
-  >
+  <section class="cursor" *ngFor="let soft of softs$ | async; index as index" [class.hover]="controlRef.show"
+    [routerLink]="['/app', soft.id]">
     <header>
       <img class="icon" dstoreCover="icon" [src]="soft.info.icon" dstoreCover="icon" />
     </header>

@@ -19,11 +19,16 @@ export class PhraseComponent extends SectionItemBase implements OnInit {
     this.more = 'more/' + this.keyvalue.add(this.section);
     this.init();
   }
+  phraseData;
   async init() {
-    const apps: SectionPhrase[] = this.section.items;
-    apps.forEach(app => this.phrase.set(app.name, (app.phrases || []).sort(this.sortByLocal)[0]));
+    const apps = this.section.items;
+    this.phraseData = this.section.items;
     this.softs$ = this.softwareService
-      .list({ names: apps.filter(app => app.show).map(app => app.name) })
+      .list({ ids: apps.filter(app => app.show).map(app => app.app_id) })
+      .then(data => {
+        console.log(data, 'sssss');
+        return data;
+      })
       .finally(() => this.loaded.emit(true));
   }
 }
