@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { environment } from 'environments/environment';
 import { map, tap, switchMap, first } from 'rxjs/operators';
+import { get } from 'lodash';
 import { StoreService, Package, QueryParam } from 'app/modules/client/services/store.service';
 import { Category, CategoryService } from './category.service';
 import { PackageService } from './package.service';
@@ -120,7 +121,7 @@ export class SoftwareService {
         packages: app.packages.map(pkg => ({ packageURI: 'dpk://deb/' + pkg.name })),
       },
       package: {
-        remoteVersion: '',
+        remoteVersion: get(app.packages, '0.version', 'undefined'),
         localVersion: '',
         upgradable: false,
       },

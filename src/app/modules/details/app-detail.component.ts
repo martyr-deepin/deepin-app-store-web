@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { publishReplay, refCount, switchMap, share } from 'rxjs/operators';
+import { publishReplay, refCount, switchMap, share, map } from 'rxjs/operators';
 
 import { StoreService } from 'app/modules/client/services/store.service';
 import { StoreJobType, StoreJobStatus } from 'app/modules/client/models/store-job-info';
@@ -45,7 +45,7 @@ export class AppDetailComponent implements OnInit {
     refCount(),
   );
   size$ = this.app$.pipe(
-    switchMap(app => this.softwareService.size(app)),
+    switchMap(app => this.softwareService.size(app).then(m => m.get(app.id.toString()))),
     share(),
   );
   allowName$ = this.storeService.getAllowShowPackageName();

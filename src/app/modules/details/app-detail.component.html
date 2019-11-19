@@ -38,13 +38,11 @@
           </ng-container>
           <div i18n>Size:</div>
           <div>
-            <ng-container *ngIf="(size$ | async)?.get(app.name) as size; else calculating">
-              {{ size | sizeHuman }}
+            <ng-container *ngFor="let size of [size$ | async]" [ngSwitch]="size">
+              <ng-container *ngSwitchCase="null" i18n>Calculating</ng-container>
+              <ng-container *ngSwitchCase="0" i18n>Downloaded</ng-container>
+              <ng-container *ngSwitchDefault>{{ size | sizeHuman }}</ng-container>
             </ng-container>
-            <ng-template #calculating let-size>
-              <ng-container *ngIf="size === null" i18n>Calculating</ng-container>
-              <ng-container *ngIf="size === 0" i18n>Downloaded</ng-container>
-            </ng-template>
           </div>
           <div i18n>Updated Date:</div>
           <div>
