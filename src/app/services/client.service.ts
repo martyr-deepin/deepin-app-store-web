@@ -10,6 +10,23 @@ import { Channel } from 'app/modules/client/utils/channel';
 export class ClientService {
   store = get(window, 'dstore.channel.objects');
   constructor() {}
+  // Request to open the tag app list page
+  onRequestOpenTag() {
+    return Channel.connect<[string, string]>('storeDaemon.requestOpenTag').pipe(
+      map(args => {
+        return { req_id: args[0], tag: args[1] };
+      }),
+    );
+  }
+  // Request to open the category app list page
+  onRequestOpenCategory() {
+    return Channel.connect<[string, string]>('storeDaemon.requestOpenCategory').pipe(
+      map(args => {
+        return { req_id: args[0], category: args[1] };
+      }),
+    );
+  }
+  // Request to install app
   private onRequestInstallApp() {
     return Channel.connect<[string, string]>('storeDaemon.requestInstallApp').pipe(
       map(args => {
@@ -17,6 +34,7 @@ export class ClientService {
       }),
     );
   }
+  // Request to uninstall app
   private onRequestUninstallApp() {
     return Channel.connect<[string, string]>('storeDaemon.requestUninstallApp').pipe(
       map(args => {
@@ -24,6 +42,7 @@ export class ClientService {
       }),
     );
   }
+  // Request to update app
   private onRequestUpdateApp() {
     return Channel.connect<[string, string]>('storeDaemon.requestUpdateApp').pipe(
       map(args => {
@@ -31,6 +50,7 @@ export class ClientService {
       }),
     );
   }
+  // Request to update all app
   private onRequestUpdateAllApp() {
     return Channel.connect<string>('storeDaemon.requestUpdateAllApp').pipe(
       map(args => {
@@ -38,7 +58,8 @@ export class ClientService {
       }),
     );
   }
-  onRequest() {
+  // merge app control request
+  onAppRequest() {
     return merge(
       this.onRequestInstallApp(),
       this.onRequestUninstallApp(),
@@ -46,6 +67,7 @@ export class ClientService {
       this.onRequestUpdateAllApp(),
     );
   }
+  // request retry
   requestFinished(result: FinishedResult) {
     console.log('request finished');
     return Channel.exec('storeDaemon.onRequestFinished', { id: result.req_id, error_type: result.error_type });
@@ -67,4 +89,5 @@ export enum RequestErrorType {
   AppInstalled = 'app_installed',
   AppMultiple = 'app_multiple',
   AppNotInstalled = 'app_not_installed',
+  NotFound = 'not_found',
 }

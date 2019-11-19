@@ -100,8 +100,16 @@ export class MainComponent implements OnInit {
   }
   // control navigate
   async controlNavigate() {
+    this.clientService.onRequestOpenCategory().subscribe(req => {
+      this.router.navigate(['/list', 'category', req.category]);
+      this.clientService.requestFinished({ req_id: req.req_id });
+    });
+    this.clientService.onRequestOpenTag().subscribe(req => {
+      this.router.navigate(['/list', 'tag', req.tag]);
+      this.clientService.requestFinished({ req_id: req.req_id });
+    });
     this.clientService
-      .onRequest()
+      .onAppRequest()
       .pipe(
         switchMap(async body => {
           try {
