@@ -1,12 +1,8 @@
 <index-title [titles]="section.name" [more]="more"></index-title>
 <div class="list count-{{ 3 * 3 }}">
   <ng-container *ngFor="let soft of softs$ | async; index as index$">
-    <section
-      class="item"
-      *ngIf="section.rows * section.cols > index$"
-      [routerLink]="['/app', soft.id]"
-      [class.hover]="controlRef?.show"
-    >
+    <section class="item" *ngIf="section.rows * section.cols > index$" [routerLink]="['app', soft.id]"
+      [class.hover]="controlRef?.show">
       <ng-container>
         <main>
           <img dstoreCover="cover" [src]="soft?.info?.cover" />

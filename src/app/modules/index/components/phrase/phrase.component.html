@@ -1,7 +1,7 @@
 <index-title [titles]="section.name" [more]="more"></index-title>
 <div class="list count-{{ section.cols * section.rows }}">
 
-  <section class="item cursor" *ngFor="let soft of softs$ | async; index as index" [routerLink]="['/app', soft.id]">
+  <section class="item cursor" *ngFor="let soft of softs$ | async; index as index" [routerLink]="['app', soft.id]">
     <ng-container *ngIf="section.cols * section.rows>index">
 
       <header>

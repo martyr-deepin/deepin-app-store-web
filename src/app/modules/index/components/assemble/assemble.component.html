@@ -6,28 +6,24 @@
         {{ assemble.category | categoryText | async }}
       </header>
       <main>
-        <section
-          class="item cursor"
-          *ngFor="let soft of softs.get(assemble.category) | async; first as first"
-          [class.first]="first"
-          [routerLink]="['app', soft.id]"
-        >
-          <header>
-            <img
-              [src]="first ? soft.info.cover : soft.info.icon"
-              [dstoreCover]="first ? 'cover' : 'icon'"
-              [class.cover]="first"
-              [class.icon]="!first"
-            />
-          </header>
-          <main>
-            <div class="info">
-              <span class="name">{{ soft.info.name }}</span>
-              <div class="slogan">{{ soft.info.slogan }}</div>
-            </div>
-            <dstore-control class="control" [soft]="soft"></dstore-control>
-          </main>
-        </section>
+        <ng-container *ngFor="let soft of softs.get(assemble.category) | async; first as first;index as itemIndex">
+            <section class="item cursor" *ngIf="section.rows  > itemIndex" 
+                [class.first]="first" [routerLink]="['app', soft.id]">
+                
+                <header>
+                    <img [src]="first ? soft.info.cover : soft.info.icon" [dstoreCover]="first ? 'cover' : 'icon'"
+                    [class.cover]="first" [class.icon]="!first" />
+                </header>
+                <main>
+                    <div class="info">
+                    <span class="name">{{ soft.info.name }}</span>
+                    <div class="slogan">{{ soft.info.slogan }}</div>
+                    </div>
+                    <dstore-control class="control" [soft]="soft"></dstore-control>
+                </main>
+            
+            </section>
+        </ng-container>
       </main>
     </ng-container>
   </section>

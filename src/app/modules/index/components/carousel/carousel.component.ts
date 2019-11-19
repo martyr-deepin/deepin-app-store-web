@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { trigger, transition, animate, keyframes, style, state } from '@angular/animations';
 import { Observable, Subject, timer } from 'rxjs';
 import { throttleTime, switchMap, filter, startWith, map } from 'rxjs/operators';
@@ -70,6 +70,7 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
     private keyvalue: KeyvalueService,
     private sectionService: SectionService,
     private softwareService: SoftwareService,
+    private activeRouter: ActivatedRoute,
   ) {
     super();
     this.imgUrlOrigin = environment.server;
@@ -103,7 +104,7 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
           }
           const c = this.current.value();
           if (c.type === 'app') {
-            this.router.navigate(['app', c.app_id]);
+            this.router.navigate(['app/', c.app_id], { relativeTo: this.activeRouter });
           } else {
             const [, , sindex, tindex] = c.topic_index.split('/').map(Number);
             this.sectionService.list.then(list => {
