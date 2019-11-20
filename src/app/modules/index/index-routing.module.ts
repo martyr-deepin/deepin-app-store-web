@@ -19,7 +19,7 @@ const routes: Routes = [
     component: MoreComponent,
   },
   {
-    path: 'more/:key/:appName',
+    path: 'more/:key/:id',
     loadChildren: 'app/modules/details/details.module#DetailsModule',
   },
   {
