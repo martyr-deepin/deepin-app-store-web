@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, HostListener } from '@angular/core';
 import { Software, SoftwareService } from 'app/services/software.service';
 import { PackageService } from 'app/services/package.service';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -8,7 +8,6 @@ import { trigger, animate, style, transition, keyframes } from '@angular/animati
 import { StoreJobInfo, StoreJobStatus } from 'app/modules/client/models/store-job-info';
 import { BuyService } from 'app/services/buy.service';
 import { UserAppsService } from 'app/services/user-apps.service';
-import { AuthService } from 'app/services/auth.service';
 
 @Component({
   selector: 'dstore-control',
@@ -90,7 +89,6 @@ export class ControlComponent implements OnInit {
     private jobService: JobService,
     private buyService: BuyService,
     private userAppService: UserAppsService,
-    private authService: AuthService,
   ) {}
   @Input() soft: Software;
   @Output() job$: Observable<any>;
@@ -114,7 +112,10 @@ export class ControlComponent implements OnInit {
       share(),
     );
   }
-
+  @HostListener('click', ['$event']) click(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
   async queryPackage() {
     const pkg = await this.packageService
       .query({

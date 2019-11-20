@@ -22,14 +22,14 @@
 .control {
   width: 100%;
   animation: in 0.3s;
-  @keyframes in {
-    0% {
-      transform: translateX(50%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
+  // @keyframes in {
+  //   0% {
+  //     transform: translateX(50%);
+  //   }
+  //   100% {
+  //     transform: translateX(0);
+  //   }
+  // }
 }
 .price {
   background: linear-gradient(180deg, rgba(254, 167, 55, 1) 0%, rgba(255, 115, 0, 1) 100%);
