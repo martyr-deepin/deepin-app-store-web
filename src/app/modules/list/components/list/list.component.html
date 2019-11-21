@@ -10,7 +10,7 @@
         </div>
         <div class="subtitle" [style.color]="subtitleColor">
           <div class="category">
-            {{ slogan ? soft?.info?.slogan : (soft?.info?.category | categoryText | async) }}
+            {{ slogan ? soft?.info?.slogan : (soft?.info?.category | categoryText | async) }} &nbsp;
           </div>
           <dstore-star [rate]="soft?.stat?.score / 2"></dstore-star>
         </div>
