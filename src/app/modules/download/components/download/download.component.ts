@@ -85,7 +85,10 @@ export class DownloadComponent implements OnInit {
       this.storeService
         .fixError(err.ErrType.toString().split('::')[1])
         .pipe(
-          switchMap(() => this.storeService.jobListChange(), (jobPath, jobList) => jobList.includes(jobPath)),
+          switchMap(
+            () => this.storeService.jobListChange(),
+            (jobPath, jobList) => jobList.includes(jobPath),
+          ),
           filter(exists => !exists),
         )
         .subscribe(() => {

@@ -1,8 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import {
-  StoreJobErrorType,
-  StoreJobError,
-} from 'app/modules/client/models/store-job-info';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
+import { StoreJobErrorType, StoreJobError } from 'app/modules/client/models/store-job-info';
 
 @Component({
   selector: 'app-store-job-error',
@@ -25,6 +22,7 @@ export class StoreJobErrorComponent implements OnInit {
       this.errDetail = s;
     }
   }
+
   errType: StoreJobErrorType;
   errDetail: string;
   ngOnInit() {}
