@@ -12,7 +12,7 @@
           <div class="category">
             {{ slogan ? soft?.info?.slogan : (soft?.info?.category | categoryText | async) }} &nbsp;
           </div>
-          <dstore-star [rate]="soft?.stat?.score / 2"></dstore-star>
+          <dstore-star [rate]="soft.stat.score / 2||0"></dstore-star>
         </div>
       </div>
       <div class="control">
