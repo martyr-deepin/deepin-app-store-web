@@ -9,21 +9,18 @@ import { map } from 'rxjs/operators';
 })
 export class SectionService {
   url = `/api/public/section`;
-  list = this.http
-    .get(this.url)
-    .pipe(
-      map(v => {
-        return this.handleData(v);
+  list = this.http.get(this.url).pipe(
+    map(v => {
+      return this.handleData(v);
 
-        // return this.handleData(this.tmpData);
-      }),
-    )
-    .toPromise();
+      // return this.handleData(this.tmpData);
+    }),
+  );
   constructor(private http: HttpClient) {
     // this.http.get('/api/public/section').toPromise();
   }
   async getList() {
-    return await this.list;
+    return await this.list.toPromise();
   }
   handleData(data: any) {
     let tmp = [];

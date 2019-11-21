@@ -5,9 +5,8 @@ import { CategoryService } from 'app/services/category.service';
   name: 'categoryText',
 })
 export class CategoryTextPipe implements PipeTransform {
-  constructor(private category: CategoryService) {}
-  categoryMap$ = this.category.metadataCategory$;
+  constructor(private categoryService: CategoryService) {}
   transform(category: string) {
-    return this.categoryMap$.then(map => map.get(category));
+    return this.categoryService.categoryLocaleName(category);
   }
 }

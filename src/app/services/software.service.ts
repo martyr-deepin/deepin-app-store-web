@@ -5,7 +5,6 @@ import { environment } from 'environments/environment';
 import { map, tap, switchMap, first } from 'rxjs/operators';
 import { get } from 'lodash';
 import { StoreService, Package, QueryParam } from 'app/modules/client/services/store.service';
-import { Category, CategoryService } from './category.service';
 import { PackageService } from './package.service';
 import { DownloadTotalService } from './download-total.service';
 import { AppService, AppJSON, Pricing } from './app.service';
@@ -19,7 +18,6 @@ export class SoftwareService {
     private http: HttpClient,
     private appService: AppService,
     private statService: StatService,
-    private categoryService: CategoryService,
     private storeService: StoreService,
     private packageService: PackageService,
     private downloadCounter: DownloadTotalService,
