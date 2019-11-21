@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'environments/environment';
 import { map, shareReplay } from 'rxjs/operators';
 
-import { APIBase } from './api';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root',

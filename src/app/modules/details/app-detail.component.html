@@ -21,8 +21,8 @@
         <div i18n>Rating:</div>
         <div class="rate">
           <ng-container *ngIf="app.stat as stat">
-            <dstore-star [rate]="stat.score / 2"></dstore-star>
-            <span class="details">{{ (stat.score / 2).toFixed(1) }}</span>
+            <dstore-star [rate]="stat.score / 2 || 0"></dstore-star>
+            <span class="details">{{ (stat.score / 2 || 0).toFixed(1) }}</span>
             <span class="details" i18n>{{ stat.download }} downloads</span>
             <span class="details" i18n>{{ stat.score_count }} ratings</span>
           </ng-container>
@@ -44,17 +44,11 @@
               <ng-container *ngSwitchDefault>{{ size | sizeHuman }}</ng-container>
             </ng-container>
           </div>
-          <div i18n>Updated Date:</div>
-          <div>
-            {{ app.updated_at | date: 'yyyy-MM-dd HH:mm' }}
-            <!-- <ng-container *ngIf="supportSignIn && package.remoteVersion">
-              <span class="toRight">&lt;</span>
-              <button class="reminder" (click)="reminder(app.name, package.remoteVersion)">
-                <ng-container i18n>Ask for update</ng-container>
-              </button>
-            </ng-container> -->
-          </div>
         </ng-container>
+        <div i18n>Updated Date:</div>
+        <div>
+          {{ app.updated_at | date: 'yyyy-MM-dd HH:mm' }}
+        </div>
         <ng-container *ngIf="app.info.author">
           <div i18n>Developer:</div>
           <div>
