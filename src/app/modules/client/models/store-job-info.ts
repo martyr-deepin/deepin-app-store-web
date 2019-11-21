@@ -10,7 +10,7 @@ export interface StoreJobInfo {
   description: string;
   downloadSize: number;
   createTime: number;
-  packages: string;
+  packages: string[];
   cancelable: boolean;
 }
 
@@ -59,7 +59,4 @@ export enum StoreJobErrorType {
   noInstallationCandidate = 'JobError::noInstallationCandidate',
   insufficientSpace = 'JobError::insufficientSpace',
 }
-export const CanFixError = [
-  StoreJobErrorType.dpkgInterrupted,
-  StoreJobErrorType.dependenciesBroken,
-];
+export const CanFixError = [StoreJobErrorType.dpkgInterrupted, StoreJobErrorType.dependenciesBroken];

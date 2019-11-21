@@ -96,6 +96,7 @@ export class SoftwareService {
     const soft: Software = {
       id: app.id,
       name: app.name,
+      package_name: app.package_name,
       author: app.author,
       active: app.active,
       created_at: app.created_at,
@@ -199,6 +200,7 @@ export interface Software {
   updated_at: string;
   active: boolean;
   name: string;
+  package_name: string;
   author: number;
   info: Info;
   stat: Stat;

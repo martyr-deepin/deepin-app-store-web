@@ -24,6 +24,7 @@ export interface AppJSON {
   updated_at: string;
   deleted_at?: any;
   name: string;
+  package_name: string;
   author: number;
   active: boolean;
   info: Info;

@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { trigger, style, transition, animate } from '@angular/animations';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'environments/environment';
+import { StoreJobType } from 'app/modules/client/models/store-job-info';
+import { JobService } from 'app/services/job.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -16,12 +19,19 @@ import { environment } from 'environments/environment';
   ],
 })
 export class SideNavComponent implements OnInit {
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer, private jobService: JobService) {}
   native = environment.native;
   // download count
   dc$: Observable<number>;
 
-  ngOnInit() {}
+  ngOnInit() {
+    const CountType = [StoreJobType.install, StoreJobType.download];
+    this.dc$ = this.jobService.jobsInfo().pipe(
+      map(infoList => {
+        return infoList.filter(info => CountType.includes(info.type)).length;
+      }),
+    );
+  }
 
   getStyle(icons: string[]) {
     return this.sanitizer.bypassSecurityTrustStyle(icons.map(url => `url(${url})`).join(','));

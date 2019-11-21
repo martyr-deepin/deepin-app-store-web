@@ -44,7 +44,7 @@ export class LocalAppService {
             item.software = m.get(item.name);
             if (!item.software) {
               item.software = {} as any;
-              item.software.id = item.name as any;
+              item.software.id = 0;
               item.software.info = item.info as any;
             }
           });
