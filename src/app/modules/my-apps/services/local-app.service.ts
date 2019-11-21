@@ -24,22 +24,30 @@ export class LocalAppService {
       switchMap(() => this.storeService.InstalledPackages()),
       switchMap(async installed => {
         installed = installed.sort((a, b) => b.installedTime - a.installedTime);
-        let list = chunk(installed, pageSize)[pageIndex].map(pkg => {
-          const local_name = pkg.allLocalName[environment.locale] || pkg.allLocalName['en_US'] || pkg.packageName;
+        const list = chunk(installed, pageSize)[pageIndex].map(pkg => {
+          const localeName = pkg.allLocalName[environment.locale] || pkg.allLocalName['en_US'] || pkg.packageName;
           return {
             name: pkg.appName,
             package: pkg,
-            localName: local_name,
-            info: { name: local_name, packages: [{ packageURI: pkg.packageURI }] },
+            localName: localeName,
+            info: { name: localeName, packages: [{ packageURI: pkg.packageURI }] },
             software: null as Software,
           };
         });
         try {
-          const softs = await this.softwareService.list({
-            names: list.map(app => app.name),
-          });
+          const softs = await this.softwareService.list(
+            {},
+            { package_name: list.map(localeApp => localeApp.package.packageName) },
+          );
           const m = new Map(softs.map(soft => [soft.name, soft]));
-          list.forEach(item => (item.software = m.get(item.name)));
+          list.forEach(item => {
+            item.software = m.get(item.name);
+            if (!item.software) {
+              item.software = {} as any;
+              item.software.id = item.name as any;
+              item.software.info = item.info as any;
+            }
+          });
         } catch {}
         return { total: installed.length, page: pageIndex, list };
       }),
