@@ -19,9 +19,6 @@ export class CoverComponent extends SectionItemBase implements OnInit {
     this.more = `more/${this.keyvalue.add(this.section)}`;
     this.softs$ = this.softwareService
       .list({ ids: apps.filter(app => app.show).map(app => app.app_id) })
-      .then(data => {
-        return data;
-      })
       .finally(() => this.loaded.emit(true));
   }
 }
