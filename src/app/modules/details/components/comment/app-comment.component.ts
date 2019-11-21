@@ -186,6 +186,7 @@ export class AppCommentComponent implements OnInit {
         resp.items = [...userResp.items, ...resp.items.filter(c => c.commenter !== info.uid)];
       }
     }
+    resp.items.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
     if (this.loadCount === mark) {
       this.list = resp.items;
       this.loading = false;
