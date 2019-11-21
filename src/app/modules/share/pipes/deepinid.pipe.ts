@@ -30,7 +30,7 @@ export class DeepinidPipe implements PipeTransform {
   );
   transform(uid: number) {
     this.ids.add(uid);
-    this.query$.next();
+    setTimeout(() => this.query$.next());
     return this.result$.pipe(
       map(() => {
         if (!this.cache.has(uid)) {

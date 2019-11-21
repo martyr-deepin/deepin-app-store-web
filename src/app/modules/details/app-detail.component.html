@@ -58,7 +58,9 @@
         <ng-container *ngIf="app.info.author">
           <div i18n>Developer:</div>
           <div>
-            <a [routerLink]="['/list', 'author', app.info.author]">{{ app.info.author }}</a>
+            <a [routerLink]="['/list', 'author', app.info.author]">
+              {{ (app.info.author | deepinid | async)?.nickname }}
+            </a>
           </div>
         </ng-container>
         <ng-container *ngIf="app.info.packager">

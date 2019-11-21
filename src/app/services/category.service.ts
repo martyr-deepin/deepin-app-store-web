@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
-import { map } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 
 import { APIBase } from './api';
 
@@ -22,6 +22,7 @@ export class CategoryService {
       });
       return m;
     }),
+    shareReplay(),
   );
   categoryLocaleName(categoryCode: string) {
     return this.category$.pipe(map(m => m.get(categoryCode))).toPromise();

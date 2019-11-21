@@ -34,15 +34,7 @@ export class SideNavComponent implements OnInit {
   // download count
   dc$: Observable<number>;
 
-  ngOnInit() {
-    this.cs$ = this.categoryService.list();
-    const CountType = [StoreJobType.install, StoreJobType.download];
-    this.dc$ = this.jobService.jobsInfo().pipe(
-      map(infoList => {
-        return infoList.filter(info => CountType.includes(info.type)).length;
-      }),
-    );
-  }
+  ngOnInit() {}
 
   getStyle(icons: string[]) {
     return this.sanitizer.bypassSecurityTrustStyle(icons.map(url => `url(${url})`).join(','));
