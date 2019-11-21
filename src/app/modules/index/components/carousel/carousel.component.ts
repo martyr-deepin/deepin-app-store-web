@@ -107,7 +107,7 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
             this.router.navigate(['app/', c.app_id], { relativeTo: this.activeRouter });
           } else {
             const [, , sindex, tindex] = c.topic_index.split('/').map(Number);
-            this.sectionService.list.then(list => {
+            this.sectionService.getList().then(list => {
               const topic = get(list, [sindex, 'items', tindex]);
               if (!topic) {
                 this.router.navigate(['app', Math.random()]);

@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class SectionService {
   url = `/api/public/section`;
-  list = this.http.get(this.url).pipe(
+  private list = this.http.get(this.url).pipe(
     map(v => {
       return this.handleData(v);
 

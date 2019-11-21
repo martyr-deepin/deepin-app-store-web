@@ -1,14 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { trigger, style, transition, animate } from '@angular/animations';
-import { RouterLinkActive, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-import { CategoryService } from '../../services/category.service';
-import { Category } from '../../services/category.service';
-import { StoreJobType } from 'app/modules/client/models/store-job-info';
-import { JobService } from 'app/services/job.service';
 import { environment } from 'environments/environment';
 
 @Component({
@@ -23,14 +16,8 @@ import { environment } from 'environments/environment';
   ],
 })
 export class SideNavComponent implements OnInit {
-  constructor(
-    private sanitizer: DomSanitizer,
-    private categoryService: CategoryService,
-    private jobService: JobService,
-  ) {}
+  constructor(private sanitizer: DomSanitizer) {}
   native = environment.native;
-  // category list
-  cs$: Observable<Category[]>;
   // download count
   dc$: Observable<number>;
 
