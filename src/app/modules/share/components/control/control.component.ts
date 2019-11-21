@@ -99,7 +99,7 @@ export class ControlComponent implements OnInit {
   ngOnInit() {
     this.queryPackage();
     this.job$ = this.jobService.jobsInfo().pipe(
-      map(jobs => jobs.find(job => job.names.includes(this.soft.name))),
+      map(jobs => jobs.find(job => job.names.includes(this.soft.package_name))),
       startWith(null),
       pairwise(),
       switchMap(async ([old, job]) => {
