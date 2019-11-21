@@ -1,18 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { trigger, transition, animate, keyframes, style, state } from '@angular/animations';
-import { Observable, Subject, timer } from 'rxjs';
-import { throttleTime, switchMap, filter, startWith, map } from 'rxjs/operators';
+import { Observable, Subject, BehaviorSubject, timer } from 'rxjs';
+import { throttleTime, switchMap, map } from 'rxjs/operators';
 import { get } from 'lodash';
 
 import { SectionItemBase } from '../section-item-base';
-import {
-  SectionCarousel,
-  CarouselType,
-  SectionService,
-  SectionList,
-  SectionItem,
-} from '../../services/section.service';
+import { SectionService, SectionItem } from '../../services/section.service';
 import { SoftwareService } from 'app/services/software.service';
 import { KeyvalueService } from 'app/services/keyvalue.service';
 import { environment } from 'environments/environment';
@@ -76,7 +70,7 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
     this.imgUrlOrigin = environment.server;
   }
   imgUrlOrigin = '';
-  click$ = new Subject<string>();
+  click$ = new BehaviorSubject<string>('');
   carousels: SectionItem[];
   current: Ring<SectionItem>;
   state: { [key: number]: string } = {
