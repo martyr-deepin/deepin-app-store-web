@@ -21,7 +21,7 @@ export class RankingComponent extends SectionItemBase implements OnInit {
     let softs = [];
 
     for (let offset = 0; softs.length < ranking[0].top; offset += 10) {
-      const list = await this.softwareService.list({ order: 'download', offset, limit: 10 });
+      const list = await this.softwareService.list({}, { order: 'download', offset, limit: 10 });
       softs = [...softs, ...list].slice(0, ranking[0].top);
     }
     this.softs$ = Promise.resolve(softs);

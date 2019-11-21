@@ -27,8 +27,9 @@ export class ListOutletComponent implements OnInit {
     switchMap(([param, query]) => {
       const [routeName, routeValue] = [param.get('name'), param.get('value')];
       this.title = routeValue;
+      this.slogan = false;
       if (routeName === 'category') {
-        this.slogan = routeName === 'category';
+        this.slogan = true;
         setTimeout(() => {
           const el = document.querySelector<HTMLDivElement>('.navItem.active');
           if (el) {
@@ -41,8 +42,9 @@ export class ListOutletComponent implements OnInit {
       this.offset$ = new BehaviorSubject(0);
       this.offset$.subscribe(offset => console.log('offset', offset));
 
+      console.log({ routeName, routeValue });
       return this.offset$.pipe(
-        switchMap(offset => this.softService.list({ order, offset, [routeName]: routeValue })),
+        switchMap(offset => this.softService.list({}, { order, [routeName]: routeValue, offset })),
         retryWhen(errors =>
           errors.pipe(
             tap(console.error),

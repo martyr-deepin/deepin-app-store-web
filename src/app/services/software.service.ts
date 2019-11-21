@@ -30,7 +30,6 @@ export class SoftwareService {
 
   async list(
     {
-      order = 'download' as 'download' | 'score',
       offset = 0,
       limit = 20,
       category = '',
@@ -41,12 +40,16 @@ export class SoftwareService {
       ids = [] as number[],
       active = true as boolean | '',
     },
-    opt2?: { locale_name?: string; package_name?: string[] },
+    opt2?: {
+      locale_name?: string;
+      package_name?: string[];
+      offset?: number;
+      limit?: number;
+      order?: 'download' | 'score';
+    },
   ) {
     //获取应用统计信息接口
-    const stats = await this.statService.list(
-      (opt2 as any) || { order, offset, limit, category, tag, keyword, id: ids },
-    );
+    const stats = await this.statService.list((opt2 as any) || { offset, limit, category, tag, keyword, id: ids });
     const m = new Map<number, AppJSON>();
     if (stats.count > 0) {
       const apps = await this.appService.list({ id: stats.items.map(stat => stat.app_id), active });
