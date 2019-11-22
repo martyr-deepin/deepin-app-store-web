@@ -47,12 +47,8 @@
           </ng-container>
         </div>
       </ng-template>
-      <textarea
-        #commentTextRef
-        [readOnly]="!info || own"
-        formControlName="content"
-        (keyup.control.enter)="submitComment()"
-      ></textarea>
+      <textarea #commentTextRef [readOnly]="!info || own" formControlName="content"
+        (keyup.control.enter)="submitComment()"></textarea>
     </div>
 
     <div class="fixed">
@@ -73,9 +69,8 @@
   </div>
   <div class="submit" *ngIf="info">
     <span class="errorGroup" *ngIf="submitted.touched && commentGroup.invalid" [ngSwitch]="true">
-      <span class="submitError" *ngSwitchCase="content.invalid && score.invalid" i18n
-        >Please rate and post your comment</span
-      >
+      <span class="submitError" *ngSwitchCase="content.invalid && score.invalid" i18n>Please rate and post your
+        comment</span>
       <span class="submitError" *ngSwitchCase="content.invalid" i18n>Please input your comment</span>
       <span class="submitError" *ngSwitchCase="score.invalid" i18n>Please rate</span>
       <span class="submitError" *ngSwitchCase="submitted.invalid" i18n>Failed to submit</span>
@@ -103,12 +98,8 @@
         </button>
       </div>
       <div class="paginator" *ngIf="total[select] > page.size">
-        <app-paginator
-          [length]="total[select]"
-          [size]="page.size"
-          [pageIndex]="page.index"
-          (pageIndexChange)="pageChange($event)"
-        ></app-paginator>
+        <app-paginator [length]="total[select]" [size]="page.size" [pageIndex]="page.index"
+          (pageIndexChange)="pageChange($event)"></app-paginator>
       </div>
     </div>
     <br />
@@ -127,12 +118,8 @@
                 <td rowspan="2">
                   <div class="head" *ngIf="c.commenter | deepinid | async as info; else deepinInfoDefault">
                     <ng-container *ngIf="info.uid; else deletedRef">
-                      <img
-                        [src]="info.profile_image"
-                        #avatarRef
-                        (error)="avatarRef.src = '/assets/images/default_avatar.jpeg?default'"
-                        class="profile"
-                      />
+                      <img [src]="info.profile_image" #avatarRef
+                        (error)="avatarRef.src = '/assets/images/default_avatar.jpeg?default'" class="profile" />
                       <span>{{ info.nickname }}</span>
                     </ng-container>
                     <ng-template #deletedRef>
@@ -162,12 +149,8 @@
                       &nbsp;&nbsp;
                       <div class="like">
                         <span [class.hidden]="c.likes?.length <= 0">({{ c.likes?.length }})</span>
-                        <img
-                          class="thumbUp"
-                          [class.hidden]="c.commenter == info?.uid"
-                          [class.active]="likeByMe(c.likes, info?.uid)"
-                          (click)="thumbUpClick(c)"
-                        />
+                        <img class="thumbUp" [class.hidden]="c.commenter == info?.uid"
+                          [class.active]="likeByMe(c.likes, info?.uid)" (click)="thumbUpClick(c)" />
                       </div>
                     </div>
                   </div>
@@ -183,17 +166,14 @@
         </ng-container>
       </ng-container>
     </div>
-    <ng-template #loadWait> <app-wait></app-wait> </ng-template>
+    <ng-template #loadWait>
+      <app-wait></app-wait>
+    </ng-template>
   </div>
 
   <div class="bottom" *ngIf="!loading">
     <a (click)="scrollToTop()" i18n>Back to top</a>
-    <app-paginator
-      *ngIf="total[select] > page.size"
-      [pageIndex]="page.index"
-      [length]="total[select]"
-      [size]="page.size"
-      (pageIndexChange)="pageChange($event)"
-    ></app-paginator>
+    <app-paginator *ngIf="total[select] > page.size" [pageIndex]="page.index" [length]="total[select]"
+      [size]="page.size" (pageIndexChange)="pageChange($event)"></app-paginator>
   </div>
 </ng-container>

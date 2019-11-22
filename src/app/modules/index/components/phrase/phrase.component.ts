@@ -25,10 +25,6 @@ export class PhraseComponent extends SectionItemBase implements OnInit {
     this.phraseData = this.section.items;
     this.softs$ = this.softwareService
       .list({ ids: apps.filter(app => app.show).map(app => app.app_id) })
-      .then(data => {
-        console.log(data, 'sssss');
-        return data;
-      })
       .finally(() => this.loaded.emit(true));
   }
 }

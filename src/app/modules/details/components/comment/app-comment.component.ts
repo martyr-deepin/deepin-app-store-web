@@ -106,10 +106,12 @@ export class AppCommentComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.page.size, 'asadasd');
     this.init();
   }
   async init() {
     await this.getCount();
+
     this.selectChange(CommentType.News);
   }
   async getCount() {
@@ -162,7 +164,7 @@ export class AppCommentComponent implements OnInit {
       if (this.page.index !== 0) {
         resp.items = resp.items.slice(this.page.size - this.firstPageSize);
       }
-      resp.items.slice(0, this.page.size);
+      resp.items = resp.items.slice(0, this.page.size);
     }
     if (this.page.index === 0) {
       // get hot comment
