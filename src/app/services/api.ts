@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 export class APIBase<RModel, WModel = RModel> {
   constructor(private _http: HttpClient, private api: string) {}
   async list(opt: ListOption = {}) {
-    const resp = await this._http.get<RModel[]>(this.api, { observe: 'response', params: opt as any }).toPromise();
+    const resp = await this._http
+      .get<RModel[]>(this.api, { observe: 'response', params: opt as any })
+      .toPromise();
     return { items: resp.body, count: Number(resp.headers.get('X-Total-Count')) };
   }
   get(id: number) {

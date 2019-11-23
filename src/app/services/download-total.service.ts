@@ -23,40 +23,54 @@ export class DownloadTotalService {
         this.downloadTotal(apps[0]);
         return;
       }
-      this.addUserApps(apps);
-      this.installApps(apps);
+      this.userDownloadTotal(apps[0]);
     });
   }
   // 访客下载统计
   private downloadTotal(app: Software) {
-    const url = this.server + '/downloading/app/' + app.name;
-    this.http.post(url, null).subscribe();
+    const url = '/api/public/download';
+    this.http
+      .post(url, {
+        app_id: app.id,
+        app_version: app.package.remoteVersion,
+      })
+      .subscribe();
   }
-  // 记录云端应用
-  private addUserApps(apps: Software[]) {
-    const userApps = apps.map(app => {
-      return {
-        appName: app.name,
-        version: app.package.remoteVersion,
-      };
-    });
-    const url = this.server + '/api/user/my/app/';
-    this.http.post(url, userApps).subscribe();
+  // 用户下载统计
+  private userDownloadTotal(app: Software) {
+    const url = '/api/user/download';
+    this.http
+      .post(url, {
+        app_id: app.id,
+        app_version: app.package.remoteVersion,
+      })
+      .subscribe();
   }
-  // 同步安装,记录软件下载统计
-  private async installApps(apps: Software[]) {
-    const url = this.server + '/api/user/app/install';
-    const params = {};
-    const auto = await Channel.exec<Boolean>('settings.getAutoInstall');
-    if (auto) {
-      params['sync'] = 'true';
-    }
-    const install = apps.map(app => {
-      return {
-        appName: app.name,
-        packageURLs: app.info.packages.map(pkg => pkg.packageURI),
-      };
-    });
-    return this.http.post(url, { install }, { params }).toPromise();
-  }
+  // // 记录云端应用
+  // private addUserApps(apps: Software[]) {
+  //   const userApps = apps.map(app => {
+  //     return {
+  //       appName: app.name,
+  //       version: app.package.remoteVersion,
+  //     };
+  //   });
+  //   const url = this.server + '/api/user/my/app';
+  //   this.http.post(url, userApps).subscribe();
+  // }
+  // // 同步安装,记录软件下载统计
+  // private async installApps(apps: Software[]) {
+  //   const url = this.server + '/api/user/app/install';
+  //   const params = {};
+  //   const auto = await Channel.exec<Boolean>('settings.getAutoInstall');
+  //   if (auto) {
+  //     params['sync'] = 'true';
+  //   }
+  //   const install = apps.map(app => {
+  //     return {
+  //       appName: app.name,
+  //       packageURLs: app.info.packages.map(pkg => pkg.packageURI),
+  //     };
+  //   });
+  //   return this.http.post(url, { install }, { params }).toPromise();
+  // }
 }
