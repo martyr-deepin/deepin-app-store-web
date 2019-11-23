@@ -48,6 +48,7 @@ export class SoftwareService {
       order?: 'download' | 'score';
     },
   ) {
+    console.log('software list', { ids });
     //获取应用统计信息接口
     const stats = await this.statService.list((opt2 as any) || { offset, limit, category, tag, keyword, id: ids });
     const m = new Map<number, AppJSON>();

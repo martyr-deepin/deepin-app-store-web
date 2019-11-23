@@ -56,13 +56,15 @@ export class AppCommentComponent implements OnInit {
   @Input()
   appID: number;
   @Input()
-  version: string;
+  appVersion: string;
 
   content = this.fb.control('', Validators.required);
   score = this.fb.control(0, Validators.min(0.5));
   submitted = this.fb.control(null);
   tags = this.fb.array([]);
   commentGroup = this.fb.group({
+    app_id: [0, Validators.required],
+    app_version: ['', Validators.required],
     content: this.content,
     score: this.score,
     submitted: this.submitted,
@@ -100,27 +102,29 @@ export class AppCommentComponent implements OnInit {
   }
   get selectVersion() {
     if (this.select === CommentType.News) {
-      return { version: this.version };
+      return { version: this.appVersion };
     }
-    return { exclude_version: this.version };
+    return { exclude_version: this.appVersion };
   }
 
   ngOnInit() {
-    console.log(this.page.size, 'asadasd');
+    this.commentGroup.patchValue({
+      app_id: this.appID,
+      app_version: this.appVersion,
+    });
     this.init();
   }
   async init() {
     await this.getCount();
-
     this.selectChange(CommentType.News);
   }
   async getCount() {
     {
-      const resp = await this.publicAPI.list({ limit: 1, version: this.version });
+      const resp = await this.publicAPI.list({ limit: 1, version: this.appVersion });
       this.total[CommentType.News] = resp.count;
     }
     {
-      const resp = await this.publicAPI.list({ limit: 1, exclude_version: this.version });
+      const resp = await this.publicAPI.list({ limit: 1, exclude_version: this.appVersion });
       this.total[CommentType.History] = resp.count;
     }
   }
@@ -203,12 +207,7 @@ export class AppCommentComponent implements OnInit {
     }
     try {
       this.commentGroup.disable();
-      await this.userAPI.post({
-        app_id: this.appID,
-        content: this.content.value,
-        score: this.score.value,
-        tags: this.tags.value,
-      });
+      await this.userAPI.post(this.commentGroup.getRawValue());
       this.haveNewComment = true;
       await this.selectChange(CommentType.News);
       setTimeout(() => (this.haveNewComment = false), 1000);
