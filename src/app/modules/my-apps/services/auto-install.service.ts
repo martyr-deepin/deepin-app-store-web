@@ -10,6 +10,6 @@ export class AutoInstallService {
     return Channel.exec('settings.setAutoInstall', auto);
   }
   getAutoInstall() {
-    return Channel.exec('settings.getAutoInstall');
+    return Channel.exec<{ autoInstall: boolean }>('settings.getSettings').then(v => v.autoInstall);
   }
 }

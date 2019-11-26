@@ -8,7 +8,7 @@ import { AutoInstallService } from '../../services/auto-install.service';
 })
 export class RemoteInstallComponent implements OnInit {
   constructor(private autoInstallService: AutoInstallService) {}
-  autoInstall = this.autoInstallService.getAutoInstall();
+  autoInstall$ = this.autoInstallService.getAutoInstall();
   ngOnInit() {}
   change(auto: boolean) {
     this.autoInstallService.setAutoInstall(auto);
