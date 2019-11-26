@@ -20,6 +20,10 @@ export class CoverComponent extends SectionItemBase implements OnInit {
     console.error({ apps });
     this.softs$ = this.softwareService
       .list({ ids: apps.filter(app => app.show).map(app => app.app_id) })
+      .then(v => {
+        console.log(v, 'cover');
+        return v;
+      })
       .finally(() => this.loaded.emit(true));
   }
 }

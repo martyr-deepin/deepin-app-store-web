@@ -1,6 +1,7 @@
 .appInfo {
   color: var(--main-color);
   display: flex;
+
   .info-left {
     flex: 3;
     display: flex;
@@ -8,36 +9,45 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
     .icon {
       width: 8rem;
       height: 8rem;
       cursor: default;
     }
+
     button {
       min-width: 8rem;
     }
+
     .jobButton {
       min-width: 8rem;
     }
   }
+
   .info-right {
     flex: 9;
+
     .title {
       margin: 2rem 0;
       font-size: 2em;
     }
+
     .content {
       display: grid;
       grid-template-columns: min-content auto;
-      & > div {
+
+      &>div {
         min-height: 2rem;
         line-height: 2rem;
+
         &:nth-child(odd) {
           color: gray;
           white-space: nowrap;
           margin-right: 1rem;
         }
       }
+
       .webSite {
         white-space: nowrap;
         overflow: hidden;
@@ -48,19 +58,23 @@
     }
   }
 }
+
 .rate {
   display: flex;
   align-items: baseline;
+
   .details {
     margin-left: 1rem;
   }
 }
+
 .hr {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .tip {
   text-align: center;
+
   .tipButton {
     display: -webkit-inline-box;
     padding: 0.8rem 2rem;
@@ -69,13 +83,16 @@
     word-spacing: 0.3rem;
     color: #0c9cf0;
   }
+
   .tipList {
     display: flex;
     justify-content: center;
     align-items: center;
+
     .iconList {
       margin-right: 1rem;
       border: #0c9cf0;
+
       .icon {
         margin: -0.5rem;
         border-radius: 50%;
@@ -83,6 +100,7 @@
     }
   }
 }
+
 .dropOff {
   width: 100%;
   height: 100vh;
@@ -90,25 +108,32 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   span {
     color: gray;
   }
+
   a {
     color: #0c9cf0;
   }
+
   * {
     margin: 0.3rem 0;
   }
 }
+
 .toRight {
   margin: 0 0.5rem;
 }
+
 .selectable {
   user-select: text;
 }
+
 .pre {
   white-space: pre-line;
 }
+
 .ad {
   width: 100%;
   height: 3rem;
@@ -122,6 +147,7 @@
 .tags {
   display: flex;
   flex-wrap: wrap;
+
   .tag {
     white-space: nowrap;
     padding: 0 0.5rem;
@@ -137,6 +163,42 @@
 .control {
   width: 8rem;
 }
+
 a {
   color: unset;
+}
+
+.refund {
+
+
+  padding-top: 10px;
+  display: inline-block;
+
+  >div {
+
+
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    i {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      text-align: center;
+      line-height: 15px;
+      background: rgba(101, 144, 246);
+      color: #fff;
+      margin-right: 10px;
+      border-radius: 50%;
+      font-style: normal;
+    }
+
+    span {
+      line-height: 15px;
+      color: rgba(101, 144, 246);
+    }
+  }
+
+
 }

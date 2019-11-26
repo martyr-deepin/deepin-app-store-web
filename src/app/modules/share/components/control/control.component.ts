@@ -133,7 +133,9 @@ export class ControlComponent implements OnInit {
   }
 
   installApp(e: Event) {
-    this.softwareService.install(this.soft);
+    this.softwareService.install(this.soft).then(v => {
+      console.log('安装app', v);
+    });
   }
 
   buyApp(e: Event) {

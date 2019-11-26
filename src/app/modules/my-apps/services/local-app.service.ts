@@ -60,6 +60,7 @@ export class LocalAppService {
   removingList() {
     return this.jobService.jobsInfo().pipe(
       map(jobs => {
+        console.log(jobs);
         return jobs
           .filter(job => job.type === StoreJobType.uninstall)
           .map(job => job.names)
