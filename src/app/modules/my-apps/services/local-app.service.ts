@@ -24,6 +24,9 @@ export class LocalAppService {
       switchMap(() => this.storeService.InstalledPackages()),
       switchMap(async installed => {
         installed = installed.sort((a, b) => b.installedTime - a.installedTime);
+        if (!installed.length) {
+          return { total: 0, page: pageIndex, list: [] };
+        }
         const list = chunk(installed, pageSize)[pageIndex].map(pkg => {
           const localeName = pkg.allLocalName[environment.locale] || pkg.allLocalName['en_US'] || pkg.packageName;
           return {
