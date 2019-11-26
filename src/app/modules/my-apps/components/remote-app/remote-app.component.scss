@@ -31,14 +31,14 @@
         text-overflow: ellipsis;
       }
       .control {
-        flex: 0.5;
+        flex: 1;
         text-align: right;
         button {
           min-width: 100px;
         }
       }
       .no-version {
-        flex: 1.5;
+        flex: 2;
         color: red;
       }
     }

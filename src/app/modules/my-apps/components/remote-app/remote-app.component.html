@@ -32,9 +32,10 @@
             <span i18n>Date installed:</span>
             {{ remoteApp.created_at | date: 'yyyy.MM.dd' }}
           </div>
-          <ng-container *ngIf="remoteApp.soft.package; else noVersionError">
+          <ng-container *ngIf="(remoteApp.soft?.package)['remoteVersion']; else noVersionError">
             <div class="version"><span i18n>Version:</span> {{ remoteApp.app_version }}</div>
-            <div class="refund">
+
+            <div class="control">
               <ng-container *ngIf="remoteApp.order_number">
                 <ng-container *ngIf="remoteApp.can_refund; else canNotRefundRef" [ngSwitch]="remoteApp.refund_status">
                   <ng-container *ngSwitchCase="OrderStatusWaiting.OrderStatusWaiting">
@@ -49,11 +50,10 @@
                   <button class="secondary" i18n-title title="已超过购买两小时退款时限" disabled i18n>退款</button>
                 </ng-template>
               </ng-container>
-            </div>
-            <div class="control">
-              <ng-container *ngIf="installing.includes(remoteApp.soft.name); else update"
-                ><button i18n disabled>Installing</button></ng-container
-              >
+              &nbsp;
+              <ng-container *ngIf="installing.includes(remoteApp.soft.name); else update">
+                <button i18n disabled>Installing</button>
+              </ng-container>
               <ng-template #update>
                 <button *ngIf="remoteApp.soft.package.upgradable; else installedRef">
                   <ng-container i18n>Update</ng-container>

@@ -41,12 +41,11 @@ export class BatchInstallComponent implements OnInit {
   hide() {
     this.dialogRef.nativeElement.close();
   }
-  upgrade(app: Software): boolean {
-    return false;
-    // return app.package && (!app.package.localVersion || app.package.upgradable);
+  unavailable(app: Software) {
+    return !app.package || !app.package.remoteVersion;
   }
   touch(app: Software) {
-    if (!this.upgrade(app)) {
+    if (this.unavailable(app)) {
       return;
     }
     if (this.batchInstall.has(app.name)) {
@@ -61,7 +60,7 @@ export class BatchInstallComponent implements OnInit {
     });
   }
   selectPage(apps: Software[]) {
-    apps.filter(app => this.upgrade(app)).forEach(app => this.batchInstall.set(app.name, app));
+    apps.filter(app => !this.unavailable(app)).forEach(app => this.batchInstall.set(app.name, app));
   }
   installAll() {
     this.remoteAppService.installApps([...this.batchInstall.values()]);

@@ -3,9 +3,9 @@
   <button routerLink="/my/comments" routerLinkActive="active">
     <ng-container i18n>My comments</ng-container>
   </button>
-  <button routerLink="/my/donates" routerLinkActive="active">
+  <!-- <button routerLink="/my/donates" routerLinkActive="active">
     <ng-container i18n>My donations</ng-container>
-  </button>
+  </button> -->
 </dstore-center-title>
 
 <dstore-edit *ngIf="editing" [commentID]="editing.id" (close)="editClose($event)"></dstore-edit>

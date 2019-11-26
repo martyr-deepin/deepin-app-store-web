@@ -72,8 +72,8 @@ export class RemoteAppService extends APIBase<RemoteApp> {
 
 export interface RemoteApp {
   id: number;
-  created_at: string;
-  updated_at: string;
+  created_at: Date;
+  updated_at: Date;
   deleted_at?: any;
   uid: number;
   app_id: number;

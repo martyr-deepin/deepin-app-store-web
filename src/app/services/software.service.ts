@@ -132,7 +132,7 @@ export class SoftwareService {
         packages: app.packages.map(pkg => ({ packageURI: 'dpk://deb/' + pkg.name })),
       },
       package: {
-        remoteVersion: get(app.packages, '0.version', 'undefined'),
+        remoteVersion: '',
         localVersion: '',
         upgradable: false,
       },

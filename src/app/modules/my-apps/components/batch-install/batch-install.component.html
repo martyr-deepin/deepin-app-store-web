@@ -9,13 +9,11 @@
             <div class="app" dstoreHover #dstoreHover="dstoreHover" *ngFor="let app of apps" (click)="touch(app)">
               <dstore-checkbox-button
                 [class.hover]="dstoreHover.hover"
-                [disabled]="!upgrade(app)"
+                [disabled]="unavailable(app)"
                 [value]="batchInstall.has(app.name)"
               ></dstore-checkbox-button>
               <img [src]="app.info.icon" /> {{ app.info.name }}
             </div>
-            <div class="empty"></div>
-            <div class="empty"></div>
           </div>
         </dstore-scrollbar>
         <div class="paginator">
