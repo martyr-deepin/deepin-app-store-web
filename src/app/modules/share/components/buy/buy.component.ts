@@ -27,11 +27,16 @@ export class BuyComponent implements OnInit {
     amount: [0, Validators.required],
     method: [Payment.AliPay, Validators.required],
   });
+  success = false;
   ngOnInit() {
     this.dialogRef.nativeElement.showModal();
     this.dialogRef.nativeElement.addEventListener('close', () => {
       console.log('close');
-      this.cancel.next();
+      if (this.success) {
+        this.buyService.buyDialogShow$.next(null);
+      } else {
+        this.cancel.next();
+      }
     });
     this.form.patchValue({
       app_id: this.soft.id,
@@ -48,8 +53,8 @@ export class BuyComponent implements OnInit {
       switchMap(async () => {
         const order = await this.orderService.get(result.order_number as any);
         if (order.status === OrderStatus.OrderStatusSuccess) {
+          this.success = true;
           this.buyService.buy$.next(this.soft);
-          this.buyService.buyDialogShow$.next(null);
         }
         return order;
       }),

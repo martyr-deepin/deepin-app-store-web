@@ -9,6 +9,7 @@ import { PackageService } from './package.service';
 import { DownloadTotalService } from './download-total.service';
 import { AppService, AppJSON, Pricing } from './app.service';
 import { StatService, AppStat } from './stat.service';
+import { BuyService } from './buy.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,14 @@ export class SoftwareService {
     private storeService: StoreService,
     private packageService: PackageService,
     private downloadCounter: DownloadTotalService,
-  ) {}
+    private buyService: BuyService,
+  ) {
+    this.buyService.buy$.subscribe(soft => {
+      if (soft) {
+        this.install(soft);
+      }
+    });
+  }
   private readonly native = environment.native;
   private readonly metadataURL = environment.metadataServer + '/api/v3/apps';
   // operation app url

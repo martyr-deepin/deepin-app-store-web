@@ -133,9 +133,11 @@ export class AppCommentComponent implements OnInit {
     await this.pageChange(0);
   }
   async pageChange(page: number) {
+    if (this.page.index !== page) {
+      this.commentTop();
+    }
     this.page.index = page;
     await this.getComments();
-    this.commentTop();
   }
   async getComments() {
     if (this.total[this.select] === 0) {
