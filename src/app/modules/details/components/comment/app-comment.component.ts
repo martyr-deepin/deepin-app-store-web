@@ -86,7 +86,7 @@ export class AppCommentComponent implements OnInit {
   page = { index: 0, size: 20 };
 
   login = () => this.authService.login();
-  logout = () => this.authService.logout();
+  logout = () => this.authService.logout(true);
 
   register = () => this.authService.register();
 

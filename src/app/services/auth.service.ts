@@ -86,7 +86,7 @@ export class AuthService {
     localStorage.removeItem('token');
     this.userInfo$.next(null);
     if (accountLogout) {
-      return this.accountLogout;
+      return this.accountLogout();
     }
   }
   // 登出系统用户
