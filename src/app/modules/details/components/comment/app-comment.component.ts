@@ -204,12 +204,14 @@ export class AppCommentComponent implements OnInit {
     const content = this.commentGroup.get('content');
     content.setValue(content.value.trim());
     this.commentGroup.markAllAsTouched();
+
     if (this.commentGroup.invalid) {
       return;
     }
     try {
       this.commentGroup.disable();
       await this.userAPI.post(this.commentGroup.getRawValue());
+      this.total[CommentType.News] = this.total[CommentType.News] + 1;
       this.haveNewComment = true;
       await this.selectChange(CommentType.News);
       setTimeout(() => (this.haveNewComment = false), 1000);

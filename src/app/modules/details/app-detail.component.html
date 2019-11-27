@@ -6,19 +6,13 @@
         <dstore-control class="control" [soft]="app" #controlRef [hidden]="controlRef.job$ | async"></dstore-control>
       </div>
       <ng-container *ngIf="controlRef.job$ | async as job">
-        <dstore-progress-button
-          [job]="job.job"
-          [type]="job.type"
-          [status]="job.status"
-          [progress]="job.progress"
-          [disabled]="!job.cancelable || job.status === StoreJobStatus.failed"
-        ></dstore-progress-button>
+        <dstore-progress-button [job]="job.job" [type]="job.type" [status]="job.status" [progress]="job.progress"
+          [disabled]="!job.cancelable || job.status === StoreJobStatus.failed"></dstore-progress-button>
       </ng-container>
       <div *ngIf="!app.free" class="refund">
         <div
           title=" 1.用户购买两小时内可以发起退款申请。&#10;2.前三次退款无须人工审核，实时退款到原账户。&#10;3.超过三次退款须经平台审核（2-3个工作日）。审核通过后会自动退款，审核不通过会告知您失败原因。"
-          i18n-title
-        >
+          i18n-title>
           <i>i</i><span i18n>退款说明</span>
         </div>
       </div>

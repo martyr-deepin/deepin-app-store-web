@@ -12,6 +12,7 @@
 
 <div class="comment-list" dstoreResize (resize)="listHeight$.next($event.height)">
   <div class="comment" *ngFor="let comment of comments$ | async">
+
     <ng-container>
       <ng-container *ngIf="comment.soft as app; else emptyIconRef">
         <img class="icon" dstoreCover="icon" [src]="app.info.icon" [routerLink]="['/app', app.id]" />
@@ -29,7 +30,7 @@
           </div>
           <div class="version"><span i18n>Version:</span> {{ comment.app_version }}</div>
           <div class="removed">
-            <span *ngIf="!comment.soft.active" i18n>Removed</span>
+            <span *ngIf="!comment.soft?.active" i18n>Removed</span>
           </div>
         </div>
         <div class="content-line">
@@ -42,10 +43,7 @@
 </div>
 <div class="paginatorContainer">
   <ng-container *ngIf="count$ | async as count">
-    <app-paginator
-      [count]="count"
-      [pageIndex]="pageIndex$ | async"
-      (pageIndexChange)="gotoPage($event)"
-    ></app-paginator>
+    <app-paginator [count]="count" [pageIndex]="pageIndex$ | async" (pageIndexChange)="gotoPage($event)">
+    </app-paginator>
   </ng-container>
 </div>
