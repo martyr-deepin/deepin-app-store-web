@@ -69,6 +69,6 @@ export class EditComponent implements OnInit {
   }
   async delete() {
     await this.commentService.delete(this.comment.id);
-    this.closed();
+    this.closed(true);
   }
 }

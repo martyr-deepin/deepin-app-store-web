@@ -79,6 +79,7 @@
       <span class="submitError" *ngSwitchCase="content.invalid" i18n>Please input your comment</span>
       <span class="submitError" *ngSwitchCase="score.invalid" i18n>Please rate</span>
       <span class="submitError" *ngSwitchCase="submitted.invalid" i18n>Failed to submit</span>
+      <span class="submitError" *ngSwitchCase="commentGroup.controls['app_version'].invalid" i18n>应用不可用</span>
     </span>
     &nbsp;
     <button class="submitBtn" [disabled]="own" (click)="submitComment()">

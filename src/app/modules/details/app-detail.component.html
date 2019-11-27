@@ -1,5 +1,4 @@
 <div *ngIf="app$ | async as app; else $loading">
-  {{ app.package | json }}
   <div class="appInfo">
     <div class="info-left">
       <img class="icon" dstoreCover="icon" [src]="app.info.icon" /> <br />
