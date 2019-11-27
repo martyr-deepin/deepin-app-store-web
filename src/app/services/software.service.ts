@@ -80,7 +80,6 @@ export class SoftwareService {
       if (pkg) {
         soft.package = { localVersion: pkg.localVersion, remoteVersion: pkg.remoteVersion, upgradable: pkg.upgradable };
       }
-      debugger;
       return soft;
     });
   }
