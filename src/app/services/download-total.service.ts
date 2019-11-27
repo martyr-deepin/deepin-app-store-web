@@ -6,17 +6,22 @@ import { environment } from 'environments/environment';
 import { AuthService } from './auth.service';
 import { Channel } from 'app/modules/client/utils/channel';
 import { Software } from './software.service';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DownloadTotalService {
   server = environment.operationServer;
+  installCount$ = new Subject<Software>();
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   installed(apps: Software[]) {
     if (!Array.isArray(apps) || !apps.length) {
       return;
+    }
+    for (let i = 0; i < apps.length; i++) {
+      this.installCount$.next(apps[i]);
     }
     this.auth.logged$.pipe(first()).subscribe(logged => {
       if (!logged) {
