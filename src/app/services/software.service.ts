@@ -75,17 +75,13 @@ export class SoftwareService {
       softs.sort((a, b) => ids.indexOf(a.id) - ids.indexOf(b.id));
     }
     const pkgMap = await this.packageService.querys(softs.map(this.toQuery));
-    return softs
-      .filter(soft => pkgMap.get(soft.id.toString()))
-      .map(soft => {
-        const pkg = pkgMap.get(soft.id.toString());
-        soft.package = {
-          localVersion: pkg.localVersion,
-          remoteVersion: pkg.remoteVersion,
-          upgradable: pkg.upgradable,
-        };
-        return soft;
-      });
+    return softs.map(soft => {
+      const pkg = pkgMap.get(soft.name);
+      if (pkg) {
+        soft.package = { localVersion: pkg.localVersion, remoteVersion: pkg.remoteVersion, upgradable: pkg.upgradable };
+      }
+      return soft;
+    });
   }
   private coverImage(img: string) {
     if (!img) {
