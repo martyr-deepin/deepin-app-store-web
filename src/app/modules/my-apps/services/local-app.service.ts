@@ -42,9 +42,9 @@ export class LocalAppService {
             {},
             { package_name: list.map(localeApp => localeApp.package.packageName) },
           );
-          const m = new Map(softs.map(soft => [soft.name, soft]));
+          const m = new Map(softs.map(soft => [soft.package_name, soft]));
           list.forEach(item => {
-            item.software = m.get(item.name);
+            item.software = m.get(item.package.packageName);
             if (!item.software) {
               item.software = {} as any;
               item.software.id = 0;
