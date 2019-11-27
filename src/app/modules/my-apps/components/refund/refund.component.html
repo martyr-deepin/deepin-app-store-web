@@ -13,13 +13,13 @@
           </div>
         </div>
       </div>
-      <span i1n8>意见建议：</span>
+      <span i18n>意见建议：</span>
       <div>
         <textarea formControlName="content"></textarea>
       </div>
       <div class="btn-group">
-        <button type="button" class="secondary" (click)="close()">取消</button>
-        <button [disabled]="form.invalid">提交</button>
+        <button type="button" class="secondary" (click)="close()" i18n>Cancel</button>
+        <button [disabled]="form.invalid" i18n>Submit</button>
       </div>
     </div>
   </form>

@@ -8,11 +8,11 @@
           <div i18n>Payment Successful!</div>
         </div>
         <div class="order-info">
-          <span>订单编号</span>
+          <span i18n>订单编号</span>
           <span class="order-number">{{ order.order_number }}</span>
-          <span>下单时间</span>
+          <span i18n>下单时间</span>
           <span>{{ order.created_at | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
-          <span>支付方式</span>
+          <span i18n>支付方式</span>
           <span [ngSwitch]="order.pay_method">
             <ng-container *ngSwitchCase="Payment.AliPay" i18n>AliPay</ng-container>
             <ng-container *ngSwitchCase="Payment.WeChat" i18n>WeChat</ng-container>

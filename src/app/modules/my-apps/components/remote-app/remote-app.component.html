@@ -43,7 +43,7 @@
                   </ng-container>
 
                   <ng-container *ngSwitchDefault>
-                    <button class="secondary" i18n (click)="refund = remoteApp">退款</button>
+                    <button class="secondary" (click)="refund = remoteApp" i18n>退款</button>
                   </ng-container>
                 </ng-container>
                 <ng-template #canNotRefundRef>

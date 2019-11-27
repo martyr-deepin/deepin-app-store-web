@@ -1,14 +1,14 @@
 <div [ngSwitch]="errType">
-  <ng-container *ngSwitchCase="StoreJobErrorType.dependenciesBroken" i18n>
-    <ng-container>Failed to install: broken dependencies, please retry</ng-container>
+  <ng-container *ngSwitchCase="StoreJobErrorType.dependenciesBroken">
+    <ng-container i18n>Failed to install: broken dependencies, please retry</ng-container>
   </ng-container>
-  <ng-container *ngSwitchCase="StoreJobErrorType.dpkgInterrupted" i18n>
-    <ng-container>Failed to install: it was interrupted, please retry</ng-container>
+  <ng-container *ngSwitchCase="StoreJobErrorType.dpkgInterrupted">
+    <ng-container i18n>Failed to install: it was interrupted, please retry</ng-container>
   </ng-container>
   <ng-container *ngSwitchCase="StoreJobErrorType.fetchFailed" i18n>Failed to download, please retry</ng-container>
   <ng-container *ngSwitchCase="StoreJobErrorType.dpkgError" i18n>Failed to install: dpkg error</ng-container>
-  <ng-container *ngSwitchCase="StoreJobErrorType.unmetDependencies" i18n>
-    <ng-container>Failed to install: unmet dependencies</ng-container>
+  <ng-container *ngSwitchCase="StoreJobErrorType.unmetDependencies">
+    <ng-container i18n>Failed to install: unmet dependencies</ng-container>
   </ng-container>
   <ng-container *ngSwitchCase="StoreJobErrorType.insufficientSpace">
     <ng-container i18n> Failed to install: insufficient space, please clean and retry</ng-container>

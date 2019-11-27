@@ -6,10 +6,11 @@
     <ng-container><span i18n>Rankings</span></ng-container>
   </app-app-title>
   <app-app-title *ngSwitchCase="'keyword'" [useRouterQuery]="true">
-    <ng-container i18n>Search results for <span class="keyword">{{ title }}</span></ng-container>
+    <ng-container i18n
+      >Search results for <span class="keyword">{{ title }}</span></ng-container
+    >
   </app-app-title>
   <app-app-title *ngSwitchCase="'author'" [useRouterQuery]="true">
-    {{title |async |json}}
     <ng-container *ngIf="title as name" i18n>Apps developed by {{ name }}</ng-container>
   </app-app-title>
   <app-app-title *ngSwitchCase="'packager'" [useRouterQuery]="true">
@@ -18,8 +19,13 @@
 </ng-container>
 <ng-container *ngIf="result$ | async as result; else loadRef">
   <ng-container *ngIf="!loading; else loadRef">
-    <dstore-list *ngIf="result.length > 0; else emptyRef" [list]="result" [lazyload]="true" (load)="load()"
-      [slogan]="slogan"></dstore-list>
+    <dstore-list
+      *ngIf="result.length > 0; else emptyRef"
+      [list]="result"
+      [lazyload]="true"
+      (load)="load()"
+      [slogan]="slogan"
+    ></dstore-list>
   </ng-container>
 </ng-container>
 <ng-template #loadRef>
