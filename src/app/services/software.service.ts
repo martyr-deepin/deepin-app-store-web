@@ -76,10 +76,11 @@ export class SoftwareService {
     }
     const pkgMap = await this.packageService.querys(softs.map(this.toQuery));
     return softs.map(soft => {
-      const pkg = pkgMap.get(soft.name);
+      const pkg = pkgMap.get(soft.id.toString());
       if (pkg) {
         soft.package = { localVersion: pkg.localVersion, remoteVersion: pkg.remoteVersion, upgradable: pkg.upgradable };
       }
+      debugger;
       return soft;
     });
   }
