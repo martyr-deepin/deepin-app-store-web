@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { publishReplay, refCount, switchMap, share, map } from 'rxjs/operators';
+import { publishReplay, refCount, switchMap, share, map, startWith } from 'rxjs/operators';
 
 import { StoreService } from 'app/modules/client/services/store.service';
 import { StoreJobType, StoreJobStatus } from 'app/modules/client/models/store-job-info';
@@ -11,6 +11,8 @@ import { DstoreObject } from 'app/modules/client/utils/dstore-objects';
 import { environment } from 'environments/environment';
 import { SoftwareService, Source } from 'app/services/software.service';
 import { SettingService } from 'app/services/settings.service';
+import { DownloadTotalService } from 'app/services/download-total.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'dstore-app-detail',
@@ -25,6 +27,7 @@ export class AppDetailComponent implements OnInit {
     private reminderService: ReminderService,
     private notifyService: NotifyService,
     private settingService: SettingService,
+    private downloadTotalServer: DownloadTotalService,
   ) {}
 
   supportSignIn = environment.supportSignIn;
@@ -39,11 +42,16 @@ export class AppDetailComponent implements OnInit {
   pause = this.storeService.pauseJob;
   start = this.storeService.resumeJob;
 
+  installCount$ = this.downloadTotalServer.installCount$.pipe(
+    map(app => (parseInt(this.route.snapshot.params.id) === app.id ? 1 : 0)),
+    startWith(0),
+  );
   app$ = this.route.paramMap.pipe(
     switchMap(param => this.softwareService.list({ ids: [Number(param.get('id'))] }).then(softs => softs[0])),
     publishReplay(1),
     refCount(),
   );
+
   size$ = this.app$.pipe(
     switchMap(app => this.softwareService.size(app).then(m => m.get(app.id.toString()))),
     share(),
