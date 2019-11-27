@@ -15,6 +15,7 @@ export class TopicComponent extends SectionItemBase implements OnInit {
   ids = new Map<number, string>();
   topics: SectionTopicItem[];
   ngOnInit() {
+    this.loaded.emit(true);
     this.topics = (this.section.items as SectionTopicItem[])
       .filter(topic => topic.show)
       .map((topic, index) => {
