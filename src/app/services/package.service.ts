@@ -33,15 +33,7 @@ export class PackageService {
   }
 
   async querys(opts: QueryOption[]) {
-    setTimeout(() => opts.forEach(opt => this.query$.next(opt)));
-    const list = await Promise.all(
-      opts.map(opt =>
-        this._query(opt)
-          .pipe(first())
-          .toPromise(),
-      ),
-    );
-    return new Map(list.filter(pkg => pkg && pkg.remoteVersion).map(pkg => [pkg.appName, pkg]));
+    return this.storeService.query(opts).toPromise();
   }
 }
 
