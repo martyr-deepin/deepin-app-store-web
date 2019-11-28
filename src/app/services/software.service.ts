@@ -37,6 +37,7 @@ export class SoftwareService {
   packages = this.http.get<PackagesURL>('/api/public/packages').toPromise();
 
   async list(
+    // 旧参数
     {
       offset = 0,
       limit = 20,
@@ -48,26 +49,38 @@ export class SoftwareService {
       ids = [] as number[],
       active = true as boolean | '',
     },
-    opt2?: {
+    // 新参数
+    param?: {
+      id?: number[];
       locale_name?: string;
       package_name?: string[];
       offset?: number;
       limit?: number;
       order?: 'download' | 'score';
     },
+    opt?: {
+      noFilter?: boolean;
+    },
   ) {
-    console.log('software list', { ids });
-    //获取应用统计信息接口
-    const stats = await this.statService.list((opt2 as any) || { offset, limit, category, tag, keyword, id: ids });
-    const m = new Map<number, AppJSON>();
-    if (stats.count > 0) {
-      const apps = await this.appService.list({ id: stats.items.map(stat => stat.app_id), active });
-      apps.items.forEach(app => m.set(app.id, app));
+    // 获取应用统计信息接口
+    let softs: Software[] = [];
+    if (opt) {
+      if (opt.noFilter) {
+        const apps = await this.appService.list({ id: param.id });
+        softs = apps.items.map(app => this.convertApp(app)).filter(Boolean);
+      }
+    } else {
+      const stats = await this.statService.list((param as any) || { offset, limit, category, tag, keyword, id: ids });
+      const m = new Map<number, AppJSON>();
+      if (stats.count > 0) {
+        const apps = await this.appService.list({ id: stats.items.map(stat => stat.app_id), active });
+        apps.items.forEach(app => m.set(app.id, app));
+      }
+      softs = stats.items
+        .filter(stat => m.has(stat.app_id))
+        .map(stat => this.convertApp(m.get(stat.app_id), stat))
+        .filter(Boolean);
     }
-    const softs = stats.items
-      .filter(stat => m.has(stat.app_id))
-      .map(stat => this.convertApp(m.get(stat.app_id), stat))
-      .filter(Boolean);
     if (!environment.native) {
       return softs;
     }
@@ -90,7 +103,7 @@ export class SoftwareService {
     return environment.server + '/api/public/blob/' + img;
   }
 
-  private convertApp(app: AppJSON, stat: AppStat) {
+  private convertApp(app: AppJSON, stat?: AppStat) {
     let locale = app.info.locales.find(l => l.language === environment.locale);
     if (!locale) {
       locale = app.info.locales.find(l => l.language === 'en_US');
@@ -102,6 +115,17 @@ export class SoftwareService {
         return null;
       }
     }
+    const appStat: Stat = {
+      name: app.name,
+      score: 0,
+      score_count: 0,
+      download: 0,
+    };
+    if (stat) {
+      appStat.score = stat.score_total / stat.score_count;
+      appStat.score_count = stat.score_count;
+      appStat.download = stat.download_count;
+    }
     const soft: Software = {
       id: app.id,
       name: app.name,
@@ -110,12 +134,7 @@ export class SoftwareService {
       active: app.active,
       created_at: app.created_at,
       updated_at: app.updated_at,
-      stat: {
-        name: app.name,
-        score: stat.score_total / stat.score_count,
-        score_count: stat.score_count,
-        download: stat.download_count,
-      },
+      stat: appStat,
       info: {
         author: app.author,
         category: app.info.category,

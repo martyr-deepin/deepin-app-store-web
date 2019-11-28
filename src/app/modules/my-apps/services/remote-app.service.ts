@@ -27,8 +27,7 @@ export class RemoteAppService extends APIBase<RemoteApp> {
   private readonly RefundMaxTime = 2 * 60 * 60;
   async list(opt?: ListOption) {
     const resp = await super.list(opt);
-    console.log('remote list', resp);
-    const softs = await this.softService.list({ ids: resp.items.map(item => item.app_id) });
+    const softs = await this.softService.list({}, { id: resp.items.map(item => item.app_id) }, { noFilter: true });
     resp.items.forEach(item => {
       item.soft = softs.find(soft => soft.id === item.app_id);
     });
