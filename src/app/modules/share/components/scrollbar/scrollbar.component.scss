@@ -4,10 +4,13 @@
   height: 100%;
   position: relative;
   overflow: auto;
+
   .container {
     width: calc(100% - 2rem);
     padding: 0 1rem;
+    min-height: 100%;
   }
+
   .full {
     width: 100%;
     padding: 0;

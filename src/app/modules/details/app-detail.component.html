@@ -29,7 +29,10 @@
             <ng-container *ngFor="let downloads of [stat.download + (installCount$ | async)]">
               <span class="details" i18n>{{ downloads }} downloads</span>
             </ng-container>
-            <span class="details" i18n>{{ stat.score_count }} ratings</span>
+            <ng-container *ngFor="let score_count of [stat.score_count + (sourceCount$ | async)]">
+              <span class="details" i18n>{{ score_count }} ratings</span>
+            </ng-container>
+
           </ng-container>
         </div>
         <div i18n>Category:</div>

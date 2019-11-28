@@ -213,6 +213,7 @@ export class AppCommentComponent implements OnInit {
       await this.userAPI.post(this.commentGroup.getRawValue());
       this.total[CommentType.News] = this.total[CommentType.News] + 1;
       this.haveNewComment = true;
+      this.commentService.sourceCount$.next(1);
       await this.selectChange(CommentType.News);
       setTimeout(() => (this.haveNewComment = false), 1000);
       this.commentGroup.reset();

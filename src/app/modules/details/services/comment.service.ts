@@ -6,12 +6,14 @@ import { map, first, switchMap } from 'rxjs/operators';
 import { environment } from 'environments/environment';
 import { AuthService } from 'app/services/auth.service';
 import { APIBase, ListOption } from 'app/services/api';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommentService {
   private server = environment.operationServer;
+  sourceCount$ = new Subject<any>();
   constructor(private http: HttpClient, private auth: AuthService) {}
   publicAPI(app_id: number) {
     interface CommentListOption extends ListOption {

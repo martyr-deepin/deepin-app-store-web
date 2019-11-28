@@ -13,6 +13,7 @@ import { SoftwareService, Source } from 'app/services/software.service';
 import { SettingService } from 'app/services/settings.service';
 import { DownloadTotalService } from 'app/services/download-total.service';
 import { of } from 'rxjs';
+import { CommentService } from './services/comment.service';
 
 @Component({
   selector: 'dstore-app-detail',
@@ -28,6 +29,7 @@ export class AppDetailComponent implements OnInit {
     private notifyService: NotifyService,
     private settingService: SettingService,
     private downloadTotalServer: DownloadTotalService,
+    private comment: CommentService,
   ) {}
 
   supportSignIn = environment.supportSignIn;
@@ -46,6 +48,7 @@ export class AppDetailComponent implements OnInit {
     map(app => (parseInt(this.route.snapshot.params.id) === app.id ? 1 : 0)),
     startWith(0),
   );
+  sourceCount$ = this.comment.sourceCount$.pipe(map(app => parseInt(app)));
   app$ = this.route.paramMap.pipe(
     switchMap(param => this.softwareService.list({ ids: [Number(param.get('id'))] }).then(softs => softs[0])),
     publishReplay(1),
