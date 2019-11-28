@@ -3,51 +3,21 @@
     <ng-template let-section let-index="index">
       <section [ngSwitch]="section.type">
         <ng-container *ngIf="loadedCount >= index">
-          <index-carousel
-            *ngSwitchCase="SectionType.Carousel"
-            [section]="section"
-            [style.gridColumnEnd]="'span ' + 3"
-            [style.gridRowEnd]="'span ' + 3"
-            (loaded)="loaded()"
-          ></index-carousel>
+          <index-carousel *ngSwitchCase="SectionType.Carousel" [section]="section" [style.gridColumnEnd]="'span ' + 3"
+            [style.gridRowEnd]="'span ' + 3" (loaded)="loaded()"></index-carousel>
 
-          <index-cover
-            *ngSwitchCase="SectionType.Cover"
-            [section]="section"
-            [style.gridColumnEnd]="'span ' + 3"
-            [style.gridRowEnd]="'span ' + 3"
-            (loaded)="loaded()"
-          ></index-cover>
+          <index-cover *ngSwitchCase="SectionType.Cover" [section]="section" [style.gridColumnEnd]="'span ' + 3"
+            [style.gridRowEnd]="'span ' + 3" (loaded)="loaded()"></index-cover>
 
-          <index-phrase
-            *ngSwitchCase="SectionType.Phrase"
-            [style.gridColumnEnd]="'span ' + 3"
-            [style.gridRowEnd]="'span ' + 3"
-            [section]="section"
-            (loaded)="loaded()"
-          ></index-phrase>
-          <index-ranking
-            *ngSwitchCase="SectionType.Ranking"
-            [style.gridColumnEnd]="'span ' + section.colSpan"
-            [style.gridRowEnd]="'span ' + 20"
-            [section]="section"
-            (loaded)="loaded()"
-          ></index-ranking>
-          <index-assemble
-            *ngSwitchCase="SectionType.Category"
-            [style.gridColumnEnd]="'span ' + 4"
-            [style.gridRowEnd]="'span ' + 1"
-            [section]="section"
-            (loaded)="loaded()"
-          ></index-assemble>
+          <index-phrase *ngSwitchCase="SectionType.Phrase" [style.gridColumnEnd]="'span ' + 3"
+            [style.gridRowEnd]="'span ' + 3" [section]="section" (loaded)="loaded()"></index-phrase>
+          <index-ranking *ngSwitchCase="SectionType.Ranking" [style.gridColumnEnd]="'span ' + section.colSpan"
+            [style.gridRowEnd]="'span ' + 20" [section]="section" (loaded)="loaded()"></index-ranking>
+          <index-assemble *ngSwitchCase="SectionType.Category" [style.gridColumnEnd]="'span ' + 4"
+            [style.gridRowEnd]="'span ' + 1" [section]="section" (loaded)="loaded()"></index-assemble>
 
-          <index-topic
-            *ngSwitchCase="SectionType.Topic"
-            [style.gridColumnEnd]="'span ' + 4"
-            [style.gridRowEnd]="'span ' + 1"
-            [section]="section"
-            (loaded)="loaded()"
-          ></index-topic>
+          <index-topic *ngSwitchCase="SectionType.Topic" [style.gridColumnEnd]="'span ' + 4"
+            [style.gridRowEnd]="'span ' + 1" [section]="section" (loaded)="loaded()"></index-topic>
         </ng-container>
       </section>
     </ng-template>

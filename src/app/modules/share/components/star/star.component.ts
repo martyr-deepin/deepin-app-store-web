@@ -27,6 +27,10 @@ export class StarComponent implements OnInit, ControlValueAccessor {
   ngOnInit() {}
 
   writeValue(score: number): void {
+    if (score === null) {
+      this.rate = 0;
+      return;
+    }
     this.rate = score;
   }
   registerOnChange(fn: any): void {
