@@ -1,10 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-
+import { HttpClient, HttpParams, HttpParameterCodec } from '@angular/common/http';
 export class APIBase<RModel, WModel = RModel> {
   constructor(private _http: HttpClient, private api: string) {}
+  private encoder = new CustomEncoder();
   async list(opt: ListOption = {}) {
     const resp = await this._http
-      .get<RModel[]>(this.api, { observe: 'response', params: opt as any })
+      .get<RModel[]>(this.api, {
+        observe: 'response',
+        params: new HttpParams({ fromObject: opt as any, encoder: this.encoder }),
+      })
       .toPromise();
     return { items: resp.body, count: Number(resp.headers.get('X-Total-Count')) };
   }
@@ -27,4 +30,21 @@ export class APIBase<RModel, WModel = RModel> {
 export interface ListOption {
   offset?: number;
   limit?: number;
+}
+class CustomEncoder implements HttpParameterCodec {
+  encodeKey(key: string): string {
+    return encodeURIComponent(key);
+  }
+
+  encodeValue(value: string): string {
+    return encodeURIComponent(value);
+  }
+
+  decodeKey(key: string): string {
+    return decodeURIComponent(key);
+  }
+
+  decodeValue(value: string): string {
+    return decodeURIComponent(value);
+  }
 }
