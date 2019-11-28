@@ -41,7 +41,7 @@
       </div>
       <ng-template #tagSelectRef>
         <div class="tag-select" *ngIf="content.value === '#'">
-          <label for="" i18n>评论标签</label>
+          <label for="" i18n>Comment Tag</label>
           <ng-container *ngFor="let kv of { bug: 'Bug' } | keyvalue; first as first">
             <button [mAuthfocus]="first" (click)="selectTag(kv.key); commentTextRef.focus()">{{ kv.value }}</button>
           </ng-container>
@@ -126,7 +126,7 @@
                     </ng-container>
                     <ng-template #deletedRef>
                       <img [src]="'/assets/images/default_avatar.jpeg?default'" class="profile" />
-                      <span i18n>[账户已注销]</span>
+                      <span i18n>[Closed Account]</span>
                     </ng-template>
                   </div>
                   <ng-template #deepinInfoDefault>

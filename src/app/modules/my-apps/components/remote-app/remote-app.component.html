@@ -9,23 +9,15 @@
 </dstore-center-title>
 <dstore-remote-install></dstore-remote-install>
 
-<m-refund
-  *ngIf="refund"
-  [remoteApp]="refund"
-  (confirm)="refund = null; refresh()"
-  (cancel)="refund = null; refresh()"
-></m-refund>
+<m-refund *ngIf="refund" [remoteApp]="refund" (confirm)="refund = null; refresh()" (cancel)="refund = null; refresh()">
+</m-refund>
 
 <div class="remote-apps" *ngIf="installing$ | async as installing; else loading">
   <dstore-scrollbar>
     <ng-container *ngIf="apps$ | async as apps; else loading">
       <div class="remote-app" *ngFor="let remoteApp of apps">
-        <img
-          class="icon"
-          dstoreCover="icon"
-          [src]="remoteApp.soft.info.icon"
-          [routerLink]="['/app', remoteApp.soft.id]"
-        />
+        <img class="icon" dstoreCover="icon" [src]="remoteApp.soft.info.icon"
+          [routerLink]="['/app', remoteApp.soft.id]" />
         <div class="content">
           <div class="info">{{ remoteApp.soft.info.name }}</div>
           <div class="time">
@@ -39,15 +31,16 @@
               <ng-container *ngIf="remoteApp.order_number">
                 <ng-container *ngIf="remoteApp.can_refund; else canNotRefundRef" [ngSwitch]="remoteApp.refund_status">
                   <ng-container *ngSwitchCase="OrderStatusWaiting.OrderStatusWaiting">
-                    <div class="refund-waiting" i18n>退款中</div>
+                    <div class="refund-waiting" i18n>Refunding</div>
                   </ng-container>
 
                   <ng-container *ngSwitchDefault>
-                    <button class="secondary" (click)="refund = remoteApp" i18n>退款</button>
+                    <button class="secondary" (click)="refund = remoteApp" i18n>Refund</button>
                   </ng-container>
                 </ng-container>
                 <ng-template #canNotRefundRef>
-                  <button class="secondary" i18n-title title="已超过购买两小时退款时限" disabled i18n>退款</button>
+                  <button class="secondary" i18n-title title="Two-hour refund period has expired" disabled
+                    i18n>Refund</button>
                 </ng-template>
               </ng-container>
               &nbsp;
@@ -60,10 +53,8 @@
                 </button>
               </ng-template>
               <ng-template #installedRef>
-                <button
-                  disabled
-                  *ngIf="remoteApp.soft.package.localVersion != '' || installed.has(remoteApp.soft.name); else install"
-                >
+                <button disabled
+                  *ngIf="remoteApp.soft.package.localVersion != '' || installed.has(remoteApp.soft.name); else install">
                   <ng-container i18n>Installed</ng-container>
                 </button>
               </ng-template>
@@ -83,14 +74,13 @@
 
 <div class="paginatorContainer">
   <ng-container *ngIf="count$ | async as count">
-    <app-paginator
-      [count]="count"
-      [pageIndex]="pageIndex$ | async"
-      (pageIndexChange)="gotoPage($event)"
-    ></app-paginator>
+    <app-paginator [count]="count" [pageIndex]="pageIndex$ | async" (pageIndexChange)="gotoPage($event)">
+    </app-paginator>
   </ng-container>
 </div>
 
 <ng-template #loading>
-  <div class="loadingContainer"><app-wait></app-wait></div>
+  <div class="loadingContainer">
+    <app-wait></app-wait>
+  </div>
 </ng-template>

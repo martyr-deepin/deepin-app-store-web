@@ -1,9 +1,9 @@
 <dialog #dialogRef>
   <dstore-close-button [dialog]="dialogRef"></dstore-close-button>
   <form [formGroup]="form" (ngSubmit)="submit()">
-    <h3 i18n>退款理由</h3>
+    <h3 i18n>Refund Reason</h3>
     <div class="refundGrid">
-      <span class="required" i18n>退款原因：</span>
+      <span class="required" i18n>Detailed Reason:</span>
       <div>
         <div class="reason-select">
           <div formArrayName="reason" *ngFor="let kv of RefundReason | keyvalue; index as index">
@@ -13,7 +13,7 @@
           </div>
         </div>
       </div>
-      <span i18n>意见建议：</span>
+      <span i18n>Suggestions:</span>
       <div>
         <textarea formControlName="content" maxlength='200'></textarea>
       </div>

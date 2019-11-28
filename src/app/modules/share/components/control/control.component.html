@@ -1,25 +1,10 @@
 <ng-container *ngIf="job$ | async as job; else controlRef">
-  <svg
-    @circle
-    class="circle-control"
-    width="2.5rem"
-    height="2.5rem"
-    viewbox="0 0 440 440"
+  <svg @circle class="circle-control" width="2.5rem" height="2.5rem" viewbox="0 0 440 440"
     [class.running]="job.status !== JobStatus.paused && job.status !== JobStatus.failed"
-    [class.disabled]="!job.cancelable"
-    (click)="trgger($event, job)"
-  >
+    [class.disabled]="!job.cancelable" (click)="trgger($event, job)">
     <circle cx="50%" cy="50%" r="calc(50% - 5)" stroke-width="5" stroke="#D1D3D7" fill="none"></circle>
-    <circle
-      class="circle-progress"
-      cx="50%"
-      cy="50%"
-      r="calc(50% - 5)"
-      stroke-width="5"
-      stroke="#00A5E0"
-      fill="none"
-      attr.stroke-dasharray="calc((100% - 10) * 3.1415926 * {{ job.progress }}) 1069"
-    ></circle>
+    <circle class="circle-progress" cx="50%" cy="50%" r="calc(50% - 5)" stroke-width="5" stroke="#00A5E0" fill="none"
+      attr.stroke-dasharray="calc((100% - 10) * 3.1415926 * {{ job.progress }}) 1069"></circle>
   </svg>
 </ng-container>
 
@@ -42,7 +27,7 @@
             </ng-container>
             <ng-template #buyRef>
               <button class="control" (click)="buyApp($event); buyButtonRef.hidden = true" hidden #buyButtonRef>
-                <ng-container i18n>购买</ng-container>
+                <ng-container i18n>Purchase</ng-container>
               </button>
               <button class="control price" (click)="buyButtonRef.hidden = false" *ngIf="buyButtonRef.hidden">
                 {{ soft?.pricing?.price / 100 | currency: 'CNY':'symbol-narrow' }}
@@ -59,6 +44,6 @@
     </ng-container>
   </ng-container>
   <ng-template #unavailableRef>
-    <button class="control" disabled i18n>不可用</button>
+    <button class="control" disabled i18n>Unavailable</button>
   </ng-template>
 </ng-template>

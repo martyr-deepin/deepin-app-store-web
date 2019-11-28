@@ -216,7 +216,6 @@ export class AppCommentComponent implements OnInit {
       await this.selectChange(CommentType.News);
       setTimeout(() => (this.haveNewComment = false), 1000);
       this.commentGroup.reset();
-      console.log(this.commentGroup.value, '表单值');
     } catch {
       this.commentGroup.setErrors({ error: true });
       this.commentGroup.enable();
