@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { combineLatest, BehaviorSubject, timer } from 'rxjs';
+import { combineLatest, BehaviorSubject, timer, Observable } from 'rxjs';
 import { switchMap, retryWhen, scan, first, map, share, tap } from 'rxjs/operators';
 import { SoftwareService } from 'app/services/software.service';
 import { RecommendService } from 'app/services/recommend.service';
+import { AuthService } from 'app/services/auth.service';
 
 @Component({
   selector: 'dstore-list-outlet',
@@ -15,8 +16,10 @@ export class ListOutletComponent implements OnInit {
     private route: ActivatedRoute,
     private softService: SoftwareService,
     private recommendService: RecommendService,
+    private authService: AuthService,
   ) {}
   title = '';
+  auther: number;
   slogan = false;
   name$ = this.route.paramMap.pipe(map(param => param.get('name')));
   loading = false;
@@ -36,6 +39,10 @@ export class ListOutletComponent implements OnInit {
             this.title = el.innerText.trim();
           }
         });
+      }
+      if (routeName === 'author') {
+        console.log(param.get('value'), param.get('name'), 'ids');
+        this.auther = parseInt(param.get('value'));
       }
       const order = (query.get('order') as any) || 'download';
 

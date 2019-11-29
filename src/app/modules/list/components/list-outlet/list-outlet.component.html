@@ -9,7 +9,8 @@
     <ng-container i18n>Search results for <span class="keyword" [title]='title'>{{ title }}</span></ng-container>
   </app-app-title>
   <app-app-title *ngSwitchCase="'author'" [useRouterQuery]="true">
-    <ng-container *ngIf="title as name" i18n>Apps developed by {{ name }}</ng-container>
+
+    <ng-container *ngIf="(auther | deepinid | async)?.nickname as name" i18n>Apps developed by {{ name }}</ng-container>
   </app-app-title>
   <app-app-title *ngSwitchCase="'packager'" [useRouterQuery]="true">
     <ng-container *ngIf="title as name" i18n>Apps packaged by {{ name }}</ng-container>

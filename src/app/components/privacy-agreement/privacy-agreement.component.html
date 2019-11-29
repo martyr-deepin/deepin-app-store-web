@@ -1,6 +1,12 @@
 <dialog #dialog>
   <dstore-close-button [dialog]="dialog"></dstore-close-button>
   <dstore-scrollbar class="private">
-    <div class="select" [innerHTML]="private$ | async" (click)="click($event)"></div>
+    <div class="select" (click)="click($event)">
+
+      <a href=""></a>
+      <div [innerHTML]="private$ | async">
+
+      </div>
+    </div>
   </dstore-scrollbar>
 </dialog>

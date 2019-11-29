@@ -22,6 +22,7 @@ export class DeepinidPipe implements PipeTransform {
       return this.deepinid.getDeepinUserInfo(ids).pipe(
         map(result => {
           result.forEach(info => this.cache.set(info.uid, info));
+
           return this.cache;
         }),
       );
@@ -33,6 +34,7 @@ export class DeepinidPipe implements PipeTransform {
     setTimeout(() => this.query$.next());
     return this.result$.pipe(
       map(() => {
+        console.log(this.cache, 'catch');
         if (!this.cache.has(uid)) {
           this.cache.set(uid, { uid: 0 } as DeepinInfo);
         }

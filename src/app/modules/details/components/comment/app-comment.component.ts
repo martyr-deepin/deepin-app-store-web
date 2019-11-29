@@ -70,11 +70,23 @@ export class AppCommentComponent implements OnInit {
     submitted: this.submitted,
     tags: this.tags,
   });
-
+  valueSetEmpty = {
+    app_id: 0,
+    app_version: '',
+    content: '',
+    score: 0,
+    submitted: null,
+  };
   loading = true;
   loadCount = 0;
   info: UserInfo;
   info$ = this.auth.info$;
+  clean$ = this.info$.pipe(
+    tap(() => {
+      this.content.setValue('');
+      this.score.setValue(null);
+    }),
+  );
   own: AppComment;
 
   CommentType = CommentType;
@@ -186,11 +198,15 @@ export class AppCommentComponent implements OnInit {
 
       const info = await this.info$.pipe(first()).toPromise();
       if (info) {
-        console.log(info);
         const userResp = await this.userAPI.list({ app_id: this.appID, ...this.selectVersion });
-        if (this.select === CommentType.News) {
-          this.own = userResp.items[0];
+        if (this.appVersion !== undefined || this.appVersion !== null) {
+          if (this.select === CommentType.News) {
+            this.own = userResp.items[0];
+          }
+        } else {
+          this.select = CommentType.History;
         }
+
         resp.items = [...userResp.items, ...resp.items.filter(c => c.commenter !== info.uid)];
       }
     }
@@ -216,7 +232,8 @@ export class AppCommentComponent implements OnInit {
       this.commentService.sourceCount$.next(1);
       await this.selectChange(CommentType.News);
       setTimeout(() => (this.haveNewComment = false), 1000);
-      this.commentGroup.reset();
+      this.tags.clear();
+      this.commentGroup.reset(this.valueSetEmpty);
     } catch {
       this.commentGroup.setErrors({ error: true });
       this.commentGroup.enable();
