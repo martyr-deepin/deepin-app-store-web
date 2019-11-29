@@ -1,35 +1,29 @@
 import { Injectable } from '@angular/core';
 import { StoreService } from 'app/modules/client/services/store.service';
-import { bufferTime, filter, share, map, mergeMap, first, tap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { JobService } from './job.service';
+import { filter, share, map, buffer, switchMap, first, debounceTime } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PackageService {
-  constructor(private storeService: StoreService, private jobService: JobService) {}
-  private query$ = new Subject<QueryOption>();
-  private result$ = this.query$.pipe(
-    bufferTime(100, -1, 10),
-    filter(arr => arr.length > 0),
-    mergeMap(arr => {
-      const opt = [...new Map(arr.map(opt => [opt.name, opt] as [string, QueryOption])).values()];
-      return this.storeService.query(opt);
+  constructor(private storeService: StoreService) {}
+
+  private q$ = new Subject<QueryOption>();
+  private r$ = this.q$.pipe(
+    buffer(this.q$.pipe(debounceTime(100))),
+    switchMap(opts => {
+      return this.storeService.query(opts);
     }),
     share(),
   );
-
-  _query(opt: QueryOption) {
-    return this.result$.pipe(
-      filter(results => results.has(opt.name)),
-      map(results => results.get(opt.name)),
-    );
-  }
-
   query(opt: QueryOption) {
-    setTimeout(() => this.query$.next(opt));
-    return this._query(opt);
+    setTimeout(() => this.q$.next(opt));
+    return this.r$.pipe(
+      filter(m => m.has(opt.name)),
+      map(m => m.get(opt.name)),
+      first(),
+    );
   }
 
   async querys(opts: QueryOption[]) {

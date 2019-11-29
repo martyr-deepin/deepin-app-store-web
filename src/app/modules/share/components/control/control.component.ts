@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, Output, HostListener } from '@angular/core';
+import { Component, OnInit, Input, Output, HostListener, SimpleChanges, OnChanges } from '@angular/core';
 import { Software, SoftwareService } from 'app/services/software.service';
 import { PackageService } from 'app/services/package.service';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { share, map, switchMap, pairwise, startWith, first } from 'rxjs/operators';
+import { share, first, startWith, map, pairwise, switchMap } from 'rxjs/operators';
 import { JobService } from 'app/services/job.service';
 import { trigger, animate, style, transition, keyframes } from '@angular/animations';
 import { StoreJobInfo, StoreJobStatus } from 'app/modules/client/models/store-job-info';
@@ -44,45 +44,9 @@ import { UserAppsService } from 'app/services/user-apps.service';
         ),
       ),
     ]),
-    trigger('button1', [
-      transition(
-        ':enter',
-        animate(
-          200,
-          keyframes([
-            style({
-              opacity: 0.5,
-              transform: 'translateX(-50%)',
-            }),
-            style({
-              opacity: 1,
-              transform: 'translateX(0)',
-            }),
-          ]),
-        ),
-      ),
-      transition(
-        ':leave',
-        animate(
-          200,
-          keyframes([
-            style({
-              position: 'absolute',
-              opacity: 1,
-              transform: 'translateX(0)',
-            }),
-            style({
-              position: 'absolute',
-              opacity: 0.5,
-              transform: 'translateX(-100%)',
-            }),
-          ]),
-        ),
-      ),
-    ]),
   ],
 })
-export class ControlComponent implements OnInit {
+export class ControlComponent implements OnInit, OnChanges {
   constructor(
     private softwareService: SoftwareService,
     private packageService: PackageService,
@@ -96,7 +60,18 @@ export class ControlComponent implements OnInit {
   userAppIDs$ = this.userAppService.userAllApp$;
   JobStatus = StoreJobStatus;
   show = false;
-  ngOnInit() {
+  id = Math.random();
+  ngOnInit() {}
+  ngOnChanges(c: SimpleChanges) {
+    if (c.soft) {
+      this.init();
+    }
+  }
+  @HostListener('click', ['$event']) click(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  init() {
     this.queryPackage();
     this.job$ = this.jobService.jobsInfo().pipe(
       map(jobs => jobs.find(job => job.names.includes(this.soft.package_name))),
@@ -111,10 +86,6 @@ export class ControlComponent implements OnInit {
       }),
       share(),
     );
-  }
-  @HostListener('click', ['$event']) click(event: Event) {
-    event.preventDefault();
-    event.stopPropagation();
   }
   async queryPackage() {
     const pkg = await this.packageService
@@ -133,17 +104,14 @@ export class ControlComponent implements OnInit {
   }
 
   installApp(e: Event) {
-    this.softwareService.install(this.soft).then(v => {
-      console.log('安装app', v);
-    });
+    this.softwareService.install(this.soft);
   }
 
   buyApp(e: Event) {
-    console.log(e);
     this.buyService.buyDialogShow$.next(this.soft);
   }
 
-  trgger(e: Event, job: StoreJobInfo) {
+  trigger(e: Event, job: StoreJobInfo) {
     e.stopPropagation();
     if (job.status === this.JobStatus.paused || job.status === this.JobStatus.failed) {
       job.status = this.JobStatus.running;

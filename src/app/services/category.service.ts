@@ -12,7 +12,7 @@ export class CategoryService {
   private category$ = this.http.get<CategoryJSON[]>('/api/public/category').pipe(
     map(list => {
       const m = new Map<string, string>();
-      const languages = [environment.locale];
+      const languages = [environment.store_env.language];
       list.forEach(category => {
         const localeName = category.locale_names.sort(
           (a, b) => languages.indexOf(b.language) - languages.indexOf(a.language),
