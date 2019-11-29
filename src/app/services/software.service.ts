@@ -22,18 +22,7 @@ export class SoftwareService {
     private storeService: StoreService,
     private packageService: PackageService,
     private downloadCounter: DownloadTotalService,
-    private buyService: BuyService,
-  ) {
-    this.buyService.buy$.subscribe(soft => {
-      if (soft) {
-        this.install(soft);
-      }
-    });
-  }
-  private readonly native = environment.native;
-  private readonly metadataURL = environment.metadataServer + '/api/v3/apps';
-  // operation app url
-  private readonly operationURL = environment.operationServer + '/api/v3/apps';
+  ) {}
   packages = this.http.get<PackagesURL>('/api/public/packages').toPromise();
 
   async list(
