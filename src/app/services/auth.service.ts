@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, fromEvent } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { map, first, startWith, throttleTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -16,7 +16,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router, private unauthorized: UnauthorizedService) {
     this.init();
   }
-  private userInfo$ = new BehaviorSubject<UserInfo>(null);
+  private userInfo$ = new BehaviorSubject<UserInfo>(undefined);
   info$ = this.userInfo$.asObservable();
   logged$ = this.info$.pipe(map(Boolean));
   // 初始化
@@ -30,7 +30,6 @@ export class AuthService {
       this.login();
     });
     const userInfo = await Channel.exec('account.getUserInfo');
-    console.log({ userInfo });
     Channel.connect('account.userInfoChanged')
       .pipe(startWith(userInfo))
       .subscribe(async ({ UserID }) => {
@@ -75,11 +74,16 @@ export class AuthService {
   // 获取商店用户信息
   private async getInfo() {
     try {
-      const sysUserInfo = await Channel.exec('account.getUserInfo');
-      console.log({ sysUserInfo });
-      const resp = await this.http.get<UserInfo>('/api/user/info').toPromise();
-      this.userInfo$.next(resp);
-    } catch {}
+      const sysUserInfo = await Channel.exec<SysUserInfo>('account.getUserInfo');
+      if (sysUserInfo.IsLoggedIn) {
+        const resp = await this.http.get<UserInfo>('/api/user/info').toPromise();
+        this.userInfo$.next(resp);
+      } else {
+        this.userInfo$.next(null);
+      }
+    } catch (err) {
+      console.error('login error', err);
+    }
   }
   // 登出商店用户
   logout(accountLogout = false) {
@@ -105,4 +109,14 @@ export interface UserInfo {
   nickname: string;
   profile_image: string;
   region: string;
+}
+interface SysUserInfo {
+  AccessToken: string;
+  HardwareID: string;
+  IsLoggedIn: boolean;
+  Nickname: string;
+  ProfileImage: string;
+  Region: string;
+  UserID: number;
+  Username: string;
 }

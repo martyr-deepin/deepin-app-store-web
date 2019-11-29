@@ -53,7 +53,9 @@ async function main() {
   });
   console.log('dstore client config', settings);
   environment.native = true;
-  environment.themeName = settings.themeName;
+  if (settings.themeName) {
+    environment.themeName = settings.themeName;
+  }
   if (environment.production) {
     environment.supportSignIn = settings.supportSignIn;
     environment.region = settings.defaultRegion;
@@ -94,7 +96,10 @@ function bootstrap(translations = null) {
   if (translations) {
     opt = {
       missingTranslation: MissingTranslationStrategy.Warning,
-      providers: [{ provide: TRANSLATIONS, useValue: translations }, { provide: TRANSLATIONS_FORMAT, useValue: 'xlf' }],
+      providers: [
+        { provide: TRANSLATIONS, useValue: translations },
+        { provide: TRANSLATIONS_FORMAT, useValue: 'xlf' },
+      ],
     };
   }
   console.log(opt);
