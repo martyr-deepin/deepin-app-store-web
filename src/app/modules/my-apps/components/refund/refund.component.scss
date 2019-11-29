@@ -1,11 +1,11 @@
 dialog {
-  width: 480px;
   height: 400px;
 }
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 1rem;
 }
 .refundGrid {
   display: grid;
@@ -14,6 +14,7 @@ form {
   & > span {
     padding-right: 0.5rem;
     font-weight: bold;
+    text-align: right;
     &:before {
       content: '*';
       color: transparent;

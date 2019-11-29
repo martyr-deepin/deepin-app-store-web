@@ -138,7 +138,7 @@
         <target>打开</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="dee8c41edf822a0124c80cc1e44643f947b3bc5c">
@@ -146,11 +146,11 @@
         <target>安装</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">35</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">40</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
@@ -162,7 +162,7 @@
         <target>购买</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="047f50bc5b5d17b5bec0196355953e1a5c590ddb">
@@ -170,7 +170,7 @@
         <target>更新</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">56</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
@@ -182,95 +182,7 @@
         <target>不可用</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">47</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="6cf236d79ba814bc7cd38814d46c588c43079ddb">
-        <source>Payment Successful!</source>
-        <target>支付成功！</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/details/components/donate/donate.component.html</context>
-          <context context-type="linenumber">56</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="5e8e26bf5615f741ce039373d09958df037857d5">
-        <source>Order No</source>
-        <target>订单编号</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="9d8357c8b045423277f40ea83439aef0635d1cd7">
-        <source>Order Time</source>
-        <target>下单时间</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="d62e8cfcb1f444a033b402e050b851a7d8a3532f">
-        <source>Payment Method</source>
-        <target>支付方式</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
-          <context context-type="linenumber">15</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="72d1017b7becbd9f94b44708129d2d92bbb52f70">
-        <source>AliPay</source>
-        <target>支付宝</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/my-donates/donates/donates.component.html</context>
-          <context context-type="linenumber">41</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="27c10b4cbfefae96b6b16db91c0fe520efb393f9">
-        <source>WeChat</source>
-        <target>微信</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/my-donates/donates/donates.component.html</context>
-          <context context-type="linenumber">42</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="7b91a702d1a370fb73395068c225031722ea42bf">
-        <source>PayPal</source>
-        <target>PayPal</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
-          <context context-type="linenumber">19</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/my-donates/donates/donates.component.html</context>
-          <context context-type="linenumber">43</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="e2c9907de2386d2f5c27a0370fbaf416b4f4e41c">
-        <source>Processing payment, please wait...</source>
-        <target>正在支付，请稍候...</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
-          <context context-type="linenumber">29</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/details/components/donate/donate.component.html</context>
-          <context context-type="linenumber">67</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/details/components/donate/donate.component.html</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="91ce116be6e8df104128f339912c9207f01265cd">
@@ -278,7 +190,7 @@
         <target>支付金额：</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">19</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/donate/donate.component.html</context>
@@ -290,7 +202,7 @@
         <target>支付方式：</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">25</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/donate/donate.component.html</context>
@@ -302,11 +214,107 @@
         <target>立即支付</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">36</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/donate/donate.component.html</context>
           <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="e2c9907de2386d2f5c27a0370fbaf416b4f4e41c">
+        <source>Processing payment, please wait...</source>
+        <target>正在支付，请稍候...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/components/donate/donate.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/components/donate/donate.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="7c12a488549c4370c1d4c81ddec4bba80033bc00">
+        <source>Payment failed try again!</source>
+        <target>付款失败，请重试！</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="6cf236d79ba814bc7cd38814d46c588c43079ddb">
+        <source>Payment Successful!</source>
+        <target>支付成功！</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/components/donate/donate.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="5e8e26bf5615f741ce039373d09958df037857d5">
+        <source>Order No</source>
+        <target>订单编号</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="9d8357c8b045423277f40ea83439aef0635d1cd7">
+        <source>Order Time</source>
+        <target>下单时间</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="d62e8cfcb1f444a033b402e050b851a7d8a3532f">
+        <source>Payment Method</source>
+        <target>支付方式</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="72d1017b7becbd9f94b44708129d2d92bbb52f70">
+        <source>AliPay</source>
+        <target>支付宝</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/my-donates/donates/donates.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="27c10b4cbfefae96b6b16db91c0fe520efb393f9">
+        <source>WeChat</source>
+        <target>微信</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/my-donates/donates/donates.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="7b91a702d1a370fb73395068c225031722ea42bf">
+        <source>PayPal</source>
+        <target>PayPal</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/my-donates/donates/donates.component.html</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="92eee6be6de0b11c924e3ab27db30257159c0a7c">
@@ -722,7 +730,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">50</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/index/components/cover/cover.component.html</context>
@@ -737,12 +745,12 @@
           <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="a9c7f9b41b1f653ce3b8494a748e1e81df965c32">
-        <source><x equiv-text="{{ stat.score_count }}" id="INTERPOLATION"/> ratings</source>
-        <target><x equiv-text="{{ stat.score_count }}" id="INTERPOLATION"/> 次评分</target>
+      <trans-unit datatype="html" id="2424f9fcf779e49e1ccd1095b2d7daa8d66d395b">
+        <source><x equiv-text="{{ score_count }}" id="INTERPOLATION"/> ratings</source>
+        <target><x equiv-text="{{ score_count }}" id="INTERPOLATION"/> 次评分</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="0cc1dec590ecd74bef71a865fb364779bc42a749">
@@ -750,7 +758,7 @@
         <target>分类：</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="ca17606ffe979fb5b411861280c33d2ad3e7a216">
@@ -758,7 +766,7 @@
         <target>版本：</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">41</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
@@ -786,7 +794,7 @@
         <target>大小：</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="e8c021c9d36ccd882cb337c19cbca3067c249d41">
@@ -794,7 +802,7 @@
         <target>已下载</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">51</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
@@ -810,7 +818,7 @@
         <target>更新日期：</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="fcd2b61b74ed190b5176b5c45599627fa3addfd6">
@@ -818,7 +826,7 @@
         <target>作者：</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="aec2ae3fb352fbb1ea5237b57a64be189890ca98">
@@ -826,7 +834,7 @@
         <target>打包者：</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">69</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="055d47bb1af14fe2aebd1733bf30d5bf4add46f5">
@@ -834,7 +842,7 @@
         <target>官网：</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">73</context>
+          <context context-type="linenumber">76</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="2f2d3537be5ad6783862d60ec1e4b6a034714783">
@@ -842,7 +850,7 @@
         <target>来源：</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">82</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="05f57eae1951b6b813d2306e9931485e0eca00b1">
@@ -850,7 +858,7 @@
         <target>第三方</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">81</context>
+          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="d06df58d8b33f2fb3bf532b12b0d091388d2ae6b">
@@ -858,7 +866,7 @@
         <target>官方</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="3630022091d1044a60591f58536cfff54b241eaa">
@@ -866,7 +874,7 @@
         <target>联合开发</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">83</context>
+          <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="15cab428492d4f8b8bc528a93cf1fdd2dc65328e">
@@ -874,7 +882,7 @@
         <target>标签：</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">90</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="4a22c6843133f0b0d7dc0d28f864f2f90c1de7ad">
@@ -882,7 +890,7 @@
         <target>简介：</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">96</context>
+          <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="c0331aa0a5a4589294b7826d8613515c597812a8">
@@ -890,7 +898,7 @@
         <target>CDN由又拍云提供支持</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">118</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="b9905b17f853f79045218f2d43f572029e54fd5b">
@@ -898,15 +906,15 @@
         <target>抱歉</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">127</context>
+          <context context-type="linenumber">130</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">135</context>
+          <context context-type="linenumber">138</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">141</context>
+          <context context-type="linenumber">144</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
@@ -918,7 +926,7 @@
         <target>这款应用正在调整中，您可以返回到</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">128</context>
+          <context context-type="linenumber">131</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="680d5c75b7fd8d37961083608b9fcdc4167b4c43">
@@ -926,7 +934,7 @@
         <target>上一页</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">129</context>
+          <context context-type="linenumber">132</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="6dd070f6eb99a4e300bce2af82d76f3d01c61edd">
@@ -934,7 +942,7 @@
         <target>连接失败，请检查您的网络后尝试刷新</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">136</context>
+          <context context-type="linenumber">139</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="2631d08f671cb06e269dfe7ce2268ab52ef73375">
@@ -942,7 +950,7 @@
         <target>深度商店出错了</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">141</context>
+          <context context-type="linenumber">144</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="fbc4fa343f8695b5ef5fb4e3da3a9b6f0b4eddd8">
@@ -1549,9 +1557,9 @@
           <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="83d818bba9ce51fb260b0fd30a0fa3ccb611e146">
-        <source>Refund Reason</source>
-        <target>退款理由</target>
+      <trans-unit datatype="html" id="f30af4a09e075741abc6fb9536fe6a5087583178">
+        <source>Refund Request</source>
+        <target>退款申请</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">4</context>
@@ -1597,8 +1605,8 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="a5064975004a7355bafa64c42a6bb6b9d6480c45">
-        <source>Many messages and advertisements</source>
+      <trans-unit datatype="html" id="d15a9ca0323cda890ac235ee41ca84729b13d7bc">
+        <source>Many advertisements</source>
         <target>通知和广告过多</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
