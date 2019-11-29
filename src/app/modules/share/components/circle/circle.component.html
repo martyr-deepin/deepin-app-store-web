@@ -1,0 +1,24 @@
+<svg>
+  <circle
+    cx="50%"
+    cy="50%"
+    r="calc(50% - 5)"
+    stroke-width="5"
+    stroke="#D1D3D7"
+    fill="none"
+  ></circle>
+  <ng-container *ngIf="anime$ | async"></ng-container>
+  <circle
+    class="circle-progress"
+    cx="50%"
+    cy="50%"
+    r="calc(50% - 5)"
+    stroke-width="5"
+    stroke="#00A5E0"
+    fill="none"
+    [attr.stroke-dasharray]="dasharray"
+  ></circle>
+</svg>
+<div class="content">
+  <ng-content></ng-content>
+</div>

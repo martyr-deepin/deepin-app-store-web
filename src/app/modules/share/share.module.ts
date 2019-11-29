@@ -30,6 +30,7 @@ import { CategoryTextPipe } from './pipes/category-text.pipe';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { BuyComponent } from './components/buy/buy.component';
 import { AuthfocusDirective } from './directives/authfocus.directive';
+import { CircleComponent } from './components/circle/circle.component';
 
 const components = [
   WaitComponent,
@@ -43,6 +44,7 @@ const components = [
   IndicationComponent,
   DialogComponent,
   BuyComponent,
+  CircleComponent,
 ];
 const directives = [DialogDirective, HoverDirective, ResizeDirective, CoverDirective, AuthfocusDirective];
 const pipes = [RangePipe, FitImage, FitLanguage, SizeHuman, DeepinidPipe, CategoryTextPipe];

@@ -86,11 +86,15 @@ export class AuthService {
     }
   }
   // 登出商店用户
-  logout(accountLogout = false) {
+  async logout(accountLogout = false) {
+    const logged = Boolean(await this.userInfo$.pipe(first()).toPromise());
     localStorage.removeItem('token');
     this.userInfo$.next(null);
     if (accountLogout) {
-      return this.accountLogout();
+      await this.accountLogout();
+    }
+    if (logged) {
+      location.reload();
     }
   }
   // 登出系统用户
