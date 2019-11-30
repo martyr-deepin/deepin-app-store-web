@@ -64,5 +64,6 @@ interface Package {
 }
 export interface Pricing {
   price: number;
+  currency: 'CNY' | 'USD';
   region_id: number;
 }
