@@ -20,7 +20,7 @@
     </div>
     <form [formGroup]="commentGroup">
       <div class="content">
-        <textarea formControlName="content" required (keyup.control.enter)="submit()"></textarea>
+        <textarea formControlName="content" maxlength='200' required (keyup.control.enter)="submit()"></textarea>
         <div class="rate">
           <span i18n>Rate:</span>
           <dstore-star [readonly]="false" formControlName="score" #star></dstore-star>
@@ -33,12 +33,10 @@
           <div *ngIf="comment?.soft?.active">
             <span class="error" *ngIf="error">
               <ng-container [ngSwitch]="error">
-                <span class="submitError" *ngSwitchCase="CommentError.AllInvalid" i18n
-                  >Please rate and post your comment</span
-                >
-                <span class="submitError" *ngSwitchCase="CommentError.CommentInvalid" i18n
-                  >Please input your comment</span
-                >
+                <span class="submitError" *ngSwitchCase="CommentError.AllInvalid" i18n>Please rate and post your
+                  comment</span>
+                <span class="submitError" *ngSwitchCase="CommentError.CommentInvalid" i18n>Please input your
+                  comment</span>
                 <span class="submitError" *ngSwitchCase="CommentError.RateInvalid" i18n>Please rate</span>
                 <span class="submitError" *ngSwitchCase="CommentError.Failed" i18n>Failed to submit</span>
               </ng-container>
@@ -59,7 +57,9 @@
   </ng-container>
   <ng-template #loading>
     <div class="empty">
-      <div class="loadingContainer"><app-wait></app-wait></div>
+      <div class="loadingContainer">
+        <app-wait></app-wait>
+      </div>
     </div>
   </ng-template>
 </dialog>

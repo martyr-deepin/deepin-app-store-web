@@ -34,7 +34,13 @@ export class LocalAppComponent implements OnInit {
   removing: string[] = [];
   pageIndex$ = this.route.queryParamMap.pipe(map(query => Number(query.get('page') || 0)));
   result$ = this.pageIndex$.pipe(
-    switchMap(pageIndex => this.localAppService.list({ pageSize: this.pageSize, pageIndex })),
+    switchMap(pageIndex => {
+      const applist = this.localAppService.list({ pageSize: this.pageSize, pageIndex }).subscribe(data => {
+        console.log(data, 'myappResult');
+      });
+
+      return this.localAppService.list({ pageSize: this.pageSize, pageIndex });
+    }),
     share(),
   );
   count$ = this.result$.pipe(map(result => Math.ceil(result.total / this.pageSize)));

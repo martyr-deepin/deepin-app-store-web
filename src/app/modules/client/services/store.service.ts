@@ -65,6 +65,7 @@ export class StoreService {
       remoteVersion: string;
       size: number;
       upgradable: boolean;
+      icon?: string;
     }
     interface AllLocalName {
       en_US: string;
