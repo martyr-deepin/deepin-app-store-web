@@ -24,6 +24,7 @@ export class SectionService {
   }
   handleData(data: any) {
     let tmp = [];
+    const languages = [data.section.language.default, environment.store_env.language];
     for (let i = 0; i < data.section.dataset.length; i++) {
       let item = data.section.dataset[i];
       let params = {
@@ -31,17 +32,19 @@ export class SectionService {
         y: item.y,
         cols: item.cols,
         rows: item.rows,
-        name: item.name.find(v => v.language === environment.locale).name,
+        name: this.getValue(item.name, languages)[0].name,
+        // name: item.name.find(v => v.language === environment.store_env.language).name,
         type: item.type,
         width: item.width,
         height: item.height,
         items: item.items,
       } as any;
+
       if (item.type === 5) {
-        params.items.name = (item.items as any).find(v => v.name === environment.locale);
+        params.items.name = this.getValue(item.name, languages)[0];
       }
       //；轮播图、背景图、热门专题图
-
+      console.log(params.items, 'items');
       params.items = params.items.map(v => {
         if (v.image) {
           v.image = this.fitImage(v.image);
@@ -53,10 +56,12 @@ export class SectionService {
           v.background_image = this.fitImage(v.background_image);
         }
         if (v.name) {
-          v.name = v.name.find(v => v.language === environment.locale).name;
+          v.name = this.getValue(v.name, languages)[0].name;
+          // v.name = v.name.find(v => v.language === environment.locale).name;
         }
         if (v.phrase) {
-          v.phrase = v.phrase.find(v => v.language === environment.locale).phrase;
+          v.phrase = this.getValue(v.phrase, languages)[0].phrase;
+          // v.phrase = v.phrase.find(v => v.language === environment.locale).phrase;
         }
         return v;
       });
@@ -65,8 +70,11 @@ export class SectionService {
     }
 
     let tmpHandleData = { section: { dataset: tmp } };
-
+    console.log(tmpHandleData, 'result');
     return tmpHandleData;
+  }
+  getValue(dataItem, languagesArr) {
+    return dataItem.sort((a, b) => languagesArr.indexOf(b.language) - languagesArr.indexOf(a.language));
   }
   fitImage(value: string[]) {
     if (!Array.isArray(value)) {
