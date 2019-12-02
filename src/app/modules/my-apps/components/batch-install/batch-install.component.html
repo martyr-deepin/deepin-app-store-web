@@ -4,14 +4,12 @@
     <div class="title" i18n>Please select the apps to install</div>
     <div class="container">
       <ng-container *ngIf="apps$ | async as apps">
+
         <dstore-scrollbar [full]="true">
           <div class="app-list">
             <div class="app" dstoreHover #dstoreHover="dstoreHover" *ngFor="let app of apps" (click)="touch(app)">
-              <dstore-checkbox-button
-                [class.hover]="dstoreHover.hover"
-                [disabled]="unavailable(app)"
-                [value]="batchInstall.has(app.name)"
-              ></dstore-checkbox-button>
+              <dstore-checkbox-button [class.hover]="dstoreHover.hover" [disabled]="unavailable(app)"
+                [value]="batchInstall.has(app.name)"></dstore-checkbox-button>
               <img [src]="app.info.icon" /> {{ app.info.name }}
             </div>
           </div>
@@ -22,11 +20,8 @@
             <a (click)="touchPage(apps)" i18n>Inverse</a>
             <span>{{ batchInstall.size }}/{{ length$ | async }}</span>
           </div>
-          <app-paginator
-            [length]="length$ | async"
-            [size]="pageSize"
-            (pageIndexChange)="pageIndex$.next($event)"
-          ></app-paginator>
+          <app-paginator [length]="length$ | async" [size]="pageSize" (pageIndexChange)="pageIndex$.next($event)">
+          </app-paginator>
         </div>
       </ng-container>
     </div>

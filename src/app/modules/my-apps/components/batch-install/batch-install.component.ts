@@ -26,6 +26,10 @@ export class BatchInstallComponent implements OnInit {
   length$ = this.result$.pipe(map(result => result.count));
   apps$ = this.result$.pipe(
     map(result => {
+      console.log(
+        result.items.map(apps => apps.soft),
+        '云端',
+      );
       return result.items.map(apps => apps.soft);
     }),
     share(),
@@ -42,7 +46,7 @@ export class BatchInstallComponent implements OnInit {
     this.dialogRef.nativeElement.close();
   }
   unavailable(app: Software) {
-    return !app.package || !app.package.remoteVersion;
+    return app.package.localVersion !== '' ? true : false;
   }
   touch(app: Software) {
     if (this.unavailable(app)) {

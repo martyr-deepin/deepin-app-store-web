@@ -24,12 +24,10 @@
             <span i18n>Date installed:</span>
             {{ remoteApp.created_at | date: 'yyyy.MM.dd' }}
           </div>
-          <ng-container
-            *ngIf="
+          <ng-container *ngIf="
               remoteApp.soft?.package?.remoteVersion && remoteApp.soft?.active && !remoteApp.unavailable;
               else unavailableRef
-            "
-          >
+            ">
             <div class="version"><span i18n>Version:</span> {{ remoteApp.app_version }}</div>
 
             <div class="control">
@@ -60,6 +58,7 @@
                 </button>
               </ng-template>
               <ng-template #installedRef>
+
                 <button disabled
                   *ngIf="remoteApp.soft.package.localVersion != '' || installed.has(remoteApp.soft.name); else install">
                   <ng-container i18n>Installed</ng-container>

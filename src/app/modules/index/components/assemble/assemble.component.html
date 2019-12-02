@@ -1,28 +1,28 @@
 <index-title [titles]="section.name"></index-title>
 <div class="list">
   <section class="assemble" *ngFor="let assemble of this.assembles; index as index">
-    <ng-container *ngIf="section.rows * section.cols > index">
+    <ng-container *ngIf=" section.cols >= index &&section.cols<=4">
       <header class="category cursor" [routerLink]="'/list/category/' + assemble.category">
         {{ assemble.category | categoryText | async }}
       </header>
       <main>
         <ng-container *ngFor="let soft of softs.get(assemble.category) | async; first as first;index as itemIndex">
-            <section class="item cursor" *ngIf="section.rows  > itemIndex" 
-                [class.first]="first" [routerLink]="['app', soft.id]">
-                
-                <header>
-                    <img [src]="first ? soft.info.cover : soft.info.icon" [dstoreCover]="first ? 'cover' : 'icon'"
-                    [class.cover]="first" [class.icon]="!first" />
-                </header>
-                <main>
-                    <div class="info">
-                    <span class="name">{{ soft.info.name }}</span>
-                    <div class="slogan">{{ soft.info.slogan }}</div>
-                    </div>
-                    <dstore-control class="control" [soft]="soft"></dstore-control>
-                </main>
-            
-            </section>
+          <section class="item cursor" *ngIf="section.rows  > itemIndex" [class.first]="first"
+            [routerLink]="['app', soft.id]">
+
+            <header>
+              <img [src]="first ? soft.info.cover : soft.info.icon" [dstoreCover]="first ? 'cover' : 'icon'"
+                [class.cover]="first" [class.icon]="!first" />
+            </header>
+            <main>
+              <div class="info">
+                <span class="name">{{ soft.info.name }}</span>
+                <div class="slogan">{{ soft.info.slogan }}</div>
+              </div>
+              <dstore-control class="control" [soft]="soft"></dstore-control>
+            </main>
+
+          </section>
         </ng-container>
       </main>
     </ng-container>
