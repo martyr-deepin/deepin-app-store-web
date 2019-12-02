@@ -97,18 +97,24 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
             return;
           }
           const c = this.current.value();
+
           if (c.type === 'app') {
             this.router.navigate(['app/', c.app_id], { relativeTo: this.activeRouter });
           } else {
-            const [, , sindex, tindex] = c.topic_index.split('/').map(Number);
-            this.sectionService.getList().then(list => {
-              const topic = get(list, [sindex, 'items', tindex]);
-              if (!topic) {
-                this.router.navigate(['app', Math.random()]);
-                return;
-              }
-              this.router.navigate(['/index/topic', this.keyvalue.add(topic)]);
-            });
+            const topicIndex = c.topic_index.split('-').map(Number);
+            const globalSection = this.sectionService.globalSection as SectionItem[];
+            const topicData = globalSection[topicIndex[0]].items[topicIndex[1]];
+            console.log(topicData);
+            // console.log(topic);
+            // this.sectionService.getList().then(list => {
+            //   const topic = get(list, [sindex, 'items', tindex]);
+            //   if (!topic) {
+            //     this.router.navigate(['app', Math.random()]);
+            //     return;
+            //   }
+
+            this.router.navigate(['topic', this.keyvalue.add(topicData)], { relativeTo: this.activeRouter });
+            // });
           }
         }),
         switchMap(() => {

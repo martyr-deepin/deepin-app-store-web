@@ -8,10 +8,12 @@
 .remote-apps {
   flex: 1;
   overflow: hidden;
+
   .remote-app {
     display: flex;
     height: 64px;
     align-items: center;
+
     .content {
       display: flex;
       width: 100%;
@@ -19,9 +21,11 @@
       padding-left: 0.5rem;
       align-items: center;
       border-bottom: 1px solid var(--main-item-hr-color);
+
       .info {
         flex: 1;
       }
+
       .version,
       .time {
         color: gray;
@@ -30,15 +34,18 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
+
       .control {
         flex: 1;
         display: flex;
         justify-content: space-between;
         text-align: right;
+
         button {
           min-width: 100px;
         }
       }
+
       .no-version {
         flex: 2;
         color: red;
@@ -46,14 +53,18 @@
     }
   }
 }
+
 .refund {
   min-width: 100px;
+
   .secondary {
     width: 100%;
   }
 }
+
 .refund-waiting {
   min-width: 100px;
   text-align: center;
   color: gray;
+  display: inline-block;
 }

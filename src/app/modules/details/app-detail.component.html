@@ -23,9 +23,9 @@
         <div i18n>Rating:</div>
         <div class="rate">
           <ng-container *ngIf="app.stat as stat">
-            <span *ngIf="stat.download < 20" i18n>Calculating</span>
-            <dstore-star *ngIf="stat.download >= 20" [rate]="stat.score / 2 || 0"></dstore-star>
-            <span *ngIf="stat.download >= 20" class="details">{{ (stat.score / 2 || 0).toFixed(1) }}</span>
+            <span *ngIf="stat.score_count < 20" i18n>Calculating</span>
+            <dstore-star *ngIf="stat.score_count >= 20" [rate]="stat.score / 2 || 0"></dstore-star>
+            <span *ngIf="stat.score_count >= 20" class="details">{{ (stat.score / 2 || 0).toFixed(1) }}</span>
             <ng-container *ngFor="let downloads of [stat.download + (installCount$ | async)]">
               <span class="details" i18n>{{ downloads }} downloads</span>
             </ng-container>

@@ -12,8 +12,8 @@
           <div class="category">
             {{ slogan ? soft?.info?.slogan : (soft?.info?.category | categoryText | async) }} &nbsp;
           </div>
-          <dstore-star *ngIf="soft.stat.download >= 20" [rate]="soft.stat.score / 2 || 0"></dstore-star>
-          <span *ngIf="soft.stat.download < 20" i18n>Calculating</span>
+          <dstore-star *ngIf="soft.stat.score_count >= 20" [rate]="soft.stat.score / 2 || 0"></dstore-star>
+          <span *ngIf="soft.stat.score_count < 20" i18n>Calculating</span>
         </div>
       </div>
       <div class="control">

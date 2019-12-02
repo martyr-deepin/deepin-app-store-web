@@ -1,7 +1,9 @@
 <index-title [titles]="section.name"></index-title>
 <div class="list">
+
   <ng-container *ngFor="let topic of topics; index as index">
     <ng-container *ngIf="section.cols * section.rows > index">
+
       <section class="cursor" [routerLink]="['topic', ids.get(index)]">
         <header>{{ topic.name }}</header>
         <main>

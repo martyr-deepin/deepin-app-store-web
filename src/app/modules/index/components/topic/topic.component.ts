@@ -22,6 +22,7 @@ export class TopicComponent extends SectionItemBase implements OnInit {
         const id = this.keyvalue.add(topic);
 
         this.ids.set(index, id);
+
         return topic;
       });
   }

@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class SectionService {
   url = `/api/public/section`;
+  public globalSection;
   private list = this.http.get(this.url).pipe(
     map(v => {
       return this.handleData(v);
@@ -44,7 +45,7 @@ export class SectionService {
         params.items.name = this.getValue(item.name, languages)[0];
       }
       //；轮播图、背景图、热门专题图
-      console.log(params.items, 'items');
+
       params.items = params.items.map(v => {
         if (v.image) {
           v.image = this.fitImage(v.image);
@@ -70,7 +71,8 @@ export class SectionService {
     }
 
     let tmpHandleData = { section: { dataset: tmp } };
-    console.log(tmpHandleData, 'result');
+    //存一份所有数据
+    this.globalSection = tmpHandleData.section.dataset;
     return tmpHandleData;
   }
   getValue(dataItem, languagesArr) {

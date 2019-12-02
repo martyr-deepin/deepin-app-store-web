@@ -152,7 +152,6 @@ export class SoftwareService {
 
   // software convert to package query
   private toQuery(soft: Software) {
-    console.log(soft, 'toquery');
     return {
       name: soft.id ? soft.id.toString() : soft.package.appName,
       localName: soft.info.name,

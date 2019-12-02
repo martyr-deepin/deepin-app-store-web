@@ -16,12 +16,8 @@
   <dstore-scrollbar>
     <ng-container *ngIf="apps$ | async as apps; else loading">
       <div class="remote-app" *ngFor="let remoteApp of apps">
-        <img
-          class="icon"
-          dstoreCover="icon"
-          [src]="remoteApp.soft.info.icon"
-          [routerLink]="['/app', remoteApp.soft.id]"
-        />
+        <img class="icon" dstoreCover="icon" [src]="remoteApp.soft.info.icon"
+          [routerLink]="['/app', remoteApp.soft.id]" />
         <div class="content">
           <div class="info">{{ remoteApp.soft.info.name }}</div>
           <div class="time">
@@ -39,6 +35,7 @@
             <div class="control">
               <ng-container *ngIf="remoteApp.order_number">
                 <ng-container *ngIf="remoteApp.can_refund; else canNotRefundRef" [ngSwitch]="remoteApp.refund_status">
+
                   <ng-container *ngSwitchCase="OrderStatusWaiting.OrderStatusWaiting">
                     <div class="refund-waiting" i18n>Refunding</div>
                   </ng-container>
@@ -63,10 +60,8 @@
                 </button>
               </ng-template>
               <ng-template #installedRef>
-                <button
-                  disabled
-                  *ngIf="remoteApp.soft.package.localVersion != '' || installed.has(remoteApp.soft.name); else install"
-                >
+                <button disabled
+                  *ngIf="remoteApp.soft.package.localVersion != '' || installed.has(remoteApp.soft.name); else install">
                   <ng-container i18n>Installed</ng-container>
                 </button>
               </ng-template>
