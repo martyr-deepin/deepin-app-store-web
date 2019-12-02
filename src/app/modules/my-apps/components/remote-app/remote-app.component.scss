@@ -32,6 +32,8 @@
       }
       .control {
         flex: 1;
+        display: flex;
+        justify-content: space-between;
         text-align: right;
         button {
           min-width: 100px;

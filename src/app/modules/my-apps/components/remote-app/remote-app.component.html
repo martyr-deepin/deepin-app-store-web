@@ -28,7 +28,12 @@
             <span i18n>Date installed:</span>
             {{ remoteApp.created_at | date: 'yyyy.MM.dd' }}
           </div>
-          <ng-container *ngIf="remoteApp.soft?.package?.remoteVersion && remoteApp.soft?.active; else noVersionError">
+          <ng-container
+            *ngIf="
+              remoteApp.soft?.package?.remoteVersion && remoteApp.soft?.active && !remoteApp.unavailable;
+              else unavailableRef
+            "
+          >
             <div class="version"><span i18n>Version:</span> {{ remoteApp.app_version }}</div>
 
             <div class="control">
@@ -70,7 +75,7 @@
               </ng-template>
             </div>
           </ng-container>
-          <ng-template #noVersionError>
+          <ng-template #unavailableRef>
             <div class="no-version" i18n>The application is not available, please retry or give feedback</div>
           </ng-template>
         </div>

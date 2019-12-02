@@ -25,7 +25,7 @@ export const environment = {
   // server: 'http://localhost:19000',
   server: 'http://test.store.deepin.com',
   store_env: {
-    arch: 'amd64',
+    arch: 'arm64',
     mode: 'desktop',
     platform: 'professional',
     region: 'CN',
