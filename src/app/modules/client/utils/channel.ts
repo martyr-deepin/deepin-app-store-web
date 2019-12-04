@@ -2,45 +2,50 @@ import * as _ from 'lodash';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
 
-const debug = !environment.production;
+console.log({ environment });
 
-export class Channel {
-  static getSlot(path: string): Function {
+type CallBack = () => void;
+interface Signal {
+  connect: (callback: CallBack) => void;
+  disconnect: (callback: CallBack) => void;
+}
+
+const emptySignal: Signal = {
+  connect(callback: CallBack) {},
+  disconnect(callback: CallBack) {},
+};
+
+// Client channel
+export const Channel = {
+  get debug() {
+    return !environment.production || environment.remoteDebug;
+  },
+  getSlot(path: string): (...args: any) => void {
     const emptySlot = () => null;
     return _.get(window, 'dstore.channel.objects.' + path, emptySlot);
-  }
-  static getSignal(path: string) {
-    interface Signal {
-      connect: (callback: Function) => void;
-      disconnect: (callback: Function) => void;
-    }
-    const emptySignal: Signal = {
-      connect(callback) {},
-      disconnect(callback) {},
-    };
+  },
+  getSignal(path: string) {
     return _.get(window, 'dstore.channel.objects.' + path, emptySignal) as Signal;
-  }
+  },
 
-  static exec<T>(method: string, ...args: any[]): Promise<T> {
-    if (debug) {
-      const t = performance.now();
-      return new Promise<T>(resolve => Channel.getSlot(method)(...args, resolve)).then(resp => {
-        const consumes = performance.now() - t;
-        console.warn('exec', method, { consumes, args, resp });
-        return resp;
-      });
+  async exec<T>(method: string, ...args: any[]): Promise<T> {
+    if (!this.debug) {
+      return new Promise<T>(resolve => Channel.getSlot(method)(...[...args, resolve]));
     }
-    return new Promise<T>(resolve => Channel.getSlot(method)(...args, resolve));
-  }
-
-  static connect<T>(method: string): Observable<T> {
-    if (debug) {
-      console.warn('connect', method);
+    const t = performance.now();
+    const resp = await new Promise<T>(resolve => Channel.getSlot(method)(...args, resolve));
+    const consumes = performance.now() - t;
+    console.warn('[exec]', method, { time: consumes.toFixed(2) + 'ms', args, resp });
+    return resp;
+  },
+  connect<T>(method: string): Observable<T> {
+    if (this.debug) {
+      console.warn('[connect]', method);
     }
     return new Observable<T>(obs => {
-      const callback = (...resp) => {
-        if (debug) {
-          console.warn('signal', method, resp);
+      const handle = (...resp: Array<T>) => {
+        if (this.debug) {
+          console.warn('[signal]', method, resp);
         }
         if (resp.length > 1) {
           obs.next(resp as any);
@@ -48,10 +53,13 @@ export class Channel {
           obs.next(resp[0]);
         }
       };
-      Channel.getSignal(method).connect(callback);
+      Channel.getSignal(method).connect(handle);
       return () => {
-        Channel.getSignal(method).disconnect(callback);
+        if (this.debug) {
+          console.warn('[disconnect]', method);
+        }
+        Channel.getSignal(method).disconnect(handle);
       };
     });
-  }
-}
+  },
+};

@@ -19,6 +19,7 @@ export const environment = {
   themeName: 'light', // theme
   locale: 'zh_CN', // language
   native: false, // native or browser
+  remoteDebug: false, // native remote debug
   supportSignIn: true, // support sign in
   store_version: 0,
 

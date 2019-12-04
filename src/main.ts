@@ -8,6 +8,7 @@ import { transition } from '@angular/animations';
 if (environment.production) {
   enableProdMode();
 }
+
 // use the require method provided by webpack
 declare const require;
 //  qt web channel run ng zone
@@ -68,6 +69,7 @@ async function main() {
     environment.store_env.arch = settings.arch;
     environment.store_env.mode = settings.desktopMode;
     environment.store_env.platform = settings.product;
+    environment.remoteDebug = settings.remoteDebug;
   }
 
   // if (!Boolean(settings['aot'])) {

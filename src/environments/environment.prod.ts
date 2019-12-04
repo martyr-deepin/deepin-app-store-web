@@ -12,6 +12,7 @@ export const environment = {
   themeName: 'light',
   locale: 'zh_CN',
   native: false,
+  remoteDebug: false,
   supportSignIn: false,
   store_version: 0,
 

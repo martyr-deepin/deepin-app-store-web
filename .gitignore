@@ -47,3 +47,4 @@ testem.log
 Thumbs.db
 
 .vendor-deps/node_modules/.cache/
+.vscode
