@@ -9,7 +9,7 @@
 </dstore-center-title>
 <dstore-remote-install></dstore-remote-install>
 
-<m-refund *ngIf="refund" [remoteApp]="refund" (confirm)="refund = null; refresh()" (cancel)="refund = null; refresh()">
+<m-refund *ngIf="refund" [remoteApp]="refund" (cancel)="refund = null; refresh()">
 </m-refund>
 
 <div class="remote-apps" *ngIf="installing$ | async as installing; else loading">
@@ -43,8 +43,8 @@
                   </ng-container>
                 </ng-container>
                 <ng-template #canNotRefundRef>
-                  <button class="secondary" i18n-title title="Two-hour refund period has expired" disabled i18n>
-                    Refund
+                  <button class="secondary" disabled>
+                    <ng-container i18n-title title="Two-hour refund period has expired" i18n>Refund</ng-container>
                   </button>
                 </ng-template>
               </ng-container>

@@ -1,46 +1,101 @@
-dialog {
-  height: 400px;
-}
+dialog {}
+
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 1rem;
 }
+
 .refundGrid {
   display: grid;
   grid-template-columns: auto auto;
   grid-row-gap: 2rem;
-  & > span {
+
+  &>span {
     padding-right: 0.5rem;
     font-weight: bold;
     text-align: right;
+
     &:before {
       content: '*';
       color: transparent;
     }
+
     &.required:before {
       color: red;
     }
   }
 }
+
 .reason-select {
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 1rem;
 }
+
 textarea {
   width: 100%;
   height: 150px;
   border-radius: 3px;
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
+
 .btn-group {
   display: flex;
   justify-content: space-around;
   grid-column-start: span 2;
 }
+
 button {
   min-width: 5rem;
   min-height: 3rem;
+}
+
+.s_contentBox {
+  width: 300px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  >div {
+    width: 100%;
+
+    .s_title {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 20px;
+
+      i {
+        font-style: normal;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        text-align: center;
+        line-height: 25px;
+        border-radius: 50%;
+        background: url('assets/images/ok.svg') no-repeat 100% 100%;
+        background-position: center;
+        margin-right: 10px;
+      }
+
+      span {
+        line-height: 25px;
+        font-size: 14px;
+      }
+    }
+
+    .s_content {
+      margin-top: 30px;
+      font-size: 12px;
+      font-family: SourceHanSansCN-Normal, SourceHanSansCN;
+      font-weight: 400;
+      color: rgba(46, 50, 51, 1);
+      line-height: 18px;
+      padding: 0 15px;
+    }
+  }
 }

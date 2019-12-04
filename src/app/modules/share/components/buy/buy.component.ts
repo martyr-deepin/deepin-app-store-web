@@ -45,7 +45,9 @@ export class BuyComponent implements OnInit {
       amount: this.soft.pricing.price,
     });
   }
-
+  failedButton() {
+    this.dialogRef.nativeElement.close();
+  }
   async submit() {
     console.log(this.form);
     const result = await this.orderService.post(this.form.value);

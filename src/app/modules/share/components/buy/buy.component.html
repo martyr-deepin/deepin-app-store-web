@@ -48,9 +48,23 @@
 
   <!-- 3. Failed -->
   <ng-template #failedRef>
+
     <div class="failed">
-      <div i18n>Payment failed try again!</div>
+      <div>
+        <!-- 缺少翻译 -->
+        <!-- <div i18n>Payment failed try again!</div> -->
+        <div class="failed_tip">
+          <i></i>
+          <span>支付失败，请重新支付!</span>
+        </div>
+        <div class="failed_button">
+          <button class="button_cancle" (click)="failedButton()">取消</button>
+          <button class="button_again" (click)="submit()">重新支付</button>
+        </div>
+      </div>
     </div>
+
+
   </ng-template>
 
   <!-- 3. Success -->

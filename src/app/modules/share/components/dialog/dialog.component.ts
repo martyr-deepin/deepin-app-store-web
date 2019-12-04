@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class DialogComponent implements OnInit {
   constructor() {}
   private _open = false;
-  @Input()
+  @Input('opt')
   get open() {
     return this._open;
   }

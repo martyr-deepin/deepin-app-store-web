@@ -1,26 +1,44 @@
 <dialog #dialogRef>
+
   <dstore-close-button [dialog]="dialogRef"></dstore-close-button>
-  <form [formGroup]="form" (ngSubmit)="submit()">
-    <h3 i18n>Refund Request</h3>
-    <div class="refundGrid">
-      <span class="required" i18n>Detailed Reason:</span>
-      <div>
-        <div class="reason-select">
-          <div formArrayName="reason" *ngFor="let kv of RefundReason | keyvalue; index as index">
-            <m-checkbox [formControlName]="index">
-              <m-refund-reason [reason]="kv.value"></m-refund-reason>
-            </m-checkbox>
+  <ng-container *ngIf="!successTip">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <h3 i18n>Refund Request</h3>
+      <div class="refundGrid">
+        <span class="required" i18n>Detailed Reason:</span>
+        <div>
+          <div class="reason-select">
+            <div formArrayName="reason" *ngFor="let kv of RefundReason | keyvalue; index as index">
+              <m-checkbox [formControlName]="index">
+                <m-refund-reason [reason]="kv.value"></m-refund-reason>
+              </m-checkbox>
+            </div>
           </div>
         </div>
+        <span i18n>Suggestions:</span>
+        <div>
+          <textarea formControlName="content" maxlength="200"></textarea>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="secondary" (click)="close()" i18n>Cancel</button>
+          <button [disabled]="form.invalid" i18n>Submit</button>
+        </div>
       </div>
-      <span i18n>Suggestions:</span>
+    </form>
+  </ng-container>
+  <ng-container *ngIf="successTip">
+    <div class="s_contentBox">
       <div>
-        <textarea formControlName="content" maxlength="200"></textarea>
-      </div>
-      <div class="btn-group">
-        <button type="button" class="secondary" (click)="close()" i18n>Cancel</button>
-        <button [disabled]="form.invalid" i18n>Submit</button>
+        <div class="s_title">
+          <i></i>
+          <span>退款申请提交成功</span>
+        </div>
+        <div class="s_content">
+          <span>后台管理员审核中，审核通过后会将您的应用款项 退回至您的原账户。请您耐心等待2-3个工作日。</span>
+        </div>
       </div>
     </div>
-  </form>
+  </ng-container>
+
+
 </dialog>

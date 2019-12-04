@@ -19,13 +19,15 @@ export class RefundComponent implements OnInit {
     reason: this.fb.array([...Object.values(RefundReason).map(() => [false])], requiredTrueArray()),
     content: [''],
   });
+  successTip = false;
   ngOnInit() {
     this.dialog.nativeElement.showModal();
-    this.dialog.nativeElement.addEventListener('close', () => this.cancel.next());
+    this.dialog.nativeElement.addEventListener('close', () => this.cancel.next(), (this.successTip = false));
     console.log(this.form);
   }
   close() {
     this.dialog.nativeElement.close();
+    this.successTip = false;
   }
   async submit() {
     const formValue = {
@@ -36,6 +38,7 @@ export class RefundComponent implements OnInit {
     };
     await this.refundService.create(this.remoteApp.order_number, formValue);
     this.confirm.emit(null);
+    this.successTip = true;
   }
 }
 

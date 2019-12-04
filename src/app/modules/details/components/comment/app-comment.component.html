@@ -75,8 +75,11 @@
       <span class="submitError" *ngSwitchCase="content.invalid" i18n>Please input your comment</span>
       <span class="submitError" *ngSwitchCase="score.invalid" i18n>Please rate</span>
       <span class="submitError" *ngSwitchCase="submitted.invalid" i18n>Failed to submit</span>
-      <span class="submitError" *ngSwitchCase="commentGroup.controls['app_version'].invalid" i18n>The application is not
-        available</span>
+      <span class="submitError" *ngSwitchCase="commentGroup.controls['app_version'].invalid">
+
+        <ng-container i18n>The application is not available</ng-container>
+
+      </span>
     </span>
     &nbsp;
     <button class="submitBtn" [disabled]="own" (click)="submitComment()">
