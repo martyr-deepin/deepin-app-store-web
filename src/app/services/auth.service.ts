@@ -21,6 +21,10 @@ export class AuthService {
   logged$ = this.info$.pipe(map(Boolean));
   // 初始化
   async init() {
+    if (!environment.native) {
+      this.userInfo$.next(null);
+      return;
+    }
     await this.getInfo();
     Channel.connect('account.requestLogin').subscribe(() => {
       this.login();

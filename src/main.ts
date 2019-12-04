@@ -15,61 +15,60 @@ declare const require;
 let zone: NgZone = null;
 
 async function main() {
+  // Client mode
   const QWebChannel = window['QWebChannel'];
-  // web mode
-  if (!QWebChannel) {
-    return bootstrap();
-  }
-  // Native client mode.
-  // js call ==> dstore channel ==> proxy channel >> c++ call
+  if (QWebChannel) {
+    // Native client mode.
+    // js call ==> dstore channel ==> proxy channel >> c++ call
 
-  // proxy channel
-  const channelTransport = await new Promise<any>(resolve => {
-    return new QWebChannel(window['qt'].webChannelTransport, resolve);
-  });
-  // dstore channel
-  const channel = await new Promise<any>(resolve => {
-    const t = {
-      send(msg: any) {
-        channelTransport.objects.channelProxy.send(msg);
-      },
-      onmessage(msg: any) {},
-    };
-    channelTransport.objects.channelProxy.message.connect(msg => {
-      if (!zone) {
-        t.onmessage({ data: msg });
-      } else {
-        zone.run(() => {
-          t.onmessage({ data: msg });
-        });
-      }
+    // proxy channel
+    const channelTransport = await new Promise<any>(resolve => {
+      return new QWebChannel(window['qt'].webChannelTransport, resolve);
     });
-    return new QWebChannel(t, resolve);
-  });
+    // dstore channel
+    const channel = await new Promise<any>(resolve => {
+      const t = {
+        send(msg: any) {
+          channelTransport.objects.channelProxy.send(msg);
+        },
+        onmessage(msg: any) {},
+      };
+      channelTransport.objects.channelProxy.message.connect(msg => {
+        if (!zone) {
+          t.onmessage({ data: msg });
+        } else {
+          zone.run(() => {
+            t.onmessage({ data: msg });
+          });
+        }
+      });
+      return new QWebChannel(t, resolve);
+    });
 
-  window['dstore'] = { channel };
+    window['dstore'] = { channel };
 
-  const settings = await new Promise<Settings>(resolve => {
-    channel.objects.settings.getSettings(resolve);
-  });
-  console.log('dstore client config', settings);
-  environment.native = true;
-  if (settings.themeName) {
-    environment.themeName = settings.themeName;
-  }
-  if (environment.production) {
-    environment.supportSignIn = settings.supportSignIn;
-    environment.region = settings.defaultRegion;
-    environment.autoSelect = settings.allowSwitchRegion;
-    environment.operationList = settings.operationServerMap;
-    environment.metadataServer = settings.metadataServer;
-    environment.operationServer = environment.operationList[environment.region];
+    const settings = await new Promise<Settings>(resolve => {
+      channel.objects.settings.getSettings(resolve);
+    });
+    console.log('dstore client config', settings);
+    environment.native = true;
+    if (settings.themeName) {
+      environment.themeName = settings.themeName;
+    }
+    if (environment.production) {
+      environment.supportSignIn = settings.supportSignIn;
+      environment.region = settings.defaultRegion;
+      environment.autoSelect = settings.allowSwitchRegion;
+      environment.operationList = settings.operationServerMap;
+      environment.metadataServer = settings.metadataServer;
+      environment.operationServer = environment.operationList[environment.region];
 
-    environment.server = settings.server;
-    environment.store_env.arch = settings.arch;
-    environment.store_env.mode = settings.desktopMode;
-    environment.store_env.platform = settings.product;
-    environment.remoteDebug = settings.remoteDebug;
+      environment.server = settings.server;
+      environment.store_env.arch = settings.arch;
+      environment.store_env.mode = settings.desktopMode;
+      environment.store_env.platform = settings.product;
+      environment.remoteDebug = settings.remoteDebug;
+    }
   }
 
   // if (!Boolean(settings['aot'])) {

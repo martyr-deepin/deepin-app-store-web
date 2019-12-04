@@ -30,7 +30,7 @@ export const environment = {
     mode: 'desktop',
     platform: 'professional',
     region: 'CN',
-    language: 'en_US',
+    language: 'zh_CN',
   },
 };
 
