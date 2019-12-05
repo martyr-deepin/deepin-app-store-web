@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { map, switchMap, share, retryWhen } from 'rxjs/operators';
 import { Software } from 'app/services/software.service';
-import { OrderStatusWaiting } from 'app/services/refund.service';
+import { RefundStatus } from 'app/services/refund.service';
 import { RemoteAppService, RemoteApp } from './../../services/remote-app.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { RemoteAppService, RemoteApp } from './../../services/remote-app.service
 export class RemoteAppComponent implements OnInit {
   constructor(private route: ActivatedRoute, public router: Router, private remoteAppService: RemoteAppService) {}
   readonly pageSize = 12;
-  readonly OrderStatusWaiting = OrderStatusWaiting;
+  readonly RefundStatus = RefundStatus;
   refresh$ = new BehaviorSubject(null);
   pageIndex$ = this.refresh$.pipe(
     switchMap(() => this.route.queryParamMap),

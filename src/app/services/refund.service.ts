@@ -32,8 +32,11 @@ interface RefundUser {
   reason?: { id: number }[];
 }
 
-export enum OrderStatusWaiting {
-  OrderStatusWaiting = 'waiting',
-  OrderStatusSuccess = 'success',
-  OrderStatusFailure = 'failure',
+export enum RefundStatus {
+  RefundStatusCreated = 'created',
+  RefundStatusReviewing = 'reviewing',
+  RefundStatusReject = 'reject',
+  RefundStatusWaiting = 'waiting',
+  RefundStatusSuccess = 'success',
+  RefundStatusFailure = 'failure',
 }
