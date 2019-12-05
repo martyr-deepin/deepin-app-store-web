@@ -17,7 +17,7 @@
         <ng-template #starEdit>
           <span class="star">
             <div i18n>Rate this app:</div>
-            <dstore-star formControlName="score" #$star [readonly]="false"></dstore-star>
+            <dstore-star formControlName="score" #$star [readonly]="disableStatus.disable"></dstore-star>
             <div>{{ $star.rateHover }}</div>
           </span>
         </ng-template>
@@ -48,8 +48,13 @@
         </div>
       </ng-template>
 
-      <textarea #commentTextRef [readOnly]="!info || own" formControlName="content"
-        (keyup.control.enter)="submitComment()" maxlength='200'></textarea>
+      <textarea
+        #commentTextRef
+        [readOnly]="!info || own || disableStatus.disable"
+        formControlName="content"
+        (keyup.control.enter)="submitComment()"
+        maxlength="200"
+      ></textarea>
     </div>
 
     <div class="fixed">
@@ -57,10 +62,15 @@
         <ng-container i18n>Sign In</ng-container>
       </button>
       <ng-template #loggedMsg>
-        <div class="placeholder" *ngIf="own; else please">
+        <div class="placeholder" *ngIf="own; else disableStatusRef">
           <ng-container i18n>You have posted a comment</ng-container>
         </div>
-        <ng-template #please>
+        <ng-template #disableStatusRef>
+          <div *ngIf="disableStatus.disable; else pleaseRef">
+            <m-comment-disable-reason-text [reason]="disableStatus.reason"></m-comment-disable-reason-text>
+          </div>
+        </ng-template>
+        <ng-template #pleaseRef>
           <div class="placeholder" [hidden]="commentGroup.value.content">
             <ng-container i18n>Post your comment here</ng-container>
           </div>
@@ -70,15 +80,14 @@
   </div>
   <div class="submit" *ngIf="info">
     <span class="errorGroup" *ngIf="submitted.touched && commentGroup.invalid" [ngSwitch]="true">
-      <span class="submitError" *ngSwitchCase="content.invalid && score.invalid" i18n>Please rate and post your
-        comment</span>
+      <span class="submitError" *ngSwitchCase="content.invalid && score.invalid" i18n
+        >Please rate and post your comment</span
+      >
       <span class="submitError" *ngSwitchCase="content.invalid" i18n>Please input your comment</span>
       <span class="submitError" *ngSwitchCase="score.invalid" i18n>Please rate</span>
       <span class="submitError" *ngSwitchCase="submitted.invalid" i18n>Failed to submit</span>
       <span class="submitError" *ngSwitchCase="commentGroup.controls['app_version'].invalid">
-
         <ng-container i18n>The application is not available</ng-container>
-
       </span>
     </span>
     &nbsp;
@@ -91,12 +100,15 @@
 
   <div class="commentList">
     <div class="header">
-      <div [ngClass]="appVersion?'select':'selectAlone'">
+      <div [ngClass]="appVersion ? 'select' : 'selectAlone'">
         <ng-container i18n>User Comments</ng-container>
         &nbsp;
 
-        <button *ngIf="appVersion" [class.active]="select === CommentType.News"
-          (click)="selectChange(CommentType.News)">
+        <button
+          *ngIf="appVersion"
+          [class.active]="select === CommentType.News"
+          (click)="selectChange(CommentType.News)"
+        >
           <ng-container i18n>Current Version</ng-container>
           ({{ total[CommentType.News] }})
         </button>
@@ -106,8 +118,12 @@
         </button>
       </div>
       <div class="paginator" *ngIf="total[select] > page.size">
-        <app-paginator [length]="total[select]" [size]="page.size" [pageIndex]="page.index"
-          (pageIndexChange)="pageChange($event)"></app-paginator>
+        <app-paginator
+          [length]="total[select]"
+          [size]="page.size"
+          [pageIndex]="page.index"
+          (pageIndexChange)="pageChange($event)"
+        ></app-paginator>
       </div>
     </div>
     <br />
@@ -126,8 +142,12 @@
                 <td rowspan="2">
                   <div class="head" *ngIf="c.commenter | deepinid | async as info; else deepinInfoDefault">
                     <ng-container *ngIf="info.uid; else deletedRef">
-                      <img [src]="info.profile_image" #avatarRef
-                        (error)="avatarRef.src = '/assets/images/default_avatar.jpeg?default'" class="profile" />
+                      <img
+                        [src]="info.profile_image"
+                        #avatarRef
+                        (error)="avatarRef.src = '/assets/images/default_avatar.jpeg?default'"
+                        class="profile"
+                      />
                       <span>{{ info.nickname }}</span>
                     </ng-container>
                     <ng-template #deletedRef>
@@ -157,8 +177,12 @@
                       &nbsp;&nbsp;
                       <div class="like">
                         <span [class.hidden]="c.likes?.length <= 0">({{ c.likes?.length }})</span>
-                        <img class="thumbUp" [class.hidden]="c.commenter == info?.uid"
-                          [class.active]="likeByMe(c.likes, info?.uid)" (click)="thumbUpClick(c)" />
+                        <img
+                          class="thumbUp"
+                          [class.hidden]="c.commenter == info?.uid"
+                          [class.active]="likeByMe(c.likes, info?.uid)"
+                          (click)="thumbUpClick(c)"
+                        />
                       </div>
                     </div>
                   </div>
@@ -181,11 +205,14 @@
 
   <div class="bottom" *ngIf="!loading">
     <a (click)="scrollToTop()" i18n>Back to top</a>
-    <app-paginator *ngIf="total[select] > page.size" [pageIndex]="page.index" [length]="total[select]"
-      [size]="page.size" (pageIndexChange)="pageChange($event)"></app-paginator>
+    <app-paginator
+      *ngIf="total[select] > page.size"
+      [pageIndex]="page.index"
+      [length]="total[select]"
+      [size]="page.size"
+      (pageIndexChange)="pageChange($event)"
+    ></app-paginator>
   </div>
 </ng-container>
 
-
-
-<ng-container *ngIf="clean$ |async "></ng-container>
+<ng-container *ngIf="clean$ | async"></ng-container>

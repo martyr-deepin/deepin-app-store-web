@@ -3,14 +3,14 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Subject, BehaviorSubject, combineLatest } from 'rxjs';
-import { first, flatMap } from 'rxjs/operators';
+import { first, flatMap, map } from 'rxjs/operators';
 
 import * as _ from 'lodash';
 
 import smoothScrollIntoView from 'smooth-scroll-into-view-if-needed';
 
 import { AuthService, UserInfo } from 'app/services/auth.service';
-import { CommentService, AppComment } from '../../services/comment.service';
+import { CommentService, AppComment, CommentDisableStatus } from '../../services/comment.service';
 import { switchMap, filter, tap } from 'rxjs/operators';
 import { APIBase } from 'app/services/api';
 import { FormBuilder, Validators, FormGroup, FormArray, FormGroupName } from '@angular/forms';
@@ -44,7 +44,7 @@ export enum CommentError {
     ]),
   ],
 })
-export class AppCommentComponent implements OnInit {
+export class AppCommentComponent implements OnInit, OnChanges {
   constructor(
     private domSanitizer: DomSanitizer,
     private authService: AuthService,
@@ -80,6 +80,10 @@ export class AppCommentComponent implements OnInit {
   loading = true;
   loadCount = 0;
   info: UserInfo;
+  disableStatus: CommentDisableStatus = {
+    disable: false,
+    reason: '',
+  };
   info$ = this.auth.info$;
   clean$ = this.info$.pipe(
     tap(() => {
@@ -99,7 +103,6 @@ export class AppCommentComponent implements OnInit {
 
   login = () => this.authService.login();
   logout = () => this.authService.logout(true);
-
   register = () => this.authService.register();
 
   get publicAPI() {
@@ -119,7 +122,8 @@ export class AppCommentComponent implements OnInit {
     return { exclude_version: this.appVersion };
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+  ngOnChanges() {
     this.commentGroup.patchValue({
       app_id: this.appID,
       app_version: this.appVersion,
@@ -128,13 +132,19 @@ export class AppCommentComponent implements OnInit {
   }
   async init() {
     await this.getCount();
+    await this.getDisableStatus();
     this.selectChange(CommentType.News);
   }
+  async getDisableStatus() {
+    this.disableStatus = await this.commentService.getDisableStatus(this.appID, this.appVersion).toPromise();
+  }
   async getCount() {
+    // get current version comment count
     {
       const resp = await this.publicAPI.list({ limit: 1, version: this.appVersion });
       this.total[CommentType.News] = resp.count;
     }
+    // get history version comment count
     {
       const resp = await this.publicAPI.list({ limit: 1, exclude_version: this.appVersion });
       this.total[CommentType.History] = resp.count;

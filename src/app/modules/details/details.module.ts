@@ -11,6 +11,7 @@ import { DonorsComponent } from './components/donors/donors.component';
 import { ScreenshotComponent } from './components/screenshot/screenshot.component';
 import { StatementComponent } from './components/statement/statement.component';
 import { AppCommentComponent } from './components/comment/app-comment.component';
+import { CommentDisableReasonTextComponent } from './components/comment-disable-reason-text/comment-disable-reason-text.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AppCommentComponent } from './components/comment/app-comment.component'
     StatementComponent,
     ScreenshotComponent,
     AppCommentComponent,
+    CommentDisableReasonTextComponent,
   ],
   imports: [CommonModule, DetailsRoutingModule, ShareModule, FormsModule, ReactiveFormsModule],
 })

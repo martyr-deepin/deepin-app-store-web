@@ -1,0 +1,8 @@
+<ng-container [ngSwitch]="reason">
+  <ng-container *ngSwitchCase="CommentDisableReason.CommentDisableReasonUnavailable" i18n>应用不可用</ng-container>
+  <ng-container *ngSwitchCase="CommentDisableReason.CommentDisableReasonBanned" i18n>您已被禁言</ng-container>
+  <ng-container *ngSwitchCase="CommentDisableReason.CommentDisableReasonRequired" i18n>作者禁止评论</ng-container>
+  <ng-container *ngSwitchCase="CommentDisableReason.CommentDisableReasonSubmitted" i18n>您已提交评论</ng-container>
+  <ng-container *ngSwitchCase="CommentDisableReason.CommentDisableReasonUnused" i18n>下载使用后再来评论</ng-container>
+  <ng-container *ngSwitchDefault i18n>由于{{ reason }}，您不能发表评论</ng-container>
+</ng-container>

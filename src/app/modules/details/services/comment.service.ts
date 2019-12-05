@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 import * as _ from 'lodash';
-import { map, first, switchMap } from 'rxjs/operators';
 import { environment } from 'environments/environment';
 import { AuthService } from 'app/services/auth.service';
 import { APIBase, ListOption } from 'app/services/api';
@@ -27,6 +26,11 @@ export class CommentService {
       }
     }
     return new CommentAPI(this.http, `/api/public/app/${app_id}/comment`);
+  }
+  getDisableStatus(appID: number, appVersion: string) {
+    return this.http.get<CommentDisableStatus>(`/api/user/comment/${appID}/disable_status`, {
+      params: { app_id: appID as any, app_version: appVersion },
+    });
   }
   userAPI(app_id: number) {
     interface CommentListOption extends ListOption {
@@ -62,4 +66,17 @@ export interface AppComment {
   reply?: any;
 
   isHot?: boolean;
+}
+
+export interface CommentDisableStatus {
+  disable: boolean;
+  reason: CommentDisableReason;
+}
+
+export enum CommentDisableReason {
+  CommentDisableReasonUnavailable = 'std:unavailable', // 应用不可用
+  CommentDisableReasonRequired = 'std:required', // 应用作者要求
+  CommentDisableReasonBanned = 'std:banned', // 用户被禁言
+  CommentDisableReasonUnused = 'std:unused', // 用户未使用过(下载)应用
+  CommentDisableReasonSubmitted = 'std:submitted', // 用户已提交过应用
 }
