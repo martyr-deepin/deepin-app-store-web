@@ -7,7 +7,8 @@ import { Payment } from 'app/services/payment';
 import { OrderService, OrderStatus, OrderJSON } from '../../../../services/order.service';
 import { DstoreObject } from 'app/modules/client/utils/dstore-objects';
 import { BuyService } from 'app/services/buy.service';
-
+import { toCanvas, toDataURL } from 'qrcode';
+import { SafeResourceUrl } from '@angular/platform-browser';
 @Component({
   selector: 'm-buy',
   templateUrl: './buy.component.html',
@@ -25,13 +26,16 @@ export class BuyComponent implements OnInit {
     app_id: [0, Validators.required],
     app_version: ['', Validators.required],
     amount: [0, Validators.required],
-    method: [Payment.AliPay, Validators.required],
+    method: [Payment, Validators.required],
   });
+  //支付类型
+  payType = null;
+  qrCode = '';
   success = false;
   ngOnInit() {
+    console.log(this.qrCode);
     this.dialogRef.nativeElement.showModal();
     this.dialogRef.nativeElement.addEventListener('close', () => {
-      console.log('close');
       if (this.success) {
         this.buyService.buyDialogShow$.next(null);
       } else {
@@ -49,9 +53,20 @@ export class BuyComponent implements OnInit {
     this.dialogRef.nativeElement.close();
   }
   async submit() {
-    console.log(this.form);
-    const result = await this.orderService.post(this.form.value);
-    DstoreObject.openURL(result.pay_url);
+    this.payType = this.form.get('method').value;
+
+    const result = await this.orderService.payment(this.form.value);
+    console.log(result, 'adsasda');
+    switch (this.payType) {
+      case Payment.AliPay:
+        DstoreObject.openURL(result.pay_url);
+        break;
+      case Payment.WeChat:
+        this.qrCode = await toDataURL(result.pay_url, { rendererOpts: { quality: 1 } });
+        console.log(this.qrCode);
+        break;
+    }
+    // DstoreObject.openURL(result.pay_url);
     this.payment$ = timer(0, 3000).pipe(
       switchMap(async () => {
         const order = await this.orderService.get(result.order_number as any);

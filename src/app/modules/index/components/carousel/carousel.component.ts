@@ -104,17 +104,11 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
             const topicIndex = c.topic_index.split('-').map(Number);
             const globalSection = this.sectionService.globalSection as SectionItem[];
             const topicData = globalSection[topicIndex[0]].items[topicIndex[1]];
-            console.log(topicData);
-            // console.log(topic);
-            // this.sectionService.getList().then(list => {
-            //   const topic = get(list, [sindex, 'items', tindex]);
-            //   if (!topic) {
-            //     this.router.navigate(['app', Math.random()]);
-            //     return;
-            //   }
-
+            if (!topicData.show) {
+              //如果禁用专题就让item=[]
+              topicData.items = [];
+            }
             this.router.navigate(['topic', this.keyvalue.add(topicData)], { relativeTo: this.activeRouter });
-            // });
           }
         }),
         switchMap(() => {
@@ -146,9 +140,13 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
       this.carousels = [];
       return;
     }
-    while (this.carousels.length < 5) {
-      this.carousels = [...this.carousels, ...this.carousels];
+    if (this.carousels.length > 6) {
+      return this.carousels.splice(6, this.carousels.length - 1);
     }
+    return this.carousels;
+    // while (this.carousels.length < 5) {
+    //   this.carousels = [...this.carousels, ...this.carousels];
+    // }
   }
   async goto(index: number) {
     const left = [];

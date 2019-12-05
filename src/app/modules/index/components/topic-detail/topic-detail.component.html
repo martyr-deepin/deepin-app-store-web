@@ -1,5 +1,22 @@
-<ng-container *ngIf="section$ | async as section">
-  <img [src]="section.background_image" />
+<ng-container *ngIf="section$ | async as section; else $wait">
+  <img class="backgroundImg" [src]="section.background_image" />
   <dstore-list [nameColor]="section.title_color" [subtitleColor]="section.subtitle_color" [list]="softs$ | async">
   </dstore-list>
 </ng-container>
+<ng-template #$wait let-section>
+
+  <ng-container *ngIf="section===null">
+    <div class="searchEmpty">
+      <img class="tips_bg" /> <span i18n>Sorry</span>
+      <div class="gray-text" i18n>找不到该主题</div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="section===undefined">
+    <div class="wait">
+      <app-wait></app-wait>
+    </div>
+  </ng-container>
+
+
+
+</ng-template>

@@ -29,6 +29,10 @@
             <input type="radio" name="method" formControlName="method" [value]="Payment.AliPay" />
             <img class="paymentIcon alipay" />
           </label>
+          <label>
+            <input type="radio" name="method" formControlName="method" [value]="Payment.WeChat" />
+            <img class="paymentIcon wechat" />
+          </label>
         </div>
       </div>
 
@@ -40,10 +44,23 @@
 
   <!-- 2. wait -->
   <ng-template #waitPayRef>
-    <div class="wait-pay">
-      <img class="wait" [style.width.rem]="4" />
-      <div i18n>Processing payment, please wait...</div>
-    </div>
+    <ng-container [ngSwitch]="payType">
+      <div class="wait-pay">
+        <ng-container *ngSwitchCase="Payment.WeChat">
+          <div class="qrCodeBox">
+            <div class="formField">
+              <span>金额：</span>
+              <span class="amount">{{soft.pricing.price/100 | currency:soft.pricing.currency:'symbol-narrow' }}</span>
+            </div>
+            <img [src]="qrCode" alt="">
+          </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="Payment.AliPay">
+          <img class="wait" [style.width.rem]="4" />
+          <div i18n>Processing payment, please wait...</div>
+        </ng-container>
+      </div>
+    </ng-container>
   </ng-template>
 
   <!-- 3. Failed -->
