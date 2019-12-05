@@ -70,7 +70,7 @@ export interface AppComment {
 
 export interface CommentDisableStatus {
   disable: boolean;
-  reason: CommentDisableReason;
+  reason?: '';
 }
 
 export enum CommentDisableReason {
