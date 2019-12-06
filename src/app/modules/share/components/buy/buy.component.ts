@@ -70,8 +70,8 @@ export class BuyComponent implements OnInit {
         DstoreObject.openURL(result.pay_url);
         break;
       case Payment.WeChat:
-        this.qrCode = await toDataURL('jianghao', { rendererOpts: { quality: 1 } });
-        //this.qrCode = await toDataURL(result.pay_url, { rendererOpts: { quality: 1 } });
+        //this.qrCode = await toDataURL('jianghao', { rendererOpts: { quality: 1 } });
+        this.qrCode = await toDataURL(result.pay_url, { rendererOpts: { quality: 1 } });
         console.log(this.qrCode);
         break;
     }

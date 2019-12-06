@@ -6,7 +6,9 @@
     <ng-container><span i18n>Rankings</span></ng-container>
   </app-app-title>
   <app-app-title *ngSwitchCase="'keyword'" [useRouterQuery]="true">
-    <ng-container i18n>Search results for <span class="keyword" [title]='title'>{{ title }}</span></ng-container>
+    <ng-container *ngIf="title.trim()!==''">
+      <ng-container i18n>Search results for <span class="keyword" [title]='title'>{{ title }}</span></ng-container>
+    </ng-container>
   </app-app-title>
   <app-app-title *ngSwitchCase="'author'" [useRouterQuery]="true">
 

@@ -14,7 +14,7 @@ export class RefundComponent implements OnInit {
   @ViewChild('dialogRef', { static: true }) dialog: ElementRef<HTMLDialogElement>;
   @Input() remoteApp: RemoteApp;
   @Output() confirm = new EventEmitter();
-  @Output() cancel = new EventEmitter();
+  @Output() cancel = new EventEmitter<boolean>();
   form = this.fb.group({
     reason: this.fb.array([...Object.values(RefundReason).map(() => [false])], requiredTrueArray()),
     content: [''],
