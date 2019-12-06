@@ -12,9 +12,12 @@ export class SectionService {
   public globalSection;
   private list = this.http.get(this.url).pipe(
     map(v => {
-      return this.handleData(v);
-
-      // return this.handleData(this.tmpData);
+      let dataList = this.handleData(v);
+      dataList.section.dataset.sort((a, b) => {
+        return a.y - b.y;
+      });
+      //排序不能删除
+      return dataList;
     }),
   );
   constructor(private http: HttpClient) {

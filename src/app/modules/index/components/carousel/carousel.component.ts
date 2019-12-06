@@ -126,8 +126,10 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
     this.carousels = this.carousels.filter(c => c.show);
     //标记app:现已从number改为string
     // const names = this.carousels.filter(c => c.type === CarouselType.Topic).map(c => c.app_id);
-    const ids = this.carousels.filter(c => c.type === 'app').map(c => c.app_id);
+    console.log(this.carousels, 'asdasd');
+    const ids = this.carousels.map(c => c.app_id);
     const softs = await this.softwareService.list({ ids });
+
     this.carousels = this.carousels.filter(c => {
       //CarouselType.Topic改为字符串
       //   if (c.type === CarouselType.Topic) {
@@ -140,12 +142,16 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
       this.carousels = [];
       return;
     }
-    if (this.carousels.length > 6) {
+    if (this.carousels.length <= 3) {
+      this.carousels = [...this.carousels, ...this.carousels];
+    }
+    if (this.carousels.length >= 6) {
       return this.carousels.splice(6, this.carousels.length - 1);
     }
+    console.log(this.carousels, '轮播图');
     return this.carousels;
     // while (this.carousels.length < 5) {
-    //   this.carousels = [...this.carousels, ...this.carousels];
+    //
     // }
   }
   async goto(index: number) {
