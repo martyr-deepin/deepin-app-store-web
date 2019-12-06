@@ -31,7 +31,6 @@ export class ListComponent implements OnInit, OnChanges {
   // 监听是否到达底部
   intersection = new IntersectionObserver(([e]: IntersectionObserverEntry[]) => {
     if (e.isIntersecting) {
-      console.log('load');
       this.wait = true;
       this.load.next();
       this.intersection.unobserve(this.elRef.nativeElement);
@@ -43,6 +42,10 @@ export class ListComponent implements OnInit, OnChanges {
   ngOnChanges(changed: SimpleChanges) {
     if (changed.list) {
       this.wait = false;
+      if (changed.list.currentValue && changed.list.currentValue.length / 20 < 1) {
+        console.log('loaded', '少于20个');
+        return;
+      }
       if (
         changed.list.previousValue &&
         changed.list.currentValue &&

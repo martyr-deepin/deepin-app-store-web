@@ -18,21 +18,31 @@
       <div class="formField">
         <label i18n>Amount:</label>
         <div class="amount">
-          {{ form.value.amount / 100 | currency: 'CNY':'symbol-narrow' }}
+          {{soft.pricing.price/100 | currency:soft.pricing.currency:'symbol-narrow' }}
         </div>
       </div>
       <div>
         <label class="paymentLabel" i18n>Payment:</label>
         <br />
         <div class="payment-methods">
-          <label>
-            <input type="radio" name="method" formControlName="method" [value]="Payment.AliPay" />
-            <img class="paymentIcon alipay" />
-          </label>
-          <label>
+          <ng-container *ngFor="let item of paymentList">
+            <label>
+              <ng-container *ngIf="item.region===soft.pricing.currency">
+                <input type="radio" name="method" formControlName="method" [value]="item.name" />
+              </ng-container>
+
+              <ng-container *ngIf="item.region!==soft.pricing.currency">
+                <input type="radio" name="method" formControlName="method" disabled [value]="item.name" />
+              </ng-container>
+              <img class="paymentIcon {{item.name}}" />
+            </label>
+          </ng-container>
+
+
+          <!-- <label>
             <input type="radio" name="method" formControlName="method" [value]="Payment.WeChat" />
             <img class="paymentIcon wechat" />
-          </label>
+          </label> -->
         </div>
       </div>
 

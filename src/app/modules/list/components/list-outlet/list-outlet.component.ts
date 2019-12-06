@@ -41,7 +41,6 @@ export class ListOutletComponent implements OnInit {
         });
       }
       if (routeName === 'author') {
-        console.log(param.get('value'), param.get('name'), 'ids');
         this.auther = parseInt(param.get('value'));
       }
       const order = (query.get('order') as any) || 'download';

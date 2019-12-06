@@ -31,12 +31,14 @@
         <ng-container *ngIf="!deleteConfirm; else Delete">
           <button (click)="deleteConfirm = true" i18n>Delete</button>
           <div *ngIf="comment?.soft?.active">
-            <span class="error" *ngIf="error">
-              <ng-container [ngSwitch]="error">
-                <span class="submitError" *ngSwitchCase="CommentError.AllInvalid" i18n>Please rate and post your
-                  comment</span>
-                <span class="submitError" *ngSwitchCase="CommentError.CommentInvalid" i18n>Please input your
-                  comment</span>
+            <span class="error" *ngIf="commentGroup.invalid">
+              <ng-container [ngSwitch]="commentGroup.errors['error']">
+                <span class="submitError" *ngSwitchCase="CommentError.AllInvalid">
+                  <ng-container i18n>Please rate and post your comment</ng-container>
+                </span>
+                <span class="submitError" *ngSwitchCase="CommentError.CommentInvalid">
+                  <ng-container i18n>Please input your comment</ng-container>
+                </span>
                 <span class="submitError" *ngSwitchCase="CommentError.RateInvalid" i18n>Please rate</span>
                 <span class="submitError" *ngSwitchCase="CommentError.Failed" i18n>Failed to submit</span>
               </ng-container>

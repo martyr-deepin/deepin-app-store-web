@@ -55,8 +55,9 @@ export class EditComponent implements OnInit {
     this.commentGroup.markAsDirty();
     const content = this.commentGroup.get('content');
     content.setValue(content.value.trim());
-    console.log(this.commentGroup);
+
     if (content.invalid) {
+      console.log(this.commentGroup);
       this.commentGroup.setErrors({ error: CommentError.CommentInvalid });
       return;
     }

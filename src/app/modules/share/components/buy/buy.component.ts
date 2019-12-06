@@ -26,12 +26,19 @@ export class BuyComponent implements OnInit {
     app_id: [0, Validators.required],
     app_version: ['', Validators.required],
     amount: [0, Validators.required],
-    method: [Payment, Validators.required],
+    method: ['', Validators.required],
   });
   //支付类型
   payType = null;
+  paymentList = [
+    { name: 'alipay', region: 'CNY' },
+    { name: 'wechat', region: 'CNY' },
+    // { name: 'paypal', region: 'USD' },
+  ];
+
   qrCode = '';
   success = false;
+
   ngOnInit() {
     console.log(this.qrCode);
     this.dialogRef.nativeElement.showModal();
@@ -52,17 +59,19 @@ export class BuyComponent implements OnInit {
   failedButton() {
     this.dialogRef.nativeElement.close();
   }
+
   async submit() {
     this.payType = this.form.get('method').value;
 
     const result = await this.orderService.payment(this.form.value);
-    console.log(result, 'adsasda');
+
     switch (this.payType) {
       case Payment.AliPay:
         DstoreObject.openURL(result.pay_url);
         break;
       case Payment.WeChat:
-        this.qrCode = await toDataURL(result.pay_url, { rendererOpts: { quality: 1 } });
+        this.qrCode = await toDataURL('jianghao', { rendererOpts: { quality: 1 } });
+        //this.qrCode = await toDataURL(result.pay_url, { rendererOpts: { quality: 1 } });
         console.log(this.qrCode);
         break;
     }
@@ -79,4 +88,8 @@ export class BuyComponent implements OnInit {
       share(),
     );
   }
+}
+enum regionByType {
+  china = 'CNY',
+  other = 'USD',
 }

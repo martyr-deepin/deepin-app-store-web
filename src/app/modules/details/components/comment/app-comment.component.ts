@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges, ViewChild, ElementRef } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { DomSanitizer } from '@angular/platform-browser';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Subject, BehaviorSubject, combineLatest } from 'rxjs';
 import { first, flatMap, map } from 'rxjs/operators';
 
@@ -88,7 +88,7 @@ export class AppCommentComponent implements OnInit, OnChanges {
   clean$ = this.info$.pipe(
     tap(() => {
       this.content.setValue('');
-      this.score.setValue(null);
+      this.score.setValue(0);
     }),
   );
   own: AppComment;
@@ -124,6 +124,7 @@ export class AppCommentComponent implements OnInit, OnChanges {
 
   ngOnInit() {}
   ngOnChanges() {
+    console.log(this.score);
     this.commentGroup.patchValue({
       app_id: this.appID,
       app_version: this.appVersion,
@@ -227,6 +228,7 @@ export class AppCommentComponent implements OnInit, OnChanges {
     }
   }
   async submitComment() {
+    console.log(this.commentGroup);
     const content = this.commentGroup.get('content');
     content.setValue(content.value.trim());
     this.commentGroup.markAllAsTouched();
@@ -244,9 +246,12 @@ export class AppCommentComponent implements OnInit, OnChanges {
       setTimeout(() => (this.haveNewComment = false), 1000);
       this.tags.clear();
       this.commentGroup.reset(this.valueSetEmpty);
-    } catch {
-      this.commentGroup.setErrors({ error: true });
-      this.commentGroup.enable();
+    } catch (err) {
+      if (err instanceof HttpErrorResponse) {
+        this.commentGroup.enable();
+        this.commentGroup.setErrors({ error: true });
+        console.log(this.commentGroup, 'szdsadas');
+      }
     }
   }
   async thumbUpClick(c: AppComment) {

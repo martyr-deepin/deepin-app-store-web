@@ -15,24 +15,19 @@
   <dstore-scrollbar>
     <ng-container *ngIf="apps$ | async as apps; else loading">
       <div class="remote-app" *ngFor="let remoteApp of apps">
-        <img
-          class="icon"
-          dstoreCover="icon"
-          [src]="remoteApp.soft.info.icon"
-          [routerLink]="['/app', remoteApp.soft.id]"
-        />
+
+        <img class="icon" dstoreCover="icon" [src]="remoteApp.soft.info.icon"
+          [routerLink]="['/app', remoteApp.soft.id]" />
         <div class="content">
           <div class="info">{{ remoteApp.soft.info.name }}</div>
           <div class="time">
             <span i18n>Date installed:</span>
             {{ remoteApp.created_at | date: 'yyyy.MM.dd' }}
           </div>
-          <ng-container
-            *ngIf="
+          <ng-container *ngIf="
               remoteApp.soft?.package?.remoteVersion && remoteApp.soft?.active && !remoteApp.unavailable;
               else unavailableRef
-            "
-          >
+            ">
             <div class="version"><span i18n>Version:</span> {{ remoteApp.app_version }}</div>
 
             <div class="control">
@@ -62,10 +57,8 @@
                 </button>
               </ng-template>
               <ng-template #installedRef>
-                <button
-                  disabled
-                  *ngIf="remoteApp.soft.package.localVersion != '' || installed.has(remoteApp.soft.name); else install"
-                >
+                <button disabled
+                  *ngIf="remoteApp.soft.package.localVersion != '' || installed.has(remoteApp.soft.name); else install">
                   <ng-container i18n>Installed</ng-container>
                 </button>
               </ng-template>
