@@ -10,7 +10,7 @@ import * as _ from 'lodash';
 import smoothScrollIntoView from 'smooth-scroll-into-view-if-needed';
 
 import { AuthService, UserInfo } from 'app/services/auth.service';
-import { CommentService, AppComment, CommentDisableStatus } from '../../services/comment.service';
+import { CommentService, AppComment, CommentDisableStatus, CommentDisableReason } from '../../services/comment.service';
 import { switchMap, filter, tap } from 'rxjs/operators';
 import { APIBase } from 'app/services/api';
 import { FormBuilder, Validators, FormGroup, FormArray, FormGroupName } from '@angular/forms';
@@ -82,7 +82,6 @@ export class AppCommentComponent implements OnInit, OnChanges {
   info: UserInfo;
   disableStatus: CommentDisableStatus = {
     disable: false,
-    reason: '',
   };
   info$ = this.auth.info$;
   clean$ = this.info$.pipe(
@@ -133,11 +132,21 @@ export class AppCommentComponent implements OnInit, OnChanges {
   }
   async init() {
     await this.getCount();
-    await this.getDisableStatus();
+    if (this.appVersion) {
+      await this.getDisableStatus();
+    } else {
+      this.disableStatus = {
+        disable: true,
+        reason: CommentDisableReason.CommentDisableReasonUnavailable,
+      };
+    }
     this.selectChange(CommentType.News);
   }
   async getDisableStatus() {
-    this.disableStatus = await this.commentService.getDisableStatus(this.appID, this.appVersion).toPromise();
+    const info = await this.info$.pipe(first()).toPromise();
+    if (info) {
+      this.disableStatus = await this.commentService.getDisableStatus(this.appID, this.appVersion).toPromise();
+    }
   }
   async getCount() {
     // get current version comment count

@@ -1,20 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { switchMap, shareReplay, map, startWith } from 'rxjs/operators';
+import { merge } from 'rxjs';
+import { switchMap, shareReplay, map, startWith, debounceTime } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { BuyService } from './buy.service';
+import { MessageService, MessageType } from './message.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserAppsService {
-  constructor(private http: HttpClient, private buyService: BuyService, private authService: AuthService) {
+  constructor(
+    private http: HttpClient,
+    private buyService: BuyService,
+    private messageService: MessageService,
+    private authService: AuthService,
+  ) {
     this.userAllApp$.subscribe(v => console.log({ v }));
   }
   userAllApp$ = this.authService.info$.pipe(
     switchMap(info =>
-      this.buyService.buy$.pipe(
+      merge(this.buyService.buy$, this.messageService.onMessage(MessageType.AppsChange)).pipe(
         startWith(null),
+        debounceTime(100),
         map(() => info),
       ),
     ),

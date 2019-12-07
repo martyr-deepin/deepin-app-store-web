@@ -38,6 +38,7 @@ export class BuyComponent implements OnInit {
 
   qrCode = '';
   success = false;
+  order: OrderJSON;
 
   ngOnInit() {
     console.log(this.qrCode);
@@ -78,9 +79,13 @@ export class BuyComponent implements OnInit {
     // DstoreObject.openURL(result.pay_url);
     this.payment$ = timer(0, 3000).pipe(
       switchMap(async () => {
+        if (this.success) {
+          return this.order;
+        }
         const order = await this.orderService.get(result.order_number as any);
         if (order.status === OrderStatus.OrderStatusSuccess) {
           this.success = true;
+          this.order = order;
           this.buyService.buy$.next(this.soft);
         }
         return order;
