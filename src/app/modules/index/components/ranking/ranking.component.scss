@@ -41,7 +41,11 @@ section {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      @media (max-width: 1152px) {
+        display: none;
+      }
     }
+
   }
 
   .control {
