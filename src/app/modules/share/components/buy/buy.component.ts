@@ -2,20 +2,28 @@ import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, ViewChild, E
 import { FormBuilder, Validators } from '@angular/forms';
 import { timer, Observable } from 'rxjs';
 import { switchMap, share } from 'rxjs/operators';
-import { Software } from 'app/services/software.service';
+import { Software, SoftwareService } from 'app/services/software.service';
 import { Payment } from 'app/services/payment';
 import { OrderService, OrderStatus, OrderJSON } from '../../../../services/order.service';
 import { DstoreObject } from 'app/modules/client/utils/dstore-objects';
 import { BuyService } from 'app/services/buy.service';
 import { toCanvas, toDataURL } from 'qrcode';
 import { SafeResourceUrl } from '@angular/platform-browser';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'm-buy',
   templateUrl: './buy.component.html',
   styleUrls: ['./buy.component.scss'],
 })
 export class BuyComponent implements OnInit {
-  constructor(private fb: FormBuilder, private orderService: OrderService, private buyService: BuyService) {}
+  constructor(
+    private fb: FormBuilder,
+    private orderService: OrderService,
+    private buyService: BuyService,
+    private softwareService: SoftwareService,
+    private router: Router,
+    private activeRouter: ActivatedRoute,
+  ) {}
   readonly Payment = Payment;
   readonly OrderStatus = OrderStatus;
   @ViewChild('dialogRef', { static: true }) dialogRef: ElementRef<HTMLDialogElement>;
@@ -62,6 +70,11 @@ export class BuyComponent implements OnInit {
   }
 
   async submit() {
+    const getAppInfo = await this.softwareService.list({ ids: [this.soft.id] }).then(soft => soft[0]);
+    if (!getAppInfo.active) {
+      window.location.reload();
+      return;
+    }
     this.payType = this.form.get('method').value;
 
     const result = await this.orderService.payment(this.form.value);

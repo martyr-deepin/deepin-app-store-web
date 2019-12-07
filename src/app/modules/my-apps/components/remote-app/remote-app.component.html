@@ -7,7 +7,7 @@
     <ng-container i18n>Remote App</ng-container>
   </button>
 </dstore-center-title>
-<dstore-remote-install></dstore-remote-install>
+<dstore-remote-install (freeChange)="freeChange($event)"></dstore-remote-install>
 
 <m-refund *ngIf="refund" [remoteApp]="refund" (cancel)="refund = null; refresh()"> </m-refund>
 

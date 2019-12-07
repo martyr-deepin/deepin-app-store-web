@@ -4,14 +4,55 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--main-title-hr-color);
+
   .auto-install {
     display: flex;
+
     .subtitle {
       margin-right: 1rem;
     }
   }
+
   button {
     width: 100px;
     height: 50%;
   }
+}
+
+.check_item {
+  display: inline-block;
+
+  div {
+    display: inline-block;
+    margin-right: 15px;
+    cursor: pointer;
+
+    i {
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      vertical-align: bottom;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-right: 5px;
+    }
+
+    span {
+      font-family: SourceHanSansSC-Normal, SourceHanSansSC;
+      font-weight: 400;
+      color: rgba(48, 48, 48, 1);
+    }
+  }
+}
+
+.checkBoxNormal {
+  content: var(--checkboxnormal-icon)
+}
+
+.checkBoxSelect {
+  content: var(--checkboxselect-icon)
 }

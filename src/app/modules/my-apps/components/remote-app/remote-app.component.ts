@@ -16,14 +16,20 @@ export class RemoteAppComponent implements OnInit {
   readonly pageSize = 12;
   readonly RefundStatus = RefundStatus;
   refresh$ = new BehaviorSubject(null);
+  free = true;
   pageIndex$ = this.refresh$.pipe(
     switchMap(() => this.route.queryParamMap),
     map(query => Number(query.get('page')) || 0),
   );
   result$ = this.pageIndex$.pipe(
     switchMap(pageIndex => {
-      console.log({ pageIndex });
-      return this.remoteAppService.list({ offset: pageIndex * this.pageSize, limit: this.pageSize });
+      console.log(this.free);
+      let params = { offset: pageIndex * this.pageSize, limit: this.pageSize };
+
+      if (this.free === false) {
+        params['free'] = false;
+      }
+      return this.remoteAppService.list(params);
     }),
     share(),
   );
@@ -45,7 +51,10 @@ export class RemoteAppComponent implements OnInit {
     this.router.navigate([], { queryParams: { page: pageIndex } });
   }
   async refresh() {
-    console.log('refresh');
     this.refresh$.next(null);
+  }
+  freeChange(free: boolean) {
+    this.free = free;
+    this.router.navigate([], { queryParams: { page: 1 } });
   }
 }

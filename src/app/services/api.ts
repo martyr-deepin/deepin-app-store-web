@@ -30,6 +30,7 @@ export class APIBase<RModel, WModel = RModel> {
 export interface ListOption {
   offset?: number;
   limit?: number;
+  free?: boolean;
 }
 class CustomEncoder implements HttpParameterCodec {
   encodeKey(key: string): string {

@@ -21,4 +21,6 @@ export interface Settings {
   supportSignIn: boolean;
   themeName: string;
   upyunBannerVisible: boolean;
+  fontFamily: string;
+  fontPixelSize: string;
 }

@@ -59,7 +59,7 @@
         <ng-container *ngSwitchCase="Payment.WeChat">
           <div class="qrCodeBox">
             <div class="formField">
-              <span>金额：</span>
+              <span i18n>金额：</span>
               <span class="amount">{{soft.pricing.price/100 | currency:soft.pricing.currency:'symbol-narrow' }}</span>
             </div>
             <img [src]="qrCode" alt="">
@@ -82,11 +82,11 @@
         <!-- <div i18n>Payment failed try again!</div> -->
         <div class="failed_tip">
           <i></i>
-          <span>支付失败，请重新支付!</span>
+          <span i18n>支付失败，请重新支付!</span>
         </div>
         <div class="failed_button">
-          <button class="button_cancle" (click)="failedButton()">取消</button>
-          <button class="button_again" (click)="submit()">重新支付</button>
+          <button class="button_cancle" (click)="failedButton()" i18n>取消</button>
+          <button class="button_again" (click)="submit()" i18n>重新支付</button>
         </div>
       </div>
     </div>
