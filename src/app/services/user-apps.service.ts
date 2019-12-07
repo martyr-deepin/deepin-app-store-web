@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { merge } from 'rxjs';
-import { switchMap, shareReplay, map, startWith } from 'rxjs/operators';
+import { switchMap, shareReplay, map, startWith, debounceTime } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { BuyService } from './buy.service';
 import { MessageService, MessageType } from './message.service';
@@ -22,6 +22,7 @@ export class UserAppsService {
     switchMap(info =>
       merge(this.buyService.buy$, this.messageService.onMessage(MessageType.AppsChange)).pipe(
         startWith(null),
+        debounceTime(100),
         map(() => info),
       ),
     ),

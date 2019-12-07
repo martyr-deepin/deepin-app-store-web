@@ -4,17 +4,19 @@ import { filter, map, switchMap, share } from 'rxjs/operators';
 
 import { environment } from 'environments/environment';
 import { AuthService } from './auth.service';
+import { ClientIdService } from './client-id.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MessageService {
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private clientID: ClientIdService) {
     this.onMessage().subscribe();
   }
   message = this.authService.info$.pipe(
     switchMap(info => {
       console.log('message', { info });
+      return this.sseMessage();
       if (info) {
         return this.sseMessage();
       }
@@ -28,9 +30,11 @@ export class MessageService {
   private sseMessage() {
     return new Observable<Message>(obs => {
       try {
-        const es = new EventSource(
-          `${environment.server}/api/user/message_stream?Authorization=${this.Authorization()}`,
-        );
+        const url = new URL(`${environment.server}/api/user/message_stream`);
+        url.searchParams.set('id', this.clientID.clientID());
+        url.searchParams.set('Authorization', this.Authorization());
+        console.log(url);
+        const es = new EventSource(url.toString());
         es.addEventListener('error', err => {
           obs.error(err);
         });
@@ -46,9 +50,10 @@ export class MessageService {
   private wsMessage() {
     return new Observable<Message>(obs => {
       try {
-        const ws = new WebSocket(
-          `ws://${new URL(environment.server).host}/api/user/message_stream?Authorization=${this.Authorization()}`,
-        );
+        const url = new URL(`ws://${new URL(environment.server).host}/api/user/message_stream`);
+        url.searchParams.set('id', this.clientID.clientID());
+        url.searchParams.set('Authorization', this.Authorization());
+        const ws = new WebSocket(url.toString());
         ws.addEventListener('error', err => {
           obs.error(err);
         });
