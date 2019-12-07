@@ -143,7 +143,10 @@ export class AppCommentComponent implements OnInit, OnChanges {
     this.selectChange(CommentType.News);
   }
   async getDisableStatus() {
-    this.disableStatus = await this.commentService.getDisableStatus(this.appID, this.appVersion).toPromise();
+    const info = await this.info$.pipe(first()).toPromise();
+    if (info) {
+      this.disableStatus = await this.commentService.getDisableStatus(this.appID, this.appVersion).toPromise();
+    }
   }
   async getCount() {
     // get current version comment count
