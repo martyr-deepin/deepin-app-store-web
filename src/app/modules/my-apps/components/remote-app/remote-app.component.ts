@@ -13,7 +13,7 @@ import { RemoteAppService, RemoteApp } from './../../services/remote-app.service
 })
 export class RemoteAppComponent implements OnInit {
   constructor(private route: ActivatedRoute, public router: Router, private remoteAppService: RemoteAppService) {}
-  readonly pageSize = 12;
+  readonly pageSize = 20;
   readonly RefundStatus = RefundStatus;
   refresh$ = new BehaviorSubject(null);
   free = true;
@@ -55,6 +55,6 @@ export class RemoteAppComponent implements OnInit {
   }
   freeChange(free: boolean) {
     this.free = free;
-    this.router.navigate([], { queryParams: { page: 1 } });
+    this.router.navigate([], { queryParams: { page: 0 } });
   }
 }

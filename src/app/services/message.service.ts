@@ -17,7 +17,10 @@ export class MessageService {
     switchMap(info => {
       console.log('message', { info });
       if (info) {
-        return onErrorResumeNext(this.sseMessage().pipe(retry(3)), this.wsMessage().pipe(retry(3)));
+        return onErrorResumeNext<{ Type: string; Data: any }>(
+          this.sseMessage().pipe(retry(3)),
+          this.wsMessage().pipe(retry(3)),
+        );
       }
       return empty();
     }),

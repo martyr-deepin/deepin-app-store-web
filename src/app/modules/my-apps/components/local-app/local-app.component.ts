@@ -35,9 +35,9 @@ export class LocalAppComponent implements OnInit {
   pageIndex$ = this.route.queryParamMap.pipe(map(query => Number(query.get('page') || 0)));
   result$ = this.pageIndex$.pipe(
     switchMap(pageIndex => {
-      const applist = this.localAppService.list({ pageSize: this.pageSize, pageIndex }).subscribe(data => {
-        console.log(data, 'myappResult');
-      });
+      //   const applist = this.localAppService.list({ pageSize: this.pageSize, pageIndex }).subscribe(data => {
+      //     console.log(data, 'myappResult');
+      //   });
 
       return this.localAppService.list({ pageSize: this.pageSize, pageIndex });
     }),

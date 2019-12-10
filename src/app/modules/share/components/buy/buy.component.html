@@ -58,11 +58,19 @@
       <div class="wait-pay">
         <ng-container *ngSwitchCase="Payment.WeChat">
           <div class="qrCodeBox">
-            <div class="formField">
+            <div class="payField">
               <span i18n>金额：</span>
               <span class="amount">{{soft.pricing.price/100 | currency:soft.pricing.currency:'symbol-narrow' }}</span>
             </div>
-            <img [src]="qrCode" alt="">
+            <div class="qrcodeBorder">
+              <div>
+                <img src="" alt="" class="weChatSmLogo qrlogo">
+                <img [src]="qrCode" alt="">
+              </div>
+
+              <span>微信扫码付款</span>
+            </div>
+
           </div>
         </ng-container>
         <ng-container *ngSwitchCase="Payment.AliPay">
