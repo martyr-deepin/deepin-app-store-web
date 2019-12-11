@@ -15,7 +15,7 @@
             </div>
           </div>
         </div>
-        <span i18n>Suggestions:</span>
+        <span class="required" i18n>Suggestions:</span>
         <div>
           <textarea formControlName="content" maxlength="200"></textarea>
         </div>
@@ -31,14 +31,19 @@
       <div>
         <div class="s_title">
           <i></i>
-          <span i18n>退款申请提交成功</span>
+          <span i18n>Submission successful</span>
         </div>
         <div class="s_content">
-          <span i18n>后台管理员审核中，审核通过后会将您的应用款项 退回至您的原账户。请您耐心等待2-3个工作日。</span>
+          <ng-container [ngTemplateOutlet]="TipContent"></ng-container>
         </div>
       </div>
     </div>
   </ng-container>
-
-
 </dialog>
+<ng-template #TipContent>
+  <span>
+    <ng-container i18n>Your request is under review, which takes 2-3 working days.</ng-container>
+    <ng-container i18n>Please wait patiently.Once approved,the refunds will be returned to the original account.</
+        ng-container>
+  </span>
+</ng-template>

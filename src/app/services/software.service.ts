@@ -152,8 +152,9 @@ export class SoftwareService {
 
   // software convert to package query
   private toQuery(soft: Software) {
+    // console.log(soft, 'asdasd');
     return {
-      name: soft.id ? soft.id.toString() : soft.package.appName,
+      name: soft.id && soft.id !== 0 ? soft.id.toString() : soft.package.appName,
       localName: soft.info.name,
       packages: soft.info.packages,
     } as QueryParam;
@@ -228,6 +229,7 @@ export interface Software {
     remoteVersion: string;
     upgradable: boolean;
     appName?: string;
+    icon?: string;
   };
   // 下面是服务器返回结构，全部解析到info内部
   desc?: Desc;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -9,10 +9,9 @@ import { switchMap } from 'rxjs/operators';
 export class AgreementService {
   constructor(private http: HttpClient) {}
   private readonly baseURL = environment.operationServer + '/api/blob';
-  private newBaseURL =
-    'https://openapi.deepin.com/agreement/api/agreement?type=deepinid&region=CN&language=' + environment.locale;
-  privacy() {
-    return this.http.get(this.newBaseURL, { responseType: 'text' }).toPromise();
+  async privacy() {
+    const getUrl = await this.http.get<{ agreement: string }>('/api/public/links').toPromise();
+    return this.http.get(getUrl.agreement, { responseType: 'text' }).toPromise();
   }
   donation() {
     return this.http

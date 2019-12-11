@@ -45,10 +45,12 @@ export class LocalAppService {
           const m = new Map(softs.map(soft => [soft.package_name, soft]));
           list.forEach(item => {
             item.software = m.get(item.package.packageName);
+
             if (!item.software) {
               item.software = {} as any;
               item.software.id = 0;
               item.software.info = item.info as any;
+              item.software.package = item.package;
             }
           });
         } catch {}

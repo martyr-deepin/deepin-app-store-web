@@ -1,5 +1,5 @@
 <dstore-center-title>
-  <span title i18n>我的应用</span>
+  <span title i18n>My Apps</span>
   <button routerLink="../local" routerLinkActive="active">
     <ng-container i18n>Local App</ng-container>
   </button>
@@ -18,21 +18,23 @@
     <ng-container *ngIf="(result$ | async)?.list as installedList; else loadingContainer">
       <ng-container *ngFor="let installed of installedList">
         <div class="installed-app">
-          <ng-container *ngIf="installed.software as software; else noSoftwareRef">
-            <img class="icon" dstoreCover="icon" [routerLink]="['/app', installed.software.id]"
-              [src]="software.info.icon" />
-            <div class="info">
-              <span>{{ software.info.name }}</span>
-              <span class="size">{{ installed.package.size | sizeHuman }}</span>
-            </div>
+          <ng-container *ngIf="installed.software as software">
+            <ng-container *ngIf="(software.id===0?software.package:software.info) as softwares">
+              <img class="icon" dstoreCover="icon" [routerLink]="['/app', installed.software.id]"
+                [src]="softwares.icon" />
+              <div class="info">
+                <span>{{ softwares.name?softwares.name: softwares.appName}}</span>
+                <span class="size">{{ softwares.size | sizeHuman }}</span>
+              </div>
+            </ng-container>
           </ng-container>
-          <ng-template #noSoftwareRef>
+          <!-- <ng-template #noSoftwareRef>
             <img class="icon" dstoreCover="icon" [routerLink]="['/app', 0]" [src]='installed.package.icon' />
             <div class="info">
               <span>{{ installed.localName }}</span>
               <span class="size">{{ installed.package.size | sizeHuman }}</span>
             </div>
-          </ng-template>
+          </ng-template> -->
 
           <ng-container *ngIf="removingList$ | async as removingList">
             <div class="installed">
@@ -53,20 +55,21 @@
               </ng-container>
             </div>
             <div class="control">
+
               <ng-template #confirmBtn>
                 <button (click)="selected = null" i18n>Cancel</button>
                 <button class="primary" (click)="remove(installed.software || installed)">
                   <ng-container i18n>Confirm</ng-container>
                 </button>
               </ng-template>
-              <ng-container *ngIf="selected != installed.name; else confirmBtn">
+              <ng-container *ngIf="selected !== installed.name; else confirmBtn">
                 <ng-template #uninstall>
                   <button (click)="selected = installed.name" [disabled]="DisabledList.includes(installed.name)">
                     <ng-container i18n>Uninstall</ng-container>
                   </button>
                 </ng-template>
                 <button
-                  *ngIf="removingList.includes(installed.name) || removing.includes(installed.name); else uninstall"
+                  *ngIf="removing.includes(installed.name)||removingList.includes(installed.name) ; else uninstall"
                   disabled>
                   <ng-container i18n>Uninstalling</ng-container>
                 </button>

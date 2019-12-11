@@ -31,7 +31,7 @@ export class AppDetailComponent implements OnInit {
     private downloadTotalServer: DownloadTotalService,
     private comment: CommentService,
   ) {}
-
+  crumbs = false;
   supportSignIn = environment.supportSignIn;
   adVisible$ = this.settingService.settings$.then(set => set.upyunBannerVisible);
   open = this.softwareService.open;

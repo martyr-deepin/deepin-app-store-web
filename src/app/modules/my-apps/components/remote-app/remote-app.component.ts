@@ -36,15 +36,21 @@ export class RemoteAppComponent implements OnInit {
   installed = new Set<string>();
   apps$ = this.result$.pipe(map(result => result.items));
   count$ = this.result$.pipe(map(result => Math.ceil(result.count / this.pageSize)));
-  installing$ = this.remoteAppService.installingList();
+  installing$ = this.remoteAppService.installingList().pipe(
+    map(v => {
+      console.log(v);
+      return v;
+    }),
+  );
   refund: RemoteApp = null;
   ngOnInit() {
-    this.route.queryParamMap.pipe(() => this.refresh$).subscribe(v => console.log('teest', v));
-    this.refresh$.subscribe(v => console.log('refresh subscribe'));
+    // this.route.queryParamMap.pipe(() => this.refresh$).subscribe(v => console.log('teest', v));
+    // this.refresh$.subscribe(v => console.log('refresh subscribe'))
   }
 
   installApp(soft: Software) {
-    this.installed.add(soft.name);
+    this.installed.add(soft.package_name);
+
     this.remoteAppService.installApps([soft]);
   }
   gotoPage(pageIndex: number) {

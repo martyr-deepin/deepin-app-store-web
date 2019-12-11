@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PrivacyAgreementService } from 'app/services/privacy-agreement.service';
 import { AgreementService } from 'app/services/agreement.service';
 import { DstoreObject } from 'app/modules/client/utils/dstore-objects';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'dstore-privacy-agreement',
