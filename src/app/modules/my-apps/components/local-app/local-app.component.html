@@ -23,8 +23,8 @@
               <img class="icon" dstoreCover="icon" [routerLink]="['/app', installed.software.id]"
                 [src]="softwares.icon" />
               <div class="info">
-                <span>{{ softwares.name?softwares.name: softwares.appName}}</span>
-                <span class="size">{{ softwares.size | sizeHuman }}</span>
+                <span>{{ softwares.name?softwares.name: installed.package.appName}}</span>
+                <span class="size">{{ installed.package.size| sizeHuman }}</span>
               </div>
             </ng-container>
           </ng-container>
