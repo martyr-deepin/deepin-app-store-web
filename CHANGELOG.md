@@ -1,3 +1,29 @@
+<a name="5.6.3.0"></a>
+## 5.6.3.0 (2019-12-11)
+
+
+#### Features
+
+*   order message ([1547d43e](https://github.com/linuxdeepin/deepin-app-store-web/commit/1547d43ef9dda8671945b261daff70de0c020618))
+*   client message ([fb9ad1c6](https://github.com/linuxdeepin/deepin-app-store-web/commit/fb9ad1c68621aabe9aeefd09929357bd573fea9c))
+*   enable log ([a7b0293c](https://github.com/linuxdeepin/deepin-app-store-web/commit/a7b0293c71c74e0c0a76ba98ce410faf20a98778))
+*   remote apps ([530b0980](https://github.com/linuxdeepin/deepin-app-store-web/commit/530b0980b52a40061e6a6ec11f103164590321bc))
+
+#### Bug Fixes
+
+*  bugs ([a11ef4b7](https://github.com/linuxdeepin/deepin-app-store-web/commit/a11ef4b7904ae21bdf3b584e0b5dd6f5f44a4261))
+*   comment status ([c545fd16](https://github.com/linuxdeepin/deepin-app-store-web/commit/c545fd16135d441b68376b66fd1a93c933b22c81))
+*  lot of bug ([e8859bef](https://github.com/linuxdeepin/deepin-app-store-web/commit/e8859bef23b9036055800dde24627956c0032a12))
+*   refund ([0f9bd33d](https://github.com/linuxdeepin/deepin-app-store-web/commit/0f9bd33d35fe7dd7bf16ecbd26ad64fb24ee7365))
+*  build ([c4354af0](https://github.com/linuxdeepin/deepin-app-store-web/commit/c4354af08379d4387e489675a7a68f788c2eb5e3))
+*  lot of bugs ([3dc167d5](https://github.com/linuxdeepin/deepin-app-store-web/commit/3dc167d572a9b502ba480b1b245c54a135030fac))
+*   online ([a212b421](https://github.com/linuxdeepin/deepin-app-store-web/commit/a212b4213e52f4e7742938e43e1904af00e74f63))
+*  cloud install all bug ([2f75e275](https://github.com/linuxdeepin/deepin-app-store-web/commit/2f75e275e66a3dcb1cc83c34206e5c0e3640b114))
+*  add home carousel topic link,edit all star handle value ([eec53b1e](https://github.com/linuxdeepin/deepin-app-store-web/commit/eec53b1ee95cff03771cbc193fa6ca5e31f7e453))
+*  locals my app icon no found bugs and local my app not uninstall bugs ([a7bfc3df](https://github.com/linuxdeepin/deepin-app-store-web/commit/a7bfc3df81429c398d99bb40cb6a13c30bbeb04d))
+
+
+
 <a name="5.6.1.0"></a>
 ## 5.6.1.0 (2019-11-19)
 

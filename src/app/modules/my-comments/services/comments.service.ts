@@ -15,7 +15,7 @@ export class CommentsService extends APIBase<UserComment> {
   }
   async list(opt: ListOption) {
     const resp = await super.list(opt);
-    const softs = await this.softService.list({ ids: resp.items.map(c => c.app_id), active: '' });
+    const softs = await this.softService.list({}, { id: resp.items.map(c => c.app_id) }, { noFilter: true });
     resp.items.forEach(c => {
       c.soft = softs.find(soft => soft.id === c.app_id);
     });

@@ -1,10 +1,19 @@
 <div class="remote-install">
-  <div class="auto-install">
+  　　
+  <!--cloud auto install app func for a short time hidden-->
+  <div class="auto-install" *ngIf="false">
+
     <span class="subtitle" i18n>Auto install new app</span>
     <dstore-switch-button [value]="autoInstall$ | async" (valueChange)="change($event)"></dstore-switch-button>
   </div>
-  <dstore-batch-install #batchInstall></dstore-batch-install>
-  <button class="primary" (click)="batchInstall.show()">
-    <ng-container i18n>Install All</ng-container>
-  </button>
+  <dstore-batch-install [free]='free' #batchInstall></dstore-batch-install>
+  <div class="check_item">
+    <div (click)="freeCick()"><i [ngClass]="free!==false?'checkBoxNormal': 'checkBoxSelect'"></i>
+      <span i18n>Show only paid apps</span>
+    </div>
+    <button class="primary" (click)="batchInstall.show()">
+      <ng-container i18n>Install All</ng-container>
+    </button>
+  </div>
+
 </div>

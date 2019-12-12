@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable, empty } from 'rxjs';
-import { filter, map, switchMap, share } from 'rxjs/operators';
+import { Subject, Observable, empty, onErrorResumeNext } from 'rxjs';
+import { filter, map, switchMap, share, retry } from 'rxjs/operators';
 
 import { environment } from 'environments/environment';
 import { AuthService } from './auth.service';
@@ -16,9 +16,11 @@ export class MessageService {
   message = this.authService.info$.pipe(
     switchMap(info => {
       console.log('message', { info });
-      return this.sseMessage();
       if (info) {
-        return this.sseMessage();
+        return onErrorResumeNext<{ Type: string; Data: any }>(
+          this.sseMessage().pipe(retry(3)),
+          this.wsMessage().pipe(retry(3)),
+        );
       }
       return empty();
     }),

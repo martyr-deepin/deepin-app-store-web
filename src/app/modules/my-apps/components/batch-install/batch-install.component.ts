@@ -11,6 +11,7 @@ import { Software } from 'app/services/software.service';
   styleUrls: ['./batch-install.component.scss'],
 })
 export class BatchInstallComponent implements OnInit {
+  @Input() free = null;
   @ViewChild('dialog', { static: true })
   dialogRef: ElementRef<HTMLDialogElement>;
   pageSize = 20;
@@ -19,7 +20,13 @@ export class BatchInstallComponent implements OnInit {
   pageIndex$ = new BehaviorSubject<number>(0);
   result$ = this.pageIndex$.pipe(
     distinctUntilChanged(),
-    switchMap(pageIndex => this.remoteAppService.list({ offset: pageIndex * this.pageSize, limit: this.pageSize })),
+    switchMap(pageIndex => {
+      let params = { offset: pageIndex * this.pageSize, limit: this.pageSize };
+      if (this.free === false) {
+        params['free'] = false;
+      }
+      return this.remoteAppService.list(params);
+    }),
     publishReplay(1),
     refCount(),
   );

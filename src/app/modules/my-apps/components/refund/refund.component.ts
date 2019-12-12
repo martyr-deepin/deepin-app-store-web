@@ -17,7 +17,7 @@ export class RefundComponent implements OnInit {
   @Output() cancel = new EventEmitter<boolean>();
   form = this.fb.group({
     reason: this.fb.array([...Object.values(RefundReason).map(() => [false])], requiredTrueArray()),
-    content: [''],
+    content: ['', Validators.required],
   });
   successTip = false;
   ngOnInit() {
@@ -36,6 +36,7 @@ export class RefundComponent implements OnInit {
         .filter(Boolean),
       content: this.form.value.content,
     };
+
     await this.refundService.create(this.remoteApp.order_number, formValue);
     this.confirm.emit(null);
     this.successTip = true;

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AutoInstallService } from '../../services/auto-install.service';
 
 @Component({
@@ -9,8 +9,15 @@ import { AutoInstallService } from '../../services/auto-install.service';
 export class RemoteInstallComponent implements OnInit {
   constructor(private autoInstallService: AutoInstallService) {}
   autoInstall$ = this.autoInstallService.getAutoInstall();
+  free = null;
+  @Output('freeChange') freeMessage = new EventEmitter<boolean>();
   ngOnInit() {}
   change(auto: boolean) {
     this.autoInstallService.setAutoInstall(auto);
+  }
+  freeCick() {
+    this.free = this.free !== false ? false : null;
+    console.log(this.free);
+    this.freeMessage.emit(this.free);
   }
 }

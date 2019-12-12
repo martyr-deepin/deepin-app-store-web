@@ -35,8 +35,8 @@ export class LocalAppComponent implements OnInit {
   pageIndex$ = this.route.queryParamMap.pipe(map(query => Number(query.get('page') || 0)));
   result$ = this.pageIndex$.pipe(
     switchMap(pageIndex => {
-      const applist = this.localAppService.list({ pageSize: this.pageSize, pageIndex }).subscribe(data => {
-        console.log(data, 'myappResult');
+      this.localAppService.list({ pageSize: this.pageSize, pageIndex }).subscribe(v => {
+        console.log(v, 'asdasdasd');
       });
 
       return this.localAppService.list({ pageSize: this.pageSize, pageIndex });
@@ -47,9 +47,9 @@ export class LocalAppComponent implements OnInit {
   removingList$ = this.localAppService.removingList();
 
   remove(soft: Software) {
-    this.selected = null;
     this.removing.push(soft.name);
     this.localAppService.removeLocal(soft);
+    this.selected = null;
   }
 
   ngOnInit() {}

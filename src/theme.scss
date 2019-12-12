@@ -48,6 +48,12 @@ $control-button: ('cancel''pause''restart''start');
   --wechat-icon: url('/assets/icons/light/wechat.svg');
   --alipay-icon: url('/assets/icons/light/alipay.svg');
   --paypal-icon: url('/assets/icons/light/paypal.svg');
+  --wechatpay-icon: url('/assets/icons/light/wechatpay.svg');
+  --checkboxnormal-icon: url('/assets/images/checkbox-normal.svg');
+  --checkboxselect-icon: url('/assets/images/checkbox-select.svg');
+
+  --checkboxnormal-icon: url('/assets/images/checkbox-normal.svg');
+  --checkboxselect-icon: url('/assets/images/checkbox-select.svg');
 
   @each $v in $control-button {
     --control-icon-#{$v}: url('/assets/buttons/light/#{$v}_normal.svg'),
