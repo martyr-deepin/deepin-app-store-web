@@ -75,8 +75,9 @@
   </div>
   <div class="submit" *ngIf="info">
     <span class="errorGroup" *ngIf="submitted.touched && commentGroup.invalid" [ngSwitch]="true">
-      <span class="submitError" *ngSwitchCase="content.invalid && score.invalid" i18n>Please rate and post your
-        comment</span>
+      <span class="submitError" *ngSwitchCase="content.invalid && score.invalid">
+        <ng-container i18n>Please rate and post your comment</ng-container>
+      </span>
       <span class="submitError" *ngSwitchCase="content.invalid" i18n>Please input your comment</span>
       <span class="submitError" *ngSwitchCase="score.invalid" i18n>Please rate</span>
       <span class="submitError" *ngSwitchCase="submitted.invalid" i18n>Failed to submit</span>

@@ -5,7 +5,7 @@
     <form [formGroup]="form" (ngSubmit)="submit()">
       <h3 i18n>Refund Request</h3>
       <div class="refundGrid">
-        <span class="required" i18n>Detailed Reason:</span>
+        <span class="required" i18n>Detailed Reasons:</span>
         <div>
           <div class="reason-select">
             <div formArrayName="reason" *ngFor="let kv of RefundReason | keyvalue; index as index">
