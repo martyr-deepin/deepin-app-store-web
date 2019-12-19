@@ -855,8 +855,8 @@
           <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="541cab0c9bba8b7c8466d67249fcfaf8d4e04de6" datatype="html">
-        <source>Fold</source>
+      <trans-unit id="e8bcb762b48cf52fbea66ce9c4f6b970b99a80fd" datatype="html">
+        <source>Collapse</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">103</context>
@@ -1040,9 +1040,8 @@
           <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="b30324a26a9aee18fc0d4df5449d810f1df07864" datatype="html">
-        <source>Please rate and post your
-        comment</source>
+      <trans-unit id="4e0276c8e84978b2d250d9a8471dc1014fbee9f7" datatype="html">
+        <source>Please rate and post your comment</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">79</context>
@@ -1166,8 +1165,8 @@
           <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4c5f105c00a0030a499dc04cbfeca97f20a0cd7d" datatype="html">
-        <source>Due to <x id="INTERPOLATION" equiv-text="{{ reason }}"/>，you cannot post a comment</source>
+      <trans-unit id="501169f2e77fecea8c2758007d9980669dbb8c16" datatype="html">
+        <source>Due to <x id="INTERPOLATION" equiv-text="{{ reason }}"/>, you cannot post a comment</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
           <context context-type="linenumber">17</context>
@@ -1644,13 +1643,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/edit/edit.component.html</context>
           <context context-type="linenumber">32</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4e0276c8e84978b2d250d9a8471dc1014fbee9f7" datatype="html">
-        <source>Please rate and post your comment</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/my-comments/components/edit/edit.component.html</context>
-          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3fb74cf2ff5212dade6a7cd9a43371f3f0f56c7e" datatype="html">
