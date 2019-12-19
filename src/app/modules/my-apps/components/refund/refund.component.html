@@ -5,7 +5,7 @@
     <form [formGroup]="form" (ngSubmit)="submit()">
       <h3 i18n>Refund Request</h3>
       <div class="refundGrid">
-        <span class="required" i18n>Detailed Reason:</span>
+        <span class="required" i18n>Detailed Reasons:</span>
         <div>
           <div class="reason-select">
             <div formArrayName="reason" *ngFor="let kv of RefundReason | keyvalue; index as index">
@@ -43,7 +43,7 @@
 <ng-template #TipContent>
   <span>
     <ng-container i18n>Your request is under review, which takes 2-3 working days.</ng-container>
-    <ng-container i18n>Please wait patiently.Once approved,the refunds will be returned to the original account.</
+    <ng-container i18n> Please wait patiently. Once approved, the refunds will be returned to the original account.</
         ng-container>
   </span>
 </ng-template>
