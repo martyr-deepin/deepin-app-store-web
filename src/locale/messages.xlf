@@ -1040,8 +1040,9 @@
           <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4e0276c8e84978b2d250d9a8471dc1014fbee9f7" datatype="html">
-        <source>Please rate and post your comment</source>
+      <trans-unit id="b30324a26a9aee18fc0d4df5449d810f1df07864" datatype="html">
+        <source>Please rate and post your
+        comment</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">79</context>
@@ -1643,6 +1644,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/edit/edit.component.html</context>
           <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4e0276c8e84978b2d250d9a8471dc1014fbee9f7" datatype="html">
+        <source>Please rate and post your comment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/my-comments/components/edit/edit.component.html</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3fb74cf2ff5212dade6a7cd9a43371f3f0f56c7e" datatype="html">
