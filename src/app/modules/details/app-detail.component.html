@@ -100,7 +100,7 @@
         <div class="pre selectable">
           {{ app.info.description.length>200&&crumbs?app.info.description:app.info.description.slice(0, 200) }}
           <span *ngIf="crumbs" (click)="crumbs=!crumbs" class="crumbs">
-            <ng-container i18n>Fold</ng-container>
+            <ng-container i18n>Collapse</ng-container>
           </span>
           <span *ngIf="app.info.description.length>200&&!crumbs" (click)="crumbs=!crumbs" class="crumbs">
             <ng-container i18n>More</ng-container>
