@@ -21,6 +21,9 @@ header {
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   white-space: nowrap;
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 main img {
