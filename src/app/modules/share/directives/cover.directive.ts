@@ -11,7 +11,7 @@ export class CoverDirective implements OnInit {
       this.onError();
     }
   }
-  @HostBinding('style.border-radius.px') borderRadius = 4;
+  @HostBinding('style.border-radius.px') borderRadius = 8;
   @HostListener('error') onError() {
     switch (this.type) {
       case 'cover':
