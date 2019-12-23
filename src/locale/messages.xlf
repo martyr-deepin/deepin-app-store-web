@@ -131,36 +131,36 @@
         <source>Open</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dee8c41edf822a0124c80cc1e44643f947b3bc5c" datatype="html">
         <source>Install</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">16</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">21</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
           <context context-type="linenumber">66</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4604e5822ba84a95aec8892f27764b577e5537d0" datatype="html">
-        <source>Purchase</source>
+      <trans-unit id="1befce3c6f0c468b06ae5199116e5b096a35a3ef" datatype="html">
+        <source>Buy</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="047f50bc5b5d17b5bec0196355953e1a5c590ddb" datatype="html">
         <source>Update</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">37</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
@@ -171,7 +171,7 @@
         <source>Unavailable</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="91ce116be6e8df104128f339912c9207f01265cd" datatype="html">
