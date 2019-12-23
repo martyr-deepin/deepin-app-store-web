@@ -23,7 +23,7 @@
             </ng-container>
             <ng-template #buyRef>
               <button class="control" (click)="buyApp($event); buyButtonRef.hidden = true" hidden #buyButtonRef>
-                <ng-container i18n>Buy Now</ng-container>
+                <ng-container i18n>Buy</ng-container>
               </button>
               <button class="control price" (click)="buyButtonRef.hidden = false" *ngIf="buyButtonRef.hidden">
                 {{ soft?.pricing?.price / 100 | currency: soft?.pricing?.currency:'symbol-narrow' }}
