@@ -16,8 +16,10 @@ export class AssembleComponent extends SectionItemBase implements OnInit {
   softs = new Map<string, Promise<Software[]>>();
   ngOnInit() {
     this.assembles = (this.section.items as SectionItem[]).filter(a => a.show);
+
     this.assembles.forEach(assemble => {
-      const softs$ = this.softwareService.list({ ids: assemble.items.map(app => app.app_id) });
+      let isShowIitem = assemble.items.filter(v => v.show);
+      const softs$ = this.softwareService.list({ ids: isShowIitem.map(app => app.app_id) });
       this.softs.set(assemble.category, softs$);
     });
     this.wait().finally(() => this.loaded.emit(true));
