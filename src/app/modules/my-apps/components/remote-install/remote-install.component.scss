@@ -44,7 +44,6 @@
     span {
       font-family: SourceHanSansSC-Normal, SourceHanSansSC;
       font-weight: 400;
-      color: rgba(48, 48, 48, 1);
     }
   }
 }
@@ -55,4 +54,8 @@
 
 .checkBoxSelect {
   content: var(--checkboxselect-icon)
+}
+
+.freeButton {
+  color: var(--main-color);
 }

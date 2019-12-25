@@ -9,7 +9,7 @@
   <dstore-batch-install [free]='free' #batchInstall></dstore-batch-install>
   <div class="check_item">
     <div (click)="freeCick()"><i [ngClass]="free!==false?'checkBoxNormal': 'checkBoxSelect'"></i>
-      <span i18n>Show only paid apps</span>
+      <span i18n class="freeButton">Show only paid apps</span>
     </div>
     <button class="primary" (click)="batchInstall.show()">
       <ng-container i18n>Install All</ng-container>
