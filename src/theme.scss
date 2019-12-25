@@ -7,7 +7,7 @@ $control-button: ('cancel''pause''restart''start');
 
   --nav-color: #000;
   --nav-bg-color: #f9f9fa;
-  --nav-bg-color-active: #d6eefe;
+  --nav-bg-color-active: rgba(0, 129, 255, 1);
 
   --scrollbar-bg-color: var(--main-bg-color);
   --scrollbar-color: rgba(0, 0, 0, 0.5);
@@ -164,7 +164,7 @@ $control-button: ('cancel''pause''restart''start');
 
   --nav-color: #afafaf;
   --nav-bg-color: #252525;
-  --nav-bg-color-active: rgba(44, 167, 248, 0.1);
+  --nav-bg-color-active: rgba(0, 129, 255, 1);
 
   --tips_bg: url('/assets/icons/dark/tips_bg.svg');
   --select-icon: url('/assets/icons/dark/select.svg');

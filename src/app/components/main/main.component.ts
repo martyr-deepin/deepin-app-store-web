@@ -50,6 +50,7 @@ export class MainComponent implements OnInit {
   // switch theme dark or light
   switchTheme() {
     this.themeService.getTheme().subscribe(theme => {
+      console.log('主题切换', theme);
       document.body.className = theme;
     });
   }
@@ -57,6 +58,7 @@ export class MainComponent implements OnInit {
   switchFont() {
     this.sysFontService.fontChange$.subscribe(([fontFamily, fontSize]) => {
       const HTMLGlobal = document.querySelector('html');
+      console.log('字体', fontSize);
       HTMLGlobal.style.fontFamily = fontFamily;
       HTMLGlobal.style.fontSize = fontSize + 'px';
     });

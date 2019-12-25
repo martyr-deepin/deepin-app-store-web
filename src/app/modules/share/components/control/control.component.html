@@ -1,10 +1,7 @@
 <dp-circle *ngIf="job$ | async as job; else controlRef" [value]="job.progress">
-  <div
-    class="circle-control"
-    [class.disabled]="!job.cancelable"
-    [class.running]="job.status !== JobStatus.paused && job.status !== JobStatus.failed"
-    (click)="trigger($event, job)"
-  ></div>
+  <div class="circle-control" [class.disabled]="!job.cancelable"
+    [class.running]="job.status !== JobStatus.paused && job.status !== JobStatus.failed" (click)="trigger($event, job)">
+  </div>
 </dp-circle>
 
 <ng-template #controlRef>
@@ -26,7 +23,7 @@
             </ng-container>
             <ng-template #buyRef>
               <button class="control" (click)="buyApp($event); buyButtonRef.hidden = true" hidden #buyButtonRef>
-                <ng-container i18n>Purchase</ng-container>
+                <ng-container i18n>Buy</ng-container>
               </button>
               <button class="control price" (click)="buyButtonRef.hidden = false" *ngIf="buyButtonRef.hidden">
                 {{ soft?.pricing?.price / 100 | currency: soft?.pricing?.currency:'symbol-narrow' }}
