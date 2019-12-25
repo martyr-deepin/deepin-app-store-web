@@ -4,7 +4,8 @@ minimum_perc = 80
 mode = developer
 
 [deepin-store-5.web]
-source_file = src/locale/messages.xlf
 file_filter = src/locale/messages.<lang>.xlf
+source_file = src/locale/messages.xlf
 source_lang = en
 type = XLIFF
+
