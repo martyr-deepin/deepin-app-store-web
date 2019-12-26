@@ -29,6 +29,7 @@ export class RemoteAppComponent implements OnInit {
       if (this.free === false) {
         params['free'] = false;
       }
+      console.log(params);
       return this.remoteAppService.list(params);
     }),
     share(),
@@ -61,6 +62,6 @@ export class RemoteAppComponent implements OnInit {
   }
   freeChange(free: boolean) {
     this.free = free;
-    this.router.navigate([], { queryParams: { page: 0 } });
+    this.router.navigate([], { queryParams: { page: 0, free: this.free } });
   }
 }
