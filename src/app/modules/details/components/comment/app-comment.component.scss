@@ -237,7 +237,7 @@
       .content {
         /* autoprefixer: off */
         // autoprefixer remove -webkit-box-orient
-        min-height: 4.5rem;
+        min-height: 2rem;
         overflow: hidden;
         word-wrap: break-word;
         user-select: text;
@@ -245,6 +245,13 @@
         display: -webkit-box;
         -webkit-line-clamp: 8;
         -webkit-box-orient: vertical;
+      }
+      .reply{
+        border-left:2px solid #4fbdff;
+        margin: 0.5rem 0 1rem 0;
+        .reply-head{
+          color:#666;
+        }
       }
 
       .like {

@@ -5,10 +5,11 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ListRoutingModule } from './list-routing.module';
 import { ListOutletComponent } from './components/list-outlet/list-outlet.component';
 import { ListComponent } from './components/list/list.component';
+import { ListCategory } from './components/category/category.component';
 import { ShareModule } from '../share/share.module';
 
 @NgModule({
-  declarations: [ListOutletComponent, ListComponent],
+  declarations: [ListOutletComponent, ListComponent,ListCategory],
   exports: [ListComponent],
   imports: [CommonModule, ListRoutingModule, ScrollingModule, ShareModule],
 })

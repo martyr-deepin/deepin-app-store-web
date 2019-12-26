@@ -9,8 +9,12 @@
           {{ soft?.info?.name }}
         </div>
         <div class="subtitle" [style.color]="subtitleColor">
-          <div class="category">
-            {{ slogan ? soft?.info?.slogan : (soft?.info?.category | categoryText | async) }} &nbsp;
+          <div class="category" >
+            <!-- {{ slogan ? soft?.info?.slogan : (soft?.info?.category | categoryText | async) }} &nbsp; -->
+            <div *ngIf="slogan;else elsecategory">{{soft?.info?.slogan}}</div>
+            <ng-template #elsecategory>
+              <m-category-name  [category]="soft?.info?.category" ></m-category-name>
+            </ng-template>
           </div>
           <dstore-star *ngIf="soft.stat.score_count >= 20" [rate]="soft.stat.score / 2 || 0"></dstore-star>
           <span *ngIf="soft.stat.score_count < 20" i18n>Calculating</span>

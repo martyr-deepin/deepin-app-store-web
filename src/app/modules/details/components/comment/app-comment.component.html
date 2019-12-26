@@ -110,6 +110,10 @@
           <ng-container i18n>History Versions</ng-container>
           ({{ total[CommentType.History] }})
         </button>
+        <!-- <button [class.active]="select === CommentType.History" (click)="selectChange(CommentType.History)">
+          <ng-container i18n>History Versions</ng-container>
+          ({{ total[CommentType.History] }})
+        </button> -->
       </div>
       <div class="paginator" *ngIf="total[select] > page.size">
         <app-paginator [length]="total[select]" [size]="page.size" [pageIndex]="page.index"
@@ -173,6 +177,10 @@
               <tr>
                 <td>
                   <div class="content">{{ c.content }}</div>
+                  <div class="reply" *ngIf="c.reply">
+                    <span class="reply-head" i18n> [Developer reply]</span>
+                    <span>{{c.reply.context}}</span>
+                  </div>
                 </td>
               </tr>
             </ng-container>
