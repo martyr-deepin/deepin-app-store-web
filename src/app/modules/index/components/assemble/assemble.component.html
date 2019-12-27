@@ -1,8 +1,7 @@
 <index-title [titles]="section.name"></index-title>
 <div class="list">
   <ng-container *ngFor="let assemble of this.assembles; index as index">
-    <section class="assemble" *ngIf="section.cols > index &&index<4">
-
+     <section class='assemble' *ngIf="section.cols > index &&index<4"> 
       <header class="category cursor" [routerLink]="'/list/category/' + assemble.category">
         {{ assemble.category | categoryText | async }}
       </header>
@@ -22,12 +21,11 @@
               </div>
               <dstore-control class="control" [soft]="soft"></dstore-control>
             </main>
-
           </section>
         </ng-container>
       </main>
 
-    </section>
+    </section> 
   </ng-container>
   <section class="item empty" *ngFor="let empty of 7 | range"></section>
 </div>

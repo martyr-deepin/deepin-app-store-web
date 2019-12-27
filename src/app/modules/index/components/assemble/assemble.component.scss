@@ -13,7 +13,8 @@
 
   .category {
     height: 2rem;
-    padding: 3px 0.5rem;
+    padding: 0px 0.5rem;
+    line-height: 2rem;
   }
 
   @for $var from 0 to 40 {
@@ -38,6 +39,8 @@
     }
     img {
       width: 100%;
+      display: block;
+      border-radius: 0px !important ;
     }
     flex-direction: column;
   }
