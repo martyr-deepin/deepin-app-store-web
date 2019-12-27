@@ -14,6 +14,7 @@
             <div *ngIf="slogan;else elsecategory">{{soft?.info?.slogan}}</div>
             <ng-template #elsecategory>
               <m-category-name  [category]="soft?.info?.category" ></m-category-name>
+              {{soft?.info?.category}}
             </ng-template>
           </div>
           <dstore-star *ngIf="soft.stat.score_count >= 20" [rate]="soft.stat.score / 2 || 0"></dstore-star>
