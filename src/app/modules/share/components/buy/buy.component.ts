@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { timer, Observable } from 'rxjs';
+import { timer, Observable, of } from 'rxjs';
 import { switchMap, share } from 'rxjs/operators';
 import { Software, SoftwareService } from 'app/services/software.service';
 import { Payment } from 'app/services/payment';
@@ -95,13 +95,17 @@ export class BuyComponent implements OnInit {
         if (this.success) {
           return this.order;
         }
-        const order = await this.orderService.get(result.order_number as any);
-        if (order.status === OrderStatus.OrderStatusSuccess) {
-          this.success = true;
-          this.order = order;
-          this.buyService.buy$.next(this.soft);
+        try {
+          const order = await this.orderService.get(result.order_number as any);
+          if (order.status === OrderStatus.OrderStatusSuccess) {
+            this.success = true;
+            this.order = order;
+            this.buyService.buy$.next(this.soft);
+          }
+          return order;
+        } catch (error) {
+          return { status: 'netWokrError' } as OrderJSON;
         }
-        return order;
       }),
       share(),
     );

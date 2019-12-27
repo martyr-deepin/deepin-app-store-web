@@ -10,6 +10,7 @@ import { DownloadTotalService } from './download-total.service';
 import { AppService, AppJSON, Pricing } from './app.service';
 import { StatService, AppStat } from './stat.service';
 import { BuyService } from './buy.service';
+import { MessageService, MessageType } from './message.service';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,17 @@ export class SoftwareService {
     private storeService: StoreService,
     private packageService: PackageService,
     private downloadCounter: DownloadTotalService,
-  ) {}
+    private messageService: MessageService,
+  ) {
+    // Uninstall software after refund
+    this.messageService.onMessage<{ app_id: number }>(MessageType.Refund).subscribe(async msg => {
+      console.log(msg.app_id);
+      const softs = await this.list({}, { id: [msg.app_id] });
+      if (softs) {
+        this.remove(...softs);
+      }
+    });
+  }
   packages = this.http.get<PackagesURL>('/api/public/packages').toPromise();
 
   async list(

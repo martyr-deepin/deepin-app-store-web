@@ -87,5 +87,7 @@ interface Message {
 }
 
 export enum MessageType {
+  Ping = 'ping',
   AppsChange = 'apps-change',
+  Refund = 'refund',
 }

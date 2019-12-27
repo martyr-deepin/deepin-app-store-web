@@ -39,6 +39,7 @@ export enum OrderStatus {
   OrderStatusWaiting = 'waiting',
   OrderStatusSuccess = 'success',
   OrderStatusFailure = 'failure',
+  OrderStatusNetWorkError = 'netWokrError',
 }
 interface buyParams {
   app_id: number;
