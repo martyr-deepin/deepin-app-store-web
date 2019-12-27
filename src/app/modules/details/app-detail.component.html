@@ -35,9 +35,13 @@
 
           </ng-container>
         </div>
-        <div i18n>Category:{{app.info.category}}</div>
+        <div i18n>Category:</div>
+        <div >
+          <m-category-name  [category]="app.info.category" ></m-category-name>
+          <!-- {{app.info.category}} -->
+        </div>
         
-        <div>{{ app.info.category | categoryText | async }}</div>
+        <!-- <div>{{ app.info.category | categoryText | async }}</div> -->
         <ng-container *ngIf="controlRef.package$ | async as package">
           <div i18n>Version:</div>
           <div>{{ package.remoteVersion || package.localVersion }}</div>
