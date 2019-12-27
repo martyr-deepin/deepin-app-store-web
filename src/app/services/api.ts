@@ -1,4 +1,6 @@
 import { HttpClient, HttpParams, HttpParameterCodec } from '@angular/common/http';
+import { timeout } from 'rxjs/operators';
+
 export class APIBase<RModel, WModel = RModel> {
   constructor(private _http: HttpClient, private api: string) {}
   private encoder = new CustomEncoder();
@@ -12,7 +14,10 @@ export class APIBase<RModel, WModel = RModel> {
     return { items: resp.body, count: Number(resp.headers.get('X-Total-Count')) };
   }
   get(id: number) {
-    return this._http.get<RModel>(this.api + '/' + id).toPromise();
+    return this._http
+      .get<RModel>(this.api + '/' + id)
+      .pipe(timeout(10000))
+      .toPromise();
   }
   post(v: Partial<WModel>) {
     return this._http.post<RModel>(this.api, v).toPromise();

@@ -7,6 +7,9 @@
     <ng-container *ngSwitchCase="OrderStatus.OrderStatusFailure">
       <ng-container [ngTemplateOutlet]="failedRef"></ng-container>
     </ng-container>
+    <ng-container *ngSwitchCase="OrderStatus.OrderStatusNetWorkError">
+      <ng-container [ngTemplateOutlet]="netWorkErrorRef"></ng-container>
+    </ng-container>
     <ng-container *ngSwitchCase="OrderStatus.OrderStatusSuccess">
       <ng-container [ngTemplateOutlet]="successRef" [ngTemplateOutletContext]="{ order: order }"></ng-container>
     </ng-container>
@@ -82,10 +85,8 @@
 
   <!-- 3. Failed -->
   <ng-template #failedRef>
-
     <div class="failed">
       <div>
-
         <div class="failed_tip">
           <i></i>
           <span i18n>Payment failed, please try again!</span>
@@ -96,11 +97,23 @@
         </div>
       </div>
     </div>
-
-
   </ng-template>
+  <!-- 4. netWork -->
+  <ng-template #netWorkErrorRef>
+    <div class="network">
+      <div>
+        <img src="/assets/icons/failed.svg" />
+        <div class="timeoutTip">
+          <ng-container i18n>Network disconnected, and you may not be able to buy the app successfully,</ng-container>
+          <ng-container i18n> please check your network first</ng-container>
 
-  <!-- 3. Success -->
+        </div>
+      </div>
+
+
+    </div>
+  </ng-template>
+  <!-- 5. Success -->
   <ng-template #successRef let-order="order">
     <div class="pay-success">
       <div class="success-title">
@@ -121,4 +134,7 @@
       </div>
     </div>
   </ng-template>
+  <div [hidden]='true'>
+    <img src="/assets/icons/failed.svg" />
+  </div>
 </dialog>
