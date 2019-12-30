@@ -16,6 +16,14 @@ export class AppComponent implements OnInit {
   installing = true;
   ngOnInit() {
     this.init().finally(() => (this.installing = false));
+
+  }
+  ngAfterContentInit(){
+    console.log(new Date().getTime())
+    let loading = document.getElementById('loading');
+    let main = document.getElementById('main');
+    loading.style.display='none';
+    main.style.display = 'block';
   }
   async init() {
     const info = await this.auth.info$
