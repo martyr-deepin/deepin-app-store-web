@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable, empty, onErrorResumeNext } from 'rxjs';
+import { merge, Observable, empty, onErrorResumeNext } from 'rxjs';
 import { filter, map, switchMap, share, retry } from 'rxjs/operators';
 
 import { environment } from 'environments/environment';
@@ -17,10 +17,7 @@ export class MessageService {
     switchMap(info => {
       console.log('message', { info });
       if (info) {
-        return onErrorResumeNext<{ Type: string; Data: any }>(
-          this.sseMessage().pipe(retry(3)),
-          this.wsMessage().pipe(retry(3)),
-        );
+        return merge(this.sseMessage().pipe(retry(3)), this.wsMessage().pipe(retry(3)));
       }
       return empty();
     }),
