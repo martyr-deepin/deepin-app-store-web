@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { merge, Observable, empty, onErrorResumeNext } from 'rxjs';
 import { filter, map, switchMap, share, retry } from 'rxjs/operators';
 
@@ -6,12 +6,20 @@ import { environment } from 'environments/environment';
 import { AuthService } from './auth.service';
 import { ClientIdService } from './client-id.service';
 
+export enum MessageType {
+  Ping = 'ping',
+  AppsChange = 'apps_changed',
+  Refund = 'user_refund',
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class MessageService {
-  constructor(private authService: AuthService, private clientID: ClientIdService) {
-    this.onMessage().subscribe();
+  constructor(private zone: NgZone, private authService: AuthService, private clientID: ClientIdService) {
+    this.message.subscribe(msg => {
+      console.warn('[message] ', msg);
+    });
   }
   message = this.authService.info$.pipe(
     switchMap(info => {
@@ -38,7 +46,11 @@ export class MessageService {
           obs.error(err);
         });
         es.addEventListener('message', e => {
-          obs.next(JSON.parse(e.data));
+          const msg = JSON.parse(e.data) as Message;
+          if (msg.Type === MessageType.Ping) {
+            return;
+          }
+          this.zone.run(() => obs.next(msg));
         });
         return () => es.close();
       } catch (err) {
@@ -57,7 +69,11 @@ export class MessageService {
           obs.error(err);
         });
         ws.addEventListener('message', e => {
-          obs.next(JSON.parse(e.data));
+          const msg = JSON.parse(e.data) as Message;
+          if (msg.Type === MessageType.Ping) {
+            return;
+          }
+          this.zone.run(() => obs.next(msg));
         });
         ws.addEventListener('close', () => {
           obs.complete();
@@ -81,10 +97,4 @@ interface Message {
   ID: number;
   Type: MessageType;
   Data: any;
-}
-
-export enum MessageType {
-  Ping = 'ping',
-  AppsChange = 'apps-change',
-  Refund = 'refund',
 }
