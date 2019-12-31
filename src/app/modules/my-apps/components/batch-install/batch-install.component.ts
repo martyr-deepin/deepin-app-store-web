@@ -53,7 +53,9 @@ export class BatchInstallComponent implements OnInit {
     this.dialogRef.nativeElement.close();
   }
   unavailable(app: Software) {
-    return app.package.localVersion !== '' ? true : false;
+    return !app.package.remoteVersion || !app.active || app.unavailable || app.package.localVersion !== ''
+      ? true
+      : false;
   }
   touch(app: Software) {
     if (this.unavailable(app)) {

@@ -247,6 +247,7 @@ export interface Software {
   versions?: any;
   tags?: any[];
   images?: Image[];
+  unavailable?: boolean;
 }
 
 interface Desc {
