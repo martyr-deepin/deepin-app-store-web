@@ -6,12 +6,34 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    body{
+      margin: 0px;
+      padding: 0px;
+    }
+    .water {
+      width: 39px;
+      height: 39px;
+      border-radius: 50%;
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+      background: url('/assets/images/water_front.svg') repeat-x,
+        url('/assets/images/water_back.svg') repeat-x, rgba(43, 169, 243, 0.15);
+      background-size: 500% 100%;
+      --position: 1rem;
+      background-position: left var(--position);
+      animation: flow 20s infinite linear;
+    }
+    .water-container{
+      display: flex;justify-content: center;align-items: center;flex-grow: 1;
+    }
+    
+  </style>
 </head>
 <body>
-  <div id="loading" style="display: block;">
-    <div style="width: 7.7rem;min-width: 154px;"></div>
-    <div style="display: flex;justify-content: center;align-items: center;"> 
-      <div> 正在加载中...</div>
+  <div id="loading" style="display: flex;">
+    <div style="width: 7.7rem;min-width: 154px;height: 100vh;"></div>
+    <div class="water-container" > 
+      <div  class="water"> </div>
     </div>
   </div>
   <div id="main"  style="display: none;">
