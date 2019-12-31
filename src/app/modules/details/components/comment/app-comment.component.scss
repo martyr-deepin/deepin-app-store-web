@@ -247,10 +247,14 @@
         -webkit-box-orient: vertical;
       }
       .reply{
-        border-left:2px solid #4fbdff;
         margin: 0.5rem 0 1rem 0;
         .reply-head{
+          padding-left:0.5rem;
           color:#666;
+          border-left:2px solid #4fbdff;
+        }
+        .replay-content{
+          word-break:break-all;
         }
       }
 
