@@ -8,11 +8,9 @@ import { registerLocaleData } from '@angular/common';
 import localeZH from '@angular/common/locales/zh-Hans';
 registerLocaleData(localeZH, 'zh-Hans');
 
-//客户
 import { ClientModule } from 'app/modules/client/client.module';
-//分享
 import { ShareModule } from 'app/modules/share/share.module';
-//主模块
+
 import { MainComponent } from './components/main/main.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { RecommendComponent } from './components/recommend/recommend.component';
