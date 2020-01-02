@@ -42,9 +42,12 @@
                   </ng-container>
                 </ng-container>
                 <ng-template #canNotRefundRef>
-                  <button class="secondary" disabled>
+
+                  <button class="secondary toolTip" disabled>
                     <ng-container i18n-title title="Two-hour refund period has expired" i18n>Refund</ng-container>
+                    <div i18n class="toolTip_content">Two-hour refund period has expired</div>
                   </button>
+
                 </ng-template>
               </ng-container>
               &nbsp;

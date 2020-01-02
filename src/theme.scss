@@ -108,6 +108,15 @@ $control-button: ('cancel''pause''restart''start');
         border: 1px solid rgba(0, 0, 0, 0.08);
       }
     }
+
+    &.toolTip {
+      .toolTip_content {
+        color: black;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(253, 253, 253, 1) 100%);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+    }
   }
 
   .___button {
@@ -209,6 +218,7 @@ $control-button: ('cancel''pause''restart''start');
   button {
     color: #cccccc;
     background-color: rgba(65, 65, 65, 0.8);
+    position: relative;
 
     &.control {
       color: #e9e9e9;
@@ -247,6 +257,23 @@ $control-button: ('cancel''pause''restart''start');
         background-color: rgba(255, 255, 255, 0.1);
         box-shadow: unset;
       }
+    }
+
+    // &.secondary:enabled {
+    //   &:not(:hover):not(:active) {
+    //     color: white;
+    //     background: black;
+    //     border: 1px solid rgba(0, 0, 0, 0.08);
+    //   }
+    // }
+
+    &.toolTip {
+      .toolTip_content {
+        color: white;
+        background: black;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
     }
   }
 
