@@ -265,6 +265,10 @@ export class AppCommentComponent implements OnInit, OnChanges {
   }
   async thumbUpClick(c: AppComment) {
     const info = await this.info$.pipe(first()).toPromise();
+    if (!info) {
+      this.login();
+      return;
+    }
     const by = c.likes.findIndex(like => like.liker === info.uid);
     if (by === -1) {
       await this.commentService.like(c.id).toPromise();
