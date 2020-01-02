@@ -1,7 +1,7 @@
 :host {
   position: relative;
   display: block;
-  margin: 0 -1rem;
+  // margin: 0 -1rem;
 }
 .screenshots {
   display: flex;
@@ -66,8 +66,8 @@ dialog {
 }
 .nextButton {
   @extend .button;
-  right: 0.5rem;
-  background-image: url('/assets/buttons/next_normal.svg');
+  right: 0.5rem ;
+  background-image: url('/assets/buttons/next_normal.svg') !important;
   &:not(:disabled) {
     &:hover {
       background-color: unset;

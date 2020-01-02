@@ -107,7 +107,8 @@ export class AuthService {
   }
   // 打开注册页面
   register() {
-    DstoreObject.openURL(`https://account.deepin.org/register`);
+    DstoreObject.openURL(`https://account.chinauos.com/register`);
+   
   }
 }
 

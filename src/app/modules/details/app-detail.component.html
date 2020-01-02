@@ -114,17 +114,16 @@
       </div>
     </div>
   </div>
-  <br />
-  <br />
-
+ 
   <app-screenshot [screenshotList]="app.info.screenshot"></app-screenshot>
 
   <ng-container *ngIf="supportSignIn && controlRef.package$ | async as package">
     <app-donate [appName]="app.name"></app-donate>
-    <br />
   </ng-container>
-  <dstore-app-comment [appID]="app.id" [appVersion]="app.package.remoteVersion"></dstore-app-comment>
-  <br />
+  <div style="margin: 0px 1rem;">
+    <dstore-app-comment [appID]="app.id" [appVersion]="app.package.remoteVersion"></dstore-app-comment>
+  </div>
+ 
   <div class="ad" *ngIf="adVisible$ | async">
     <ng-container i18n>CDN supported by UPYUN</ng-container>
   </div>

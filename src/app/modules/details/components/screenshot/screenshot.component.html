@@ -1,4 +1,6 @@
 <ng-container *ngIf="screenshotList.length > 0">
+  <div>
+
   <div class="screenshots">
     <ng-container *ngFor="let screenshot of screenshotList; index as $index">
       <img
@@ -14,12 +16,16 @@
     <button class="lastButton" [disabled]="select === 0" (click)="goto(select - 1)"></button>
     <button class="nextButton" [disabled]="select === screenshotList.length - 1" (click)="goto(select + 1)"></button>
   </div>
+
+
   <dstore-indication
     [count]="screenshotList.length"
     [selectIndex]="select"
     #indication
     (change)="goto($event)"
   ></dstore-indication>
+  
+</div>
 </ng-container>
 <ng-container *ngIf="loading">
   <dialog open="true">

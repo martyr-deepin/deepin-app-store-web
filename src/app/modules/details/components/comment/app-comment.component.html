@@ -1,5 +1,6 @@
 <div #commentRef></div>
 <ng-container *ngFor="let info of [info$ | async]">
+  <div>
   <div class="commentInput" [formGroup]="commentGroup">
     <div class="title">
       <ng-container *ngIf="!info; else logged">
@@ -198,6 +199,7 @@
     <app-paginator *ngIf="total[select] > page.size" [pageIndex]="page.index" [length]="total[select]"
       [size]="page.size" (pageIndexChange)="pageChange($event)"></app-paginator>
   </div>
+</div>
 </ng-container>
 
 <ng-container *ngIf="clean$ | async"></ng-container>
