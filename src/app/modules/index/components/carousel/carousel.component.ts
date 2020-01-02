@@ -103,7 +103,8 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
           } else {
             const topicIndex = c.topic_index.split('-').map(Number);
             const globalSection = this.sectionService.globalSection as SectionItem[];
-            const topicData = globalSection[topicIndex[0]].items[topicIndex[1]];
+            const topicData = globalSection[topicIndex[0] + 1].items[topicIndex[1]];
+            console.log(globalSection, topicIndex);
             if (!topicData.show) {
               //如果禁用专题就让item=[]
               topicData.items = [];
