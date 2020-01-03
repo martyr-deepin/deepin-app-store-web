@@ -14,7 +14,10 @@ export class AssembleComponent extends SectionItemBase implements OnInit {
   }
   assembles: SectionItem[];
   softs = new Map<string, Promise<Software[]>>();
+  assembleSection;
   ngOnInit() {
+    this.assembleSection = this.section;
+    console.log(this.section, '分类secation');
     this.assembles = (this.section.items as SectionItem[]).filter(a => a.show);
 
     this.assembles.forEach(assemble => {
