@@ -6,6 +6,7 @@ import { environment } from 'environments/environment';
 import { AuthService } from 'app/services/auth.service';
 import { APIBase, ListOption } from 'app/services/api';
 import { Subject } from 'rxjs';
+import { CustomEncoder } from 'app/services/http-param-custom-encoder';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +30,10 @@ export class CommentService {
   }
   getDisableStatus(appID: number, appVersion: string) {
     return this.http.get<CommentDisableStatus>(`/api/user/comment/${appID}/disable_status`, {
-      params: { app_id: appID as any, app_version: appVersion },
+      params: new HttpParams({
+        fromObject: { app_id: appID as any, app_version: appVersion },
+        encoder: new CustomEncoder(),
+      }),
     });
   }
   userAPI(app_id: number) {

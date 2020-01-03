@@ -1,5 +1,6 @@
-import { HttpClient, HttpParams, HttpParameterCodec } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { timeout } from 'rxjs/operators';
+import { CustomEncoder } from './http-param-custom-encoder';
 
 export class APIBase<RModel, WModel = RModel> {
   constructor(private _http: HttpClient, private api: string) {}
@@ -36,21 +37,4 @@ export interface ListOption {
   offset?: number;
   limit?: number;
   free?: boolean;
-}
-class CustomEncoder implements HttpParameterCodec {
-  encodeKey(key: string): string {
-    return encodeURIComponent(key);
-  }
-
-  encodeValue(value: string): string {
-    return encodeURIComponent(value);
-  }
-
-  decodeKey(key: string): string {
-    return decodeURIComponent(key);
-  }
-
-  decodeValue(value: string): string {
-    return decodeURIComponent(value);
-  }
 }
