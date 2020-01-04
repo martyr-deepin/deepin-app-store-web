@@ -1,6 +1,9 @@
 PREFIX=/usr
 
 all: build
+modules:
+	mv node_modules node_modules.bk || true
+	ln -s vendor-deps/node_modules node_modules
 run:
 	yarn start
 build:
