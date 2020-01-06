@@ -18,7 +18,7 @@
             </ng-template>
           </div>
           <dstore-star *ngIf="soft.stat.score_count >= 20" [rate]="soft.stat.score / 2 || 0"></dstore-star>
-          <span *ngIf="soft.stat.score_count < 20" i18n>Calculating</span>
+          <span *ngIf="soft.stat.score_count < 20" i18n></span>
         </div>
       </div>
       <div class="control">

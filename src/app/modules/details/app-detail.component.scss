@@ -70,7 +70,7 @@
   align-items: baseline;
 
   .details {
-    margin-left: 1rem;
+    margin-right: 1rem;
   }
 }
 
@@ -137,6 +137,8 @@
 }
 
 .pre {
+  max-height: 20rem;
+  overflow-y: hidden;
   white-space: pre-line;
   word-break: break-all;
 }
