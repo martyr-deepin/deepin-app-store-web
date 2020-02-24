@@ -9,8 +9,6 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { CollectionViewer, DataSource } from '@angular/cdk/collections';
-import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'dstore-list',

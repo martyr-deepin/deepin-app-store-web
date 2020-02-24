@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { environment } from 'environments/environment';
 import { first, filter } from 'rxjs/operators';
 
@@ -11,21 +11,78 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private region: RegionService, private auth: AuthService) {}
+  constructor(private zone: NgZone, private region: RegionService, private auth: AuthService) {}
   title = 'deepin-app-store-web';
   installing = true;
   ngOnInit() {
-    this.init().finally(() => (this.installing = false));
+    this.init().finally(() => {
+      this.installing = false;
 
-  }
-  ngAfterContentInit(){
-    console.log(new Date().getTime())
-    let loading = document.getElementById('loading');
-    let main = document.getElementById('main');
-    loading.style.display='none';
-    main.style.display = 'block';
+      console.log(new Date().getTime());
+      const loading = document.getElementById('loading');
+      const main = document.getElementById('main');
+      loading.style.display = 'none';
+      main.style.display = 'block';
+    });
   }
   async init() {
+    await this.initChannel();
+    await this.selectRegion();
+  }
+  async initChannel() {
+    console.log('channel');
+
+    const QWebChannel = window['QWebChannel'];
+    if (QWebChannel) {
+      // Native client mode.
+      // js call ==> dstore channel ==> proxy channel >> c++ call
+      // proxy channel
+      const channelTransport = await new Promise<any>(resolve => {
+        return new QWebChannel(window['qt'].webChannelTransport, resolve);
+      });
+      // dstore channel
+      const channel = await new Promise<any>(resolve => {
+        const t = {
+          send(msg: any) {
+            channelTransport.objects.channelProxy.send(msg);
+          },
+          onmessage(msg: any) {},
+        };
+        channelTransport.objects.channelProxy.message.connect(msg => {
+          this.zone.run(() => {
+            t.onmessage({ data: msg });
+          });
+        });
+        return new QWebChannel(t, resolve);
+      });
+
+      window['dstore'] = { channel };
+
+      const settings = await new Promise<Settings>(resolve => {
+        channel.objects.settings.getSettings(resolve);
+      });
+      console.log('dstore client config', settings);
+      environment.native = true;
+      if (settings.themeName) {
+        environment.themeName = settings.themeName;
+      }
+      if (environment.production) {
+        environment.supportSignIn = settings.supportSignIn;
+        environment.region = settings.defaultRegion;
+        environment.autoSelect = settings.allowSwitchRegion;
+        environment.operationList = settings.operationServerMap;
+        environment.metadataServer = settings.metadataServer;
+        environment.operationServer = environment.operationList[environment.region];
+
+        environment.server = settings.server;
+        environment.store_env.arch = settings.arch;
+        environment.store_env.mode = settings.desktopMode;
+        environment.store_env.platform = settings.product;
+        environment.remoteDebug = settings.remoteDebug;
+      }
+    }
+  }
+  async selectRegion() {
     const info = await this.auth.info$
       .pipe(
         filter(v => v !== undefined),
@@ -40,4 +97,22 @@ export class AppComponent implements OnInit {
     }
   }
 }
-//
+
+interface Settings {
+  allowShowPackageName: boolean;
+  allowSwitchRegion: boolean;
+  autoInstall: boolean;
+  defaultRegion: string;
+  metadataServer: string;
+  operationServerMap: { [key: string]: string };
+  remoteDebug: boolean;
+  supportAot: boolean;
+  supportSignIn: boolean;
+  themeName: string;
+  upyunBannerVisible: boolean;
+
+  server: string;
+  arch: string;
+  desktopMode: string;
+  product: string;
+}

@@ -1,4 +1,5 @@
-<?xml version="1.0" ?><xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+<?xml version="1.0" ?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file datatype="plaintext" original="ng2.template" source-language="en" target-language="zh-CN">
     <body>
       <trans-unit datatype="html" id="07db550ae114d9faad3a0cbb68bcc16ab6cd31fc">
@@ -1383,7 +1384,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="b1b2b24fabda7cb53e6a74d24392a039be91412b">
         <source>Processing <x equiv-text="{{ jobs.length }}" id="INTERPOLATION"/> <x equiv-text="{jobs.length, plural, =0 {...} =1 {...} other {...}}" id="ICU"/></source>
-        <target> <x equiv-text="{{ jobs.length }}" id="INTERPOLATION"/>个<x equiv-text="{jobs.length, plural, =0 {...} =1 {...} other {...}}" id="ICU"/>正在进行</target>
+        <target><x equiv-text="{{ jobs.length }}" id="INTERPOLATION"/>个<x equiv-text="{jobs.length, plural, =0 {...} =1 {...} other {...}}" id="ICU"/>正在进行</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
           <context context-type="linenumber">8</context>

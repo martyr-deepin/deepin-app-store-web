@@ -16,35 +16,35 @@ const routes: Routes = [
   // home page
   {
     path: 'index',
-    loadChildren: 'app/modules/index/index.module#IndexModule',
+    loadChildren: () => import('app/modules/index/index.module').then(m => m.IndexModule),
   },
   // detail page
   {
     path: 'app/:id',
-    loadChildren: 'app/modules/details/details.module#DetailsModule',
+    loadChildren: () => import('app/modules/details/details.module').then(m => m.DetailsModule),
   },
   // list page
   {
     path: 'list/:name/:value',
-    loadChildren: 'app/modules/list/list.module#ListModule',
+    loadChildren: () => import('app/modules/list/list.module').then(m => m.ListModule),
   },
   // download
   {
     path: 'download',
-    loadChildren: 'app/modules/download/download.module#DownloadModule',
+    loadChildren: () => import('app/modules/download/download.module').then(m => m.DownloadModule),
   },
   {
     path: 'my/apps',
-    loadChildren: 'app/modules/my-apps/my-apps.module#MyAppsModule',
+    loadChildren: () => import('app/modules/my-apps/my-apps.module').then(m => m.MyAppsModule),
   },
   {
     path: 'my/comments',
-    loadChildren: 'app/modules/my-comments/my-comments.module#MyCommentsModule',
+    loadChildren: () => import('app/modules/my-comments/my-comments.module').then(m => m.MyCommentsModule),
     canActivate: [AuthGuardService],
   },
   {
     path: 'my/donates',
-    loadChildren: 'app/modules/my-donates/my-donates.module#MyDonatesModule',
+    loadChildren: () => import('app/modules/my-donates/my-donates.module').then(m => m.MyDonatesModule),
     canActivate: [AuthGuardService],
   },
 ];

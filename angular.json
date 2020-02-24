@@ -5,6 +5,55 @@
   "projects": {
     "deepin-app-store-web": {
       "projectType": "application",
+      "i18n": {
+        "locales": {
+          "am-ET": "src/locale/messages.am_ET.xlf",
+          "ar": "src/locale/messages.ar.xlf",
+          // "ast": "src/locale/messages.ast.xlf",
+          "az": "src/locale/messages.az.xlf",
+          "bg": "src/locale/messages.bg.xlf",
+          "ca": "src/locale/messages.ca.xlf",
+          "cs": "src/locale/messages.cs.xlf",
+          "da": "src/locale/messages.da.xlf",
+          "de": "src/locale/messages.de.xlf",
+          "el": "src/locale/messages.el.xlf",
+          "en-AU": "src/locale/messages.en_AU.xlf",
+          // "es-419": "src/locale/messages.es_419.xlf",
+          "es": "src/locale/messages.es.xlf",
+          "et": "src/locale/messages.et.xlf",
+          "fa": "src/locale/messages.fa.xlf",
+          "fi": "src/locale/messages.fi.xlf",
+          "fr": "src/locale/messages.fr.xlf",
+          "gl-ES": "src/locale/messages.gl_ES.xlf",
+          "hi-IN": "src/locale/messages.hi_IN.xlf",
+          "hr": "src/locale/messages.hr.xlf",
+          "hu": "src/locale/messages.hu.xlf",
+          "id": "src/locale/messages.id.xlf",
+          "it": "src/locale/messages.it.xlf",
+          "ja": "src/locale/messages.ja.xlf",
+          "kn-IN": "src/locale/messages.kn_IN.xlf",
+          "ko": "src/locale/messages.ko.xlf",
+          "lt": "src/locale/messages.lt.xlf",
+          "ms": "src/locale/messages.ms.xlf",
+          "ne": "src/locale/messages.ne.xlf",
+          "nl": "src/locale/messages.nl.xlf",
+          "pl": "src/locale/messages.pl.xlf",
+          "pt-BR": "src/locale/messages.pt_BR.xlf",
+          "pt": "src/locale/messages.pt.xlf",
+          "ro": "src/locale/messages.ro.xlf",
+          "ru": "src/locale/messages.ru.xlf",
+          "sk": "src/locale/messages.sk.xlf",
+          "sr": "src/locale/messages.sr.xlf",
+          "sv": "src/locale/messages.sv.xlf",
+          "tr": "src/locale/messages.tr.xlf",
+          "ug": "src/locale/messages.ug.xlf",
+          "uk": "src/locale/messages.uk.xlf",
+          "vi": "src/locale/messages.vi.xlf",
+          "zh-CN": "src/locale/messages.zh_CN.xlf",
+          "zh-HK": "src/locale/messages.zh_HK.xlf",
+          "zh-TW": "src/locale/messages.zh_TW.xlf"
+        }
+      },
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
@@ -22,7 +71,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
             "scripts": [
@@ -45,15 +94,14 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": false,
+              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
-                  "maximumError": "10mb"
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",

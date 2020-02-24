@@ -1,69 +1,73 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>DeepinAppstoreWeb</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <style>
-    html,body{
-      margin: 0px;
-      padding: 0px;
-      width: 100vw;
-      height: 100vh;
-    }
-    #loading{
-      width: 100%;
-      height: 100%;
-    }
-    #loading .nav{
-      min-width: 154px
-    }
-    #loading .water {
-      width: 39px;
-      height: 39px;
-      border-radius: 50%;
-      box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
-      background: url('/assets/images/water_front.svg') repeat-x,
-        url('/assets/images/water_back.svg') repeat-x, rgba(43, 169, 243, 0.15);
-      background-size: 500% 100%;
-      --position: 1rem;
-      background-position: left var(--position);
-      animation: loading-flow 20s infinite linear;
-    }
-    @keyframes loading-flow {
-      from {
-        background-position: 0 var(--position), 500% var(--position);
+  <head>
+    <meta charset="utf-8" />
+    <title>DeepinAppstoreWeb</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <style>
+      html,
+      body {
+        margin: 0px;
+        padding: 0px;
+        width: 100vw;
+        height: 100vh;
       }
-      to {
-        background-position: 500% var(--position), 0 var(--position);
-      }
-    }
-    #loading .water-container{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-grow: 1;
-      height: 100vh;
-    }
-    @media (max-width: 600px) {
       #loading {
-        display: none;
+        width: 100%;
+        height: 100%;
       }
-    }
-  </style>
-</head>
-<body>
-  <div id="loading">
-    <div class="nav"></div>
-    <div class="water-container"> 
-      <div class="water"> </div>
+      #loading .nav {
+        min-width: 154px;
+      }
+      #loading .water {
+        width: 39px;
+        height: 39px;
+        border-radius: 50%;
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+        background: url("/assets/images/water_front.svg") repeat-x,
+          url("/assets/images/water_back.svg") repeat-x,
+          rgba(43, 169, 243, 0.15);
+        background-size: 500% 100%;
+        --position: 1rem;
+        background-position: left var(--position);
+        animation: loading-flow 20s infinite linear;
+      }
+      @keyframes loading-flow {
+        from {
+          background-position: 0 var(--position), 500% var(--position);
+        }
+        to {
+          background-position: 500% var(--position), 0 var(--position);
+        }
+      }
+      #loading .water-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        height: 100vh;
+      }
+      @media (max-width: 600px) {
+        #loading {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loading">
+      <div class="nav"></div>
+      <div class="water-container">
+        <div class="water"></div>
+      </div>
     </div>
-  </div>
-  <div id="main"  style="display: none;">
-    <m-root></m-root>
-  </div>
-  </script>
-</body>
+    <div id="main" style="display: none;">
+      <m-root></m-root>
+    </div>
+    <script>
+      global = window;
+    </script>
+  </body>
 </html>
