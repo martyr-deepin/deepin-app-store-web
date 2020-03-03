@@ -11,7 +11,7 @@ export class SystemGuardService {
   canActivate() {
     console.log(this.AuthorizationState);
     if (environment.authorizationState === this.AuthorizationState.Notauthorized) {
-      this.router.navigate(['error']);
+      this.router.navigate(['my/apps']);
       return false;
     } else {
       return true;
