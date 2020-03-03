@@ -9,6 +9,7 @@ export class SystemGuardService {
   AuthorizationState = AuthorizationState;
   constructor(private router: Router) {}
   canActivate() {
+    console.log(this.AuthorizationState);
     if (environment.authorizationState === this.AuthorizationState.Notauthorized) {
       this.router.navigate(['error']);
       return false;

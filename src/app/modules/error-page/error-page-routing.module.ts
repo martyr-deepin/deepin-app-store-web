@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { IndexComponent } from './components/index/index.component';
+import { SystenAuthorizationComponent } from './components/systen-authorization/systen-authorization.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: IndexComponent,
+    component: SystenAuthorizationComponent,
   },
 ];
 
