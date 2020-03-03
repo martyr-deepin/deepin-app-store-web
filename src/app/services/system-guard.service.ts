@@ -6,13 +6,14 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class SystemGuardService {
+  AuthorizationState = AuthorizationState;
   constructor(private router: Router) {}
   canActivate() {
-    if (environment.authorizationState > 2) {
-      return true;
-    } else {
+    if (environment.authorizationState === this.AuthorizationState.Notauthorized) {
       this.router.navigate(['error']);
       return false;
+    } else {
+      return true;
     }
   }
 }

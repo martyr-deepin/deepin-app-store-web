@@ -25,17 +25,19 @@ const routes: Routes = [
   {
     path: 'app/:id',
     loadChildren: () => import('app/modules/details/details.module').then(m => m.DetailsModule),
+    canActivate: [SystemGuardService],
   },
   // list page
   {
     path: 'list/:name/:value',
     loadChildren: () => import('app/modules/list/list.module').then(m => m.ListModule),
+    canActivate: [SystemGuardService],
   },
   // download
   {
     path: 'download',
     loadChildren: () => import('app/modules/download/download.module').then(m => m.DownloadModule),
-    // canActivate: [SystemGuardService],
+    canActivate: [SystemGuardService],
   },
   {
     path: 'my/apps',
