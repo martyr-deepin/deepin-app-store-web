@@ -79,6 +79,8 @@ export class AppComponent implements OnInit {
         environment.store_env.mode = settings.desktopMode;
         environment.store_env.platform = settings.product;
         environment.remoteDebug = settings.remoteDebug;
+        //系统授权状态
+        environment.authorizationState = settings.authorizationState;
       }
     }
   }
@@ -110,9 +112,9 @@ interface Settings {
   supportSignIn: boolean;
   themeName: string;
   upyunBannerVisible: boolean;
-
   server: string;
   arch: string;
   desktopMode: string;
   product: string;
+  authorizationState: number;
 }

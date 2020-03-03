@@ -12,7 +12,7 @@ export class AuthGuardService implements CanActivate {
   canActivate() {
     return this.authService.logged$.pipe(
       map(logged => {
-        return logged || this.router.createUrlTree(['/']);
+        return logged || this.router.createUrlTree(['index']);
       }),
     );
   }

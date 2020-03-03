@@ -32,6 +32,7 @@ export const environment = {
     region: 'CN',
     language: 'zh_CN',
   },
+  authorizationState: 0,
 };
 
 /*

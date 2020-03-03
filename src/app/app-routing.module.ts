@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './services/auth-guard.service';
 import { LoginComponent } from './components/login/login.component';
+import { SystemGuardService } from './services/system-guard.service';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'index',
     pathMatch: 'full',
+    canActivate: [SystemGuardService],
   },
   {
     path: 'login',
@@ -17,6 +19,7 @@ const routes: Routes = [
   {
     path: 'index',
     loadChildren: () => import('app/modules/index/index.module').then(m => m.IndexModule),
+    canActivate: [SystemGuardService],
   },
   // detail page
   {
@@ -32,6 +35,7 @@ const routes: Routes = [
   {
     path: 'download',
     loadChildren: () => import('app/modules/download/download.module').then(m => m.DownloadModule),
+    // canActivate: [SystemGuardService],
   },
   {
     path: 'my/apps',
@@ -46,6 +50,10 @@ const routes: Routes = [
     path: 'my/donates',
     loadChildren: () => import('app/modules/my-donates/my-donates.module').then(m => m.MyDonatesModule),
     canActivate: [AuthGuardService],
+  },
+  {
+    path: 'error',
+    loadChildren: () => import('app/modules/error-page/error-page.module').then(m => m.ErrorPageModule),
   },
 ];
 
