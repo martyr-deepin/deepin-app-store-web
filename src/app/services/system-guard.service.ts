@@ -19,7 +19,7 @@ export class SystemGuardService {
     }
   }
 }
-enum AuthorizationState {
+export enum AuthorizationState {
   Notauthorized, //未授权
   Authorized, //已授权
   Expired, //已过期

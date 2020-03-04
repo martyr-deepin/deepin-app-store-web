@@ -39,7 +39,9 @@ export class StoreService {
   clearJob(job: string): void {
     Channel.exec('storeDaemon.cleanJob', job);
   }
-
+  storeUpdate() {
+    Channel.exec('storeDaemon.requestUpdateSourceList');
+  }
   pauseJob(job: string): void {
     Channel.exec('storeDaemon.pauseJob', job);
   }

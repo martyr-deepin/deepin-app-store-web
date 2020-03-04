@@ -4,7 +4,8 @@ import { first, filter } from 'rxjs/operators';
 
 import { RegionService } from './services/region.service';
 import { AuthService } from './services/auth.service';
-import { SystemGuardService } from './services/system-guard.service';
+import { SystemGuardService, AuthorizationState } from './services/system-guard.service';
+import { StoreService } from './modules/client/services/store.service';
 
 @Component({
   selector: 'm-root',
@@ -17,9 +18,11 @@ export class AppComponent implements OnInit {
     private region: RegionService,
     private auth: AuthService,
     private sysGuard: SystemGuardService,
+    private store: StoreService,
   ) {}
   title = 'deepin-app-store-web';
   installing = true;
+  AuthorizationState = AuthorizationState;
   ngOnInit() {
     this.init().finally(() => {
       this.installing = false;
@@ -73,6 +76,11 @@ export class AppComponent implements OnInit {
       if (environment.authorizationState) {
         environment.authorizationState = settings.authorizationState;
         this.sysGuard.canActivate();
+        //system authorization status check
+
+        if (environment.authorizationState === this.AuthorizationState.Authorized) {
+          this.store.storeUpdate();
+        }
       }
       environment.authorizationState = settings.authorizationState;
       if (settings.themeName) {
