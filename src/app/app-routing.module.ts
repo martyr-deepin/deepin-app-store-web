@@ -53,10 +53,6 @@ const routes: Routes = [
     loadChildren: () => import('app/modules/my-donates/my-donates.module').then(m => m.MyDonatesModule),
     canActivate: [AuthGuardService],
   },
-  {
-    path: 'error',
-    loadChildren: () => import('app/modules/error-page/error-page.module').then(m => m.ErrorPageModule),
-  },
 ];
 
 @NgModule({

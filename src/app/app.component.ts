@@ -4,6 +4,7 @@ import { first, filter } from 'rxjs/operators';
 
 import { RegionService } from './services/region.service';
 import { AuthService } from './services/auth.service';
+import { SystemGuardService } from './services/system-guard.service';
 
 @Component({
   selector: 'm-root',
@@ -11,7 +12,12 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private zone: NgZone, private region: RegionService, private auth: AuthService) {}
+  constructor(
+    private zone: NgZone,
+    private region: RegionService,
+    private auth: AuthService,
+    private sysGuard: SystemGuardService,
+  ) {}
   title = 'deepin-app-store-web';
   installing = true;
   ngOnInit() {
@@ -63,6 +69,12 @@ export class AppComponent implements OnInit {
       });
       console.log('dstore client config', settings);
       environment.native = true;
+      //系统授权状态
+      if (environment.authorizationState) {
+        environment.authorizationState = settings.authorizationState;
+        this.sysGuard.canActivate();
+      }
+      environment.authorizationState = settings.authorizationState;
       if (settings.themeName) {
         environment.themeName = settings.themeName;
       }
@@ -79,8 +91,6 @@ export class AppComponent implements OnInit {
         environment.store_env.mode = settings.desktopMode;
         environment.store_env.platform = settings.product;
         environment.remoteDebug = settings.remoteDebug;
-        //系统授权状态
-        environment.authorizationState = settings.authorizationState;
       }
     }
   }
