@@ -109,6 +109,9 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "zh-CN": {
+              "localize": ["zh-CN"]
             }
           }
         },
@@ -120,6 +123,9 @@
           "configurations": {
             "production": {
               "browserTarget": "deepin-app-store-web:build:production"
+            },
+            "zh-CN": {
+              "browserTarget": "deepin-app-store-web:build:zh-CN"
             }
           }
         },
