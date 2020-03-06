@@ -36,8 +36,8 @@ export class AppComponent implements OnInit {
   }
   async init() {
     await this.initChannel();
-    await this.selectRegion();
     this.auth.init();
+    await this.selectRegion();
   }
   async initChannel() {
     console.log('channel');

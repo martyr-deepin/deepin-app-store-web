@@ -14,7 +14,7 @@ import { UnauthorizedService } from './unauthorized.service';
 })
 export class AuthService {
   constructor(private http: HttpClient, private router: Router, private unauthorized: UnauthorizedService) {
-    this.init();
+    // this.init();
   }
   private userInfo$ = new BehaviorSubject<UserInfo>(undefined);
   info$ = this.userInfo$.asObservable();
@@ -27,10 +27,12 @@ export class AuthService {
     }
     await this.getInfo();
     Channel.connect('account.requestLogin').subscribe(() => {
+      console.log('requestLogin，profile login');
       this.login();
     });
     Channel.connect('account.onAuthorized').subscribe(([code, state]) => this.auth(code, state));
     this.unauthorized.unauthorized$.pipe(throttleTime(1000)).subscribe(() => {
+      console.log('requestLogin，unauthorized');
       this.login();
     });
     const userInfo = await Channel.exec('account.getUserInfo');
@@ -108,7 +110,6 @@ export class AuthService {
   // 打开注册页面
   register() {
     DstoreObject.openURL(`https://account.chinauos.com/register`);
-   
   }
 }
 
