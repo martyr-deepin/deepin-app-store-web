@@ -43,6 +43,7 @@ export class AppComponent implements OnInit {
 
     const QWebChannel = window['QWebChannel'];
     if (QWebChannel) {
+      environment.native = true;
       // Native client mode.
       // js call ==> dstore channel ==> proxy channel >> c++ call
       // proxy channel
