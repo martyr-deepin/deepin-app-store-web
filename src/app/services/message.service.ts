@@ -25,7 +25,7 @@ export class MessageService {
     switchMap(info => {
       console.log('message', { info });
       if (info) {
-        return merge(this.sseMessage().pipe(retry(3)), this.wsMessage().pipe(retry(3)));
+        return merge(this.wsMessage().pipe(retry(3)));
       }
       return empty();
     }),
@@ -40,7 +40,7 @@ export class MessageService {
         const url = new URL(`${environment.server}/api/user/message_stream`);
         url.searchParams.set('id', this.clientID.clientID());
         url.searchParams.set('Authorization', this.Authorization());
-        console.log(url);
+        console.log(url.toString());
         const es = new EventSource(url.toString());
         es.addEventListener('error', err => {
           obs.error(err);
@@ -50,6 +50,7 @@ export class MessageService {
           if (msg.Type === MessageType.Ping) {
             return;
           }
+
           this.zone.run(() => obs.next(msg));
         });
         return () => es.close();
@@ -73,6 +74,7 @@ export class MessageService {
           if (msg.Type === MessageType.Ping) {
             return;
           }
+          console.log(msg);
           this.zone.run(() => obs.next(msg));
         });
         ws.addEventListener('close', () => {
@@ -85,7 +87,7 @@ export class MessageService {
     });
   }
   onMessage<T>(type?: string) {
-    console.log(this.message);
+    console.log(this.message, 'websocketS');
     let msg$ = this.message;
     if (type) {
       msg$ = msg$.pipe(filter(msg => msg.Type === type));
