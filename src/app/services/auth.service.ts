@@ -8,6 +8,7 @@ import { DstoreObject } from 'app/modules/client/utils/dstore-objects';
 import { Channel } from 'app/modules/client/utils/channel';
 import { environment } from 'environments/environment';
 import { UnauthorizedService } from './unauthorized.service';
+import { AuthorizationState } from './system-guard.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,7 @@ export class AuthService {
   private userInfo$ = new BehaviorSubject<UserInfo>(undefined);
   info$ = this.userInfo$.asObservable();
   logged$ = this.info$.pipe(map(Boolean));
+  AuthorizationState = AuthorizationState;
   // 初始化
   async init() {
     if (!environment.native) {
@@ -82,8 +84,13 @@ export class AuthService {
     try {
       const sysUserInfo = await Channel.exec<SysUserInfo>('account.getUserInfo');
       if (sysUserInfo.IsLoggedIn) {
-        const resp = await this.http.get<UserInfo>('/api/user/info').toPromise();
-        this.userInfo$.next(resp);
+        //isAuthorized?
+        if (environment.authorizationState === this.AuthorizationState.Authorized) {
+          const resp = await this.http.get<UserInfo>('/api/user/info').toPromise();
+          this.userInfo$.next(resp);
+        } else {
+          await this.accountLogout();
+        }
       } else {
         this.userInfo$.next(null);
       }
@@ -91,6 +98,7 @@ export class AuthService {
       console.error('login error', err);
     }
   }
+
   // 登出商店用户
   async logout(accountLogout = false) {
     const logged = Boolean(await this.userInfo$.pipe(first()).toPromise());
