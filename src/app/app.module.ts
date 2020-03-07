@@ -5,8 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
-import localeZH from '@angular/common/locales/zh-Hans';
-registerLocaleData(localeZH, 'zh-Hans');
 
 import { ClientModule } from 'app/modules/client/client.module';
 import { ShareModule } from 'app/modules/share/share.module';
@@ -21,6 +19,22 @@ import { ProxyInterceptor } from './services/proxy-interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
+
+import localeZH from '@angular/common/locales/zh';
+import localeEN from '@angular/common/locales/en';
+import localePT from '@angular/common/locales/pt';
+import localeKN from '@angular/common/locales/kn';
+import localeHI from '@angular/common/locales/hi';
+import localeGL from '@angular/common/locales/gl';
+import localeAM from '@angular/common/locales/am';
+
+registerLocaleData(localeZH, 'zh');
+registerLocaleData(localeEN, 'en');
+registerLocaleData(localePT, 'pt');
+registerLocaleData(localeKN, 'kn');
+registerLocaleData(localeHI, 'hi');
+registerLocaleData(localeGL, 'gl');
+registerLocaleData(localeAM, 'am');
 
 @NgModule({
   declarations: [

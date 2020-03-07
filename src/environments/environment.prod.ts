@@ -16,7 +16,7 @@ export const environment = {
   supportSignIn: false,
   store_version: 0,
 
-  server: 'http://test.store.deepin.com',
+  server: 'http://dev.store.chinauos.com',
   store_env: {
     arch: 'amd64',
     mode: 'desktop',
