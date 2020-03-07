@@ -8,7 +8,7 @@ import { DstoreObject } from 'app/modules/client/utils/dstore-objects';
 import { Channel } from 'app/modules/client/utils/channel';
 import { environment } from 'environments/environment';
 import { UnauthorizedService } from './unauthorized.service';
-import { AuthorizationState } from './system-guard.service';
+import { AuthorizationState } from './authorizationState';
 
 @Injectable({
   providedIn: 'root',

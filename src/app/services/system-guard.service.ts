@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
-
+import { AuthorizationState } from './authorizationState';
 @Injectable({
   providedIn: 'root',
 })
@@ -18,11 +18,4 @@ export class SystemGuardService {
       return true;
     }
   }
-}
-export enum AuthorizationState {
-  Notauthorized, //未授权
-  Authorized, //已授权
-  Expired, //已过期
-  TrialAuthorized, //试用期已授权
-  TrialExpired, //试用期已过期
 }

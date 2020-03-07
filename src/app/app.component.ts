@@ -4,9 +4,9 @@ import { first, filter } from 'rxjs/operators';
 
 import { RegionService } from './services/region.service';
 import { AuthService } from './services/auth.service';
-import { SystemGuardService, AuthorizationState } from './services/system-guard.service';
+import { SystemGuardService } from './services/system-guard.service';
 import { StoreService } from './modules/client/services/store.service';
-
+import { AuthorizationState } from './services/authorizationState';
 @Component({
   selector: 'm-root',
   templateUrl: './app.component.html',
