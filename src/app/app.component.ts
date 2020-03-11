@@ -80,7 +80,7 @@ export class AppComponent implements OnInit {
         this.sysGuard.canActivate();
         //system authorization status check
 
-        if (environment.authorizationState === this.AuthorizationState.Authorized) {
+        if (this.AuthorizationState.includes(environment.authorizationState)) {
           this.store.storeUpdate();
         }
       }

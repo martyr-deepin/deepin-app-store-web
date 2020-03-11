@@ -20,7 +20,7 @@ export class AuthService {
   private userInfo$ = new BehaviorSubject<UserInfo>(undefined);
   info$ = this.userInfo$.asObservable();
   logged$ = this.info$.pipe(map(Boolean));
-  AuthorizationState = [AuthorizationState.Authorized, AuthorizationState.TrialAuthorized];
+  AuthorizationState = AuthorizationState;
   // 初始化
   async init() {
     if (!environment.native) {
