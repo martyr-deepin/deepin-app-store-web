@@ -20,7 +20,7 @@ export class AuthService {
   private userInfo$ = new BehaviorSubject<UserInfo>(undefined);
   info$ = this.userInfo$.asObservable();
   logged$ = this.info$.pipe(map(Boolean));
-  AuthorizationState = AuthorizationState;
+  AuthorizationState = [AuthorizationState.Authorized, AuthorizationState.TrialAuthorized];
   // 初始化
   async init() {
     if (!environment.native) {
@@ -62,6 +62,7 @@ export class AuthService {
       state: string;
     }
     const result = await this.http.post<LoginResult>('/api/user/login', null).toPromise();
+
     Channel.exec(
       'account.authorize',
       result.client_id,
@@ -85,7 +86,7 @@ export class AuthService {
       const sysUserInfo = await Channel.exec<SysUserInfo>('account.getUserInfo');
       if (sysUserInfo.IsLoggedIn) {
         //isAuthorized?
-        if (environment.authorizationState === this.AuthorizationState.Authorized) {
+        if (this.AuthorizationState.includes(environment.authorizationState)) {
           const resp = await this.http.get<UserInfo>('/api/user/info').toPromise();
           this.userInfo$.next(resp);
         } else {
