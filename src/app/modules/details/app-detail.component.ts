@@ -14,6 +14,7 @@ import { SettingService } from 'app/services/settings.service';
 import { DownloadTotalService } from 'app/services/download-total.service';
 import { of } from 'rxjs';
 import { CommentService } from './services/comment.service';
+import { SysAuthService } from 'app/services/sys-auth.service';
 
 @Component({
   selector: 'dstore-app-detail',
@@ -30,12 +31,13 @@ export class AppDetailComponent implements OnInit {
     private settingService: SettingService,
     private downloadTotalServer: DownloadTotalService,
     private comment: CommentService,
+    private sysAuth: SysAuthService,
   ) {}
   crumbs = false;
   supportSignIn = environment.supportSignIn;
   adVisible$ = this.settingService.settings$.then(set => set.upyunBannerVisible);
   open = this.softwareService.open;
-
+  sysAuthStatus$ = this.sysAuth.sysAuthStatus$;
   StoreJobStatus = StoreJobStatus;
   StoreJobType = StoreJobType;
   SoftSource = Source;

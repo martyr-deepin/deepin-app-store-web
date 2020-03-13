@@ -77,6 +77,7 @@ export class AuthService {
     const result = await this.http
       .get<{ jwt_token: string }>('/api/user/login', { params: { code, state } })
       .toPromise();
+    console.log(result);
     localStorage.setItem('token', result.jwt_token);
     location.reload();
   }
@@ -85,13 +86,8 @@ export class AuthService {
     try {
       const sysUserInfo = await Channel.exec<SysUserInfo>('account.getUserInfo');
       if (sysUserInfo.IsLoggedIn) {
-        //isAuthorized?
-        if (this.AuthorizationState.includes(environment.authorizationState)) {
-          const resp = await this.http.get<UserInfo>('/api/user/info').toPromise();
-          this.userInfo$.next(resp);
-        } else {
-          await this.accountLogout();
-        }
+        const resp = await this.http.get<UserInfo>('/api/user/info').toPromise();
+        this.userInfo$.next(resp);
       } else {
         this.userInfo$.next(null);
       }
@@ -105,6 +101,7 @@ export class AuthService {
     const logged = Boolean(await this.userInfo$.pipe(first()).toPromise());
     localStorage.removeItem('token');
     this.userInfo$.next(null);
+
     if (accountLogout) {
       await this.accountLogout();
     }
@@ -129,7 +126,7 @@ export interface UserInfo {
   profile_image: string;
   region: string;
 }
-interface SysUserInfo {
+export interface SysUserInfo {
   AccessToken: string;
   HardwareID: string;
   IsLoggedIn: boolean;

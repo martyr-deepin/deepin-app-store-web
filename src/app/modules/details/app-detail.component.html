@@ -25,7 +25,8 @@
           <ng-container *ngIf="app.stat as stat">
             <span *ngIf="stat.score_count < 20" i18n></span>
             <dstore-star *ngIf="stat.score_count >= 20" [rate]="stat.score / 2 || 0"></dstore-star>
-            <span *ngIf="stat.score_count >= 20" class="details">&nbsp;&nbsp;{{ (stat.score / 2 || 0).toFixed(1) }}</span>
+            <span *ngIf="stat.score_count >= 20"
+              class="details">&nbsp;&nbsp;{{ (stat.score / 2 || 0).toFixed(1) }}</span>
             <ng-container *ngFor="let downloads of [stat.download + (installCount$ | async)]">
               <span class="details" i18n>{{ downloads }} downloads</span>
             </ng-container>
@@ -36,10 +37,10 @@
           </ng-container>
         </div>
         <div i18n>Category:</div>
-        <div >
-          <m-category-name  [category]="app.info.category" ></m-category-name>
+        <div>
+          <m-category-name [category]="app.info.category"></m-category-name>
         </div>
-        
+
         <ng-container *ngIf="controlRef.package$ | async as package">
           <div i18n>Version:</div>
           <div>{{ package.remoteVersion || package.localVersion }}</div>
@@ -112,19 +113,21 @@
       </div>
     </div>
   </div>
- 
+
   <app-screenshot [screenshotList]="app.info.screenshot"></app-screenshot>
 
   <ng-container *ngIf="supportSignIn && controlRef.package$ | async as package">
     <app-donate [appName]="app.name"></app-donate>
   </ng-container>
-  <div style="margin: 0px 1rem;">
-    <dstore-app-comment [appID]="app.id" [appVersion]="app.package.remoteVersion"></dstore-app-comment>
-  </div>
- 
-  <div class="ad" *ngIf="adVisible$ | async">
-    <ng-container i18n>CDN supported by UPYUN</ng-container>
-  </div>
+  <ng-container *ngIf="sysAuthStatus$ | async ">
+    <div style="margin: 0px 1rem;">
+      <dstore-app-comment [appID]="app.id" [appVersion]="app.package.remoteVersion"></dstore-app-comment>
+    </div>
+
+    <div class="ad" *ngIf="adVisible$ | async">
+      <ng-container i18n>CDN supported by UPYUN</ng-container>
+    </div>
+  </ng-container>
 </div>
 
 <ng-template #$loading let-$app>

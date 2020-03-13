@@ -4,9 +4,10 @@ import { first, filter } from 'rxjs/operators';
 
 import { RegionService } from './services/region.service';
 import { AuthService } from './services/auth.service';
-import { SystemGuardService } from './services/system-guard.service';
+
 import { StoreService } from './modules/client/services/store.service';
 import { AuthorizationState } from './services/authorizationState';
+import { SysAuthService } from './services/sys-auth.service';
 @Component({
   selector: 'm-root',
   templateUrl: './app.component.html',
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
     private zone: NgZone,
     private region: RegionService,
     private auth: AuthService,
-    private sysGuard: SystemGuardService,
+    private sysAuth: SysAuthService,
     private store: StoreService,
   ) {}
   title = 'deepin-app-store-web';
@@ -77,7 +78,7 @@ export class AppComponent implements OnInit {
       //系统授权状态
       if (environment.authorizationState) {
         environment.authorizationState = settings.authorizationState;
-        this.sysGuard.canActivate();
+
         //system authorization status check
 
         if (this.AuthorizationState.includes(environment.authorizationState)) {

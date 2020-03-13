@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SystemGuardService } from './system-guard.service';
+import { SysAuthService } from './sys-auth.service';
 
-describe('SystemGuardService', () => {
-  let service: SystemGuardService;
+describe('SysAuthService', () => {
+  let service: SysAuthService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SystemGuardService);
+    service = TestBed.inject(SysAuthService);
   });
 
   it('should be created', () => {

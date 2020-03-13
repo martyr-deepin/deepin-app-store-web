@@ -8,6 +8,7 @@ import { trigger, animate, style, transition, keyframes } from '@angular/animati
 import { StoreJobInfo, StoreJobStatus } from 'app/modules/client/models/store-job-info';
 import { BuyService } from 'app/services/buy.service';
 import { UserAppsService } from 'app/services/user-apps.service';
+import { SysAuthService } from 'app/services/sys-auth.service';
 
 @Component({
   selector: 'dstore-control',
@@ -53,6 +54,7 @@ export class ControlComponent implements OnInit, OnChanges {
     private jobService: JobService,
     private buyService: BuyService,
     private userAppService: UserAppsService,
+    private sysAuth: SysAuthService,
   ) {}
   @Input() soft: Software;
   @Output() job$: Observable<any>;
@@ -61,6 +63,7 @@ export class ControlComponent implements OnInit, OnChanges {
   JobStatus = StoreJobStatus;
   show = false;
   id = Math.random();
+  sysAuthStatus$ = this.sysAuth.sysAuthStatus$;
   ngOnInit() {}
   ngOnChanges(c: SimpleChanges) {
     if (c.soft) {
@@ -110,7 +113,9 @@ export class ControlComponent implements OnInit, OnChanges {
   buyApp(e: Event) {
     this.buyService.buyDialogShow$.next(this.soft);
   }
-
+  sysAuthMessage() {
+    console.log('trigger sys Authorizaed message ');
+  }
   trigger(e: Event, job: StoreJobInfo) {
     e.stopPropagation();
     if (job.status === this.JobStatus.paused || job.status === this.JobStatus.failed) {
