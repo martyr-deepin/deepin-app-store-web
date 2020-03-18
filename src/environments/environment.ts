@@ -24,7 +24,7 @@ export const environment = {
   store_version: 0,
 
   // server: 'http://localhost:19000',
-  server: 'http://dev.store.chinauos.com',
+  server: 'http://store-chinauos.sndu.cn',
   store_env: {
     arch: 'amd64',
     mode: 'desktop',

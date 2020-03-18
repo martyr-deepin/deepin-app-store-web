@@ -24,9 +24,10 @@ export class SysAuthService {
           this.sysAuthStatus$.next(true);
         } else {
           this.sysAuthStatus$.next(false);
+          this.authorizationNotify();
         }
       });
-    }, 5000);
+    }, 10000);
 
     this.sysAuthStatus$.subscribe(v => {
       if (!v) {
@@ -34,11 +35,17 @@ export class SysAuthService {
       }
     });
   }
+  authorizationNotify() {
+    Channel.exec('account.authorizationNotify', 5000);
+  }
   async getUserInfo() {
     const info = await Channel.exec<SysUserInfo>('account.getUserInfo');
 
     if (info.IsLoggedIn) {
       this.auth.logout();
     }
+  }
+  setSysAuthMessage() {
+    Channel.exec('account.getUserInfo');
   }
 }

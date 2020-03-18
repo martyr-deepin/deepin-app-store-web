@@ -115,6 +115,7 @@ export class ControlComponent implements OnInit, OnChanges {
   }
   sysAuthMessage() {
     console.log('trigger sys Authorizaed message ');
+    this.sysAuth.authorizationNotify();
   }
   trigger(e: Event, job: StoreJobInfo) {
     e.stopPropagation();
