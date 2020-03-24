@@ -8,6 +8,7 @@
 /bazel-out
 
 # dependencies
+/node_modules
 /node_modules.bk
 
 # profiling files

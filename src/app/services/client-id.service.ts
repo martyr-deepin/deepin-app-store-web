@@ -8,9 +8,11 @@ export class ClientIdService {
   constructor(private uuid: UuidService) {}
   private key = 'client-id';
   clientID() {
-    if (!localStorage.getItem(this.key)) {
-      localStorage.setItem(this.key, this.uuid.uuidv4());
+    let id = localStorage.getItem(this.key);
+    if (!id) {
+      id = this.uuid.uuidv4();
+      localStorage.setItem(this.key, id);
     }
-    return localStorage.getItem(this.key);
+    return id;
   }
 }

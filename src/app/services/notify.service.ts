@@ -14,7 +14,6 @@ import { environment } from 'environments/environment';
 export class NotifyService {
   private notify$ = new ReplaySubject<Notify>(1);
   constructor(private http: HttpClient, private auth: AuthService) {
-    this.getBulletin();
     if (environment.native) {
       DstoreObject.clearArchives().subscribe(() => {
         this.success(NotifyType.Clear);

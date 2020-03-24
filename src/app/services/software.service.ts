@@ -11,6 +11,8 @@ import { AppService, AppJSON, Pricing } from './app.service';
 import { StatService, AppStat } from './stat.service';
 import { BuyService } from './buy.service';
 import { MessageService, MessageType } from './message.service';
+import { BlacklistService } from './blacklist.service';
+import { BlacklistOperation } from './blacklist';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +26,7 @@ export class SoftwareService {
     private packageService: PackageService,
     private downloadCounter: DownloadTotalService,
     private messageService: MessageService,
+    private blacklistService: BlacklistService,
   ) {
     // Uninstall software after refund
     this.messageService.onMessage<{ app_id: number }>(MessageType.Refund).subscribe(async msg => {
@@ -35,6 +38,7 @@ export class SoftwareService {
     });
   }
   packages = this.http.get<PackagesURL>('/api/public/packages').toPromise();
+  backlist$ = this.blacklistService.blacklist();
 
   async list(
     // 旧参数
@@ -62,6 +66,8 @@ export class SoftwareService {
       noFilter?: boolean;
     },
   ) {
+    // blacklist hidden
+    const blacklist = await this.backlist$;
     // 获取应用统计信息接口
     let softs: Software[] = [];
     if (opt) {
@@ -73,6 +79,8 @@ export class SoftwareService {
       const stats = await this.statService.list((param as any) || { offset, limit, category, tag, keyword, id: ids });
       const m = new Map<number, AppJSON>();
       if (stats.count > 0) {
+        // hidden app based on blacklist
+        stats.items = stats.items.filter(stat => blacklist.get(stat.app_id) !== BlacklistOperation.Hidden);
         const apps = await this.appService.list({ id: stats.items.map(stat => stat.app_id), active });
         apps.items.forEach(app => m.set(app.id, app));
       }
@@ -92,10 +100,15 @@ export class SoftwareService {
       const pkg = pkgMap.get(soft.id.toString());
       if (pkg) {
         soft.package = { localVersion: pkg.localVersion, remoteVersion: pkg.remoteVersion, upgradable: pkg.upgradable };
+        // disable app based on blacklist
+        if (blacklist.get(soft.id) === BlacklistOperation.Disable) {
+          soft.package.remoteVersion = '';
+        }
       }
       return soft;
     });
   }
+
   private coverImage(img: string) {
     if (!img) {
       return '';
@@ -187,6 +200,20 @@ export class SoftwareService {
   install(...softs: Software[]) {
     this.downloadCounter.installed(softs);
     return this.storeService.execWithCallback('storeDaemon.installPackages', softs.map(this.toQuery)).toPromise();
+  }
+  query(soft: Software) {
+    return this.packageService.query(this.toQuery(soft)).pipe(
+      switchMap(async v => {
+        // disable app based on blacklist
+        if (v && v.remoteVersion) {
+          const blacklist = await this.backlist$;
+          if (blacklist.get(soft.id) === BlacklistOperation.Disable) {
+            v = { ...v, remoteVersion: '' };
+          }
+        }
+        return v;
+      }),
+    );
   }
 }
 

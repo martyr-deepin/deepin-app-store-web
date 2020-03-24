@@ -9,6 +9,7 @@ import { StoreJobInfo, StoreJobStatus } from 'app/modules/client/models/store-jo
 import { BuyService } from 'app/services/buy.service';
 import { UserAppsService } from 'app/services/user-apps.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
+import { BlacklistService } from 'app/services/blacklist.service';
 
 @Component({
   selector: 'dstore-control',
@@ -64,6 +65,7 @@ export class ControlComponent implements OnInit, OnChanges {
   show = false;
   id = Math.random();
   sysAuthStatus$ = this.sysAuth.sysAuthStatus$;
+
   ngOnInit() {}
   ngOnChanges(c: SimpleChanges) {
     if (c.soft) {
@@ -91,14 +93,7 @@ export class ControlComponent implements OnInit, OnChanges {
     );
   }
   async queryPackage() {
-    const pkg = await this.packageService
-      .query({
-        name: this.soft.name,
-        localName: this.soft.info.name,
-        packages: this.soft.info.packages,
-      })
-      .pipe(share(), first())
-      .toPromise();
+    const pkg = await this.softwareService.query(this.soft).toPromise();
     this.package$.next(pkg);
   }
 

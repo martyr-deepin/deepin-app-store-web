@@ -31,6 +31,7 @@ export const environment = {
     platform: 'professional',
     region: 'CN',
     language: 'zh_CN',
+    display: 'x11',
   },
   authorizationState: 1,
 };

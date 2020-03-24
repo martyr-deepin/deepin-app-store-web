@@ -73,22 +73,8 @@ export class AppComponent implements OnInit {
       const settings = await new Promise<Settings>(resolve => {
         channel.objects.settings.getSettings(resolve);
       });
-      console.log('dstore client config', settings);
+      console.log('dstore client config', JSON.stringify(settings));
       environment.native = true;
-      //系统授权状态
-      if (environment.authorizationState) {
-        environment.authorizationState = settings.authorizationState;
-
-        //system authorization status check
-
-        if (this.AuthorizationState.includes(environment.authorizationState)) {
-          this.store.storeUpdate();
-        }
-      }
-      environment.authorizationState = settings.authorizationState;
-      if (settings.themeName) {
-        environment.themeName = settings.themeName;
-      }
       if (environment.production) {
         environment.supportSignIn = settings.supportSignIn;
         environment.region = settings.defaultRegion;
@@ -101,7 +87,15 @@ export class AppComponent implements OnInit {
         environment.store_env.arch = settings.arch;
         environment.store_env.mode = settings.desktopMode;
         environment.store_env.platform = settings.product;
+        environment.store_env.display = settings.GUIFramework;
         environment.remoteDebug = settings.remoteDebug;
+        environment.authorizationState = settings.authorizationState;
+      }
+      if (settings.themeName) {
+        environment.themeName = settings.themeName;
+      }
+      if (this.AuthorizationState.includes(environment.authorizationState)) {
+        this.store.storeUpdate();
       }
     }
   }
@@ -137,5 +131,6 @@ interface Settings {
   arch: string;
   desktopMode: string;
   product: string;
+  GUIFramework: string;
   authorizationState: number;
 }

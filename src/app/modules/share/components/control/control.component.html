@@ -1,13 +1,16 @@
 <dp-circle *ngIf="job$ | async as job; else controlRef" [value]="job.progress">
-  <div class="circle-control" [class.disabled]="!job.cancelable"
-    [class.running]="job.status !== JobStatus.paused && job.status !== JobStatus.failed" (click)="trigger($event, job)">
-  </div>
+  <div
+    class="circle-control"
+    [class.disabled]="!job.cancelable"
+    [class.running]="job.status !== JobStatus.paused && job.status !== JobStatus.failed"
+    (click)="trigger($event, job)"
+  ></div>
 </dp-circle>
 
 <ng-template #controlRef>
   <!-- isCheck SysAuth -->
   <!-- Authorizaed -->
-  <ng-container *ngIf="sysAuthStatus$ |async ;else noAuthorizaedRef">
+  <ng-container *ngIf="sysAuthStatus$ | async; else noAuthorizaedRef">
     <ng-container *ngIf="package$ | async as pkg; else unavailableRef">
       <ng-container *ngIf="pkg.remoteVersion; else unavailableRef">
         <ng-container *ngIf="!pkg.upgradable; else upgradableRef">
@@ -42,7 +45,6 @@
         </ng-template>
       </ng-container>
     </ng-container>
-
   </ng-container>
   <!-- NoAuthorizaed -->
   <ng-template #noAuthorizaedRef>
@@ -82,6 +84,8 @@
     </ng-container>
   </ng-template>
   <ng-template #unavailableRef>
-    <button class="control" disabled i18n>Unavailable</button>
+    <button class="control" disabled i18n i18n-title title="This app is not compatible with your device">
+      Unavailable
+    </button>
   </ng-template>
 </ng-template>

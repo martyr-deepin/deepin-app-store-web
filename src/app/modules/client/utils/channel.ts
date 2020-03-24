@@ -10,10 +10,14 @@ interface Signal {
   disconnect: (callback: CallBack) => void;
 }
 
-const emptySignal: Signal = {
-  connect(callback: CallBack) {},
-  disconnect(callback: CallBack) {},
-};
+function emptySignal(path: string): Signal {
+  return {
+    connect(callback: CallBack) {
+      console.warn('empty signal', path);
+    },
+    disconnect(callback: CallBack) {},
+  };
+}
 
 // Client channel
 export const Channel = {
@@ -21,11 +25,11 @@ export const Channel = {
     return !environment.production || environment.remoteDebug;
   },
   getSlot(path: string): (...args: any) => void {
-    const emptySlot = () => null;
+    const emptySlot = () => console.warn('empty slot', path);
     return _.get(window, 'dstore.channel.objects.' + path, emptySlot);
   },
   getSignal(path: string) {
-    return _.get(window, 'dstore.channel.objects.' + path, emptySignal) as Signal;
+    return _.get(window, 'dstore.channel.objects.' + path, emptySignal(path)) as Signal;
   },
 
   async exec<T>(method: string, ...args: any[]): Promise<T> {

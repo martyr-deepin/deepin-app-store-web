@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class SysAuthService {
-  sysAuthStatus$ = new BehaviorSubject<boolean>(false);
+  sysAuthStatus$ = new BehaviorSubject(true);
   AuthorizationState = AuthorizationState;
   getAuthorizationState() {}
   constructor(zone: NgZone, private auth: AuthService) {
