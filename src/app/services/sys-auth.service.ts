@@ -24,7 +24,6 @@ export class SysAuthService {
           this.sysAuthStatus$.next(true);
         } else {
           this.sysAuthStatus$.next(false);
-          this.authorizationNotify();
         }
       });
     }, 10000);
