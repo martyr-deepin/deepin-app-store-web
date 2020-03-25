@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, publishReplay } from 'rxjs/operators';
+import { refCountDelay } from 'rxjs-etc/operators';
+
 import { chunk } from 'lodash';
 
 import { JobService } from 'app/services/job.service';
@@ -18,10 +20,17 @@ export class LocalAppService {
     private storeService: StoreService,
     private softwareService: SoftwareService,
   ) {}
-
+  installed$ = this.jobService.jobList().pipe(
+    switchMap(() => {
+      console.error('job list installed packages');
+      return this.storeService.InstalledPackages();
+    }),
+    publishReplay(1),
+    refCountDelay(1000),
+  );
   list({ pageIndex = 0, pageSize = 20 }) {
-    return this.jobService.jobList().pipe(
-      switchMap(() => this.storeService.InstalledPackages()),
+    console.error('list');
+    return this.installed$.pipe(
       switchMap(async installed => {
         installed = installed.sort((a, b) => b.installedTime - a.installedTime);
         if (!installed.length) {
@@ -62,7 +71,6 @@ export class LocalAppService {
   removingList() {
     return this.jobService.jobsInfo().pipe(
       map(jobs => {
-        console.log(jobs);
         return jobs
           .filter(job => job.type === StoreJobType.uninstall)
           .map(job => job.names)

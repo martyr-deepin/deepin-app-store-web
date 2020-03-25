@@ -1001,6 +1001,11 @@
   dependencies:
     "@types/sizzle" "*"
 
+"@types/lodash@^4.14.149":
+  version "4.14.149"
+  resolved "http://verdaccio.deepin.io/@types%2flodash/-/lodash-4.14.149.tgz#1342d63d948c6062838fbf961012f74d4e638440"
+  integrity sha512-ijGqzZt/b7BfzcK9vTrS6MFljQRPn5BFWOx8oE0GYxribu6uV+aA9zZuXI1zc/etK9E8nrgdoF2+LgUw7+9tJQ==
+
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.npm.taobao.org/@types/minimatch/download/@types/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
@@ -5189,6 +5194,11 @@ mem@^4.0.0:
     mimic-fn "^2.0.0"
     p-is-promise "^2.0.0"
 
+memoize-resolver@^1.0.0:
+  version "1.0.0"
+  resolved "http://verdaccio.deepin.io/memoize-resolver/-/memoize-resolver-1.0.0.tgz#93f01b61909008eb9d9b521fc1db152cc1b47f06"
+  integrity sha512-mXfNXte0RSWl0rEIsQhXutfM2R2Oa7UyKDD7XoZMEbKeucTRms04y5y41U8gLqPzRx7ViN/QyYnTR2TX/5tawA==
+
 memory-fs@^0.4.1:
   version "0.4.1"
   resolved "https://registry.npm.taobao.org/memory-fs/download/memory-fs-0.4.1.tgz#3a9a20b8462523e447cfbc7e8bb80ed667bfc552"
@@ -7021,6 +7031,13 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   integrity sha1-6Eg5bwV9Ij8kOGkkYY4laUFh7Ec=
   dependencies:
     aproba "^1.1.1"
+
+rxjs-etc@^9.7.4:
+  version "9.7.4"
+  resolved "http://verdaccio.deepin.io/rxjs-etc/-/rxjs-etc-9.7.4.tgz#2fca33aba1d8a32cb51e6184f63870e0fac14bdf"
+  integrity sha512-oX3oBmp0IDaRDtCLMXc165DmyPvznLpfhDeuboB6YnIP7Sapjk7qEkMGlAepOVU1QUyEmLvqAzX7bhiAqc/2zg==
+  dependencies:
+    memoize-resolver "^1.0.0"
 
 rxjs@6.5.3:
   version "6.5.3"

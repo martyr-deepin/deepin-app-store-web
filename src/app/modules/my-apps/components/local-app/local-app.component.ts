@@ -35,10 +35,6 @@ export class LocalAppComponent implements OnInit {
   pageIndex$ = this.route.queryParamMap.pipe(map(query => Number(query.get('page') || 0)));
   result$ = this.pageIndex$.pipe(
     switchMap(pageIndex => {
-      this.localAppService.list({ pageSize: this.pageSize, pageIndex }).subscribe(v => {
-        console.log(v, 'asdasdasd');
-      });
-
       return this.localAppService.list({ pageSize: this.pageSize, pageIndex });
     }),
     share(),

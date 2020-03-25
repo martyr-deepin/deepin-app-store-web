@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~9.0.5",
     "@angular/router": "~9.0.5",
     "@types/jquery": "^3.3.32",
+    "@types/lodash": "^4.14.149",
     "gridstack": "^0.6.3",
     "jquery": "^3.4.1",
     "jquery-ui": "^1.12.1",
@@ -29,6 +30,7 @@
     "perfect-scrollbar": "^1.5.0",
     "qrcode": "^1.4.4",
     "rxjs": "~6.5.4",
+    "rxjs-etc": "^9.7.4",
     "smooth-scroll-into-view-if-needed": "^1.1.26",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

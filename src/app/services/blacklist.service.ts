@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
-import { BlacklistOperation, BlacklistData } from './blacklist';
 import { HttpClient } from '@angular/common/http';
+import { once } from 'lodash';
+import { BlacklistOperation, BlacklistData } from './blacklist';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BlacklistService {
   constructor(private http: HttpClient) {}
-  private blacklist$ = this.http
-    .get<{ blacklist: BlacklistData[] }>('http://store-chinauos.sndu.cn/api/public/settings')
-    .toPromise()
-    .then(resp => resp.blacklist);
-  async blacklist() {
+  readonly blacklist = once(this.blacklistParse);
+  private async blacklistParse() {
     try {
-      const list = await this.blacklist$;
+      const settings = await this.http.get<{ blacklist: BlacklistData[] }>('/api/public/settings').toPromise();
+      const list = await settings.blacklist;
       const ids = list
         .filter(data => {
           const match = data.match || {};
@@ -22,7 +21,7 @@ export class BlacklistService {
           return keys.length && keys.every(key => match[key] === environment.store_env[key]);
         })
         .reduce((acc, data) => [...acc, ...data.ids.map(id => [id, data.operation])], []);
-      console.error('blacklist', ids);
+      console.warn('[blacklist]', ids);
       return new Map(ids as [number, BlacklistOperation][]);
     } catch (err) {
       console.error(err);
