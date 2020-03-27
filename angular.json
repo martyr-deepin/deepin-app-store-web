@@ -6,7 +6,7 @@
     "deepin-app-store-web": {
       "projectType": "application",
       "i18n": {
-        "sourceLocale": "en-US",
+        "sourceLocale": "en",
         "locales": {
           "am-ET": "src/locale/messages.am_ET.xlf",
           "ar": "src/locale/messages.ar.xlf",
