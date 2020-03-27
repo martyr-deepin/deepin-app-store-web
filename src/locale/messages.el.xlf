@@ -1,5 +1,4 @@
-<?xml version="1.0" ?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+<?xml version="1.0" ?><xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file datatype="plaintext" original="ng2.template" source-language="en" target-language="el">
     <body>
       <trans-unit datatype="html" id="07db550ae114d9faad3a0cbb68bcc16ab6cd31fc">
@@ -143,7 +142,11 @@
         <target>Άνοιγμα</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="dee8c41edf822a0124c80cc1e44643f947b3bc5c">
@@ -151,11 +154,19 @@
         <target>Εγκατάσταση</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">22</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
+          <context context-type="linenumber">64</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
@@ -164,10 +175,13 @@
       </trans-unit>
       <trans-unit datatype="html" id="1befce3c6f0c468b06ae5199116e5b096a35a3ef">
         <source>Buy</source>
-        <target>Buy</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
+          <context context-type="linenumber">69</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="047f50bc5b5d17b5bec0196355953e1a5c590ddb">
@@ -175,19 +189,31 @@
         <target>Ενημέρωση</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
+          <context context-type="linenumber">80</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
           <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="15c02cb6b6c3be53477e502d3e1ee26955b23af0">
-        <source>Unavailable</source>
-        <target>Unavailable</target>
+      <trans-unit datatype="html" id="48856209872958c6b29da3517f8057e5433ce840">
+        <source>
+      Unavailable
+    </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="cb2581e9d1ce8372ee43879a11d7f0056479a034">
+        <source>This app is not compatible with your device</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="91ce116be6e8df104128f339912c9207f01265cd">
@@ -228,7 +254,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="a446571368a5064dd8408d46f42f6ae725eff658">
         <source>Amount: </source>
-        <target>Amount: </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">65</context>
@@ -236,7 +261,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="73d9eb7d8af7892f0bc41cc7dad75f7256483628">
         <source>WeChat Pay</source>
-        <target>WeChat Pay</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">73</context>
@@ -260,7 +284,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="836040c3f2b1e93e8a70a1934f718e1dd481be9d">
         <source>Payment failed, please try again!</source>
-        <target>Payment failed, please try again!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">92</context>
@@ -292,7 +315,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="5904b27bdd419865149a13f58b01e7761636dc00">
         <source>Pay Again</source>
-        <target>Pay Again</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">96</context>
@@ -300,7 +322,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="20c0f2a993ebb3b275bf29f6621c35b6c946a8fb">
         <source>Network disconnected, and you may not be able to buy the app successfully,</source>
-        <target>Network disconnected, and you may not be able to buy the app successfully,</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">107</context>
@@ -308,7 +329,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="74bdabdacbd39507e152b92733a2d2d0275bd633">
         <source> please check your network first</source>
-        <target> please check your network first</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">108</context>
@@ -328,7 +348,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="6195e42e2c172351c7e86620f756a9f9c8eea499">
         <source>Order No.</source>
-        <target>Order No.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">124</context>
@@ -336,7 +355,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="9d8357c8b045423277f40ea83439aef0635d1cd7">
         <source>Order Time</source>
-        <target>Order Time</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">126</context>
@@ -344,7 +362,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="d62e8cfcb1f444a033b402e050b851a7d8a3532f">
         <source>Payment Method</source>
-        <target>Payment Method</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">128</context>
@@ -548,7 +565,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="70fdd741399f7bbf37af6f2c3592ee107227f69e">
         <source>My Apps</source>
-        <target>My Apps</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/side-nav/side-nav.component.html</context>
           <context context-type="linenumber">69</context>
@@ -756,7 +772,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="68de0566204c3540450ff89d5e3cf3ac682c7a27">
         <source> Announcement:<x equiv-text="{{ $notify.content }}" id="INTERPOLATION"/></source>
-        <target> Announcement:<x equiv-text="{{ $notify.content }}" id="INTERPOLATION"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">3</context>
@@ -780,7 +795,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="8a47f77b90a2cc65a1a37451a36973b54782063b">
         <source>Submission successful</source>
-        <target>Submission successful</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">12</context>
@@ -808,15 +822,85 @@
       </trans-unit>
       <trans-unit datatype="html" id="2e20b27eecc880c273a38d792b2a2fee5915157a">
         <source>Submission failed</source>
-        <target>Submission failed</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
+      <trans-unit datatype="html" id="ac0f81713a84217c9bd1d9bb460245d8190b073f">
+        <source>More</source>
+        <target>Περισσότερα</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/index/components/title/title.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
+          <context context-type="linenumber">110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="b9905b17f853f79045218f2d43f572029e54fd5b">
+        <source>Sorry</source>
+        <target>Συγνώμη</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/index/components/topic-detail/topic-detail.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
+          <context context-type="linenumber">141</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
+          <context context-type="linenumber">149</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
+          <context context-type="linenumber">155</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="2f5c0cf0b18104b3e46f65bbe5d9db6663a1e8e8">
+        <source>The topic not found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/index/components/topic-detail/topic-detail.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="27e117eee80e72424266dcd113674437d8858931">
+        <source>Search results for <x ctype="x-span" equiv-text="&lt;span&gt;" id="START_TAG_SPAN"/><x equiv-text="{{ title }}" id="INTERPOLATION"/><x ctype="x-span" equiv-text="&lt;/span&gt;" id="CLOSE_TAG_SPAN"/></source>
+        <target>Αναζήτηση αποτελεσμάτων για <x ctype="x-span" equiv-text="&lt;span&gt;" id="START_TAG_SPAN"/><x equiv-text="{{ title }}" id="INTERPOLATION"/><x ctype="x-span" equiv-text="&lt;/span&gt;" id="CLOSE_TAG_SPAN"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="91bc9b0905cc70dea1b653d2bd6d302a9a30eb09">
+        <source>Apps developed by <x equiv-text="{{ name }}" id="INTERPOLATION"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="c71d62bdeab0c6090ee4524fd31daa7a14acd76b">
+        <source>Apps packaged by <x equiv-text="{{ name }}" id="INTERPOLATION"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="07190520c4e8884bfa6feff14b9af54f9bd3d444">
+        <source>No search results</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
       <trans-unit datatype="html" id="c85caed94bd76ad556d77bff7a566bec46fa1489">
         <source>Refund Policy</source>
-        <target>Refund Policy</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">16</context>
@@ -826,9 +910,6 @@
         <source>1. Users can request a refund within two hours after payment.
 2. The first three refund requests are processed automatically, and the refunds are returned to the original account in real time.
 3. The fourth and later refund requests must be reviewed manually (2-3 working days). Your refund will be issued if approved, and you will receive an explanation if rejected.</source>
-        <target>1. Users can request a refund within two hours after payment.
-2. The first three refund requests are processed automatically, and the refunds are returned to the original account in real time.
-3. The fourth and later refund requests must be reviewed manually (2-3 working days). Your refund will be issued if approved, and you will receive an explanation if rejected.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">14</context>
@@ -842,40 +923,18 @@
           <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="1a5b6d68dd00f96022a9781b03b407784b5090b0">
-        <source>Calculating</source>
-        <target>Υπολογισμός</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">26</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">53</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/list/components/list/list.component.html</context>
-          <context context-type="linenumber">21</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/index/components/cover/cover.component.html</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-      </trans-unit>
       <trans-unit datatype="html" id="7cc5bb06d460bf558558822eddfecbe84d63b5a4">
         <source><x equiv-text="{{ downloads }}" id="INTERPOLATION"/> downloads</source>
-        <target><x equiv-text="{{ downloads }}" id="INTERPOLATION"/> downloads</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="2424f9fcf779e49e1ccd1095b2d7daa8d66d395b">
         <source><x equiv-text="{{ score_count }}" id="INTERPOLATION"/> ratings</source>
-        <target><x equiv-text="{{ score_count }}" id="INTERPOLATION"/> ratings</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="0cc1dec590ecd74bef71a865fb364779bc42a749">
@@ -883,7 +942,7 @@
         <target>Κατηγορία:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="ca17606ffe979fb5b411861280c33d2ad3e7a216">
@@ -891,7 +950,7 @@
         <target>Έκδοση:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">45</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
@@ -919,7 +978,15 @@
         <target>Μέγεθος:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="1a5b6d68dd00f96022a9781b03b407784b5090b0">
+        <source>Calculating</source>
+        <target>Υπολογισμός</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="e8c021c9d36ccd882cb337c19cbca3067c249d41">
@@ -927,7 +994,7 @@
         <target>Ληφθέντα</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">55</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
@@ -943,7 +1010,7 @@
         <target>Ημερομηνία ενημέρωσης:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="fcd2b61b74ed190b5176b5c45599627fa3addfd6">
@@ -951,15 +1018,14 @@
         <target>Προγραμματιστής:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="aec2ae3fb352fbb1ea5237b57a64be189890ca98">
         <source>Packager:</source>
-        <target>Packager:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">73</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="055d47bb1af14fe2aebd1733bf30d5bf4add46f5">
@@ -967,7 +1033,7 @@
         <target>Ιστοσελίδα:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="2f2d3537be5ad6783862d60ec1e4b6a034714783">
@@ -975,7 +1041,7 @@
         <target>Πηγή:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="05f57eae1951b6b813d2306e9931485e0eca00b1">
@@ -983,7 +1049,7 @@
         <target>Τρίτων</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">88</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="d06df58d8b33f2fb3bf532b12b0d091388d2ae6b">
@@ -991,7 +1057,7 @@
         <target>Επίσημο</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">88</context>
+          <context context-type="linenumber">89</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="3630022091d1044a60591f58536cfff54b241eaa">
@@ -999,7 +1065,7 @@
         <target>Συνεργασία</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">89</context>
+          <context context-type="linenumber">90</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="15cab428492d4f8b8bc528a93cf1fdd2dc65328e">
@@ -1007,7 +1073,7 @@
         <target>Ετικέτα:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="linenumber">94</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="4a22c6843133f0b0d7dc0d28f864f2f90c1de7ad">
@@ -1015,27 +1081,14 @@
         <target>Περιγραφή:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">102</context>
+          <context context-type="linenumber">103</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="e8bcb762b48cf52fbea66ce9c4f6b970b99a80fd">
         <source>Collapse</source>
-        <target>Collapse</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">106</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="ac0f81713a84217c9bd1d9bb460245d8190b073f">
-        <source>More</source>
-        <target>Περισσότερα</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">109</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/index/components/title/title.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="linenumber">107</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="c0331aa0a5a4589294b7826d8613515c597812a8">
@@ -1043,31 +1096,7 @@
         <target>CDN υποστηρίζεται από UPYUN</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">126</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="b9905b17f853f79045218f2d43f572029e54fd5b">
-        <source>Sorry</source>
-        <target>Συγνώμη</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">138</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">146</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">152</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/index/components/topic-detail/topic-detail.component.html</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">128</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="0166106da9d18911cf205d22548b9f4d21008f3f">
@@ -1075,7 +1104,7 @@
         <target>Είναι σε προσαρμογή, στην οποία μπορείτε να επιστρέψετε</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">139</context>
+          <context context-type="linenumber">142</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="680d5c75b7fd8d37961083608b9fcdc4167b4c43">
@@ -1083,7 +1112,7 @@
         <target>Προηγούμενο</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">140</context>
+          <context context-type="linenumber">143</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="6dd070f6eb99a4e300bce2af82d76f3d01c61edd">
@@ -1091,7 +1120,7 @@
         <target>Η σύνδεση απέτυχε, παρακαλώ ελέγξετε την σύνδεση σας και ανανεώσετε</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">147</context>
+          <context context-type="linenumber">150</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="2631d08f671cb06e269dfe7ce2268ab52ef73375">
@@ -1099,7 +1128,7 @@
         <target>Κάτι πήγε στραβά.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">152</context>
+          <context context-type="linenumber">155</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="fbc4fa343f8695b5ef5fb4e3da3a9b6f0b4eddd8">
@@ -1184,7 +1213,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="d1c4e9d07d3789fb1c66dec61f2d52c6b81b10f6">
         <source>Tags:</source>
-        <target>Tags:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">38</context>
@@ -1192,7 +1220,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="f7708582b423e156898739d5d04eb59891378e27">
         <source>Comment Tag</source>
-        <target>Comment Tag</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">45</context>
@@ -1276,7 +1303,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="f8fd8544fdb9d1c3c9af8407464dc01a079740c8">
         <source>The application is not available</source>
-        <target>The application is not available</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">87</context>
@@ -1328,7 +1354,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="37a1a9afb9eb431fb36181d680e5e0bcc8726a05">
         <source>[Closed Account]</source>
-        <target>[Closed Account]</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">146</context>
@@ -1336,7 +1361,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="6e5f9a0a3c8d9b1cc1e9c9bda6dc3b8ea64ff9bc">
         <source> [Developer reply]</source>
-        <target> [Developer reply]</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">182</context>
@@ -1352,7 +1376,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="9c23c88c43992129bd206a846000b7d8cb9a286f">
         <source>You are banned</source>
-        <target>You are banned</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
           <context context-type="linenumber">6</context>
@@ -1360,7 +1383,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="b9675f0672a5c00517d50e9cc9b9d610b49acaee">
         <source>The author bans comments</source>
-        <target>The author bans comments</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
           <context context-type="linenumber">9</context>
@@ -1368,7 +1390,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="5ebd0cb80937e3a7886fafa2a53aaa3d1bbe4da9">
         <source>Please post your comment after using it</source>
-        <target>Please post your comment after using it</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
           <context context-type="linenumber">15</context>
@@ -1376,7 +1397,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="501169f2e77fecea8c2758007d9980669dbb8c16">
         <source>Due to <x equiv-text="{{ reason }}" id="INTERPOLATION"/>, you cannot post a comment</source>
-        <target>Due to <x equiv-text="{{ reason }}" id="INTERPOLATION"/>, you cannot post a comment</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
           <context context-type="linenumber">17</context>
@@ -1512,7 +1532,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="5a2a5eaa80d13170278ecefa1e5ed323bc91ed1e">
         <source> Failed to install: insufficient space, please clean and retry</source>
-        <target> Failed to install: insufficient space, please clean and retry</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">14</context>
@@ -1538,49 +1557,8 @@
           <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="2f5c0cf0b18104b3e46f65bbe5d9db6663a1e8e8">
-        <source>The topic not found</source>
-        <target>The topic not found</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/index/components/topic-detail/topic-detail.component.html</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="27e117eee80e72424266dcd113674437d8858931">
-        <source>Search results for <x ctype="x-span" equiv-text="&lt;span&gt;" id="START_TAG_SPAN"/><x equiv-text="{{ title }}" id="INTERPOLATION"/><x ctype="x-span" equiv-text="&lt;/span&gt;" id="CLOSE_TAG_SPAN"/></source>
-        <target>Αναζήτηση αποτελεσμάτων για <x ctype="x-span" equiv-text="&lt;span&gt;" id="START_TAG_SPAN"/><x equiv-text="{{ title }}" id="INTERPOLATION"/><x ctype="x-span" equiv-text="&lt;/span&gt;" id="CLOSE_TAG_SPAN"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="91bc9b0905cc70dea1b653d2bd6d302a9a30eb09">
-        <source>Apps developed by <x equiv-text="{{ name }}" id="INTERPOLATION"/></source>
-        <target>Apps developed by <x equiv-text="{{ name }}" id="INTERPOLATION"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
-          <context context-type="linenumber">15</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="c71d62bdeab0c6090ee4524fd31daa7a14acd76b">
-        <source>Apps packaged by <x equiv-text="{{ name }}" id="INTERPOLATION"/></source>
-        <target>Apps packaged by <x equiv-text="{{ name }}" id="INTERPOLATION"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="07190520c4e8884bfa6feff14b9af54f9bd3d444">
-        <source>No search results</source>
-        <target>No search results</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
-          <context context-type="linenumber">36</context>
-        </context-group>
-      </trans-unit>
       <trans-unit datatype="html" id="82bb671bd60c07a8cf7fd67524eade9cee63ff5b">
         <source>Local Apps</source>
-        <target>Local Apps</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/local-app/local-app.component.html</context>
           <context context-type="linenumber">4</context>
@@ -1592,7 +1570,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="caf440292ddeda7e5986f0086a822394e5775058">
         <source>Remote Apps</source>
-        <target>Remote Apps</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/local-app/local-app.component.html</context>
           <context context-type="linenumber">7</context>
@@ -1652,7 +1629,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="38668245768f805d5b377b1d88efe49712c08ed5">
         <source>Refunding</source>
-        <target>Refunding</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
           <context context-type="linenumber">37</context>
@@ -1660,7 +1636,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="d80a31b2d80af8803b4b1e7143cd3e91b7cc92d2">
         <source>Refund</source>
-        <target>Refund</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
           <context context-type="linenumber">41</context>
@@ -1672,7 +1647,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="b3ee252823339c59dc8c83a52540c8699368a067">
         <source>Two-hour refund period has expired</source>
-        <target>Two-hour refund period has expired</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
           <context context-type="linenumber">47</context>
@@ -1684,7 +1658,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="6d48642a9e3605994dfff2cd1e326c9ec18b4749">
         <source>The application is not available, please retry or give feedback</source>
-        <target>The application is not available, please retry or give feedback</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
           <context context-type="linenumber">74</context>
@@ -1700,7 +1673,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="c329b41c398a3d21eb4b48a2da533f0ea38c3dca">
         <source>Show only paid apps</source>
-        <target>Show only paid apps</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-install/remote-install.component.html</context>
           <context context-type="linenumber">12</context>
@@ -1748,7 +1720,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="f30af4a09e075741abc6fb9536fe6a5087583178">
         <source>Refund Request</source>
-        <target>Refund Request</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">6</context>
@@ -1756,7 +1727,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="9037f3d684c692447f76c473dbbea55cd82461fa">
         <source>Detailed Reasons:</source>
-        <target>Detailed Reasons:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">8</context>
@@ -1764,7 +1734,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="a1e6c11f20d4bf6e8e6b43e3c6d2561b2080645e">
         <source>Suggestions:</source>
-        <target>Suggestions:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">18</context>
@@ -1772,7 +1741,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="73edc6fed01d739dd25bc6c81d9f81c28d958a77">
         <source>Your request is under review, which takes 2-3 working days.</source>
-        <target>Your request is under review, which takes 2-3 working days.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">45</context>
@@ -1780,7 +1748,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="aaff35cada193aa9c1ec8630b3e6e4eb32778c9d">
         <source> Please wait patiently. Once approved, the refunds will be returned to the original account.</source>
-        <target> Please wait patiently. Once approved, the refunds will be returned to the original account.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">46</context>
@@ -1788,7 +1755,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="a6d22b1c074d9fcae92f1f41cd8522f2acb2d740">
         <source>Frequent errors or crashes</source>
-        <target>Frequent errors or crashes</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1796,7 +1762,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="acdf55929696feb2f41949890279f6ac53e016c6">
         <source>Complicated operation</source>
-        <target>Complicated operation</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">3</context>
@@ -1804,7 +1769,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="175166849e127ab3df21e735011c55784390a132">
         <source>High CPU usage</source>
-        <target>High CPU usage</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">4</context>
@@ -1812,7 +1776,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="d15a9ca0323cda890ac235ee41ca84729b13d7bc">
         <source>Many advertisements</source>
-        <target>Many advertisements</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">5</context>
@@ -1820,7 +1783,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="2001867439ddcab7acbe3708734d89267008dfbc">
         <source>Bad user experiences</source>
-        <target>Bad user experiences</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">6</context>
@@ -1828,7 +1790,6 @@
       </trans-unit>
       <trans-unit datatype="html" id="f915a62c39bc4b77472ef3fdb51abb047c1b1c60">
         <source>Poor content</source>
-        <target>Poor content</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">7</context>
