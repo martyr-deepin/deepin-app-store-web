@@ -202,21 +202,17 @@
           <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="48856209872958c6b29da3517f8057e5433ce840">
-        <source>
-      Unavailable
-    </source>
-        <target>
-      Unavailable
-    </target>
+      <trans-unit datatype="html" id="15c02cb6b6c3be53477e502d3e1ee26955b23af0">
+        <source>Unavailable</source>
+        <target>No disponible</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">88</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="cb2581e9d1ce8372ee43879a11d7f0056479a034">
         <source>This app is not compatible with your device</source>
-        <target>This app is not compatible with your device</target>
+        <target>Esta aplicación no es compatible con su dispositivo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
           <context context-type="linenumber">87</context>
@@ -292,7 +288,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="836040c3f2b1e93e8a70a1934f718e1dd481be9d">
         <source>Payment failed, please try again!</source>
-        <target>¡Pago fallido, por favor intente nuevamente!</target>
+        <target>¡El pago falló, por favor intente nuevamente!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">92</context>
@@ -824,7 +820,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="e33d805f0c1ce97c92b68fc882084fef23cca646">
         <source>Request failed</source>
-        <target>Solicitud fallida</target>
+        <target>La solicitud falló</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">18</context>
@@ -840,7 +836,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="2e20b27eecc880c273a38d792b2a2fee5915157a">
         <source>Submission failed</source>
-        <target>Envío fallido</target>
+        <target>El envío falló</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">20</context>
@@ -1148,7 +1144,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6dd070f6eb99a4e300bce2af82d76f3d01c61edd">
         <source>Connection failed, please check your network and refresh</source>
-        <target>Conexión fallida, por favor compruebe su red y actualícela</target>
+        <target>La conexión falló, por favor compruebe su red y actualícela</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">150</context>
@@ -1548,7 +1544,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a8961af16111ab2b84a767b39eb12002ddf6a61d">
         <source>Failed to download, please retry</source>
-        <target>Descarga fallida, intente de nuevo</target>
+        <target>La descarga falló, intente de nuevo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">8</context>
@@ -1556,7 +1552,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="92f289b1cf7ccff5e1bf6d1fa679655272da2e95">
         <source>Failed to install: dpkg error</source>
-        <target>Instalación fallida, error dpkg</target>
+        <target>La instalación falló, error dpkg</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">9</context>
@@ -1564,7 +1560,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="1d386f8cdde5844dd460714c47a20656ee8c9b23">
         <source>Failed to install: unmet dependencies</source>
-        <target>Instalación fallida, dependencias insatisfechas</target>
+        <target>La instalación falló, dependencias insatisfechas</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">11</context>
@@ -1884,7 +1880,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="1aa4883bc4f1352f7a0bdd94810a9bf6dc22bd02">
         <source>Removed</source>
-        <target>Eliminar</target>
+        <target>Quitar</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/comments/comments.component.html</context>
           <context context-type="linenumber">33</context>

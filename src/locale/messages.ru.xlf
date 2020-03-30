@@ -202,16 +202,12 @@
           <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="48856209872958c6b29da3517f8057e5433ce840">
-        <source>
-      Unavailable
-    </source>
-        <target>
-      Unavailable
-    </target>
+      <trans-unit datatype="html" id="15c02cb6b6c3be53477e502d3e1ee26955b23af0">
+        <source>Unavailable</source>
+        <target>Недоступен</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">88</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="cb2581e9d1ce8372ee43879a11d7f0056479a034">
