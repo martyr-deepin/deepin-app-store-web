@@ -23,7 +23,7 @@ export const environment = {
     platform: 'community',
     region: 'CN',
     language: 'zh_CN',
-    display: 'X11',
+    display: 'x11',
   },
   authorizationState: 1,
 };

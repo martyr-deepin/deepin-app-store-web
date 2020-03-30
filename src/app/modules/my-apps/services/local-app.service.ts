@@ -22,14 +22,12 @@ export class LocalAppService {
   ) {}
   installed$ = this.jobService.jobList().pipe(
     switchMap(() => {
-      console.error('job list installed packages');
       return this.storeService.InstalledPackages();
     }),
     publishReplay(1),
     refCountDelay(1000),
   );
   list({ pageIndex = 0, pageSize = 20 }) {
-    console.error('list');
     return this.installed$.pipe(
       switchMap(async installed => {
         installed = installed.sort((a, b) => b.installedTime - a.installedTime);

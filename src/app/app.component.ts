@@ -94,10 +94,13 @@ export class AppComponent implements OnInit {
       if (settings.themeName) {
         environment.themeName = settings.themeName;
       }
+      // exec apt update
       if (this.AuthorizationState.includes(environment.authorizationState)) {
         if (!sessionStorage.getItem('storeUpdate')) {
-          this.store.storeUpdate();
-          sessionStorage.setItem('storeUpdate', new Date().toISOString());
+          setTimeout(() => {
+            this.store.storeUpdate();
+            sessionStorage.setItem('storeUpdate', new Date().toISOString());
+          }, 1000 * 5);
         }
       }
     }
