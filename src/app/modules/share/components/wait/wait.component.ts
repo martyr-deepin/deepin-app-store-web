@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class WaitComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
-  @Input() timeout = 15;
+  @Input() timeout = 30;
   @Input() delay = 0;
   timeout$: Observable<boolean>;
   delay$: Observable<boolean>;
