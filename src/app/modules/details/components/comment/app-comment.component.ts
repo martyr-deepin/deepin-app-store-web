@@ -14,6 +14,7 @@ import { CommentService, AppComment, CommentDisableStatus, CommentDisableReason 
 import { switchMap, filter, tap } from 'rxjs/operators';
 import { APIBase } from 'app/services/api';
 import { FormBuilder, Validators, FormGroup, FormArray, FormGroupName } from '@angular/forms';
+import { environment } from 'environments/environment';
 
 enum CommentType {
   News,
@@ -52,6 +53,7 @@ export class AppCommentComponent implements OnInit, OnChanges {
     private auth: AuthService,
     private fb: FormBuilder,
   ) {}
+  readonly supportSignIn = environment.supportSignIn;
   @ViewChild('commentRef', { static: true }) commentRef: ElementRef<HTMLDivElement>;
   @Input()
   appID: number;

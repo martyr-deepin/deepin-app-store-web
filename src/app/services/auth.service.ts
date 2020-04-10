@@ -23,7 +23,8 @@ export class AuthService {
   AuthorizationState = AuthorizationState;
   // 初始化
   async init() {
-    if (!environment.native) {
+    console.log('auth init');
+    if (!environment.native || !environment.supportSignIn) {
       this.userInfo$.next(null);
       return;
     }
@@ -56,6 +57,9 @@ export class AuthService {
   }
   // 登录方法
   async login() {
+    if (!environment.supportSignIn) {
+      return;
+    }
     interface LoginResult {
       client_id: string;
       scopes: string[];

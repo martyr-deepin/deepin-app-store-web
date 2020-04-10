@@ -1,99 +1,103 @@
 <div #commentRef></div>
 <ng-container *ngFor="let info of [info$ | async]">
-  <div>
-  <div class="commentInput" [formGroup]="commentGroup">
-    <div class="title">
-      <ng-container *ngIf="!info; else logged">
-        <span i18n>Please post your comment after sign in</span>
-        <a (click)="register()" i18n>Sign Up</a>
-      </ng-container>
-      <ng-template #logged>
-        <ng-container *ngIf="own; else starEdit">
-          <span class="star">
-            <div i18n>Your Rating:</div>
-            <dstore-star [rate]="own.score"></dstore-star>
-            <div>{{ own.score }}</div>
-          </span>
+  <div [hidden]="!supportSignIn">
+    <div class="commentInput" [formGroup]="commentGroup">
+      <div class="title">
+        <ng-container *ngIf="!info; else logged">
+          <span i18n>Please post your comment after sign in</span>
+          <a (click)="register()" i18n>Sign Up</a>
         </ng-container>
-        <ng-template #starEdit>
-          <span class="star">
-            <div i18n>Rate this app:</div>
-            <dstore-star formControlName="score" #$star [readonly]="disableStatus.disable"></dstore-star>
-            <div>{{ $star.rateHover }}</div>
+        <ng-template #logged>
+          <ng-container *ngIf="own; else starEdit">
+            <span class="star">
+              <div i18n>Your Rating:</div>
+              <dstore-star [rate]="own.score"></dstore-star>
+              <div>{{ own.score }}</div>
+            </span>
+          </ng-container>
+          <ng-template #starEdit>
+            <span class="star">
+              <div i18n>Rate this app:</div>
+              <dstore-star formControlName="score" #$star [readonly]="disableStatus.disable"></dstore-star>
+              <div>{{ $star.rateHover }}</div>
+            </span>
+          </ng-template>
+
+          <span class="myInfo" (click)="$dropMenu.hidden = false; $dropMenu.focus()">
+            <span class="name">{{ info.nickname }}</span>
+            <div class="dropdown-menu" tabindex="-1" #$dropMenu hidden (blur)="$dropMenu.hidden = true">
+              <a (click)="logout()" i18n>Sign Out</a>
+            </div>
+            <img [src]="info.profile_image" class="profile min" />
           </span>
         </ng-template>
-
-        <span class="myInfo" (click)="$dropMenu.hidden = false; $dropMenu.focus()">
-          <span class="name">{{ info.nickname }}</span>
-          <div class="dropdown-menu" tabindex="-1" #$dropMenu hidden (blur)="$dropMenu.hidden = true">
-            <a (click)="logout()" i18n>Sign Out</a>
-          </div>
-          <img [src]="info.profile_image" class="profile min" />
-        </span>
-      </ng-template>
-    </div>
-
-    <div class="edit">
-      <div class="tags" *ngIf="tags.length > 0; else tagSelectRef">
-        <label for="" i18n>Tags:</label>
-        <span *ngFor="let control of tags.controls; index as index" (click)="tags.removeAt(index)">
-          {{ control.value.tag }}
-        </span>
       </div>
-      <ng-template #tagSelectRef>
-        <div class="tag-select" *ngIf="content.value === '#'">
-          <label for="" i18n>Comment Tag</label>
-          <ng-container *ngFor="let kv of { bug: 'Bug' } | keyvalue; first as first">
-            <button [mAuthfocus]="first" (click)="selectTag(kv.key); commentTextRef.focus()">{{ kv.value }}</button>
-          </ng-container>
+
+      <div class="edit">
+        <div class="tags" *ngIf="tags.length > 0; else tagSelectRef">
+          <label for="" i18n>Tags:</label>
+          <span *ngFor="let control of tags.controls; index as index" (click)="tags.removeAt(index)">
+            {{ control.value.tag }}
+          </span>
         </div>
-      </ng-template>
+        <ng-template #tagSelectRef>
+          <div class="tag-select" *ngIf="content.value === '#'">
+            <label for="" i18n>Comment Tag</label>
+            <ng-container *ngFor="let kv of { bug: 'Bug' } | keyvalue; first as first">
+              <button [mAuthfocus]="first" (click)="selectTag(kv.key); commentTextRef.focus()">{{ kv.value }}</button>
+            </ng-container>
+          </div>
+        </ng-template>
 
-      <textarea #commentTextRef [readOnly]="!info || own || disableStatus.disable" formControlName="content"
-        (keyup.control.enter)="submitComment()" maxlength="200"></textarea>
+        <textarea
+          #commentTextRef
+          [readOnly]="!info || own || disableStatus.disable"
+          formControlName="content"
+          (keyup.control.enter)="submitComment()"
+          maxlength="200"
+        ></textarea>
+      </div>
+
+      <div class="fixed">
+        <button class="loginBtn" *ngIf="!info; else loggedMsg" (click)="login()">
+          <ng-container i18n>Sign In</ng-container>
+        </button>
+        <ng-template #loggedMsg>
+          <div class="placeholder" *ngIf="own; else disableStatusRef">
+            <ng-container i18n>You have posted a comment</ng-container>
+          </div>
+          <ng-template #disableStatusRef>
+            <div *ngIf="disableStatus.disable; else pleaseRef">
+              <m-comment-disable-reason-text [reason]="disableStatus.reason"></m-comment-disable-reason-text>
+            </div>
+          </ng-template>
+          <ng-template #pleaseRef>
+            <div class="placeholder" [hidden]="commentGroup.value.content">
+              <ng-container i18n>Post your comment here</ng-container>
+            </div>
+          </ng-template>
+        </ng-template>
+      </div>
     </div>
-
-    <div class="fixed">
-      <button class="loginBtn" *ngIf="!info; else loggedMsg" (click)="login()">
-        <ng-container i18n>Sign In</ng-container>
+    <div class="submit" *ngIf="info">
+      <span class="errorGroup" *ngIf="submitted.touched && commentGroup.invalid" [ngSwitch]="true">
+        <span class="submitError" *ngSwitchCase="content.invalid && score.invalid">
+          <ng-container i18n>Please rate and post your comment</ng-container>
+        </span>
+        <span class="submitError" *ngSwitchCase="content.invalid" i18n>Please input your comment</span>
+        <span class="submitError" *ngSwitchCase="score.invalid" i18n>Please rate</span>
+        <span class="submitError" *ngSwitchCase="submitted.invalid" i18n>Failed to submit</span>
+        <span class="submitError" *ngSwitchCase="commentGroup.controls['app_version'].invalid">
+          <ng-container i18n>The application is not available</ng-container>
+        </span>
+        <span class="submitError" *ngSwitchCase="commentGroup.invalid" i18n>Network error</span>
+      </span>
+      &nbsp;
+      <button class="submitBtn" [disabled]="own" (click)="submitComment()">
+        <ng-container i18n>Submit</ng-container>
       </button>
-      <ng-template #loggedMsg>
-        <div class="placeholder" *ngIf="own; else disableStatusRef">
-          <ng-container i18n>You have posted a comment</ng-container>
-        </div>
-        <ng-template #disableStatusRef>
-          <div *ngIf="disableStatus.disable; else pleaseRef">
-            <m-comment-disable-reason-text [reason]="disableStatus.reason"></m-comment-disable-reason-text>
-          </div>
-        </ng-template>
-        <ng-template #pleaseRef>
-          <div class="placeholder" [hidden]="commentGroup.value.content">
-            <ng-container i18n>Post your comment here</ng-container>
-          </div>
-        </ng-template>
-      </ng-template>
     </div>
   </div>
-  <div class="submit" *ngIf="info">
-    <span class="errorGroup" *ngIf="submitted.touched && commentGroup.invalid" [ngSwitch]="true">
-      <span class="submitError" *ngSwitchCase="content.invalid && score.invalid">
-        <ng-container i18n>Please rate and post your comment</ng-container>
-      </span>
-      <span class="submitError" *ngSwitchCase="content.invalid" i18n>Please input your comment</span>
-      <span class="submitError" *ngSwitchCase="score.invalid" i18n>Please rate</span>
-      <span class="submitError" *ngSwitchCase="submitted.invalid" i18n>Failed to submit</span>
-      <span class="submitError" *ngSwitchCase="commentGroup.controls['app_version'].invalid">
-
-        <ng-container i18n>The application is not available</ng-container>
-      </span>
-      <span class="submitError" *ngSwitchCase="commentGroup.invalid" i18n>Network error</span>
-    </span>
-    &nbsp;
-    <button class="submitBtn" [disabled]="own" (click)="submitComment()">
-      <ng-container i18n>Submit</ng-container>
-    </button>
-  </div>
-
   <br />
 
   <div class="commentList">
@@ -102,8 +106,11 @@
         <ng-container i18n>User Comments</ng-container>
         &nbsp;
 
-        <button *ngIf="appVersion" [class.active]="select === CommentType.News"
-          (click)="selectChange(CommentType.News)">
+        <button
+          *ngIf="appVersion"
+          [class.active]="select === CommentType.News"
+          (click)="selectChange(CommentType.News)"
+        >
           <ng-container i18n>Current Version</ng-container>
           ({{ total[CommentType.News] }})
         </button>
@@ -117,8 +124,12 @@
         </button> -->
       </div>
       <div class="paginator" *ngIf="total[select] > page.size">
-        <app-paginator [length]="total[select]" [size]="page.size" [pageIndex]="page.index"
-          (pageIndexChange)="pageChange($event)"></app-paginator>
+        <app-paginator
+          [length]="total[select]"
+          [size]="page.size"
+          [pageIndex]="page.index"
+          (pageIndexChange)="pageChange($event)"
+        ></app-paginator>
       </div>
     </div>
     <br />
@@ -137,8 +148,12 @@
                 <td rowspan="2">
                   <div class="head" *ngIf="c.commenter | deepinid | async as info; else deepinInfoDefault">
                     <ng-container *ngIf="info.uid; else deletedRef">
-                      <img [src]="info.profile_image" #avatarRef
-                        (error)="avatarRef.src = '/assets/images/default_avatar.jpeg?default'" class="profile" />
+                      <img
+                        [src]="info.profile_image"
+                        #avatarRef
+                        (error)="avatarRef.src = '/assets/images/default_avatar.jpeg?default'"
+                        class="profile"
+                      />
                       <span>{{ info.nickname }}</span>
                     </ng-container>
                     <ng-template #deletedRef>
@@ -168,8 +183,12 @@
                       &nbsp;&nbsp;
                       <div class="like">
                         <span [class.hidden]="c.likes?.length <= 0">({{ c.likes?.length }})</span>
-                        <img class="thumbUp" [class.hidden]="c.commenter == info?.uid"
-                          [class.active]="likeByMe(c.likes, info?.uid)" (click)="thumbUpClick(c)" />
+                        <img
+                          class="thumbUp"
+                          [class.hidden]="c.commenter == info?.uid"
+                          [class.active]="likeByMe(c.likes, info?.uid)"
+                          (click)="thumbUpClick(c)"
+                        />
                       </div>
                     </div>
                   </div>
@@ -180,7 +199,7 @@
                   <div class="content">{{ c.content }}</div>
                   <div class="reply" *ngIf="c.reply">
                     <span class="reply-head" i18n> [Developer reply]</span>
-                    <span class="replay-content">{{c.reply.context}}</span>
+                    <span class="replay-content">{{ c.reply.context }}</span>
                   </div>
                 </td>
               </tr>
@@ -196,10 +215,14 @@
 
   <div class="bottom" *ngIf="!loading">
     <a (click)="scrollToTop()" i18n>Back to top</a>
-    <app-paginator *ngIf="total[select] > page.size" [pageIndex]="page.index" [length]="total[select]"
-      [size]="page.size" (pageIndexChange)="pageChange($event)"></app-paginator>
+    <app-paginator
+      *ngIf="total[select] > page.size"
+      [pageIndex]="page.index"
+      [length]="total[select]"
+      [size]="page.size"
+      (pageIndexChange)="pageChange($event)"
+    ></app-paginator>
   </div>
-</div>
 </ng-container>
 
 <ng-container *ngIf="clean$ | async"></ng-container>
