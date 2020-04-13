@@ -8,6 +8,8 @@ import { AuthService } from './services/auth.service';
 import { StoreService } from './modules/client/services/store.service';
 import { AuthorizationState } from './services/authorizationState';
 import { SysAuthService } from './services/sys-auth.service';
+import { StoreJobStatus } from 'app/modules/client/models/store-job-info';
+
 @Component({
   selector: 'm-root',
   templateUrl: './app.component.html',
@@ -20,7 +22,7 @@ export class AppComponent implements OnInit {
     private auth: AuthService,
     private sysAuth: SysAuthService,
     private store: StoreService,
-  ) {}
+  ) { }
   title = 'deepin-app-store-web';
   installing = true;
   AuthorizationState = AuthorizationState;
@@ -58,7 +60,7 @@ export class AppComponent implements OnInit {
           send(msg: any) {
             channelTransport.objects.channelProxy.send(msg);
           },
-          onmessage(msg: any) {},
+          onmessage(msg: any) { },
         };
         channelTransport.objects.channelProxy.message.connect((msg) => {
           this.zone.run(() => {
@@ -94,25 +96,48 @@ export class AppComponent implements OnInit {
       if (settings.themeName) {
         environment.themeName = settings.themeName;
       }
+
       // exec apt update
+      // FOR DEBUG
+      localStorage.removeItem('storeUpdate');
       if (this.AuthorizationState.includes(environment.authorizationState)) {
         const storeUpdate = 'storeUpdate';
         const t = new Date().toISOString();
         if (!localStorage.getItem(storeUpdate)) {
-          this.store.storeUpdate();
+          await this.store.storeUpdate().toPromise().then((jobID) => {
+            new Promise(resolve => {
+              const h = setInterval(() => {
+                this.store.getJobStatus(jobID).toPromise().then((storeJobInfo: { status: StoreJobStatus; }) => {
+                  if (storeJobInfo.status === StoreJobStatus.running) {
+                    resolve();
+                    // return;
+                  } else {
+                    clearInterval(h);
+                  }
+                }).catch(() => {
+                  clearInterval(h);
+                });
+              }, 1000);
+            });
+          }).catch(err => {
+            console.log(err);
+          });
+
           localStorage.setItem(storeUpdate, t);
-          await new Promise((resove) => setTimeout(resove, 1000 * 5));
+          await new Promise((resolve) => setTimeout(resolve, 1000 * 5));
         } else {
           if (!sessionStorage.getItem(storeUpdate)) {
             setTimeout(() => {
-              this.store.storeUpdate();
+              // FIXME: need update
               sessionStorage.setItem('storeUpdate', t);
             }, 1000 * 5);
           }
         }
       }
+
     }
   }
+
   async selectRegion() {
     const info = await this.auth.info$
       .pipe(

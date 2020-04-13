@@ -32,6 +32,10 @@ export class StoreService {
     return this.execWithCallback('storeDaemon.getJobsInfo', jobPaths);
   }
 
+  getJobStatus(jobPath: string): Observable<StoreJobInfo> {
+    return this.execWithCallback('storeDaemon.getJobStatus', jobPath);
+  }
+
   jobListChange(): Observable<string[]> {
     return Channel.connect('storeDaemon.jobListChanged');
   }
@@ -39,9 +43,11 @@ export class StoreService {
   clearJob(job: string): void {
     Channel.exec('storeDaemon.cleanJob', job);
   }
+
   storeUpdate() {
-    Channel.exec('storeDaemon.requestUpdateSourceList');
+    return this.execWithCallback<string>('storeDaemon.updateSourceList');
   }
+
   pauseJob(job: string): void {
     Channel.exec('storeDaemon.pauseJob', job);
   }
