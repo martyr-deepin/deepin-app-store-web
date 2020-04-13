@@ -49,18 +49,18 @@ export class AppComponent implements OnInit {
       // Native client mode.
       // js call ==> dstore channel ==> proxy channel >> c++ call
       // proxy channel
-      const channelTransport = await new Promise<any>(resolve => {
+      const channelTransport = await new Promise<any>((resolve) => {
         return new QWebChannel(window['qt'].webChannelTransport, resolve);
       });
       // dstore channel
-      const channel = await new Promise<any>(resolve => {
+      const channel = await new Promise<any>((resolve) => {
         const t = {
           send(msg: any) {
             channelTransport.objects.channelProxy.send(msg);
           },
           onmessage(msg: any) {},
         };
-        channelTransport.objects.channelProxy.message.connect(msg => {
+        channelTransport.objects.channelProxy.message.connect((msg) => {
           this.zone.run(() => {
             t.onmessage({ data: msg });
           });
@@ -70,7 +70,7 @@ export class AppComponent implements OnInit {
 
       window['dstore'] = { channel };
 
-      const settings = await new Promise<Settings>(resolve => {
+      const settings = await new Promise<Settings>((resolve) => {
         channel.objects.settings.getSettings(resolve);
       });
       console.log('dstore client config', JSON.stringify(settings));
@@ -96,11 +96,19 @@ export class AppComponent implements OnInit {
       }
       // exec apt update
       if (this.AuthorizationState.includes(environment.authorizationState)) {
-        if (!sessionStorage.getItem('storeUpdate')) {
-          setTimeout(() => {
-            this.store.storeUpdate();
-            sessionStorage.setItem('storeUpdate', new Date().toISOString());
-          }, 1000 * 5);
+        const storeUpdate = 'storeUpdate';
+        const t = new Date().toISOString();
+        if (!localStorage.getItem(storeUpdate)) {
+          this.store.storeUpdate();
+          localStorage.setItem(storeUpdate, t);
+          await new Promise((resove) => setTimeout(resove, 1000 * 5));
+        } else {
+          if (!sessionStorage.getItem(storeUpdate)) {
+            setTimeout(() => {
+              this.store.storeUpdate();
+              sessionStorage.setItem('storeUpdate', t);
+            }, 1000 * 5);
+          }
         }
       }
     }
@@ -108,7 +116,7 @@ export class AppComponent implements OnInit {
   async selectRegion() {
     const info = await this.auth.info$
       .pipe(
-        filter(v => v !== undefined),
+        filter((v) => v !== undefined),
         first(),
       )
       .toPromise();
