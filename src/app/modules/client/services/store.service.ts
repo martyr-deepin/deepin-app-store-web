@@ -4,7 +4,7 @@ import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as _ from 'lodash';
 
-import { StoreJobInfo } from '../models/store-job-info';
+import { StoreJobInfo, StoreJobStatus } from '../models/store-job-info';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +32,7 @@ export class StoreService {
     return this.execWithCallback('storeDaemon.getJobsInfo', jobPaths);
   }
 
-  getJobStatus(jobPath: string): Observable<StoreJobInfo> {
+  getJobStatus(jobPath: string): Observable<{ status: StoreJobStatus }> {
     return this.execWithCallback('storeDaemon.getJobStatus', jobPath);
   }
 

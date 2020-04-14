@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     private auth: AuthService,
     private sysAuth: SysAuthService,
     private store: StoreService,
-  ) { }
+  ) {}
   title = 'deepin-app-store-web';
   installing = true;
   AuthorizationState = AuthorizationState;
@@ -47,22 +47,21 @@ export class AppComponent implements OnInit {
 
     const QWebChannel = window['QWebChannel'];
     if (QWebChannel) {
-      environment.native = true;
       // Native client mode.
       // js call ==> dstore channel ==> proxy channel >> c++ call
       // proxy channel
-      const channelTransport = await new Promise<any>((resolve) => {
+      const channelTransport = await new Promise<any>(resolve => {
         return new QWebChannel(window['qt'].webChannelTransport, resolve);
       });
       // dstore channel
-      const channel = await new Promise<any>((resolve) => {
+      const channel = await new Promise<any>(resolve => {
         const t = {
           send(msg: any) {
             channelTransport.objects.channelProxy.send(msg);
           },
-          onmessage(msg: any) { },
+          onmessage(msg: any) {},
         };
-        channelTransport.objects.channelProxy.message.connect((msg) => {
+        channelTransport.objects.channelProxy.message.connect(msg => {
           this.zone.run(() => {
             t.onmessage({ data: msg });
           });
@@ -72,11 +71,10 @@ export class AppComponent implements OnInit {
 
       window['dstore'] = { channel };
 
-      const settings = await new Promise<Settings>((resolve) => {
+      const settings = await new Promise<Settings>(resolve => {
         channel.objects.settings.getSettings(resolve);
       });
       console.log('dstore client config', JSON.stringify(settings));
-      environment.native = true;
       if (environment.production) {
         environment.supportSignIn = settings.supportSignIn;
         environment.region = settings.defaultRegion;
@@ -98,50 +96,53 @@ export class AppComponent implements OnInit {
       }
 
       // exec apt update
-      // FOR DEBUG
-      localStorage.removeItem('storeUpdate');
       if (this.AuthorizationState.includes(environment.authorizationState)) {
         const storeUpdate = 'storeUpdate';
         const t = new Date().toISOString();
         if (!localStorage.getItem(storeUpdate)) {
-          await this.store.storeUpdate().toPromise().then((jobID) => {
-            new Promise(resolve => {
-              const h = setInterval(() => {
-                this.store.getJobStatus(jobID).toPromise().then((storeJobInfo: { status: StoreJobStatus; }) => {
-                  if (storeJobInfo.status === StoreJobStatus.running) {
+          console.warn('store first update');
+          const jobID = await this.store.storeUpdate().toPromise();
+          if (jobID) {
+            await new Promise(resolve => {
+              const interval = setInterval(() => {
+                this.store
+                  .getJobStatus(jobID)
+                  .toPromise()
+                  .then(({ status }) => {
+                    if (status !== StoreJobStatus.running) {
+                      resolve();
+                      clearInterval(interval);
+                    }
+                  })
+                  .catch(() => {
                     resolve();
-                    // return;
-                  } else {
-                    clearInterval(h);
-                  }
-                }).catch(() => {
-                  clearInterval(h);
-                });
+                    clearInterval(interval);
+                  });
               }, 1000);
             });
-          }).catch(err => {
-            console.log(err);
-          });
-
+          }
           localStorage.setItem(storeUpdate, t);
-          await new Promise((resolve) => setTimeout(resolve, 1000 * 5));
         } else {
           if (!sessionStorage.getItem(storeUpdate)) {
+            console.warn('store update');
             setTimeout(() => {
-              // FIXME: need update
-              sessionStorage.setItem('storeUpdate', t);
+              this.store
+                .storeUpdate()
+                .toPromise()
+                .finally(() => sessionStorage.setItem('storeUpdate', t));
             }, 1000 * 5);
           }
         }
       }
-
     }
+    // native client inited
+    environment.native = true;
   }
 
   async selectRegion() {
     const info = await this.auth.info$
       .pipe(
-        filter((v) => v !== undefined),
+        filter(v => v !== undefined),
         first(),
       )
       .toPromise();
