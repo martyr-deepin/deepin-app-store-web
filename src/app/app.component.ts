@@ -134,6 +134,10 @@ export class AppComponent implements OnInit {
           }
         }
       }
+      else {
+        //未授权，退出登录
+        this.auth.logout(true)
+      }
     }
     // native client inited
     environment.native = true;

@@ -21,11 +21,16 @@
   .info {
     flex: 1;
     display: flex;
+    width: 0;
     flex-direction: column;
     justify-content: center;
     padding-left: 0.5rem;
     .size {
       color: gray;
+    }
+    span:first-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
   .installed {

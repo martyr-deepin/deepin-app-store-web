@@ -61,6 +61,15 @@ export class AppDetailComponent implements OnInit {
     switchMap(app => this.softwareService.size(app).then(m => m.get(app.id.toString()))),
     share(),
   );
+  downloadedSize$ = this.app$.pipe(
+    switchMap(async app =>{
+      const pkg =  await this.storeService.InstalledPackages().pipe(
+        map(pkgs=>pkgs.find(pkg=>pkg.appName === app.name))
+      ).toPromise()
+      return pkg.size;
+    })
+  )
+
   allowName$ = this.storeService.getAllowShowPackageName();
 
   ngOnInit() {}

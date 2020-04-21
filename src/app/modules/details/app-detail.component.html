@@ -52,7 +52,8 @@
           <div>
             <ng-container *ngFor="let size of [size$ | async]" [ngSwitch]="size">
               <ng-container *ngSwitchCase="null" i18n>Calculating</ng-container>
-              <ng-container *ngSwitchCase="0" i18n>Downloaded</ng-container>
+              <!-- <ng-container *ngSwitchCase="0" i18n>Downloaded</ng-container> -->
+            <ng-container *ngSwitchCase="0">{{downloadedSize$ | async | sizeHuman}}</ng-container>
               <ng-container *ngSwitchDefault>{{ size | sizeHuman }}</ng-container>
             </ng-container>
           </div>

@@ -30,6 +30,7 @@ export class LocalAppService {
   list({ pageIndex = 0, pageSize = 20 }) {
     return this.installed$.pipe(
       switchMap(async installed => {
+        console.log(installed)
         installed = installed.sort((a, b) => b.installedTime - a.installedTime);
         if (!installed.length) {
           return { total: 0, page: pageIndex, list: [] };
@@ -58,6 +59,7 @@ export class LocalAppService {
               item.software.id = 0;
               item.software.info = item.info as any;
               item.software.package = item.package;
+              console.log(item.package)
             }
           });
         } catch {}

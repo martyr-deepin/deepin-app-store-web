@@ -4,6 +4,7 @@ import { BehaviorSubject, merge, timer } from 'rxjs';
 import { Channel } from 'app/modules/client/utils/channel';
 import { AuthService, SysUserInfo } from './auth.service';
 import { map } from 'rxjs/operators';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,7 @@ export class SysAuthService {
     };
     merge(Channel.connect('settings.authStateChanged'), timer(10000, 10000)).subscribe(() => {
       Channel.exec<number>('settings.getAuthorizationState').then(v => {
+        environment.authorizationState=v
         if (this.AuthorizationState.includes(v)) {
           this.sysAuthStatus$.next(true);
         } else {
