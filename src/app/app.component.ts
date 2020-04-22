@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
   ) {}
   title = 'deepin-app-store-web';
   installing = true;
-  AuthorizationState = AuthorizationState;
   ngOnInit() {
     this.init().finally(() => {
       this.installing = false;
@@ -96,7 +95,7 @@ export class AppComponent implements OnInit {
       }
 
       // exec apt update
-      if (this.AuthorizationState.includes(environment.authorizationState)) {
+      if (AuthorizationState.includes(environment.authorizationState)) {
         const storeUpdate = 'storeUpdate';
         const t = new Date().toISOString();
         if (!localStorage.getItem(storeUpdate)) {
@@ -133,10 +132,6 @@ export class AppComponent implements OnInit {
             }, 1000 * 5);
           }
         }
-      }
-      else {
-        //未授权，退出登录
-        this.auth.logout(true)
       }
     }
     // native client inited

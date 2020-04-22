@@ -64,9 +64,9 @@ export class AppDetailComponent implements OnInit {
   downloadedSize$ = this.app$.pipe(
     switchMap(async app =>{
       const pkg =  await this.storeService.InstalledPackages().pipe(
-        map(pkgs=>pkgs.find(pkg=>pkg.appName === app.name))
+        map(pkgs=>pkgs.find(pkg=>pkg.packageName === app.package_name))
       ).toPromise()
-      return pkg.size;
+      return pkg?pkg.size:null;
     })
   )
 

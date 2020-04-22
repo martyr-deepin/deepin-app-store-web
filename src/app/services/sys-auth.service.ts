@@ -10,7 +10,7 @@ import { environment } from 'environments/environment';
   providedIn: 'root',
 })
 export class SysAuthService {
-  constructor(private zone: NgZone) {
+  constructor(private zone: NgZone,private authService:AuthService) {
     this.init();
   }
   sysAuthStatus$ = new BehaviorSubject(true);
@@ -22,10 +22,13 @@ export class SysAuthService {
     merge(Channel.connect('settings.authStateChanged'), timer(10000, 10000)).subscribe(() => {
       Channel.exec<number>('settings.getAuthorizationState').then(v => {
         environment.authorizationState=v
+        console.log(v)
         if (this.AuthorizationState.includes(v)) {
           this.sysAuthStatus$.next(true);
         } else {
           this.sysAuthStatus$.next(false);
+          //未授权，退出登录
+          this.authService.logout(true)
         }
       });
     });
