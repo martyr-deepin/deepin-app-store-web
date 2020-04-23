@@ -27,8 +27,12 @@ export class SectionService {
     return await this.list.toPromise();
   }
   handleData(data: any) {
+    //console.log(data)
     let tmp = [];
-    const languages = [data.section.language.default, environment.store_env.language];
+    if(navigator){
+      environment.store_env.language = navigator.language.replace('-', '_')
+    }
+    const languages = [ data.section.language.default,environment.store_env.language];
     for (let i = 0; i < data.section.dataset.length; i++) {
       let item = data.section.dataset[i];
       let params = {

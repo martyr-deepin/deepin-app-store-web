@@ -22,7 +22,6 @@ export class SysAuthService {
     merge(Channel.connect('settings.authStateChanged'), timer(10000, 10000)).subscribe(() => {
       Channel.exec<number>('settings.getAuthorizationState').then(v => {
         environment.authorizationState=v
-        console.log(v)
         if (this.AuthorizationState.includes(v)) {
           this.sysAuthStatus$.next(true);
         } else {
