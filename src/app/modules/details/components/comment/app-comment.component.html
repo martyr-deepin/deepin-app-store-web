@@ -18,7 +18,7 @@
           <ng-template #starEdit>
             <span class="star">
               <div i18n>Rate this app:</div>
-              <dstore-star formControlName="score" #$star [readonly]="disableStatus.disable"></dstore-star>
+              <dstore-star formControlName="score" #$star [readonly]="disableStatus.disable&&localVersion===''"></dstore-star>
               <div>{{ $star.rateHover }}</div>
             </span>
           </ng-template>
@@ -51,7 +51,7 @@
 
         <textarea
           #commentTextRef
-          [readOnly]="!info || own || disableStatus.disable"
+          [readOnly]="!info || own || (disableStatus.disable&&localVersion==='')"
           formControlName="content"
           (keyup.control.enter)="submitComment()"
           maxlength="200"
@@ -67,9 +67,11 @@
             <ng-container i18n>You have posted a comment</ng-container>
           </div>
           <ng-template #disableStatusRef>
-            <div *ngIf="disableStatus.disable; else pleaseRef">
-              <m-comment-disable-reason-text [reason]="disableStatus.reason"></m-comment-disable-reason-text>
-            </div>
+            <ng-container *ngIf="localVersion==='';else pleaseRef">
+              <div *ngIf="disableStatus.disable; else pleaseRef">
+                <m-comment-disable-reason-text [reason]="disableStatus.reason"></m-comment-disable-reason-text>
+              </div>
+            </ng-container>
           </ng-template>
           <ng-template #pleaseRef>
             <div class="placeholder" [hidden]="commentGroup.value.content">

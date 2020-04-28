@@ -59,6 +59,8 @@ export class AppCommentComponent implements OnInit, OnChanges {
   appID: number;
   @Input()
   appVersion: string;
+  @Input()
+  localVersion: string;
 
   content = this.fb.control('', Validators.required);
   score = this.fb.control(0, Validators.min(0.5));
@@ -83,7 +85,7 @@ export class AppCommentComponent implements OnInit, OnChanges {
   loadCount = 0;
   info: UserInfo;
   disableStatus: CommentDisableStatus = {
-    disable: false,
+    disable: true,
   };
   info$ = this.auth.info$;
   clean$ = this.info$.pipe(
@@ -123,7 +125,8 @@ export class AppCommentComponent implements OnInit, OnChanges {
     return { exclude_version: this.appVersion };
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
   ngOnChanges() {
     console.log(this.score);
     this.commentGroup.patchValue({
