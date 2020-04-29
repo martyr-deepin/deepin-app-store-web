@@ -19,17 +19,21 @@ export class SysAuthService {
     (window as any).setAuthorized = (state: boolean) => {
       this.zone.run(() => this.sysAuthStatus$.next(state));
     };
-    merge(Channel.connect('settings.authStateChanged'), timer(0, 10000)).subscribe(() => {
-      Channel.exec<number>('settings.getAuthorizationState').then(v => {
-        environment.authorizationState=v
-        if (this.AuthorizationState.includes(v)) {
-          this.sysAuthStatus$.next(true);
-        } else {
-          this.sysAuthStatus$.next(false);
-          //未授权，退出登录
-          this.authService.logout(true)
-        }
-      });
+    //this.getAuthorizationState()
+    merge(Channel.connect('settings.authStateChanged'), timer(1000, 10000)).subscribe(() => {
+      this.getAuthorizationState()
+    });
+  }
+  getAuthorizationState(){
+    Channel.exec<number>('settings.getAuthorizationState').then(v => {
+      environment.authorizationState=v
+      if (this.AuthorizationState.includes(v)) {
+        this.sysAuthStatus$.next(true);
+      } else {
+        this.sysAuthStatus$.next(false);
+        //未授权，退出登录
+        this.authService.logout(true)
+      }
     });
   }
   authorizationNotify() {
