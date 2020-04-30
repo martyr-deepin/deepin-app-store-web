@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { publishReplay, refCount, switchMap, share, map, startWith } from 'rxjs/operators';
+import { publishReplay, refCount, switchMap, share, map, startWith, first } from 'rxjs/operators';
 
 import { StoreService } from 'app/modules/client/services/store.service';
 import { StoreJobType, StoreJobStatus } from 'app/modules/client/models/store-job-info';
@@ -15,6 +15,7 @@ import { DownloadTotalService } from 'app/services/download-total.service';
 import { of } from 'rxjs';
 import { CommentService } from './services/comment.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
+import { JobService } from 'app/services/job.service';
 
 @Component({
   selector: 'dstore-app-detail',
@@ -31,7 +32,7 @@ export class AppDetailComponent implements OnInit {
     private settingService: SettingService,
     private downloadTotalServer: DownloadTotalService,
     private comment: CommentService,
-    private sysAuth: SysAuthService,
+    private sysAuth: SysAuthService
   ) {}
   crumbs = false;
   supportSignIn = environment.supportSignIn;
@@ -57,17 +58,15 @@ export class AppDetailComponent implements OnInit {
     refCount(),
   );
 
-  size$ = this.app$.pipe(
-    switchMap(app => this.softwareService.size(app).then(m => m.get(app.id.toString()))),
-    share(),
-  );
-  downloadedSize$ = this.app$.pipe(
-    switchMap(async app =>{
-      const pkg =  await this.storeService.InstalledPackages().pipe(
-        map(pkgs=>pkgs.find(pkg=>pkg.packageName === app.package_name))
-      ).toPromise()
-      return pkg?pkg.size:null;
-    })
+  size$ = this.storeService.jobListChange().pipe(
+    startWith(null),
+    switchMap(() => this.app$.pipe(
+      switchMap(app => this.softwareService.size(app).then(m => m.get(app.id.toString()))),
+      share(),
+      first()
+    ).toPromise().then(res=>{
+      return res
+    }))
   )
 
   allowName$ = this.storeService.getAllowShowPackageName();

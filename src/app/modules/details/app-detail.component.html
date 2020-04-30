@@ -50,15 +50,11 @@
           </ng-container>
           <div i18n>Size:</div>
           <div>
-            <ng-template #$Downloaded>
-              <ng-container i18n>Downloaded</ng-container>
-            </ng-template>
             <ng-container *ngFor="let size of [size$ | async]" [ngSwitch]="size">
               <ng-container *ngSwitchCase="null" i18n>Calculating</ng-container>
-              <ng-container *ngSwitchCase="0">
-                <ng-container *ngIf="downloadedSize$ | async as downloadedSize; else $Downloaded" >
-                {{downloadedSize | sizeHuman}}</ng-container>
-              </ng-container>
+              <ng-container *ngSwitchCase="0" i18n>Downloaded</ng-container>
+                <!-- <ng-container *ngIf="downloadedSize$ | async as downloadedSize; else $Downloaded" >
+                {{downloadedSize | sizeHuman}}</ng-container> -->
               <ng-container *ngSwitchDefault>{{ size | sizeHuman }}</ng-container>
             </ng-container>
           </div>
