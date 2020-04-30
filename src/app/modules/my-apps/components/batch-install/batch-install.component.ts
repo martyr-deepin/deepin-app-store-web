@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { switchMap, share, map, distinctUntilChanged, publishReplay, refCount } from 'rxjs/operators';
+import { Component, OnInit, Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { switchMap, share, map, distinctUntilChanged, publishReplay, refCount, first } from 'rxjs/operators';
 
 import { RemoteAppService } from './../../services/remote-app.service';
 import { Software } from 'app/services/software.service';
+import { JobService } from 'app/services/job.service';
 
 @Component({
   selector: 'dstore-batch-install',
@@ -42,21 +43,35 @@ export class BatchInstallComponent implements OnInit {
     share(),
   );
 
-  constructor(private remoteAppService: RemoteAppService) {}
+  constructor(
+    private remoteAppService: RemoteAppService,
+    private jobService: JobService
+  ) {}
 
-  ngOnInit() {}
-  show() {
+  private jobList:string[]=[];
+  ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    
+  }
+
+  async show() {
     this.batchInstall.clear();
+    let jobsinfo = await this.jobService.jobsInfo().pipe(first()).toPromise()
+    this.jobList = jobsinfo.map(jobinfo=>jobinfo.names[0])
     this.dialogRef.nativeElement.showModal();
   }
   hide() {
     this.dialogRef.nativeElement.close();
   }
   unavailable(app: Software) {
-    return !app.package.remoteVersion || !app.active || app.unavailable || app.package.localVersion !== ''
+    return !app.package.remoteVersion || !app.active || app.unavailable || app.package.localVersion !== '' || this.jobList.includes(app.package_name)
       ? true
       : false;
   }
+  
+
   touch(app: Software) {
     if (this.unavailable(app)) {
       return;
