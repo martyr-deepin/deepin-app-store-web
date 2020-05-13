@@ -11,11 +11,10 @@
 
 <m-refund *ngIf="refund" [remoteApp]="refund" (cancel)="refund = null; refresh()"> </m-refund>
 
-<div class="remote-apps" *ngIf="installing$ | async as installing; else loading">
-  <dstore-scrollbar>
+<dstore-scrollbar>
+  <div class="remote-apps" *ngIf="installing$ | async as installing; else loading">
     <ng-container *ngIf="apps$ | async as apps; else loading">
       <div class="remote-app" *ngFor="let remoteApp of apps">
-
         <img class="icon" dstoreCover="icon" [src]="remoteApp.soft.info.icon"
           [routerLink]="['/app', remoteApp.soft.id]" />
         <div class="content">
@@ -55,9 +54,14 @@
                 <button i18n disabled>Installing</button>
               </ng-container>
               <ng-template #update>
-                <button *ngIf="remoteApp.soft.package.upgradable; else installedRef">
-                  <ng-container i18n>Update</ng-container>
-                </button>
+                <ng-container *ngIf="remoteApp.soft.package.upgradable;else installedRef" >
+                  <ng-container *ngIf="sysAuthStatus$ | async;else $noAuthorizaedUpdateRef">
+                    <button (click)="installApp(remoteApp.soft)" i18n>Update</button>
+                  </ng-container>
+                  <ng-template #$noAuthorizaedUpdateRef>
+                    <button (click)="sysAuthMessage()" i18n>Update</button>
+                  </ng-template>
+                </ng-container>
               </ng-template>
               <ng-template #installedRef>
                 <button disabled
@@ -66,7 +70,12 @@
                 </button>
               </ng-template>
               <ng-template #install>
-                <button (click)="installApp(remoteApp.soft)" i18n>Install</button>
+                <ng-container *ngIf="sysAuthStatus$ | async;else $noAuthorizaedRef">
+                  <button (click)="installApp(remoteApp.soft)" i18n>Install</button>
+                </ng-container>
+                <ng-template #$noAuthorizaedRef>
+                  <button (click)="sysAuthMessage()" i18n>Install</button>
+                </ng-template>
               </ng-template>
             </div>
           </ng-container>
@@ -76,8 +85,8 @@
         </div>
       </div>
     </ng-container>
-  </dstore-scrollbar>
-</div>
+  </div>
+</dstore-scrollbar>
 
 <div class="paginatorContainer">
   <ng-container *ngIf="count$ | async as count">

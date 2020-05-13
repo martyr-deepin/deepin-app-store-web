@@ -18,7 +18,7 @@
           <ng-template #starEdit>
             <span class="star">
               <div i18n>Rate this app:</div>
-              <dstore-star formControlName="score" #$star [readonly]="disableStatus.disable&&localVersion===''"></dstore-star>
+              <dstore-star formControlName="score" #$star [readonly]="disableStatus.disable"></dstore-star>
               <div>{{ $star.rateHover }}</div>
             </span>
           </ng-template>
@@ -51,7 +51,7 @@
 
         <textarea
           #commentTextRef
-          [readOnly]="!info || own || (disableStatus.disable&&localVersion==='')"
+          [readOnly]="!info || own || disableStatus.disable"
           formControlName="content"
           (keyup.control.enter)="submitComment()"
           maxlength="200"
@@ -67,11 +67,9 @@
             <ng-container i18n>You have posted a comment</ng-container>
           </div>
           <ng-template #disableStatusRef>
-            <ng-container *ngIf="localVersion==='';else pleaseRef">
-              <div *ngIf="disableStatus.disable; else pleaseRef">
-                <m-comment-disable-reason-text [reason]="disableStatus.reason"></m-comment-disable-reason-text>
-              </div>
-            </ng-container>
+            <div *ngIf="disableStatus.disable; else pleaseRef">
+              <m-comment-disable-reason-text [reason]="disableStatus.reason"></m-comment-disable-reason-text>
+            </div>
           </ng-template>
           <ng-template #pleaseRef>
             <div class="placeholder" [hidden]="commentGroup.value.content">
@@ -95,7 +93,7 @@
         <span class="submitError" *ngSwitchCase="commentGroup.invalid" i18n>Network error</span>
       </span>
       &nbsp;
-      <button class="submitBtn" [disabled]="own" (click)="submitComment()">
+      <button class="submitBtn" [disabled]="!info || own || disableStatus.disable" (click)="submitComment()">
         <ng-container i18n>Submit</ng-container>
       </button>
     </div>

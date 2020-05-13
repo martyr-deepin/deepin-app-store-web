@@ -59,8 +59,6 @@ export class AppCommentComponent implements OnInit, OnChanges {
   appID: number;
   @Input()
   appVersion: string;
-  @Input()
-  localVersion: string;
 
   content = this.fb.control('', Validators.required);
   score = this.fb.control(0, Validators.min(0.5));
@@ -133,7 +131,7 @@ export class AppCommentComponent implements OnInit, OnChanges {
       app_id: this.appID,
       app_version: this.appVersion,
     });
-    this.init();
+    //this.init();
   }
   async init() {
     await this.getCount();
@@ -151,6 +149,7 @@ export class AppCommentComponent implements OnInit, OnChanges {
     const info = await this.info$.pipe(first()).toPromise();
     if (info) {
       this.disableStatus = await this.commentService.getDisableStatus(this.appID, this.appVersion).toPromise();
+      console.log(this.disableStatus)
     }
   }
   async getCount() {
@@ -244,6 +243,7 @@ export class AppCommentComponent implements OnInit, OnChanges {
   async submitComment() {
     console.log(this.commentGroup);
     const content = this.commentGroup.get('content');
+    console.log(content)
     content.setValue(content.value.trim());
     this.commentGroup.markAllAsTouched();
 

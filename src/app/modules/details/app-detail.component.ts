@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { publishReplay, refCount, switchMap, share, map, startWith, first } from 'rxjs/operators';
 
@@ -16,6 +16,7 @@ import { of } from 'rxjs';
 import { CommentService } from './services/comment.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
 import { JobService } from 'app/services/job.service';
+import { AppCommentComponent } from './components/comment/app-comment.component';
 
 @Component({
   selector: 'dstore-app-detail',
@@ -43,6 +44,9 @@ export class AppDetailComponent implements OnInit {
   StoreJobType = StoreJobType;
   SoftSource = Source;
 
+  @ViewChild('$commentRef')
+  appComment:AppCommentComponent;
+
   openURL = DstoreObject.openURL;
   pause = this.storeService.pauseJob;
   start = this.storeService.resumeJob;
@@ -65,8 +69,10 @@ export class AppDetailComponent implements OnInit {
       share(),
       first()
     ).toPromise().then(res=>{
+      this.appComment.init()
       return res
     }))
+
   )
 
   allowName$ = this.storeService.getAllowShowPackageName();

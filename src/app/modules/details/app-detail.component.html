@@ -123,7 +123,7 @@
   </ng-container>
   <ng-container *ngIf="sysAuthStatus$ | async ">
     <div style="margin: 0px 1rem;">
-      <dstore-app-comment [appID]="app.id" [appVersion]="app.package.remoteVersion" [localVersion]="app.package.localVersion"></dstore-app-comment>
+      <dstore-app-comment #$commentRef [appID]="app.id" [appVersion]="app.package.remoteVersion"></dstore-app-comment>
     </div>
 
     <div class="ad" *ngIf="adVisible$ | async">

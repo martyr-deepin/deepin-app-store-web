@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { map, switchMap, share, retryWhen } from 'rxjs/operators';
+import { map, switchMap, share } from 'rxjs/operators';
 import { Software } from 'app/services/software.service';
 import { RefundStatus } from 'app/services/refund.service';
 import { RemoteAppService, RemoteApp } from './../../services/remote-app.service';
+import { SysAuthService } from 'app/services/sys-auth.service';
 
 @Component({
   selector: 'dstore-remote-app',
@@ -12,7 +13,12 @@ import { RemoteAppService, RemoteApp } from './../../services/remote-app.service
   styleUrls: ['./remote-app.component.scss'],
 })
 export class RemoteAppComponent implements OnInit {
-  constructor(private route: ActivatedRoute, public router: Router, private remoteAppService: RemoteAppService) {}
+  constructor(
+    private route: ActivatedRoute, 
+    public router: Router, 
+    private remoteAppService: RemoteAppService,
+    private SysAuth:SysAuthService
+  ) {}
   readonly pageSize = 20;
   readonly RefundStatus = RefundStatus;
   refresh$ = new BehaviorSubject(null);
@@ -23,19 +29,20 @@ export class RemoteAppComponent implements OnInit {
   );
   result$ = this.pageIndex$.pipe(
     switchMap(pageIndex => {
-      console.log(this.free);
       let params = { offset: pageIndex * this.pageSize, limit: this.pageSize };
 
       if (this.free === false) {
         params['free'] = false;
       }
-      console.log(params);
       return this.remoteAppService.list(params);
     }),
     share(),
   );
+  sysAuthStatus$ = this.SysAuth.sysAuthStatus$;
   installed = new Set<string>();
-  apps$ = this.result$.pipe(map(result => result.items));
+  apps$ = this.result$.pipe(map(result => {
+    return result.items
+  }));
   count$ = this.result$.pipe(map(result => Math.ceil(result.count / this.pageSize)));
   installing$ = this.remoteAppService.installingList().pipe(
     map(v => {
@@ -63,5 +70,9 @@ export class RemoteAppComponent implements OnInit {
   freeChange(free: boolean) {
     this.free = free;
     this.router.navigate([], { queryParams: { page: 0, free: this.free } });
+  }
+
+  sysAuthMessage() {
+    this.SysAuth.authorizationNotify();
   }
 }
