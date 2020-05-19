@@ -32,9 +32,11 @@ import { BuyComponent } from './components/buy/buy.component';
 import { AuthfocusDirective } from './directives/authfocus.directive';
 import { CircleComponent } from './components/circle/circle.component';
 import { ListCategory } from './components/category/category.component';
+import { WaitIconComponent } from './components/wait-icon/wait-icon.component';
 
 const components = [
   WaitComponent,
+  WaitIconComponent,
   ScrollbarComponent,
   AppTitleComponent,
   PaginatorComponent,

@@ -1,0 +1,100 @@
+dstore-list-icon {
+  .item-icon {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.2rem;
+  }
+
+  .item {
+    box-sizing: border-box;
+    width: 226px;
+    padding: 8px 5px;
+    margin: 1rem 0;
+    animation: show 1s;
+    border-radius: 4px;
+    cursor: pointer;
+    main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5px;
+      .images {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+      }
+      .info {
+        flex: 1;
+        overflow: hidden;
+        padding-left: 0.6rem;
+        .name {
+          padding-bottom: 5px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 100px;
+        }
+        .category {
+          > .category-title {
+            max-width: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+        .subtitle {
+          color: gray;
+          font-size: 0.9rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+
+      .control {
+        display: none;
+        width: 50px;
+        margin-top: 0.8rem;
+        height: 18px;
+        line-height: 14px;
+        font-size: 12px;
+      }
+    }
+
+    &:hover,
+    &.hover {
+      background-color: var(--main-item-bg-color-hover);
+      dstore-star {
+        display: none;
+      }
+
+      span {
+        display: none;
+      }
+
+      main .control {
+        display: block;
+      }
+    }
+  }
+
+  @keyframes show {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+  .wait {
+    cursor: unset;
+    padding: 0;
+    width: 100%;
+    &:hover {
+      background: unset;
+    }
+  }
+}

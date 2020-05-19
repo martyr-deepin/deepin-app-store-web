@@ -48,7 +48,7 @@ export class ListOutletComponent implements OnInit {
       this.offset$ = new BehaviorSubject(0);
       this.offset$.subscribe(offset => console.log('offset', offset));
       return this.offset$.pipe(
-        switchMap(offset => this.softService.list({}, { order, [routeName]: routeValue, offset })),
+        switchMap(offset => this.softService.list({}, { order, [routeName]: routeValue, offset, limit: 40 })),
         retryWhen(errors =>
           errors.pipe(
             tap(console.error),
@@ -72,7 +72,7 @@ export class ListOutletComponent implements OnInit {
 
   load() {
     this.offset$.pipe(first()).subscribe(offset => {
-      this.offset$.next(offset + 20);
+      this.offset$.next(offset + 40);
     });
   }
 

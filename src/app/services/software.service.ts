@@ -29,7 +29,7 @@ export class SoftwareService {
     private blacklistService: BlacklistService,
   ) {
     // Uninstall software after refund
-    this.messageService.onMessage<{ app_id: number }>(MessageType.Refund).subscribe(async msg => {
+    this.messageService.onMessage<{ app_id: number }>(MessageType.Refund).subscribe(async (msg) => {
       console.log(msg.app_id);
       const softs = await this.list({}, { id: [msg.app_id] });
       if (softs) {
@@ -73,20 +73,24 @@ export class SoftwareService {
     if (opt) {
       if (opt.noFilter) {
         const apps = await this.appService.list({ id: param.id });
-        softs = apps.items.map(app => this.convertApp(app)).filter(Boolean);
+        softs = apps.items.map((app) => this.convertApp(app)).filter(Boolean);
       }
     } else {
       const stats = await this.statService.list((param as any) || { offset, limit, category, tag, keyword, id: ids });
       const m = new Map<number, AppJSON>();
       if (stats.count > 0) {
         // hidden app based on blacklist
-        stats.items = stats.items.filter(stat => blacklist.get(stat.app_id) !== BlacklistOperation.Hidden);
-        const apps = await this.appService.list({ id: stats.items.map(stat => stat.app_id), active });
-        apps.items.forEach(app => m.set(app.id, app));
+        stats.items = stats.items.filter((stat) => blacklist.get(stat.app_id) !== BlacklistOperation.Hidden);
+        const apps = await this.appService.list({
+          id: stats.items.map((stat) => stat.app_id),
+          limit: param ? (param.limit ? param.limit : 20) : 20,
+          active,
+        });
+        apps.items.forEach((app) => m.set(app.id, app));
       }
       softs = stats.items
-        .filter(stat => m.has(stat.app_id))
-        .map(stat => this.convertApp(m.get(stat.app_id), stat))
+        .filter((stat) => m.has(stat.app_id))
+        .map((stat) => this.convertApp(m.get(stat.app_id), stat))
         .filter(Boolean);
     }
     if (!environment.native) {
@@ -96,7 +100,7 @@ export class SoftwareService {
       softs.sort((a, b) => ids.indexOf(a.id) - ids.indexOf(b.id));
     }
     const pkgMap = await this.packageService.querys(softs.map(this.toQuery));
-    return softs.map(soft => {
+    return softs.map((soft) => {
       const pkg = pkgMap.get(soft.id.toString());
       if (pkg) {
         soft.package = { localVersion: pkg.localVersion, remoteVersion: pkg.remoteVersion, upgradable: pkg.upgradable };
@@ -117,9 +121,9 @@ export class SoftwareService {
   }
 
   private convertApp(app: AppJSON, stat?: AppStat) {
-    let locale = app.info.locales.find(l => l.language === environment.locale);
+    let locale = app.info.locales.find((l) => l.language === environment.locale);
     if (!locale) {
-      locale = app.info.locales.find(l => l.language === 'en_US');
+      locale = app.info.locales.find((l) => l.language === 'en_US');
     }
     if (!locale) {
       locale = app.info.locales[0];
@@ -155,13 +159,13 @@ export class SoftwareService {
         source: app.info.origin,
         icon: this.coverImage(locale.icon),
         cover: this.coverImage(locale.cover),
-        screenshot: locale.screenshots.map(img => this.coverImage(img)),
+        screenshot: locale.screenshots.map((img) => this.coverImage(img)),
         locale: locale.language,
         name: locale.name,
         slogan: locale.slogan,
         description: locale.description,
         tags: locale.tags,
-        packages: app.packages.map(pkg => ({ packageURI: 'dpk://deb/' + pkg.name })),
+        packages: app.packages.map((pkg) => ({ packageURI: 'dpk://deb/' + pkg.name })),
       },
       package: {
         remoteVersion: '',
@@ -203,7 +207,7 @@ export class SoftwareService {
   }
   query(soft: Software) {
     return this.packageService.query(this.toQuery(soft)).pipe(
-      switchMap(async v => {
+      switchMap(async (v) => {
         // disable app based on blacklist
         if (v && v.remoteVersion) {
           const blacklist = await this.backlist$;
@@ -227,10 +231,10 @@ export function sortByLocale(a: Locale, b: Locale) {
 }
 
 export function localeFilter(arr: Locale[]): any[] {
-  if (arr.some(v => v.locale === environment.locale)) {
-    return arr.filter(v => v.locale === environment.locale);
+  if (arr.some((v) => v.locale === environment.locale)) {
+    return arr.filter((v) => v.locale === environment.locale);
   }
-  return arr.filter(v => v.locale === 'en_US');
+  return arr.filter((v) => v.locale === 'en_US');
 }
 
 // 软件信息
