@@ -22,6 +22,7 @@ export class ListOutletComponent implements OnInit {
   auther: number;
   slogan = false;
   name$ = this.route.paramMap.pipe(map(param => param.get('name')));
+  titles$ = this.route.paramMap.pipe(map(param => param.get('value')));
   loading = false;
   // loading offset
   offset$ = new BehaviorSubject(0);

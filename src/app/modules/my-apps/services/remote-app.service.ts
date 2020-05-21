@@ -28,7 +28,9 @@ export class RemoteAppService extends APIBase<RemoteApp> {
     resp.items.forEach(item => {
       item.soft = softs.find(soft => soft.id === item.app_id);
     });
+    console.log(resp.items)
     resp.items = resp.items.filter(item => item.soft);
+    console.log(resp.items)
     return resp;
   }
 

@@ -1,6 +1,14 @@
-<ng-container >
-  <div class="box" *ngIf="wait" @myInsertRemoveTrigger>
-    <div class="water"></div>
-    <div class="title" i18n>Loading... Please wait</div>
-  </div>
+<ng-container *ngIf="timeout$|async; else: water" @myInsertRemoveTriggers>
+  <!-- <div class="error-box"> -->
+    <img class="failed" src="/assets/icons/failed.svg" />
+    <span class="timeout" i18n>Network error</span>
+  <!-- </div> -->
 </ng-container>
+<ng-template #water>
+  <ng-container *ngIf="wait&&delay$|async" @myInsertRemoveTrigger>
+    <div class="box">
+      <div class="water"></div>
+      <div class="title" i18n>Loading... Please wait</div>
+    </div>
+  </ng-container>
+</ng-template>
