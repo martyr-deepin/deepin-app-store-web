@@ -8,7 +8,5 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ListCategory implements OnInit {
   constructor() {}
   @Input() category: string;
-  ngOnInit() {
-    console.log(this.category)
-  }
+  ngOnInit() {}
 }

@@ -4,6 +4,7 @@
     height: 80%;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
   }
   .box{
     display: flex;
@@ -44,12 +45,10 @@
     color: blue;
   }
   .failed {
+    margin-bottom: 1rem;
     width: 3rem;
-    margin-right: 10px;
   }
   .timeout {
     color: red;
-    display: flex;
-    align-items: center;
   }
   

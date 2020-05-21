@@ -32,9 +32,3 @@ export const pageAnimations = trigger('pageAnimations', [
     ]),
   ]),
 ]);
-export const myInsertRemoveTriggers = trigger('myInsertRemoveTriggers', [
-  transition(':enter', [
-    style({ opacity: 0 }),
-    animate('1000ms ease-in-out', style({ opacity: 1 })),
-  ])
-]);

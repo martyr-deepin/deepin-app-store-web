@@ -1,6 +1,6 @@
 <ng-container [ngSwitch]="name$ | async">
   <app-app-title *ngSwitchCase="'category'" [useRouterQuery]="true">
-    <m-category-name [category]="(titles$ | async).trim()"></m-category-name>
+    <ng-container>{{ title }}</ng-container>
   </app-app-title>
   <app-app-title *ngSwitchCase="'ranking'" [useRouterQuery]="true" [top]="(result$ | async)?.length">
     <ng-container><span i18n>Rankings</span></ng-container>

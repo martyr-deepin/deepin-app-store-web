@@ -2,12 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Observable, timer, fromEvent } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import { myInsertRemoveTrigger, slideInOut, myInsertRemoveTriggers } from '../../services/animations';
+import { myInsertRemoveTrigger, slideInOut } from '../../services/animations';
 @Component({
   selector: 'm-wait-icon',
   templateUrl: './wait-icon.component.html',
   styleUrls: ['./wait-icon.component.scss'],
-  animations: [myInsertRemoveTrigger,myInsertRemoveTriggers]
+  animations: [myInsertRemoveTrigger]
 })
 export class WaitIconComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
