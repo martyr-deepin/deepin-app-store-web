@@ -1,6 +1,6 @@
 <div #commentRef></div>
 <ng-container *ngFor="let info of [info$ | async]">
-  <div [hidden]="!supportSignIn">
+  <!-- <div [hidden]="!supportSignIn">
     <div class="commentInput" [formGroup]="commentGroup">
       <div class="title">
         <ng-container *ngIf="!info; else logged">
@@ -97,7 +97,7 @@
         <ng-container i18n>Submit</ng-container>
       </button>
     </div>
-  </div>
+  </div> -->
   <br />
 
   <div class="commentList">
@@ -182,13 +182,13 @@
                       </div>
                       &nbsp;&nbsp;
                       <div class="like">
-                        <span [class.hidden]="c.likes?.length <= 0">({{ c.likes?.length }})</span>
+                        <!-- <span [class.hidden]="c.likes?.length <= 0">{{'('+ c.likes?.length +')'}}</span>
                         <img
                           class="thumbUp"
                           [class.hidden]="c.commenter == info?.uid"
                           [class.active]="likeByMe(c.likes, info?.uid)"
                           (click)="thumbUpClick(c)"
-                        />
+                        /> -->
                       </div>
                     </div>
                   </div>
