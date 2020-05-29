@@ -28,4 +28,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## License
 
-This project is licensed under [GPLv3](LICENSE).
+This project is licensed under [LICENSE](LICENSE).

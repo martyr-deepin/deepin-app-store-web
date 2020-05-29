@@ -1,0 +1,6 @@
+   {
+       "type": "homebrew",
+       "3rdparty": ["node_modules","vendor-deps","src/*.xlf"],
+       "ignore": [],
+       "license": ["GPLv3"]
+   }
