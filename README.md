@@ -28,4 +28,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## License
 
-This project is licensed under [LICENSE](LICENSE).
+This project is licensed under [LICENSE](https://gitlab.deepin.io/dde-v20/deepin-app-store-web/blob/master/LICENSE.txt).
