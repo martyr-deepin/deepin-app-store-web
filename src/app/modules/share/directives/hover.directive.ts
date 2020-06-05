@@ -1,7 +1,4 @@
-import { Directive, HostListener, ElementRef, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-
-import { HoverService } from '../services/hover.service';
+import { Directive, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[dstoreHover]',

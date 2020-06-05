@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { switchMap } from 'rxjs/operators';
 
-import { environment } from 'environments/environment';
 import { Software, SoftwareService } from 'app/services/software.service';
 import { APIBase, ListOption } from 'app/services/api';
 

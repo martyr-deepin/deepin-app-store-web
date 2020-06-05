@@ -1,0 +1,93 @@
+@import 'theme';
+:host {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  box-sizing: border-box;
+  font-size: 0.82rem;
+  width: 100%;
+  height: 5.46rem;
+  color: var(--font-color-gray);
+  >div {
+    border-bottom: 1px solid var(--main-item-hr-color);
+    padding: 1rem 0.5rem;
+  }
+}
+
+.icon {
+  align-self: center;
+  width: 3.05rem;
+  height: 3.05rem;
+}
+
+.div_style {
+  flex: 1;
+  align-items: center;
+  display: flex;
+}
+
+.title {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  >div {
+    @extend .div_style;
+  }
+  .name {
+    color: var(--font-color);
+    font-size: 0.92rem;
+  }
+}
+
+.log {
+  flex: 1;
+  word-break: break-all;
+  white-space: pre-wrap;
+  position: relative;
+  //line-height: 3.2rem;
+  .log_content {
+    max-height: 100%;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1.6rem;
+  }
+  .log_content_none {
+    width: 100%;
+    text-align: center;
+    line-height: 3.2rem;
+  }
+  .log_btn {
+    color: var(--primary-color);
+    position: absolute;
+    right: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    top: 2.8rem;
+    cursor: pointer;
+  }
+}
+
+.progress {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  >div {
+    @extend .div_style;
+  }
+}
+
+.update_date {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  >div {
+    text-align: right;
+    width: 100%;
+  }
+  span {
+    color: var(--font-color)
+  }
+}

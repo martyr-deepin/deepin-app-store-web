@@ -63,6 +63,13 @@
           {{ $c }}
         </div>
       </div>
+      <div class="navItem" routerLinkActive="active" [routerLink]="['my', 'updates']">
+        <div class="categoryIcon update"></div>
+        <div class="title">
+          <span i18n>Updates</span>
+        </div>
+        <div class="downloadCount" [class.rect]="$r >= 10" [@dlcIn] *ngIf="renewableSize$ | async as $r">{{$r}}</div>
+      </div>
       <div class="navItem" routerLinkActive="active" [routerLink]="['my', 'apps']">
         <div class="categoryIcon myapp"></div>
         <div class="title">

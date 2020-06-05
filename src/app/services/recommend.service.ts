@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Observable, merge, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { Channel } from 'app/modules/client/utils/channel';
 import { HttpClient } from '@angular/common/http';

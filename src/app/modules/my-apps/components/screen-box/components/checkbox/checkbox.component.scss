@@ -1,0 +1,175 @@
+:host {
+  display: inline-block;
+}
+
+.checkbox {
+  line-height: 1;
+  position: relative;
+  >input {
+    position: absolute;
+    z-index: 99999999;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+    opacity: 0;
+  }
+  i {
+    border: 1px solid #888;
+    background-color: rgba(255, 255, 255, 0.3);
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    width: 1.3rem;
+    height: 1.3rem;
+    position: relative;
+    box-sizing: border-box;
+    margin-right: 0.4rem;
+    transition: background-color .15s ease-in .05s;
+  }
+  .mixed {
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+      background-color: #fff;
+      height: 2px;
+      transform: scale(0);
+      transition: transform .15s ease-in .05s;
+      left: 0;
+      right: 0;
+      top: 6px;
+    }
+  }
+  .default {
+    &::after {
+      box-sizing: content-box;
+      content: "";
+      border: 1px solid #fff;
+      border-left: 0;
+      border-top: 0;
+      height: 0.7rem;
+      left: 0.35rem;
+      position: absolute;
+      top: 1px;
+      transform: rotate(45deg) scaleY(0);
+      width: 0.4rem;
+      transition: transform .15s ease-in .05s;
+      transform-origin: center;
+    }
+  }
+  label {
+    line-height: 1.3rem;
+    vertical-align: top;
+    font-weight: normal;
+    font-size: 0.92rem;
+    span {
+      margin-left: 0.5rem;
+    }
+  }
+  //各种checkbox的样式
+  .primary {
+    .dstore-checked,
+    .mixed {
+      background-color: #2CA7F8;
+      border-color: #2CA7F8;
+    }
+    .default {
+      &::after {
+        transform: rotate(45deg) scaleY(1);
+      }
+    }
+    .mixed {
+      &::after {
+        transform: scale(0.5);
+      }
+    }
+  }
+  .success {
+    .dstore-checked,
+    .mixed {
+      background-color: #5cb85c;
+      border-color: #5cb85c;
+    }
+    .default {
+      &::after {
+        transform: rotate(45deg) scaleY(1);
+      }
+    }
+    .mixed {
+      &::after {
+        transform: scale(0.5);
+      }
+    }
+  }
+  .warning {
+    .dstore-checked,
+    .mixed {
+      background-color: #f0ad4e;
+      border-color: #f0ad4e;
+    }
+    .default {
+      &::after {
+        transform: rotate(45deg) scaleY(1);
+      }
+    }
+    .mixed {
+      &::after {
+        transform: scale(0.5);
+      }
+    }
+  }
+  .info {
+    .dstore-checked,
+    .mixed {
+      background-color: #5bc0de;
+      border-color: #5bc0de;
+    }
+    .default {
+      &::after {
+        transform: rotate(45deg) scaleY(1);
+      }
+    }
+    .mixed {
+      &::after {
+        transform: scale(0.5);
+      }
+    }
+  }
+  .danger {
+    .dstore-checked,
+    .mixed {
+      background-color: #d9534f;
+      border-color: #d9534f;
+    }
+    .default {
+      &::after {
+        transform: rotate(45deg) scaleY(1);
+      }
+    }
+    .mixed {
+      &::after {
+        transform: scale(0.5);
+      }
+    }
+  }
+}
+
+.disabled {
+  input {
+    cursor: not-allowed !important;
+  }
+  i {
+    background-color: #ccc;
+  }
+}
+
+.circle {
+  i {
+    border-radius: 50%;
+  }
+}

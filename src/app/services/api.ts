@@ -38,3 +38,9 @@ export interface ListOption {
   limit?: number;
   free?: boolean;
 }
+
+export interface Page<T> {
+  total:number,
+  pageIndex:number,
+  list:T[]
+}

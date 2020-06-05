@@ -23,7 +23,9 @@ export class UserAppsService {
       merge(this.buyService.buy$, this.messageService.onMessage(MessageType.AppsChange)).pipe(
         startWith(null),
         debounceTime(100),
-        map(() => info),
+        map(() => {
+          return info
+        }),
       ),
     ),
     switchMap(async info => {

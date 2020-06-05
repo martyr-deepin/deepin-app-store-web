@@ -1,15 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { timer, Observable, of } from 'rxjs';
+import { timer, Observable } from 'rxjs';
 import { switchMap, share } from 'rxjs/operators';
 import { Software, SoftwareService } from 'app/services/software.service';
 import { Payment } from 'app/services/payment';
 import { OrderService, OrderStatus, OrderJSON } from '../../../../services/order.service';
 import { DstoreObject } from 'app/modules/client/utils/dstore-objects';
 import { BuyService } from 'app/services/buy.service';
-import { toCanvas, toDataURL } from 'qrcode';
-import { SafeResourceUrl } from '@angular/platform-browser';
-import { Router, ActivatedRoute } from '@angular/router';
+import {toDataURL } from 'qrcode';
 @Component({
   selector: 'm-buy',
   templateUrl: './buy.component.html',
@@ -20,9 +18,7 @@ export class BuyComponent implements OnInit {
     private fb: FormBuilder,
     private orderService: OrderService,
     private buyService: BuyService,
-    private softwareService: SoftwareService,
-    private router: Router,
-    private activeRouter: ActivatedRoute,
+    private softwareService: SoftwareService
   ) {}
   readonly Payment = Payment;
   readonly OrderStatus = OrderStatus;
@@ -34,7 +30,7 @@ export class BuyComponent implements OnInit {
     app_id: [0, Validators.required],
     app_version: ['', Validators.required],
     amount: [0, Validators.required],
-    method: ['', Validators.required],
+    third: ['', Validators.required],
   });
   //支付类型
   payType = null;
@@ -75,17 +71,19 @@ export class BuyComponent implements OnInit {
       window.location.reload();
       return;
     }
-    this.payType = this.form.get('method').value;
+    this.payType = this.form.get('third').value;
 
     const result = await this.orderService.payment(this.form.value);
+    result.pay_method = this.payType;
+    result.created_at = new Date().getTime();
 
     switch (this.payType) {
       case Payment.AliPay:
-        DstoreObject.openURL(result.pay_url);
+        DstoreObject.openURL(result.url);
         break;
       case Payment.WeChat:
         //this.qrCode = await toDataURL('jianghao', { rendererOpts: { quality: 1 } });
-        this.qrCode = await toDataURL(result.pay_url, { rendererOpts: { quality: 1 } });
+        this.qrCode = await toDataURL(result.url, { rendererOpts: { quality: 1 } });
         console.log(this.qrCode);
         break;
     }
@@ -93,18 +91,19 @@ export class BuyComponent implements OnInit {
     this.payment$ = timer(0, 3000).pipe(
       switchMap(async () => {
         if (this.success) {
-          return this.order;
+          return result;
         }
         try {
-          const order = await this.orderService.get(result.order_number as any);
-          if (order.status === OrderStatus.OrderStatusSuccess) {
+          const orderStatus = await this.orderService.get(result.order_number+"/status" as any);
+          result.status = orderStatus.status;
+          if (orderStatus.status === OrderStatus.OrderStatusSuccess) {
             this.success = true;
-            this.order = order;
+            //this.order = order;
             this.buyService.buy$.next(this.soft);
           }
-          return order;
+          return result;
         } catch (error) {
-          return { status: 'netWokrError' } as OrderJSON;
+          return { status: 3 } as OrderJSON;
         }
       }),
       share(),

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { APIBase } from './api';
 
 @Injectable({
   providedIn: 'root',
@@ -8,10 +7,10 @@ import { APIBase } from './api';
 export class RefundService {
   constructor(private http: HttpClient) {}
   list(order_number: string) {
-    return this.http.get<Refund[]>('/api/user/alipay/refund/' + order_number).toPromise();
+    return this.http.get<Refund[]>('/api/user/refund/' + order_number).toPromise();
   }
-  create(order_number: string, request: { content: string; reason: { id: number }[] }) {
-    return this.http.post('/api/user/alipay/refund/' + order_number, request).toPromise();
+  create(order_number: string, request: { content: string; reason: string }) {
+    return this.http.post('/api/user/refund/' + order_number, request).toPromise();
   }
 }
 interface Refund {
@@ -39,4 +38,19 @@ export enum RefundStatus {
   RefundStatusWaiting = 'waiting',
   RefundStatusSuccess = 'success',
   RefundStatusFailure = 'failure',
+}
+
+export enum RefundCode {
+  Success = 0,
+  Review = 1,
+  DataError = 2,
+  SysError = 3,
+  OrderDefind = 4,
+  OrderNotPay = 5,
+  TimeOut = 6,
+  NoPower = 7,
+  Successful = 8,
+  Refunding = 9,
+  Reviewing = 10,
+  fail = 11
 }

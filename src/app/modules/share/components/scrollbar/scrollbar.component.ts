@@ -36,7 +36,6 @@ export class ScrollbarComponent implements OnInit, OnDestroy {
     });
     this.resize$ = fromEvent(window, 'resize').pipe(
       map(() => {
-        console.log('update');
         scrollbar.update();
       }),
     );

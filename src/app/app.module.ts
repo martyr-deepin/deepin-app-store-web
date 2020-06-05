@@ -18,7 +18,6 @@ import { ProxyInterceptor } from './services/proxy-interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
 
 import localeZH from '@angular/common/locales/zh';
 import localeEN from '@angular/common/locales/en';
@@ -44,7 +43,6 @@ registerLocaleData(localeAM, 'am');
     NotifyComponent,
     PrivacyAgreementComponent,
     MainComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule,

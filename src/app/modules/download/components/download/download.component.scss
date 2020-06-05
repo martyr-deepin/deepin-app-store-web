@@ -95,19 +95,3 @@
   }
 }
 
-progress[value] {
-  /* Reset the default appearance */
-  -webkit-appearance: none;
-  appearance: none;
-  &::-webkit-progress-bar {
-    height: 6px;
-    border-radius: 4px;
-    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
-    background-color: var(--main-title-hr-color);
-  }
-  &::-webkit-progress-value {
-    background-color: #2ca7f8;
-    border: solid 1px #378cfa;
-    border-radius: 4px;
-  }
-}

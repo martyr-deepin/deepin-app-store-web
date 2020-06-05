@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'environments/environment';
-import { map, tap, switchMap, first } from 'rxjs/operators';
-import { get } from 'lodash';
+import { switchMap } from 'rxjs/operators';
 import { StoreService, Package, QueryParam } from 'app/modules/client/services/store.service';
 import { PackageService } from './package.service';
 import { DownloadTotalService } from './download-total.service';
 import { AppService, AppJSON, Pricing } from './app.service';
 import { StatService, AppStat } from './stat.service';
-import { BuyService } from './buy.service';
 import { MessageService, MessageType } from './message.service';
 import { BlacklistService } from './blacklist.service';
 import { BlacklistOperation } from './blacklist';
@@ -30,7 +28,6 @@ export class SoftwareService {
   ) {
     // Uninstall software after refund
     this.messageService.onMessage<{ app_id: number }>(MessageType.Refund).subscribe(async (msg) => {
-      console.log(msg.app_id);
       const softs = await this.list({}, { id: [msg.app_id] });
       if (softs) {
         this.remove(...softs);
@@ -86,7 +83,11 @@ export class SoftwareService {
           limit: param ? (param.limit ? param.limit : 20) : 20,
           active,
         });
-        apps.items.forEach((app) => m.set(app.id, app));
+        apps.items.forEach((app) => {
+          if(app.info) {
+            m.set(app.id, app)
+          }
+        });
       }
       softs = stats.items
         .filter((stat) => m.has(stat.app_id))
@@ -152,6 +153,8 @@ export class SoftwareService {
       created_at: app.created_at,
       updated_at: app.updated_at,
       stat: appStat,
+      skip: app.skip,
+      //skip: true,
       info: {
         author: app.author,
         category: app.info.category,
@@ -161,16 +164,17 @@ export class SoftwareService {
         cover: this.coverImage(locale.cover),
         screenshot: locale.screenshots.map((img) => this.coverImage(img)),
         locale: locale.language,
+        changelog: locale.changelog,
         name: locale.name,
         slogan: locale.slogan,
         description: locale.description,
         tags: locale.tags,
-        packages: app.packages.map((pkg) => ({ packageURI: 'dpk://deb/' + pkg.name })),
+        packages: app.packages.map(pkg => ({ packageURI: 'dpk://deb/' + pkg.name,size: pkg.size })),
       },
       package: {
         remoteVersion: '',
         localVersion: '',
-        upgradable: false,
+        upgradable: false
       },
       free: app.free,
       pricing: app.pricings[0],
@@ -248,9 +252,8 @@ interface Info extends Desc {
   tags: any[];
   cover: string;
   screenshot: string[];
-
   packager?: string;
-  packages?: { packageURI: string }[];
+  packages?: { packageURI: string,size: number }[];
   extra?: {};
   versions?: any[];
 }
@@ -266,12 +269,14 @@ export interface Software {
   stat: Stat;
   free: boolean;
   pricing: Pricing;
+  skip: boolean,
   package?: {
     localVersion: string;
     remoteVersion: string;
     upgradable: boolean;
     appName?: string;
     icon?: string;
+    size?:number;
   };
   // 下面是服务器返回结构，全部解析到info内部
   desc?: Desc;
@@ -283,6 +288,7 @@ export interface Software {
 
 interface Desc {
   locale: string;
+  changelog: string;
   name: string;
   description: string;
   slogan: string;

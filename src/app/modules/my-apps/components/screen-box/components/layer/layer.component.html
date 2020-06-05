@@ -1,0 +1,11 @@
+<div class="screen-layer" [ngStyle]="{display:destruction?'block':'none'}">
+  <div class="top">
+    <ng-content select=".top_content"></ng-content>
+  </div>
+  <div class="center">
+    <ng-content select=".center_content"></ng-content>
+  </div>
+  <div class="footer">
+    <ng-content select=".footer_content"></ng-content>
+  </div>
+</div>

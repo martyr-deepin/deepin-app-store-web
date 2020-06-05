@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { trigger, transition, animate, keyframes, style, state } from '@angular/animations';
-import { Observable, Subject, BehaviorSubject, timer } from 'rxjs';
+import { Observable, BehaviorSubject, timer } from 'rxjs';
 import { throttleTime, switchMap, map } from 'rxjs/operators';
-import { get } from 'lodash';
 
 import { SectionItemBase } from '../section-item-base';
 import { SectionService, SectionItem } from '../../services/section.service';
@@ -82,7 +81,7 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
   ngOnInit() {
     this.init().finally(() => {
       this.loaded.emit(true);
-
+      console.log(this.carousels)
       this.current = new Ring(this.carousels);
       setTimeout(() => this.move(0));
       this.running$ = this.click$.pipe(
@@ -144,13 +143,21 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
       return;
     }
     if (this.carousels.length <= 3) {
-      this.carousels = [...this.carousels, ...this.carousels];
+      this.carousels.length = 3;
+      for(let i =0;i<this.carousels.length;i++) {
+        let s = this.carousels[i]
+        if(s){
+          //this.carousels[i] = s
+        }else {
+          this.carousels[i] = this.carousels[i-1]
+        }
+      }
     }
     if (this.carousels.length >= 6) {
-      return this.carousels.splice(6, this.carousels.length - 1);
+      this.carousels.splice(6, this.carousels.length - 5);
     }
     console.log(this.carousels, '轮播图');
-    return this.carousels;
+    //return this.carousels;
     // while (this.carousels.length < 5) {
     //
     // }

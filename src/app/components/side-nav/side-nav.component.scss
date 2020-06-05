@@ -1,5 +1,4 @@
 @import 'theme';
-
 .nav {
   user-select: none;
   text-align: center;
@@ -9,9 +8,8 @@
   overflow-y: auto;
   overflow-x: hidden;
   color: var(--nav-color);
-  background-color: var(--nav-bg-color);
+  //background-color: var(--nav-bg-color);
   border-right: 1px solid rgba(0, 0, 0, 0.1);
-
   .navItem {
     display: flex;
     align-items: center;
@@ -25,7 +23,6 @@
     outline: none;
     cursor: pointer;
     border-right: 3px solid transparent;
-
     .categoryIcon {
       //   margin-right: 0.5rem;
       width: 1.2rem;
@@ -35,35 +32,29 @@
       background-repeat: no-repeat;
       background-position-x: 0, -100px;
       padding: 0 1rem 0 1.2rem;
-
       @each $v in $category-list {
         &.#{$v} {
           background-image: var(--nav-icon-#{$v});
         }
       }
     }
-
     &.active {
       //   border-right: 3px solid #2ca7f8;
       background-color: var(--nav-bg-color-active);
       color: #ffffff;
-
       .categoryIcon {
         background-position-x: -100px, 0px;
       }
     }
-
     &:not(.active):hover {
       background-color: rgba(0, 0, 0, 0.05);
     }
-
     .title {
       display: flex;
       align-items: center;
       flex-grow: 1;
       overflow: hidden;
       white-space: nowrap;
-
       span {
         line-height: 2rem;
         text-overflow: ellipsis;
@@ -71,7 +62,6 @@
       }
     }
   }
-
   .hr {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin-bottom: 6px;
@@ -85,7 +75,6 @@
   color: #2ca7f8;
   border-radius: 50%;
   box-shadow: 0 0 0 1px var(--main-title-hr-color);
-
   &.rect {
     width: 20px;
     border-radius: 8px;

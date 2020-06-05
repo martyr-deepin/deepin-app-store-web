@@ -1,0 +1,12 @@
+<dstore-scrollbar>
+  <ng-container *ngIf="(recentUpdatedList$ | async) as list; else loadingContainer" >
+    <ng-container *ngFor="let item of list">
+      <my-updates-recently-item [software]="item" ></my-updates-recently-item>
+    </ng-container>
+  </ng-container>
+  <ng-template #loadingContainer >
+    <div class="loadingContainer">
+      <app-wait></app-wait>
+    </div>
+  </ng-template>
+</dstore-scrollbar>

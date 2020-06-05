@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { environment } from 'environments/environment';
 // size of file human readable
 @Pipe({
   name: 'sizeHuman',

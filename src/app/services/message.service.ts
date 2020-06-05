@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { merge, Observable, empty, onErrorResumeNext } from 'rxjs';
+import { merge, Observable, empty } from 'rxjs';
 import { filter, map, switchMap, share, retry } from 'rxjs/operators';
 
 import { environment } from 'environments/environment';
@@ -40,7 +40,6 @@ export class MessageService {
         const url = new URL(`${environment.server}/api/user/message_stream`);
         url.searchParams.set('id', this.clientID.clientID());
         url.searchParams.set('Authorization', this.Authorization());
-        console.log(url.toString());
         const es = new EventSource(url.toString());
         es.addEventListener('error', err => {
           obs.error(err);
@@ -65,8 +64,12 @@ export class MessageService {
         const url = new URL(`ws://${new URL(environment.server).host}/api/user/message_stream`);
         url.searchParams.set('id', this.clientID.clientID());
         url.searchParams.set('Authorization', this.Authorization());
-        const ws = new WebSocket(url.toString());
+        let ws = new WebSocket(url.toString());
+        ws.addEventListener('open',()=>{
+          console.log("----=======-------websocket连接成功")
+        })
         ws.addEventListener('error', err => {
+          console.error("websocket进入error",err)
           obs.error(err);
         });
         ws.addEventListener('message', e => {
@@ -82,6 +85,7 @@ export class MessageService {
         });
         return () => ws.close();
       } catch (err) {
+        console.log("websocket进入error产生异常")
         obs.error(err);
       }
     });

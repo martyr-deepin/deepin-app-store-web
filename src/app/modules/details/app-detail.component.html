@@ -1,130 +1,132 @@
 <div *ngIf="app$ | async as app; else $loading">
   <div class="appInfo">
-    <div class="info-left">
-      <img class="icon" dstoreCover="icon" [src]="app.info.icon" /> <br />
-      <div>
-        <dstore-control class="control" [soft]="app" #controlRef [hidden]="controlRef.job$ | async"></dstore-control>
-      </div>
-      <ng-container *ngIf="controlRef.job$ | async as job">
-        <dstore-progress-button [job]="job.job" [type]="job.type" [status]="job.status" [progress]="job.progress"
-          [disabled]="!job.cancelable || job.status === StoreJobStatus.failed"></dstore-progress-button>
-      </ng-container>
-      <div *ngIf="!app.free" class="refund">
-        <div
-          title="1. Users can request a refund within two hours after payment.&#10;2. The first three refund requests are processed automatically, and the refunds are returned to the original account in real time.&#10;3. The fourth and later refund requests must be reviewed manually (2-3 working days). Your refund will be issued if approved, and you will receive an explanation if rejected."
-          i18n-title>
-          <i>i</i><span i18n>Refund Policy</span>
+    <section class="base_info">
+      <div class="info_left">
+        <img class="icon" dstoreCover="icon" [src]="app.info.icon" />
+        <div class="info_content">
+          <div class="info_content_title">{{app.info.name}}
+            <ng-container *ngIf="!app.skip">
+              <img class="safe_icon" />
+            </ng-container>
+          </div>
+          <div class="info_content_subtitle">
+            {{app.info.slogan}}
+          </div>
+          <div class="info_content_rate">
+            <ng-container *ngIf="app.stat as stat">
+              <span *ngIf="stat.score_count < 20" i18n></span>
+              <dstore-star *ngIf="stat.score_count >= 20" [rate]="stat.score / 2 || 0"></dstore-star>
+              <span *ngIf="stat.score_count >= 20" class="details score">&nbsp;&nbsp;{{ (stat.score / 2 || 0).toFixed(1) }}</span>
+              <ng-container *ngFor="let downloads of [stat.download + (installCount$ | async)]">
+                <span class="details" i18n>{{ downloads }} downloads</span>
+              </ng-container>
+              <ng-container *ngFor="let score_count of [stat.score_count + (sourceCount$ | async)]">
+                <span class="details" i18n>{{ score_count }} ratings</span>
+              </ng-container>
+            </ng-container>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="info-right">
-      <div class="title selectable">{{ app.info.name }}</div>
-      <div class="content">
-        <div i18n>Rating:</div>
-        <div class="rate">
-          <ng-container *ngIf="app.stat as stat">
-            <span *ngIf="stat.score_count < 20" i18n></span>
-            <dstore-star *ngIf="stat.score_count >= 20" [rate]="stat.score / 2 || 0"></dstore-star>
-            <span *ngIf="stat.score_count >= 20"
-              class="details">&nbsp;&nbsp;{{ (stat.score / 2 || 0).toFixed(1) }}</span>
-            <ng-container *ngFor="let downloads of [stat.download + (installCount$ | async)]">
-              <span class="details" i18n>{{ downloads }} downloads</span>
-            </ng-container>
-            <ng-container *ngFor="let score_count of [stat.score_count + (sourceCount$ | async)]">
-              <span class="details" i18n>{{ score_count }} ratings</span>
-            </ng-container>
-
+      <div class="info_right">
+        <div class="bottons">
+          <dstore-control class="control" [soft]="app" #controlRef [hidden]="controlRef.job$ | async"></dstore-control>
+          <ng-container *ngIf="controlRef.job$ | async as job">
+            <dstore-progress-button [job]="job.job" [type]="job.type" [status]="job.status" [progress]="job.progress" [disabled]="!job.cancelable || job.status === StoreJobStatus.failed"></dstore-progress-button>
           </ng-container>
+          <div *ngIf="!app.free" class="refund">
+            <div title="1. Users can request a refund within two hours after payment.&#10;2. The first three refund requests are processed automatically, and the refunds are returned to the original account in real time.&#10;3. The fourth and later refund requests must be reviewed manually (2-3 working days). Your refund will be issued if approved, and you will receive an explanation if rejected."
+              i18n-title>
+              <i>i</i><span i18n>Refund Policy</span>
+            </div>
+          </div>
         </div>
-        <div i18n>Category:</div>
-        <div>
+      </div>
+      <div class="both"></div>
+    </section>
+    <table class="app_info_table">
+      <tr>
+        <td>
+          <label class="info_item" i18n>Category:</label>
           <m-category-name [category]="app.info.category"></m-category-name>
-        </div>
-
-        <ng-container *ngIf="controlRef.package$ | async as package">
-          <div i18n>Version:</div>
-          <div>{{ package.remoteVersion || package.localVersion }}</div>
-          <ng-container *ngIf="allowName$ | async">
-            <div>Package:</div>
-            <div>{{ package.packageName }}</div>
+        </td>
+        <td>
+          <label class="info_item" i18n>Version:</label>
+          <ng-container *ngIf="controlRef.package$ | async as package">
+            <label>{{ package.remoteVersion || package.localVersion }}</label>
+            <label *ngIf="app.info.changelog" (click)="preDetail.toggle($event)" class="log_btn" i18n>Changelog</label>
           </ng-container>
-          <div i18n>Size:</div>
-          <div>
+          <dstore-pre-detail #preDetail>
+            {{app.info.changelog}}
+          </dstore-pre-detail>
+        </td>
+        <td>
+          <label class="info_item" i18n>Size:</label>
+          <label>
+            <ng-template #$Downloaded>
+              <ng-container i18n>Downloaded</ng-container>
+            </ng-template>
             <ng-container *ngFor="let size of [size$ | async]" [ngSwitch]="size">
               <ng-container *ngSwitchCase="null" i18n>Calculating</ng-container>
               <ng-container *ngSwitchCase="0" i18n>Downloaded</ng-container>
-                <!-- <ng-container *ngIf="downloadedSize$ | async as downloadedSize; else $Downloaded" >
-                {{downloadedSize | sizeHuman}}</ng-container> -->
               <ng-container *ngSwitchDefault>{{ size | sizeHuman }}</ng-container>
             </ng-container>
-          </div>
-        </ng-container>
-        <div i18n>Updated Date:</div>
-        <div>
-          {{ app.updated_at | date: 'yyyy-MM-dd HH:mm' }}
-        </div>
-        <ng-container *ngIf="app.info.author">
-          <div i18n>Developer:</div>
-          <div>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label class="info_item" i18n>Updated Date:</label>
+          <label>
+            {{ app.updated_at | date: 'yyyy-MM-dd HH:mm' }}
+          </label>
+        </td>
+        <td>
+          <label class="info_item" i18n>Website:</label>
+          <ng-container *ngIf="app.info.homePage; else $unknown">
+            <label title="Open" i18n-title class="webSite" (click)="openURL(app.info.homePage)">
+              {{ app.info.homePage }}
+            </label>
+          </ng-container>
+        </td>
+        <td>
+          <label class="info_item" i18n>Developer:</label>
+          <ng-container *ngIf="app.info.author; else $unknown">
             <a [routerLink]="['/list', 'author', app.info.author]">
               {{ (app.info.author | deepinid | async)?.nickname }}
             </a>
+          </ng-container>
+        </td>
+      </tr>
+      <tr>
+        <td class="pre_td" colspan="3">
+          <div class="description_content">
+            <label class="info_item info_item_description" i18n>Description:</label>
+            <label class="info_description">
+              {{ app.info.description }}
+            </label>
+            <span *ngIf="description_overflow()" (click)="$layer.show()" class="info_description_more" i18n>More</span>
           </div>
-        </ng-container>
-        <ng-container *ngIf="app.info.packager">
-          <div i18n>Packager:</div>
-          <div>
-            <a [routerLink]="['/list', 'packager', app.info.packager]">{{ app.info.packager }}</a>
-          </div>
-        </ng-container>
-
-        <ng-container *ngIf="app.info.homePage">
-          <div i18n>Website:</div>
-          <div class="webSite" (click)="openURL(app.info.homePage)">
-            {{ app.info.homePage }}
-          </div>
-        </ng-container>
-        <ng-container *ngIf="app.info.source">
-          <div i18n>Source:</div>
-          <div class="source" [ngSwitch]="app.info.source">
-            <ng-container *ngSwitchCase="SoftSource.ThirdParty" i18n>Third-party</ng-container>
-            <ng-container *ngSwitchCase="SoftSource.Official" i18n>Official</ng-container>
-            <ng-container *ngSwitchCase="SoftSource.Collaborative" i18n>Collaboration</ng-container>
-          </div>
-        </ng-container>
-        <ng-container *ngIf="app.info.tags?.length">
-          <div i18n>Tag:</div>
-          <div class="tags" *ngIf="app.info.tags.length > 0">
-            <div *ngFor="let tag of app.info.tags">
-              <span class="tag" [routerLink]="['/list', 'tag', tag]">
-                {{ tag }}
-              </span>
-            </div>
-          </div>
-        </ng-container>
-        <div i18n>Description:</div>
-        <div class="pre selectable">
-          {{ app.info.description.length>200&&crumbs?app.info.description:app.info.description.slice(0, 200) }}
-          <span *ngIf="crumbs" (click)="crumbs=!crumbs" class="crumbs">
-            <ng-container i18n>Collapse</ng-container>
-          </span>
-          <span *ngIf="app.info.description.length>200&&!crumbs" (click)="crumbs=!crumbs" class="crumbs">
-            <ng-container i18n>More</ng-container>
-          </span>
-        </div>
-      </div>
-    </div>
+        </td>
+      </tr>
+    </table>
+    <ng-template #$unknown>
+      <label i18n>Unknown</label>
+    </ng-template>
   </div>
-
+  <!-- 查看基本简介的弹窗 -->
+  <dstore-layer #$layer>
+    <ng-container class="layer_content">
+      <h1 i18n>Description</h1>
+      <p>{{app.info.description}}</p>
+    </ng-container>
+  </dstore-layer>
   <app-screenshot [screenshotList]="app.info.screenshot"></app-screenshot>
 
   <ng-container *ngIf="supportSignIn && controlRef.package$ | async as package">
     <app-donate [appName]="app.name"></app-donate>
   </ng-container>
   <ng-container *ngIf="sysAuthStatus$ | async ">
-    <div style="margin: 0px 1rem;">
-      <dstore-app-comment #$commentRef [appID]="app.id" [appVersion]="app.package.remoteVersion"></dstore-app-comment>
-    </div>
+    <dstore-app-comment #$commentRef [appID]="app.id" [appVersion]="app.package.remoteVersion"></dstore-app-comment>
 
     <div class="ad" *ngIf="adVisible$ | async">
       <ng-container i18n>CDN supported by UPYUN</ng-container>

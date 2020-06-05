@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'environments/environment';
 import { StoreJobType } from 'app/modules/client/models/store-job-info';
 import { JobService } from 'app/services/job.service';
+import { MyUpdatesService } from 'app/modules/my-updates/services/my-updates.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -19,7 +20,10 @@ import { JobService } from 'app/services/job.service';
   ],
 })
 export class SideNavComponent implements OnInit {
-  constructor(private sanitizer: DomSanitizer, private jobService: JobService) {}
+  constructor(private sanitizer: DomSanitizer, 
+    private jobService: JobService,
+    private myUpdatesService:MyUpdatesService,
+  ) {}
   native = environment.native;
   // download count
   dc$: Observable<number>;
@@ -32,6 +36,7 @@ export class SideNavComponent implements OnInit {
       }),
     );
   }
+  renewableSize$ = this.myUpdatesService.renewableSize$
 
   getStyle(icons: string[]) {
     return this.sanitizer.bypassSecurityTrustStyle(icons.map(url => `url(${url})`).join(','));

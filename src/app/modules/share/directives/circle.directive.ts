@@ -2,8 +2,7 @@ import {
   Directive,
   Input,
   ElementRef,
-  OnChanges,
-  SimpleChanges,
+  OnChanges
 } from '@angular/core';
 /*********** Deprecated ***********/
 /*********** Qcef version do not support 'conic-gradient'***********/

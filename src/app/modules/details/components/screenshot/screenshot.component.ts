@@ -10,7 +10,7 @@ import { environment } from 'environments/environment';
 })
 export class ScreenshotComponent implements OnInit {
   constructor() {}
-  readonly cdnSuffix = '';
+  readonly cdnSuffix = ' ';
   readonly metadataServer = environment.metadataServer;
   @Input()
   screenshotList: string[];

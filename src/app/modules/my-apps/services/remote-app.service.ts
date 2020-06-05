@@ -2,13 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 
-import { environment } from 'environments/environment';
 import { JobService } from 'app/services/job.service';
 import { StoreJobType } from 'app/modules/client/models/store-job-info';
 import { Software, SoftwareService } from 'app/services/software.service';
 import { APIBase, ListOption } from 'app/services/api';
-import { OrderService } from 'app/services/order.service';
-import { RefundService } from 'app/services/refund.service';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +26,7 @@ export class RemoteAppService extends APIBase<RemoteApp> {
       item.soft = softs.find(soft => soft.id === item.app_id);
     });
     resp.items = resp.items.filter(item => item.soft);
+    console.log(resp)
     return resp;
   }
 

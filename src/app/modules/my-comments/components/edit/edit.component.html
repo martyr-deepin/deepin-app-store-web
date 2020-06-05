@@ -13,7 +13,7 @@
         <span class="name">{{ comment.soft?.info?.name }}</span>
         <span class="time">
           <span i18n>Comment Date:</span>
-          <span>{{ comment.updated_at | date: 'yyyy-MM-dd' }}</span>
+        <span>{{ comment.updated_at | date: 'yyyy-MM-dd' }}</span>
         </span>
         <span class="version"> <span i18n>Version:</span> {{ comment.app_version }} </span>
       </div>
@@ -31,31 +31,31 @@
         <ng-container *ngIf="!deleteConfirm; else Delete">
           <button (click)="deleteConfirm = true" i18n>Delete</button>
           <div *ngIf="comment?.soft?.active">
-            <span class="error" *ngIf="commentGroup.invalid">
+            <span class="error" *ngIf="commentGroup.invalid&&commentGroup.errors">
               <ng-container [ngSwitch]="commentGroup.errors['error']">
                 <span class="submitError" *ngSwitchCase="CommentError.AllInvalid">
                   <ng-container i18n>Please rate and post your comment</ng-container>
                 </span>
-                <span class="submitError" *ngSwitchCase="CommentError.CommentInvalid">
+            <span class="submitError" *ngSwitchCase="CommentError.CommentInvalid">
                   <ng-container i18n>Please input your comment</ng-container>
                 </span>
-                <span class="submitError" *ngSwitchCase="CommentError.RateInvalid" i18n>Please rate</span>
-                <span class="submitError" *ngSwitchCase="CommentError.Failed" i18n>Failed to submit</span>
-              </ng-container>
-            </span>
-            <button (click)="closed()" i18n>Cancel</button> &nbsp;
-            <button class="primary" i18n (click)="submit()">Submit</button>
-          </div>
+            <span class="submitError" *ngSwitchCase="CommentError.RateInvalid" i18n>Please rate</span>
+            <span class="submitError" *ngSwitchCase="CommentError.Failed" i18n>Failed to submit</span>
         </ng-container>
-        <ng-template #Delete>
-          <div i18n>Are you sure you want to delete this comment?</div>
-          <div>
-            <button (click)="deleteConfirm = false" i18n>Cancel</button> &nbsp;
-            <button class="primary warn" (click)="delete()" i18n>Confirm</button>
-          </div>
-        </ng-template>
-      </div>
-    </form>
+        </span>
+        <button (click)="closed()" i18n>Cancel</button> &nbsp;
+        <button class="primary" i18n (click)="submit()">Submit</button>
+        </div>
+  </ng-container>
+  <ng-template #Delete>
+    <div i18n>Are you sure you want to delete this comment?</div>
+    <div>
+      <button (click)="deleteConfirm = false" i18n>Cancel</button> &nbsp;
+      <button class="primary warn" (click)="delete()" i18n>Confirm</button>
+    </div>
+  </ng-template>
+  </div>
+  </form>
   </ng-container>
   <ng-template #loading>
     <div class="empty">

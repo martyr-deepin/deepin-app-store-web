@@ -1,0 +1,66 @@
+:host {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  flex-flow: column;
+  box-sizing: border-box;
+  padding: 1.5rem 0;
+}
+
+header {
+  height: 2.77rem;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-shrink: 0;
+  align-items: center;
+  .tabs {
+    float: left;
+    height: 2.77rem;
+    .tab {
+      display: inline-block;
+      font-size: 1.08rem;
+      padding: 0 1.08rem;
+      cursor: pointer;
+      height: 100%;
+      line-height: 2.77rem;
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--tab-bg-color);
+      background: var(--main-bg-color);
+      //box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.05), 0px 2px 0px 0px rgba(255, 255, 255, 0.15);
+      &:not(:first-child) {
+        margin-left: -1px;
+      }
+      &:first-child {
+        border-radius: 0.31rem 0 0 0.31rem;
+      }
+      &:last-child {
+        border-radius: 0 0.31rem 0.31rem 0;
+      }
+      &:not(.active):hover {
+        background: var(--nav-bg-color);
+      }
+    }
+    .active {
+      border-color: var(--primary-color);
+      color: var(--main-bg-color);
+      background: linear-gradient(0deg, var(--nav-bg-color-active) 0%, var(--primary-color) 100%);
+    }
+  }
+  button {
+    float: right;
+  }
+  select {
+    float: right;
+    outline: none;
+    width: 15rem;
+    height: 2rem;
+    border-radius: 3px;
+    border: solid 1px rgba(0, 0, 0, 0.08);
+    &:focus {
+      background-color: rgba(36, 46, 77, 0.05);
+      border: solid 1px rgba(43, 167, 248, 0.3);
+    }
+  }
+}

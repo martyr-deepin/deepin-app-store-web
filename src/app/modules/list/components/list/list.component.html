@@ -9,11 +9,11 @@
           {{ soft?.info?.name }}
         </div>
         <div class="subtitle" [style.color]="subtitleColor">
-          <div class="category" >
+          <div class="category">
             <!-- {{ slogan ? soft?.info?.slogan : (soft?.info?.category | categoryText | async) }} &nbsp; -->
             <div *ngIf="slogan;else elsecategory">{{soft?.info?.slogan}}</div>
             <ng-template #elsecategory>
-              <m-category-name  [category]="soft?.info?.category" ></m-category-name>
+              <m-category-name [category]="soft?.info?.category"></m-category-name>
               <!-- {{soft?.info?.category}} -->
             </ng-template>
           </div>

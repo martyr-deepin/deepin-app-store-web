@@ -1,0 +1,29 @@
+<div>
+  <div class="app_count">
+    <span i18n>Installed apps</span>
+    <span class="app_length">{{appLength$ | async}}</span>
+  </div>
+  <div class="screen-box_btn" (click)="$screenLayer.toggle($event)">
+    <span i18n>App filter</span>
+    <img class="screenIcon" />
+  </div>
+</div>
+<screen-layer #$screenLayer>
+  <div class="top_content">
+    <screen-search-box #searchBoxRef [(ngModel)]="searchName"></screen-search-box>
+  </div>
+  <div (click)="searchBoxRef.close()" class="center_content">
+    <dstore-checkbox [config]="allCheckConfig" [(ngModel)]="allChecked" (ngModelChange)="allCheckChange($event)">
+      <span class="label" i18n>All apps</span>
+    </dstore-checkbox>
+    <dstore-checkbox-group align="column" [config]="checkboxList$ | async" [(ngModel)]="checkedList" (ngModelChange)="itemCheckChange($event)"></dstore-checkbox-group>
+  </div>
+  <div class="footer_content">
+    <div class="btn_item">
+      <button class="default" (click)="$screenLayer.close()" i18n>Cancel</button>
+    </div>
+    <div class="btn_item">
+      <button i18n [disabled]="submitDisable()" (click)="confirm();$screenLayer.close()">Confirm</button>
+    </div>
+  </div>
+</screen-layer>

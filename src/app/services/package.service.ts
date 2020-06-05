@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { StoreService, Package } from 'app/modules/client/services/store.service';
 import { Subject, of } from 'rxjs';
-import { filter, share, map, buffer, switchMap, first, debounceTime } from 'rxjs/operators';
+import { filter, map, first } from 'rxjs/operators';
 import { JobService } from './job.service';
 
 @Injectable({
@@ -10,7 +10,9 @@ import { JobService } from './job.service';
 export class PackageService {
   constructor(private storeService: StoreService, private jobService: JobService) {
     this.start();
-    this.jobService.jobList().subscribe(() => this.cache.clear());
+    this.jobService.jobList().subscribe(() => {
+      this.cache.clear()
+    });
   }
   private result$ = new Subject<Map<string, Package>>();
   private cache = new Map<string, Package>();

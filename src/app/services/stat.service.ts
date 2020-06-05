@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { APIBase, ListOption } from './api';
+import { isEqual } from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +10,20 @@ export class StatService extends APIBase<AppStat> {
   constructor(private http: HttpClient) {
     super(http, '/api/public/stat');
   }
+
+  private resp:Promise<{items:AppStat[],count:number}>;
+  private opt:StatListOption;
+  private cacheTime:number=0;
+  private cacheSlot:number=1000;
+
   list(opt?: StatListOption) {
-    return super.list(opt);
+    let time = new Date().getTime()
+    if((time-this.cacheTime)>this.cacheSlot || !isEqual(this.opt,opt)) {
+      this.cacheTime = new Date().getTime()
+      this.opt = opt;
+      this.resp = super.list(opt);
+    }
+    return this.resp;    
   }
 }
 

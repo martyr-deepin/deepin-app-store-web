@@ -1,0 +1,44 @@
+<progress [value]="job.progress" max="1"></progress>
+<ng-container *ngIf="job.speed as speed; else $msg">
+  <ng-container *ngIf="job.progress as progress; else $msg">
+    <div class="speed" *ngIf="job.type === storeJobType.download && job.status === storeJobStatus.running; else $msg">
+      <span *ngIf="job.downloadSize" class="size">
+        {{ job.downloadSize * job.progress * 2 | sizeHuman }} /
+        {{ job.downloadSize | sizeHuman }}
+      </span>
+      <span>{{ speed | sizeHuman }}/S</span>
+    </div>
+  </ng-container>
+</ng-container>
+<ng-template #$msg>
+  <div class="message" [class.failed]="job.status === storeJobStatus.failed">
+    <ng-container *ngIf="job.type === storeJobType.download" [ngSwitch]="job.status">
+      <ng-container *ngSwitchCase="storeJobStatus.running" i18n>Waiting to download</ng-container>
+      <ng-container *ngSwitchCase="storeJobStatus.paused" i18n>Paused</ng-container>
+      <ng-container *ngSwitchCase="storeJobStatus.ready" i18n>Waiting to download</ng-container>
+      <ng-container *ngSwitchCase="storeJobStatus.failed">
+        <app-store-job-error [rowString]="job.description"></app-store-job-error>
+      </ng-container>
+      <ng-container *ngSwitchCase="storeJobStatus.end">
+        <ng-container *ngIf="cancelled; else downloaded" i18n>Cancelling</ng-container>
+        <ng-template #downloaded i18n>Downloaded</ng-template>
+      </ng-container>
+      <ng-container *ngSwitchCase="storeJobStatus.success" i18n>Downloaded</ng-container>
+      <ng-container *ngSwitchDefault>{{ job.status }}</ng-container>
+    </ng-container>
+    <ng-container *ngIf="job.type === storeJobType.install" [ngSwitch]="job.status">
+      <ng-container *ngSwitchCase="storeJobStatus.running" i18n>Installing</ng-container>
+      <ng-container *ngSwitchCase="storeJobStatus.paused" i18n>Paused</ng-container>
+      <ng-container *ngSwitchCase="storeJobStatus.ready" i18n>Waiting to install</ng-container>
+      <ng-container *ngSwitchCase="storeJobStatus.failed">
+        <app-store-job-error [rowString]="job.description"></app-store-job-error>
+      </ng-container>
+      <ng-container *ngSwitchCase="storeJobStatus.end">
+        <ng-container *ngIf="cancelled; else installed" i18n>Cancelling</ng-container>
+        <ng-template #installed i18n>Installed</ng-template>
+      </ng-container>
+      <ng-container *ngSwitchCase="storeJobStatus.success" i18n>Installed</ng-container>
+      <ng-container *ngSwitchDefault>{{ job.status }}</ng-container>
+    </ng-container>
+  </div>
+</ng-template>

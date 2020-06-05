@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { map, switchMap, share } from 'rxjs/operators';
+import { map, switchMap, share, debounceTime, startWith } from 'rxjs/operators';
 import { Software } from 'app/services/software.service';
 import { RefundStatus } from 'app/services/refund.service';
 import { RemoteAppService, RemoteApp } from './../../services/remote-app.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
+import { MessageService, MessageType } from 'app/services/message.service';
 
 @Component({
   selector: 'dstore-remote-app',
@@ -17,7 +18,8 @@ export class RemoteAppComponent implements OnInit {
     private route: ActivatedRoute, 
     public router: Router, 
     private remoteAppService: RemoteAppService,
-    private SysAuth:SysAuthService
+    private SysAuth:SysAuthService,
+    private messageService:MessageService
   ) {}
   readonly pageSize = 20;
   readonly RefundStatus = RefundStatus;
@@ -28,6 +30,15 @@ export class RemoteAppComponent implements OnInit {
     map(query => Number(query.get('page')) || 0),
   );
   result$ = this.pageIndex$.pipe(
+    switchMap(pageIndex =>
+      this.messageService.onMessage(MessageType.AppsChange).pipe(
+        startWith(null),
+        debounceTime(100),
+        map(() => {
+          return pageIndex
+        }),
+      ),
+    ),
     switchMap(pageIndex => {
       let params = { offset: pageIndex * this.pageSize, limit: this.pageSize };
 
@@ -46,7 +57,10 @@ export class RemoteAppComponent implements OnInit {
   count$ = this.result$.pipe(map(result => Math.ceil(result.count / this.pageSize)));
   installing$ = this.remoteAppService.installingList().pipe(
     map(v => {
-      console.log(v);
+      //初始化安装中的列表
+      if(this.installed.size === 0) {
+        v.forEach(name=>this.installed.add(name))
+      }
       return v;
     }),
   );
@@ -64,8 +78,8 @@ export class RemoteAppComponent implements OnInit {
   gotoPage(pageIndex: number) {
     this.router.navigate([], { queryParams: { page: pageIndex } });
   }
-  async refresh() {
-    this.refresh$.next(null);
+  refresh() {
+    this.refresh$.next(new Date().toISOString());
   }
   freeChange(free: boolean) {
     this.free = free;

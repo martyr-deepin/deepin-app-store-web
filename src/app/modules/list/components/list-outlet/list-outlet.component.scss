@@ -1,3 +1,14 @@
+:host {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+  dstore-list-icon {
+    flex: 1;
+    overflow: hidden;
+    display: block;
+  }
+}
+
 .loading-container {
   height: 100vh;
 }
@@ -8,12 +19,10 @@
   align-items: center;
   flex-direction: column;
   height: calc(100vh - 5rem);
-
   .title {
     font-size: 1.2rem;
     margin: 0.5rem;
   }
-
   .kw {
     display: inline-block;
     vertical-align: bottom;
@@ -22,11 +31,9 @@
     white-space: nowrap;
     max-width: 8rem;
   }
-
   .gray-text {
     color: gray;
   }
-
   .recommend {
     cursor: pointer;
     color: #1d6bd3;

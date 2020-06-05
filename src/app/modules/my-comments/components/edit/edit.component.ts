@@ -57,7 +57,7 @@ export class EditComponent implements OnInit {
     content.setValue(content.value.trim());
 
     if (content.invalid) {
-      console.log(this.commentGroup);
+      //console.log(this.commentGroup);
       this.commentGroup.setErrors({ error: CommentError.CommentInvalid });
       return;
     }

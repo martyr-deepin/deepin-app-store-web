@@ -1,0 +1,25 @@
+:host {
+  width: 12rem;
+  flex-shrink: 0;
+  padding-top: 0.5rem;
+  progress {
+    width: 100%;
+  }
+  .speed {
+    display: flex;
+    justify-content: space-between;
+    color: gray;
+    .size {
+      white-space: nowrap;
+    }
+  }
+  .message {
+    display: flex;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: gray;
+  }
+  .failed {
+    color: red;
+  }
+}

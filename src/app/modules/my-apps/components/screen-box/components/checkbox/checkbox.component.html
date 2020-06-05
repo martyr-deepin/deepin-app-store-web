@@ -1,0 +1,7 @@
+<div class="checkbox" [ngClass]="{disabled: config.disabled,circle:config.circle}">
+  <input type="checkbox" [disabled]="config.disabled" [(ngModel)]="checked" (ngModelChange)="change(checked)" />
+  <label [class]="config.type||'primary'">
+	  <i [ngClass]="config.mixed?'mixed':'default'" [class.dstore-checked]="checked"></i>
+	  <ng-content select=".label"></ng-content>
+	</label>
+</div>

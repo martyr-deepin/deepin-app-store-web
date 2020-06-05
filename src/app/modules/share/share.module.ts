@@ -10,6 +10,7 @@ import { HoverDirective } from './directives/hover.directive';
 import { ResizeDirective } from './directives/resize.directive';
 import { CoverDirective } from './directives/cover.directive';
 import { CircleDirective } from './directives/circle.directive';
+import { AuthfocusDirective } from './directives/authfocus.directive';
 
 import { WaitComponent } from './components/wait/wait.component';
 import { ScrollbarComponent } from './components/scrollbar/scrollbar.component';
@@ -20,6 +21,13 @@ import { CloseButtonComponent } from './components/close-button/close-button.com
 import { ControlComponent } from './components/control/control.component';
 import { StarComponent } from './components/star/star.component';
 import { IndicationComponent } from './components/indication/indication.component';
+import { LayerComponent } from './components/layer/layer.component'
+import { PreDetailComponent } from './components/pre-detail/pre-detail.component';
+import { CircleComponent } from './components/circle/circle.component';
+import { ListCategory } from './components/category/category.component';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { BuyComponent } from './components/buy/buy.component';
+import { WaitIconComponent } from './components/wait-icon/wait-icon.component';
 
 import { RangePipe } from './pipes/range.pipe';
 import { FitImage } from './pipes/fit-image';
@@ -27,12 +35,7 @@ import { FitLanguage } from './pipes/fit-lang';
 import { SizeHuman } from './pipes/size-human';
 import { DeepinidPipe } from './pipes/deepinid.pipe';
 import { CategoryTextPipe } from './pipes/category-text.pipe';
-import { DialogComponent } from './components/dialog/dialog.component';
-import { BuyComponent } from './components/buy/buy.component';
-import { AuthfocusDirective } from './directives/authfocus.directive';
-import { CircleComponent } from './components/circle/circle.component';
-import { ListCategory } from './components/category/category.component';
-import { WaitIconComponent } from './components/wait-icon/wait-icon.component';
+import { AppScorePipe } from './pipes/app-score.pipe'
 
 const components = [
   WaitComponent,
@@ -45,15 +48,17 @@ const components = [
   ControlComponent,
   StarComponent,
   IndicationComponent,
+  LayerComponent,
   DialogComponent,
   BuyComponent,
-  CircleComponent,ListCategory
+  CircleComponent,ListCategory,
+  PreDetailComponent
 ];
-const directives = [DialogDirective, HoverDirective, ResizeDirective, CoverDirective, AuthfocusDirective];
-const pipes = [RangePipe, FitImage, FitLanguage, SizeHuman, DeepinidPipe, CategoryTextPipe];
+const directives = [DialogDirective, HoverDirective, ResizeDirective, CoverDirective, AuthfocusDirective,CircleDirective];
+const pipes = [RangePipe, FitImage, FitLanguage, SizeHuman, DeepinidPipe, CategoryTextPipe, AppScorePipe];
 const modules = [ClientModule, FormsModule, ReactiveFormsModule];
 @NgModule({
-  declarations: [...components, ...directives, ...pipes, CircleDirective],
+  declarations: [...components, ...directives, ...pipes],
   exports: [...components, ...directives, ...pipes, ...modules],
   imports: [CommonModule, RouterModule, ...modules],
 })

@@ -108,7 +108,7 @@ export class StoreService {
   execWithCallback<T>(method: string, ...args: any[]): Observable<T> {
     return from(
       Channel.exec<StoreResponse>(method, ...args).then(resp => {
-        return resp.ok ? resp.result : Promise.reject(resp);
+        return resp.ok ? resp.result : Promise.resolve(resp);
       }),
     );
   }

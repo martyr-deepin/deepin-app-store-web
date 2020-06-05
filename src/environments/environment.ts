@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
 
   // Default server address only used in browser mode.
 
@@ -24,7 +24,9 @@ export const environment = {
   store_version: 0,
 
   // server: 'http://localhost:19000',
+  //server: 'https://store.chinauos.com',
   server: 'http://store-chinauos.sndu.cn',
+  //server: 'https://store.chinauos.com',
   store_env: {
     arch: 'amd64',
     mode: 'desktop',

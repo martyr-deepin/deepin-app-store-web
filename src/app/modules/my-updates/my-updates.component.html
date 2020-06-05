@@ -1,0 +1,39 @@
+<header>
+  <div class="tabs">
+    <div class="tab" routerLink="renewable" routerLinkActive="active">
+      <ng-container i18n>New</ng-container>
+      ({{(service.renewableApps$ | async)?.length||0}})
+    </div>
+    <div class="tab" [routerLink]="['recently','updated']" routerLinkActive="active">
+      <ng-container i18n>Recent</ng-container>
+      ({{recentlyLength$ | async}})
+    </div>
+  </div>
+  <ng-container [ngSwitch]="path">
+    <ng-container *ngSwitchCase="'renewable'">
+      <ng-container *ngIf="sysAuthStatus$ | async;else $noAuthorizaedUpdateRef">
+        <ng-container [ngSwitch]="jobsStatus$ | async">
+          <div *ngSwitchCase="1">
+            <button (click)="pauseAll();$event.target.disabled=true" i18n>Pause All</button>
+          </div>
+          <div *ngSwitchCase="2">
+            <button (click)="startAll();$event.target.disabled=true" i18n>Resume All</button>
+          </div>
+          <div *ngSwitchDefault>
+            <button [disabled]="!(service.renewableApps$ | async).length" (click)="updateAll();$event.target.disabled=true" i18n>Update All</button>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-template #$noAuthorizaedUpdateRef>
+        <button [disabled]="!(service.renewableApps$ | async).length" (click)="sysAuthMessage()" i18n>Update All</button>
+      </ng-template>
+    </ng-container>
+    <select *ngSwitchCase="'recently/updated'" name="dueTime" [ngModel]="dueTime" (ngModelChange)="selectChange($event - 0)" required>
+      <option [value]="1000*60*60*24*30" i18n>Last 30 days</option>
+      <option [value]="1000*60*60*24*7" i18n>Last 7 days</option>
+      <option [value]="1000*60*60*24*3" i18n>Last 3 days</option>
+      <option [value]="1000*60*60*24" i18n>Today</option>
+    </select>
+  </ng-container>
+</header>
+<router-outlet></router-outlet>

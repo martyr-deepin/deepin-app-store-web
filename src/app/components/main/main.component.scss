@@ -2,11 +2,15 @@
   display: flex;
   background-color: var(--main-bg-color);
   .nav {
+    // border-top: 1px solid var(--main-item-hr-color);
+    // box-sizing: border-box;
     height: 100vh;
     position: sticky;
     top: 0;
   }
   .context {
+    // border-top: 1px solid var(--main-item-hr-color);
+    // box-sizing: border-box;
     flex: 1;
     height: 100vh;
     position: relative;

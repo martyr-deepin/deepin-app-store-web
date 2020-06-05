@@ -1,0 +1,74 @@
+<img class="icon" dstoreCover="icon" [routerLink]="['/app', software.id]" [src]="software.info.icon" />
+<div class="title">
+  <div class="name">{{ software.info.name?software.info.name: software.package.appName }}</div>
+  <div class="size">
+    <ng-container [ngSwitch]="software.package.size">
+      <ng-container *ngSwitchCase="null" i18n>Calculating</ng-container>
+      <ng-container *ngSwitchCase="0" i18n>Downloaded</ng-container>
+      <ng-container *ngSwitchDefault>{{ software.package.size | sizeHuman }}</ng-container>
+    </ng-container>
+  </div>
+</div>
+<div class="log">
+  <div class="log_content" [ngClass]="{log_content_none:!software.info.changelog||software.info.changelog==''}">
+    <ng-container *ngIf="software.info.changelog&&software.info.changelog!='';else message">
+      <div class="log_context">
+        {{ software.info.changelog}}
+      </div>
+    </ng-container>
+  </div>
+  <ng-container *ngIf="judgeOverflow$ | async">
+    <span (click)="preDetail.toggle($event)" class="log_btn">
+      <ng-container i18n>More</ng-container> 〉
+    </span>
+    <dstore-pre-detail #preDetail>
+      {{software.info.changelog}}
+    </dstore-pre-detail>
+  </ng-container>
+  <ng-template #message>
+    <div class="log_context" i18n>No changelogs</div>
+  </ng-template>
+</div>
+<ng-container *ngIf="job;else $info">
+  <div class="progress">
+    <my-update-progress [job]="job" [cancelled]="cancelled"></my-update-progress>
+  </div>
+  <div class="button">
+    <div class="controlBtn">
+      <ng-container [ngSwitch]="true">
+        <button class="pauseBtn" (click)="pause(job.job); $event.target.disabled = true" *ngSwitchCase="
+            [StoreJobStatus.running, StoreJobStatus.ready, StoreJobStatus.end].includes(job.status)
+          " [disabled]="!job.cancelable"></button>
+        <button class="startBtn" (click)="start(job.job); $event.target.disabled = true" *ngSwitchCase="job.status === StoreJobStatus.paused" [disabled]="!job.cancelable"></button>
+        <button class="restartBtn" (click)="retry(job)" [disabled]="fixing" *ngSwitchCase="job.status === StoreJobStatus.failed" [disabled]="!job.cancelable"></button>
+      </ng-container>
+      <button class="cancelBtn" [disabled]="!job.cancelable" (click)="cancel(job.job)"></button>
+    </div>
+  </div>
+</ng-container>
+<ng-template #$info>
+  <div class="progress">
+    <div class="ignore">
+      <div i18n>Ignore this version</div>
+      <div class="longer" (click)="ignoreVersion()" i18n>Ignore all updates</div>
+    </div>
+    <div class="version_info">
+      <div>
+        <ng-container i18n>Current:</ng-container>
+        {{software.package.localVersion}}
+      </div>
+      <div class="remote_version">
+        <ng-container i18n>Available:</ng-container>
+        {{software.package.remoteVersion}}
+      </div>
+    </div>
+  </div>
+  <div class="button">
+    <ng-container *ngIf="sysAuthStatus$ | async;else $noAuthorizaedUpdateRef">
+      <button [disabled]="updatings.includes(software.package_name)" (click)="update();$event.target.disabled = true" class="commit" i18n>Update</button>
+    </ng-container>
+    <ng-template #$noAuthorizaedUpdateRef>
+      <button (click)="sysAuthMessage()" class="commit" i18n>Update</button>
+    </ng-template>
+  </div>
+</ng-template>

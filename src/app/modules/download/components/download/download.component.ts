@@ -48,6 +48,11 @@ export class DownloadComponent implements OnInit {
       if (names.length > 0) {
         const softs = await this.softwareService.list({}, { package_name: names });
         softs.forEach(soft => this.soft_cache.set(soft.package_name, soft));
+        if(!softs.length) {
+          names.forEach(name=>{
+            this.jobService.clearJob(jobs.find(job=>job.packages.includes(name))?.job)
+          })
+        }
       }
       return jobs.reduce(
         (acc, job) => [

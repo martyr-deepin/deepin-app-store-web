@@ -10,6 +10,7 @@ export enum NotifyType {
   Recommend,
   Clear,
   JobError,
+  Installed
 }
 export enum NotifyStatus {
   Unknown,

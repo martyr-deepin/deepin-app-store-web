@@ -1,76 +1,133 @@
-.appInfo {
-  color: var(--main-color);
-  display: flex;
-
-  .info-left {
-    flex: 3;
-    display: flex;
-    min-width: 20%;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    .icon {
-      width: 8rem;
-      height: 8rem;
-      cursor: default;
-    }
-
-    button {
-      min-width: 8rem;
-    }
-
-    .jobButton {
-      min-width: 8rem;
-    }
+:host {
+  >.ng-star-inserted {
+    margin: 2rem 2rem 0 2rem;
   }
+}
 
-  .info-right {
-    flex: 9;
-
-    .title {
-      margin: 2rem 0;
-      font-size: 2em;
+.appInfo {
+  .info_left {
+    float: left;
+    .icon {
+      display: inline-block;
+      width: 6.15rem;
+      height: 6.15rem;
     }
-
-    .content {
-      display: grid;
-      grid-template-columns: min-content auto;
-
-      &>div {
-        min-height: 2rem;
-        line-height: 2rem;
-
-        &:nth-child(odd) {
-          color: gray;
-          white-space: nowrap;
-          margin-right: 1rem;
+    .info_content {
+      vertical-align: top;
+      margin-left: 0.4rem;
+      height: 6.15rem;
+      display: inline-block;
+      .info_content_title {
+        margin-top: 0.15rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
+        font-size: 1.85rem;
+        font-weight: 400;
+        .safe_icon {
+          content: var(--safe-icon);
+          display: inline-block;
+          margin-left: 0.8rem;
+          position: relative;
+          top: 0.1rem;
         }
       }
-
+      .info_content_subtitle {
+        height: 1.7rem;
+        line-height: 1.8rem;
+        font-size: 0.92rem;
+        color: var(--font-color-gray);
+      }
+      .info_content_rate {
+        height: 1.5rem;
+        display: flex;
+        align-items: baseline;
+        font-size: 0.77rem;
+        line-height: 1.5rem;
+        .details {
+          margin-right: 1rem;
+        }
+        .score {
+          font-size: 1rem;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+  .info_right {
+    float: right;
+    height: 6.15rem;
+    display: flex;
+    align-items: center;
+  }
+  .both {
+    clear: both;
+  }
+  table {
+    border-top: 1px solid var(--main-title-hr-color);
+    border-left: 1px solid var(--main-title-hr-color);
+    border-spacing: 0;
+    font-size: 0.92rem;
+    td {
+      border-right: 1px solid var(--main-title-hr-color);
+      border-bottom: 1px solid var(--main-title-hr-color);
+    }
+  }
+  .app_info_table {
+    width: 100%;
+    margin: 2rem 0;
+    vertical-align: middle;
+    table-layout: fixed;
+    word-break: break-all;
+    tr {
+      height: 2.69rem;
+    }
+    td {
+      padding-left: 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      label {
+        display: inline-block;
+        margin-right: 0.5rem;
+      }
+      .info_item {
+        color: var(--font-color-gray);
+      }
       .webSite {
+        cursor: pointer;
+      }
+      .log_btn {
+        cursor: pointer;
+        color: var(--nav-bg-color-active);
+      }
+      .description_content {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 20rem;
-        cursor: pointer;
+        .info_description_more {
+          position: absolute;
+          right: 1rem;
+          cursor: pointer;
+          color: var(--nav-bg-color-active);
+        }
       }
-
-      .crumbs {
-        color: #0c9cf0;
-        margin-left: 5px;
-        cursor: pointer;
-      }
+    }
+    .pre_td {
+      padding-right: 4rem;
+      position: relative;
     }
   }
 }
 
-.rate {
-  display: flex;
-  align-items: baseline;
-
-  .details {
-    margin-right: 1rem;
+dstore-layer ::ng-deep {
+  h1 {
+    text-align: center;
+    margin-top: 0;
+    font-weight: 400;
+  }
+  p {
+    text-indent: 2rem;
+    margin-bottom: 0;
   }
 }
 
@@ -80,7 +137,6 @@
 
 .tip {
   text-align: center;
-
   .tipButton {
     display: -webkit-inline-box;
     padding: 0.8rem 2rem;
@@ -89,16 +145,13 @@
     word-spacing: 0.3rem;
     color: #0c9cf0;
   }
-
   .tipList {
     display: flex;
     justify-content: center;
     align-items: center;
-
     .iconList {
       margin-right: 1rem;
       border: #0c9cf0;
-
       .icon {
         margin: -0.5rem;
         border-radius: 50%;
@@ -114,15 +167,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   span {
     color: gray;
   }
-
   a {
     color: #0c9cf0;
   }
-
   * {
     margin: 0.3rem 0;
   }
@@ -130,17 +180,6 @@
 
 .toRight {
   margin: 0 0.5rem;
-}
-
-.selectable {
-  user-select: text;
-}
-
-.pre {
-  max-height: 20rem;
-  overflow-y: hidden;
-  white-space: pre-line;
-  word-break: break-all;
 }
 
 .ad {
@@ -156,7 +195,6 @@
 .tags {
   display: flex;
   flex-wrap: wrap;
-
   .tag {
     white-space: nowrap;
     padding: 0 0.5rem;
@@ -178,18 +216,12 @@ a {
 }
 
 .refund {
-
-
   padding-top: 10px;
   display: inline-block;
-
   >div {
-
-
     display: flex;
     align-items: center;
     cursor: pointer;
-
     i {
       display: inline-block;
       width: 15px;
@@ -202,12 +234,9 @@ a {
       border-radius: 50%;
       font-style: normal;
     }
-
     span {
       line-height: 15px;
       color: rgba(101, 144, 246);
     }
   }
-
-
 }

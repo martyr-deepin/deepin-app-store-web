@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ElementRef }
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { RefundReason } from '../../services/refund-reason.model';
 import { RemoteApp } from '../../services/remote-app.service';
-import { RefundService } from 'app/services/refund.service';
+import { RefundService, RefundCode } from 'app/services/refund.service';
 @Component({
   selector: 'm-refund',
   templateUrl: './refund.component.html',
@@ -11,6 +11,7 @@ import { RefundService } from 'app/services/refund.service';
 export class RefundComponent implements OnInit {
   constructor(private fb: FormBuilder, private refundService: RefundService) {}
   readonly RefundReason = RefundReason;
+  readonly RefundCode = RefundCode;
   @ViewChild('dialogRef', { static: true }) dialog: ElementRef<HTMLDialogElement>;
   @Input() remoteApp: RemoteApp;
   @Output() confirm = new EventEmitter();
@@ -20,6 +21,7 @@ export class RefundComponent implements OnInit {
     content: ['', Validators.required],
   });
   successTip = false;
+  refund_code = {code:0};
   ngOnInit() {
     this.dialog.nativeElement.showModal();
     this.dialog.nativeElement.addEventListener('close', () => this.cancel.next(), (this.successTip = false));
@@ -32,12 +34,12 @@ export class RefundComponent implements OnInit {
   async submit() {
     const formValue = {
       reason: this.form.value.reason
-        .map((bool: boolean, index: number) => (bool ? { id: index } : null))
-        .filter(Boolean),
+        .map((bool: boolean, index: number) => (bool ? index+1  : null))
+        .filter(Boolean).join(","),
       content: this.form.value.content,
     };
 
-    await this.refundService.create(this.remoteApp.order_number, formValue);
+    this.refund_code =  <{code:number}>await this.refundService.create(this.remoteApp.order_number, formValue);
     this.confirm.emit(null);
     this.successTip = true;
   }

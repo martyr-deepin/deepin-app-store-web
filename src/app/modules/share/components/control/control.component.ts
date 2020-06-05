@@ -1,15 +1,13 @@
 import { Component, OnInit, Input, Output, HostListener, SimpleChanges, OnChanges } from '@angular/core';
 import { Software, SoftwareService } from 'app/services/software.service';
-import { PackageService } from 'app/services/package.service';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { share, first, startWith, map, pairwise, switchMap } from 'rxjs/operators';
+import { share, startWith, map, pairwise, switchMap } from 'rxjs/operators';
 import { JobService } from 'app/services/job.service';
 import { trigger, animate, style, transition, keyframes } from '@angular/animations';
 import { StoreJobInfo, StoreJobStatus } from 'app/modules/client/models/store-job-info';
 import { BuyService } from 'app/services/buy.service';
 import { UserAppsService } from 'app/services/user-apps.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
-import { BlacklistService } from 'app/services/blacklist.service';
 
 @Component({
   selector: 'dstore-control',
@@ -51,7 +49,6 @@ import { BlacklistService } from 'app/services/blacklist.service';
 export class ControlComponent implements OnInit, OnChanges {
   constructor(
     private softwareService: SoftwareService,
-    private packageService: PackageService,
     private jobService: JobService,
     private buyService: BuyService,
     private userAppService: UserAppsService,

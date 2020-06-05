@@ -1,0 +1,29 @@
+<ng-container *ngFor="let item of config;let i = index">
+  <div [class]="align||'row'">
+    <dstore-checkbox [config]="item" [(ngModel)]="checkedList[i]" (ngModelChange)="change(checkedList)">
+      <span class="label">
+        <ng-container *ngIf="item.label!=''">
+          <ng-container [ngSwitch]="item.label">
+            <ng-container *ngSwitchCase="'Office'" i18n>Office</ng-container>
+            <ng-container *ngSwitchCase="'Development'" i18n>Development</ng-container>
+            <ng-container *ngSwitchCase="'Reading'" i18n>Reading</ng-container>
+            <ng-container *ngSwitchCase="'Graphics'" i18n>Graphics</ng-container>
+            <ng-container *ngSwitchCase="'Game'" i18n>Games</ng-container>
+            <ng-container *ngSwitchCase="'Music'" i18n>Music</ng-container>
+            <ng-container *ngSwitchCase="'System'" i18n>System</ng-container>
+            <ng-container *ngSwitchCase="'Video'" i18n>Video</ng-container>
+            <ng-container *ngSwitchCase="'Chat'" i18n>Chat</ng-container>
+            <ng-container *ngSwitchCase="'Others'" i18n>Other</ng-container>
+            <ng-container *ngSwitchCase="'Internet'" i18n>Internet</ng-container>
+            <ng-container *ngSwitchCase="ScreenBoxKeys.lowScore" i18n>Low-rating apps</ng-container>
+            <ng-container *ngSwitchCase="ScreenBoxKeys.freeApp" i18n>Free apps</ng-container>
+            <ng-container *ngSwitchCase="ScreenBoxKeys.paidApp" i18n>Paid apps</ng-container>
+          </ng-container>
+        </ng-container>
+      </span>
+    </dstore-checkbox>
+    <ng-container *ngIf="item.data1">
+      （{{item.data1}}）
+    </ng-container>
+  </div>
+</ng-container>

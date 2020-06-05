@@ -13,6 +13,11 @@ import { CheckboxButtonComponent } from './components/checkbox-button/checkbox-b
 import { RefundComponent } from './components/refund/refund.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { RefundReasonComponent } from './components/refund-reason/refund-reason.component';
+import { ScreenBoxComponent } from "./components/screen-box/screen-box.component"
+import { SearchBoxComponent } from './components/screen-box/components/search-box/search-box.component';
+import { LayerComponent } from './components/screen-box/components/layer/layer.component';
+import { DstoreCheckboxComponent } from './components/screen-box/components/checkbox/checkbox.component';
+import { DstoreCheckboxGroupComponent } from './components/screen-box/components/checkbox-group/checkbox-group.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +30,11 @@ import { RefundReasonComponent } from './components/refund-reason/refund-reason.
     RefundComponent,
     CheckboxComponent,
     RefundReasonComponent,
+    ScreenBoxComponent,
+    SearchBoxComponent,
+    LayerComponent,
+    DstoreCheckboxComponent,
+    DstoreCheckboxGroupComponent,
   ],
   imports: [CommonModule, MyAppRoutingModule, ShareModule],
 })

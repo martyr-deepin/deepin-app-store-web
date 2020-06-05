@@ -9,5 +9,6 @@ import { StoreJobErrorComponent } from './components/store-job-error/store-job-e
 @NgModule({
   declarations: [DownloadComponent, StoreJobErrorComponent],
   imports: [CommonModule, DownloadRoutingModule, ShareModule],
+  exports: [StoreJobErrorComponent]
 })
 export class DownloadModule {}

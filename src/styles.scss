@@ -4,10 +4,12 @@
 html {
   font-size: 13px;
 }
+
 body {
   margin: 0;
   user-select: none;
   cursor: default;
+  color: var(--font-color);
 }
 
 // 滚动条
@@ -73,9 +75,11 @@ a {
   cursor: pointer;
   color: #0082fa;
 }
+
 [hidden] {
   display: none !important;
 }
+
 [tabindex] {
   outline: none;
 }
@@ -97,7 +101,6 @@ dialog {
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
-
   border-radius: 5px;
   color: var(--main-color);
   border: 1px solid var(--main-title-hr-color);
@@ -111,12 +114,15 @@ dialog {
     background-color: rgba(0, 0, 0, 0.4);
   }
 }
+
 img {
   cursor: pointer;
 }
+
 .cursor {
   cursor: pointer;
 }
+
 .select {
   user-select: auto;
 }
@@ -126,6 +132,7 @@ img {
     display: none;
   }
 }
+
 .loadingContainer {
   position: absolute;
   left: 50%;
@@ -138,4 +145,22 @@ img {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+//进度条
+progress[value] {
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  &::-webkit-progress-bar {
+    height: 6px;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+    background-color: var(--main-title-hr-color);
+  }
+  &::-webkit-progress-value {
+    background-color: #2ca7f8;
+    border: solid 1px #378cfa;
+    border-radius: 4px;
+  }
 }

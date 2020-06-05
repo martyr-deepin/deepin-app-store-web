@@ -1,0 +1,10 @@
+<span [ngStyle]="{display: focus?'none':'block'}" class="placeholder">
+  <img/>
+  <span i18n>Search</span>
+</span>
+<input (click)="cancelBubble()" [ngClass]="{focus: focus}" [(ngModel)]="name" (focus)="focus = true" (blur)="blur()" (keyup)="keyup(name)" (ngModelChange)="change(name)" i18n-placeholder />
+<div *ngIf="list&&list.length" class="search_drop">
+  <ng-container *ngFor="let item of list">
+    <div (click)="itemClick(item)" class="drop_item">{{item}}</div>
+  </ng-container>
+</div>

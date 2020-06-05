@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { ReplaySubject } from 'rxjs';
@@ -67,6 +67,11 @@ export class NotifyService {
       return;
     }
     return this.notify(n);
+  }
+
+  //安装自启动
+  installed(t:NotifyType) {
+    return this.notify({ status: NotifyStatus.Success, type: t, delay: 5000 });
   }
 
   obs() {

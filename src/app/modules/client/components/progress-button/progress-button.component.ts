@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { StoreJobType, StoreJobStatus } from '../../models/store-job-info';
 import { StoreService } from '../../services/store.service';
-import { trigger, transition, style, animate, state } from '@angular/animations';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 const animateTime = 250;
 

@@ -3,16 +3,12 @@
   height: 64px;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--main-title-hr-color);
-
   .auto-install {
     display: flex;
-
     .subtitle {
       margin-right: 1rem;
     }
   }
-
   button {
     width: 100px;
     height: 50%;
@@ -21,12 +17,10 @@
 
 .check_item {
   display: inline-block;
-
   div {
     display: inline-block;
     margin-right: 15px;
     cursor: pointer;
-
     i {
       width: 15px;
       height: 15px;
@@ -40,7 +34,6 @@
       overflow: hidden;
       margin-right: 5px;
     }
-
     span {
       font-family: SourceHanSansSC-Normal, SourceHanSansSC;
       font-weight: 400;

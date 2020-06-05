@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { chunk } from 'lodash';
-import { combineLatest, BehaviorSubject } from 'rxjs';
-import { map, switchMap, share, distinctUntilChanged, debounceTime } from 'rxjs/operators';
+import { map, switchMap, share } from 'rxjs/operators';
 
 import { LocalAppService } from '../../services/local-app.service';
 import { AuthService } from 'app/services/auth.service';
@@ -48,7 +46,11 @@ export class LocalAppComponent implements OnInit {
     this.selected = null;
   }
 
-  ngOnInit() {}
+  login = ()=> this.authService.login();
+
+  ngOnInit() {
+    this.localAppService.query = {check:undefined,name:undefined}
+  }
 
   gotoPage(pageIndex: number) {
     this.router.navigate([], { queryParams: { page: pageIndex } });

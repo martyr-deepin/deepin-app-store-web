@@ -1,0 +1,21 @@
+<div *ngIf="destruction" (click)="outer_close()" class="layer_background">
+  <div (click)="$event.cancelBubble = true;" [ngClass]="{'show':visible}" [ngStyle]="{height: height?height+'rem':'auto'}" class="layer_content">
+    <header>
+      <div class="title">
+        {{dialogTitle}}
+      </div>
+      <div (click)="close()" class="close">×</div>
+    </header>
+    <section>
+      <ng-content select=".layer_content"></ng-content>
+      <dstore-scrollbar>
+        <ng-content select=".layer_scroll_content"></ng-content>
+      </dstore-scrollbar>
+    </section>
+    <footer>
+      <div class="button_group">
+        <ng-content select=".layer_buttons"></ng-content>
+      </div>
+    </footer>
+  </div>
+</div>

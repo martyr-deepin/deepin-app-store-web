@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { APIBase, ListOption } from './api';
+import { isDeepStrictEqual } from 'util';
+import { isEqual } from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +11,20 @@ export class AppService extends APIBase<AppJSON> {
   constructor(private http: HttpClient) {
     super(http, '/api/public/app');
   }
+
+  private resp:Promise<{items:AppJSON[],count:number}>;
+  private opt:AppListOption;
+  private cacheTime:number=0;
+  private cacheSlot:number=1000;
+
   list(opt?: AppListOption) {
-    return super.list(opt);
+    let time = new Date().getTime()
+    if((time-this.cacheTime)>this.cacheSlot || !isEqual(this.opt,opt) ) {
+      this.cacheTime = new Date().getTime()
+      this.opt = opt;
+      this.resp = super.list(opt);
+    }
+    return this.resp;    
   }
 }
 interface AppListOption extends ListOption {
@@ -20,13 +34,16 @@ interface AppListOption extends ListOption {
 
 export interface AppJSON {
   id: number;
+  review_id: number;
   created_at: string;
   updated_at: string;
   deleted_at?: any;
   name: string;
   package_name: string;
+  package_veersion: string;
   author: number;
   active: boolean;
+  skip: boolean;
   info: Info;
   operation?: any;
   packages: Package[];
@@ -60,6 +77,9 @@ interface Locale {
 interface Package {
   name: string;
   blob: string;
+  signed: boolean;
+  size: number;
+  publish_status: string;
   version: string;
 }
 export interface Pricing {

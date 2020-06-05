@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { publishReplay, refCount, switchMap, share, map, startWith, first } from 'rxjs/operators';
 
@@ -12,7 +12,6 @@ import { environment } from 'environments/environment';
 import { SoftwareService, Source } from 'app/services/software.service';
 import { SettingService } from 'app/services/settings.service';
 import { DownloadTotalService } from 'app/services/download-total.service';
-import { of } from 'rxjs';
 import { CommentService } from './services/comment.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
 import { JobService } from 'app/services/job.service';
@@ -33,8 +32,10 @@ export class AppDetailComponent implements OnInit {
     private settingService: SettingService,
     private downloadTotalServer: DownloadTotalService,
     private comment: CommentService,
-    private sysAuth: SysAuthService
+    private sysAuth: SysAuthService,
+    private el: ElementRef
   ) {}
+
   crumbs = false;
   supportSignIn = environment.supportSignIn;
   adVisible$ = this.settingService.settings$.then(set => set.upyunBannerVisible);
@@ -87,5 +88,18 @@ export class AppDetailComponent implements OnInit {
         this.notifyService.error(NotifyType.Reminder);
       },
     );
+  }
+
+
+  description_overflow() {
+    const nativeElement = this.el.nativeElement
+    const log_content = nativeElement.querySelector('.description_content')
+    if(log_content) {
+      const log_context =  nativeElement.querySelector('.info_item_description')
+      const log_context2 = nativeElement.querySelector('.info_description')
+      return (log_context.clientWidth+log_context2.clientWidth) > log_content.clientWidth || false;
+    }else {
+      return false;
+    }
   }
 }

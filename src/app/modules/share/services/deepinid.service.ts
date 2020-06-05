@@ -3,14 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, concat } from 'rxjs';
 import { chunk } from 'lodash';
 
-import { environment } from 'environments/environment';
-
 @Injectable({
   providedIn: 'root',
 })
 export class DeepinidInfoService {
   private apiURL = '/api/public/deepinid';
   constructor(private http: HttpClient) {}
+
+  cache = new Map<number, DeepinInfo>();
+  ids = new Set<number>();
 
   getDeepinUserInfo(uid: number): Observable<DeepinInfo>;
   getDeepinUserInfo(uidList: Array<number>): Observable<Array<DeepinInfo>>;

@@ -1,0 +1,169 @@
+@import 'theme';
+:host {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 5.46rem;
+  font-size: 0.82rem;
+  color: var(--font-color-gray);
+  >div {
+    border-bottom: 1px solid var(--main-item-hr-color);
+    padding: 1rem 0.5rem;
+  }
+}
+
+.icon {
+  align-self: center;
+  width: 3.05rem;
+  height: 3.05rem;
+}
+
+.div_style {
+  flex: 1;
+  align-items: center;
+  display: flex;
+}
+
+.title {
+  flex: 3;
+  display: flex;
+  flex-flow: column;
+  >div {
+    @extend .div_style;
+  }
+  .name {
+    color: var(--font-color);
+    font-size: 0.92rem;
+  }
+}
+
+.log {
+  flex: 5;
+  word-break: break-all;
+  white-space: pre-wrap;
+  position: relative;
+  //line-height: 3.2rem;
+  width: 0;
+  .log_content {
+    max-height: 100%;
+    overflow: hidden;
+    display: inline-block;
+    line-height: 1.6rem;
+  }
+  .log_content_none {
+    width: 100%;
+    text-align: center;
+    line-height: 3.2rem;
+  }
+  .log_btn {
+    color: var(--primary-color);
+    position: absolute;
+    right: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    top: 2.8rem;
+    cursor: pointer;
+  }
+}
+
+.progress {
+  flex: 5;
+  position: relative;
+  my-update-progress {
+    position: relative;
+    top: 1rem;
+  }
+  .ignore {
+    width: 100%;
+    height: 44px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    position: absolute;
+    z-index: -100;
+    opacity: 0;
+    left: 0;
+    top: 13px;
+    transition: opacity 0.3s;
+    transition-delay: 0.15s;
+    >div {
+      flex: 1;
+    }
+    .remote_version {
+      color: var(--font-color);
+    }
+    .longer {
+      color: var(--nav-bg-color-active);
+      cursor: pointer;
+    }
+  }
+  .version_info {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    height: 100%;
+    opacity: 1;
+    transition: opacity 0.3s;
+    transition-delay: 0.15s;
+    >div {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+  }
+  // 不再提示功能暂时不上线
+  // &:hover {
+  //   .ignore {
+  //     opacity: 1;
+  //   }
+  //   .version_info {
+  //     opacity: 0;
+  //     ;
+  //   }
+  // }
+}
+
+.button {
+  width: 6.15rem;
+  line-height: 3.7rem;
+  text-align: right;
+  padding: 1rem 0 !important;
+  .plain {
+    width: 6.15rem;
+    height: 1.85rem;
+  }
+  .commit {
+    min-width: 5rem;
+  }
+  .controlBtn {
+    display: flex;
+    justify-content: flex-end;
+    @each $ctl in $control-button {
+      .#{$ctl}Btn {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        background-size: 100% 100%;
+        background-color: transparent !important;
+        background-repeat: no-repeat;
+        box-shadow: unset;
+        background-position-x: 0, 36px, 36px, 36px;
+        &:hover:enabled {
+          background-image: var(--control-icon-#{$ctl});
+          background-position-x: 36px, 0, 36px, 36px;
+        }
+        &:active:enabled {
+          background-image: var(--control-icon-#{$ctl});
+          background-position-x: 36px, 36px, 0, 36px;
+        }
+        &:disabled {
+          background-image: var(--control-icon-#{$ctl});
+          background-position-x: 36px, 36px, 36px, 0;
+        }
+        background-image: var(--control-icon-#{$ctl});
+      }
+    }
+  }
+}

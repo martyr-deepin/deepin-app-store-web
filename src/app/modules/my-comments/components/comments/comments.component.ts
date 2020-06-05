@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
-import { distinctUntilChanged, debounceTime, startWith, first, switchMap, map, share } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest } from 'rxjs';
+import { distinctUntilChanged, startWith, switchMap, map, share } from 'rxjs/operators';
 
 import { CommentsService, UserComment } from '../../services/comments.service';
 @Component({

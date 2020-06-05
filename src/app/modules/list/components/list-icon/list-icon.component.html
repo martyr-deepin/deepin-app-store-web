@@ -1,33 +1,42 @@
-<div class="item-icon">
-  <section class="item" *ngFor="let soft of list" [class.hover]="controlRef.show">
-    <ng-container>
-      <main>
-        <img dstoreCover="icon" class="images" [src]="soft?.info?.icon" />
-        <div class="info" [routerLink]="[soft.id]">
-          <div class="name" [style.color]="nameColor">
-            {{ soft?.info?.name }}
-          </div>
-          <div class="subtitle" [style.color]="subtitleColor">
-            <div class="category">
-              <!-- {{ slogan ? soft?.info?.slogan : (soft?.info?.category | categoryText | async) }} &nbsp; -->
-              <div class="category-title" *ngIf="slogan; else elsecategory">{{ soft?.info?.slogan }}</div>
-              <ng-template #elsecategory>
-                <m-category-name [category]="soft?.info?.category"></m-category-name>
-                <!-- {{soft?.info?.category}} -->
-              </ng-template>
+<dstore-scrollbar>
+  <div class="item-icon">
+    <section class="item" *ngFor="let soft of list" [class.hover]="controlRef.show">
+      <ng-container>
+        <main [ngClass]="(controlRef.job$ | async)?'downLoading':''">
+          <img dstoreCover="icon" [routerLink]="[soft.id]" class="images" [src]="soft?.info?.icon" />
+          <div class="info" [routerLink]="[soft.id]">
+            <div class="name" [style.color]="nameColor">
+              <span class="name_context">{{ soft?.info?.name }}</span>
+              <!-- <ng-container *ngIf="!soft.skip">
+                <img class="safe_icon" />
+              </ng-container> -->
             </div>
-            <dstore-star *ngIf="soft.stat.score_count >= 20" [rate]="soft.stat.score / 2 || 0"></dstore-star>
-            <span *ngIf="soft.stat.score_count < 20" i18n></span>
+            <div class="subtitle" [style.color]="subtitleColor">
+              <div class="category">
+                <!-- {{ slogan ? soft?.info?.slogan : (soft?.info?.category | categoryText | async) }} &nbsp; -->
+                <div class="category-title" *ngIf="slogan; else elsecategory">{{ soft?.info?.slogan }}</div>
+                <ng-template #elsecategory>
+                  <m-category-name [category]="soft?.info?.category"></m-category-name>
+                  <!-- {{soft?.info?.category}} -->
+                </ng-template>
+              </div>
+              <ng-container *ngIf="soft.stat.score_count >= 20; else $starRef">
+                <dstore-star [rate]="soft.stat.score / 2 || 0"></dstore-star>
+              </ng-container>
+              <ng-template #$starRef>
+                <!-- <dstore-star [rate]="0"></dstore-star> -->
+              </ng-template>
+              <div class="control">
+                <dstore-control #controlRef [soft]="soft"></dstore-control>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="control">
-          <dstore-control #controlRef [soft]="soft"></dstore-control>
-        </div>
-      </main>
-    </ng-container>
+        </main>
+      </ng-container>
+    </section>
+    <section class="item" *ngFor="let empty of 4 | range" [style.height]="0" [style.padding]="0"></section>
+  </div>
+  <section #loadingRef class="wait">
+    <m-wait-icon #waitIcon *ngIf="wait" [wait]="wait"></m-wait-icon>
   </section>
-  <section class="item" *ngFor="let empty of 4 | range" [style.height]="0" [style.padding]="0"></section>
-</div>
-<section #loadingRef class="wait">
-  <m-wait-icon #waitIcon *ngIf="wait" [wait]="wait"></m-wait-icon>
-</section>
+</dstore-scrollbar>

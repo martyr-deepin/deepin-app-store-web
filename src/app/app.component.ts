@@ -6,8 +6,6 @@ import { RegionService } from './services/region.service';
 import { AuthService } from './services/auth.service';
 
 import { StoreService } from './modules/client/services/store.service';
-import { AuthorizationState } from './services/authorizationState';
-import { SysAuthService } from './services/sys-auth.service';
 import { StoreJobStatus } from 'app/modules/client/models/store-job-info';
 
 @Component({
@@ -20,7 +18,6 @@ export class AppComponent implements OnInit {
     private zone: NgZone,
     private region: RegionService,
     private auth: AuthService,
-    private sysAuth: SysAuthService,
     private store: StoreService,
   ) {}
   title = 'deepin-app-store-web';
@@ -93,9 +90,8 @@ export class AppComponent implements OnInit {
       if (settings.themeName) {
         environment.themeName = settings.themeName;
       }
-
       // exec apt update
-      if (AuthorizationState.includes(environment.authorizationState)) {
+      //if (AuthorizationState.includes(environment.authorizationState)) {
         const storeUpdate = 'storeUpdate';
         const t = new Date().toISOString();
         if (!localStorage.getItem(storeUpdate)) {
@@ -132,7 +128,7 @@ export class AppComponent implements OnInit {
             }, 1000 * 5);
           }
         }
-      }
+      //}
     }
     // native client inited
     environment.native = true;

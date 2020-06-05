@@ -18,6 +18,10 @@ export class BlacklistService {
         .filter(data => {
           const match = data.match || {};
           const keys = Object.keys(match);
+          setTimeout(()=>{
+            console.log(environment)
+          },5000)
+          
           return keys.length && keys.every(key => match[key] === environment.store_env[key]);
         })
         .reduce((acc, data) => [...acc, ...data.ids.map(id => [id, data.operation])], []);

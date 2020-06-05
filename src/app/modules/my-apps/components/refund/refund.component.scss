@@ -1,4 +1,6 @@
-dialog {}
+dialog {
+  padding-right: 2rem;
+}
 
 form {
   display: flex;
@@ -56,46 +58,47 @@ button {
   width: 300px;
   height: 200px;
   display: flex;
+  flex-flow: column;
   align-items: center;
   justify-content: center;
 
-  >div {
+  .s_title {
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
 
-    .s_title {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-top: 20px;
-
-      i {
-        font-style: normal;
-        width: 25px;
-        height: 25px;
-        display: inline-block;
-        text-align: center;
-        line-height: 25px;
-        border-radius: 50%;
-        background: url('assets/images/ok.svg') no-repeat 100% 100%;
-        background-position: center;
-        margin-right: 10px;
-      }
-
-      span {
-        line-height: 25px;
-        font-size: 14px;
-      }
+    i {
+      font-style: normal;
+      width: 25px;
+      height: 25px;
+      display: inline-block;
+      text-align: center;
+      line-height: 25px;
+      border-radius: 50%;
+      background: url('assets/images/ok.svg') no-repeat 100% 100%;
+      background-position: center;
+      margin-right: 10px;
+    }
+    .failed {
+      background: url('assets/images/warning.svg') no-repeat 100% 100%;
+      background-position: center;
     }
 
-    .s_content {
-      margin-top: 30px;
-      font-size: 12px;
-      font-family: SourceHanSansCN-Normal, SourceHanSansCN;
-      font-weight: 400;
-      color: rgba(46, 50, 51, 1);
-      line-height: 18px;
-      padding: 0 15px;
+    span {
+      line-height: 25px;
+      font-size: 14px;
     }
+  }
+
+  .s_content {
+    margin-top: 30px;
+    font-size: 12px;
+    font-family: SourceHanSansCN-Normal, SourceHanSansCN;
+    font-weight: 400;
+    color: rgba(46, 50, 51, 1);
+    line-height: 18px;
+    padding: 0 15px;
   }
 }

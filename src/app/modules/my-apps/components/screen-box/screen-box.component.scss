@@ -1,0 +1,42 @@
+.app_count {
+  display: inline-block;
+  margin-right: 1rem;
+  font-size: 0.92rem;
+  font-weight: 400;
+  .app_length {
+    color: var(--nav-bg-color-active);
+    margin: 0 0.5rem;
+  }
+}
+
+.screen-box_btn {
+  font-weight: 500;
+  color: var(--nav-bg-color-active);
+  font-size: 0.92rem;
+  cursor: pointer;
+  display: inline-block;
+  .screenIcon {
+    margin-left: 0.2rem;
+    position: relative;
+    top: 0.2rem;
+    content: var(--screen-icon);
+  }
+}
+
+.center_content {
+  padding: 0 1rem;
+  max-height: 18rem; //要展示滚动条必须给高度
+}
+
+.footer_content {
+  border-top: 1px solid var(--tab-border-color);
+  padding: 1rem;
+  .btn_item {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    button {
+      padding: 0 2rem;
+    }
+  }
+}

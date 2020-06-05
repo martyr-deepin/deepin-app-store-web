@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable, timer, fromEvent } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
-import { myInsertRemoveTrigger, slideInOut } from '../../services/animations';
+import { myInsertRemoveTrigger } from '../../services/animations';
 @Component({
   selector: 'm-wait-icon',
   templateUrl: './wait-icon.component.html',
@@ -10,7 +9,7 @@ import { myInsertRemoveTrigger, slideInOut } from '../../services/animations';
   animations: [myInsertRemoveTrigger]
 })
 export class WaitIconComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
+  constructor(){}
   @Input() timeout = 30;
   @Input() delay = 0;
   @Input() wait;

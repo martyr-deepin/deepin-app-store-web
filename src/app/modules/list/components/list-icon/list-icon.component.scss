@@ -1,44 +1,55 @@
 dstore-list-icon {
   .item-icon {
-    display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     margin-top: 0.2rem;
-  }
-
-  .item {
     box-sizing: border-box;
-    width: 226px;
-    padding: 8px 5px;
-    margin: 1rem 0;
+  }
+  .item {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 17rem;
+    padding: 0.5rem;
+    margin: 1rem;
     animation: show 1s;
     border-radius: 4px;
     cursor: pointer;
+    border: 1px solid transparent;
     main {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 5px;
       .images {
-        width: 48px;
-        height: 48px;
-        min-width: 48px;
-        min-height: 48px;
+        width: 3.7rem;
+        height: 3.7rem;
       }
       .info {
         flex: 1;
-        overflow: hidden;
         padding-left: 0.6rem;
+        width: 0;
         .name {
           padding-bottom: 5px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          max-width: 100px;
+          width: 100%;
+          .name_context {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align: top;
+            max-width: calc(100% - 1.5rem);
+          }
+          .safe_icon {
+            content: var(--safe-icon);
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            margin-left: 0.3rem;
+            position: relative;
+            top: 0.1rem;
+          }
         }
         .category {
-          > .category-title {
-            max-width: 100px;
+          >.category-title {
+            max-width: 6rem;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -47,44 +58,60 @@ dstore-list-icon {
         .subtitle {
           color: gray;
           font-size: 0.9rem;
-          display: flex;
           justify-content: space-between;
           align-items: center;
+          .category {
+            display: inline-block;
+            vertical-align: bottom;
+            .category-title {
+              font-size: 0.77rem;
+            }
+          }
+          dstore-star {
+            //display: inline-block;
+            vertical-align: bottom;
+            float: right;
+          }
+          .control {
+            display: none;
+            float: right;
+            max-width: 6rem;
+            height: 1.5rem;
+            line-height: 1rem;
+            font-size: 0.87rem;
+          }
         }
       }
-
-      .control {
-        display: none;
-        width: 50px;
-        margin-top: 0.8rem;
-        height: 18px;
-        line-height: 14px;
-        font-size: 12px;
-      }
     }
-
-    &:hover,
-    &.hover {
-      background-color: var(--main-item-bg-color-hover);
+    .downLoading {
       dstore-star {
-        display: none;
+        display: none !important;
       }
-
       span {
         display: none;
       }
-
-      main .control {
+      .info .subtitle .control {
+        display: block;
+      }
+    }
+    &:hover {
+      background-color: var(--list-hover-color);
+      border: solid 1px var(--list-hover-border-color);
+      dstore-star {
+        display: none !important;
+      }
+      span {
+        display: none;
+      }
+      main .info .subtitle .control {
         display: block;
       }
     }
   }
-
   @keyframes show {
     from {
       opacity: 0;
     }
-
     to {
       opacity: 1;
     }
@@ -93,6 +120,8 @@ dstore-list-icon {
     cursor: unset;
     padding: 0;
     width: 100%;
+    position: relative;
+    bottom: 5rem;
     &:hover {
       background: unset;
     }

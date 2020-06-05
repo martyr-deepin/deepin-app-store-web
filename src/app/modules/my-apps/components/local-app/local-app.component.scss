@@ -1,71 +1,207 @@
 :host {
   display: flex;
   flex-direction: column;
-  padding: 0 1rem;
+  //padding: 0 1rem;
   height: 100vh;
 }
+
+header {
+  height: 2.77rem;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-shrink: 0;
+  align-items: center;
+  .tabs {
+    float: left;
+    height: 2.77rem;
+    .tab {
+      display: inline-block;
+      font-size: 1.08rem;
+      text-align: center;
+      width: 7.69rem;
+      cursor: pointer;
+      height: 100%;
+      line-height: 2.77rem;
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--tab-bg-color);
+      background: var(--main-bg-color);
+      //box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.05), 0px 2px 0px 0px rgba(255, 255, 255, 0.15);
+      &:not(:first-child) {
+        margin-left: -1px;
+      }
+      &:first-child {
+        border-top-left-radius: 0.31rem;
+        border-bottom-left-radius: 0.31rem;
+      }
+      &:last-child {
+        border-top-right-radius: 0.31rem;
+        border-bottom-right-radius: 0.31rem;
+      }
+      &:not(.active):hover {
+        background: var(--nav-bg-color);
+      }
+    }
+    .active {
+      border-color: var(--primary-color);
+      color: var(--main-bg-color);
+      background: linear-gradient(0deg, var(--nav-bg-color-active) 0%, var(--primary-color) 100%);
+    }
+  }
+}
+
 .installed-list {
   overflow: hidden;
   flex: 1;
 }
+
+.table_head {
+  display: flex;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 2rem;
+  background-color: var(--nav-bg-color);
+  font-size: 13px;
+  font-weight: 500;
+  .th {
+    &:first-child {
+      width: 16.2rem;
+    }
+    &:nth-child(2) {
+      flex: 3;
+    }
+    &:nth-child(3) {
+      flex: 2;
+    }
+    &:nth-child(4) {
+      flex: 2;
+    }
+    &:nth-child(5) {
+      flex: 2.3;
+    }
+    &:nth-child(6) {
+      width: 12rem;
+    }
+  }
+}
+
 .installed-app {
   display: flex;
+  padding: 0 2rem;
   flex: 1;
   height: 64px;
-  & > div {
+  font-size: 12px;
+  &>div {
     border-bottom: 1px solid var(--main-item-hr-color);
   }
   .icon {
     align-self: center;
   }
   .info {
-    flex: 1;
     display: flex;
-    width: 0;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 0.5rem;
-    .size {
-      color: gray;
-    }
-    span:first-child {
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 0.2rem 0 0.6rem;
+    width: 12.5rem;
+    span {
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
   }
   .installed {
-    flex: 2;
+    flex: 1;
     display: flex;
     overflow: hidden;
-    .time,
-    .version {
+    .confirm {
       flex: 1;
       display: flex;
       align-items: center;
-      color: gray;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      justify-content: center;
+      padding-right: 0.2rem;
     }
-    .versionText {
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .confirm {
+    .removing {
+      flex: 1;
       display: flex;
       align-items: center;
+      justify-content: center;
+      color: var(--font-color-gray);
+      padding-right: 0.2rem;
+      img {
+        margin-right: 0.5rem;
+        width: 3rem;
+        height: 3rem;
+        content: url("/assets/images/loading.svg")
+      }
+    }
+    .score {
+      width: 0;
+      flex: 3;
+      display: flex;
+      align-items: center;
+      padding-right: 0.2rem;
+      span {
+        margin-left: 0.5rem;
+        font-weight: 500;
+      }
+      .score_none {
+        margin-left: 0;
+        color: var(--font-color-gray);
+      }
+    }
+    .size {
+      width: 0;
+      flex: 2;
+      display: flex;
+      color: var(--font-color-gray);
+      align-items: center;
+      padding-right: 0.2rem;
+      span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    .time {
+      width: 0;
+      flex: 2.3;
+      display: flex;
+      align-items: center;
+      color: var(--font-color-gray);
+      padding-right: 0.2rem;
+      span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    .version {
+      width: 0;
+      flex: 2;
+      display: flex;
+      align-items: center;
+      color: var(--font-color-gray);
+      span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
   .control {
-    flex: 1;
+    width: 12rem;
+    padding-right: 0.5rem;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding-right: 0.5rem;
     button {
       min-width: 5rem;
       padding: 0 0.6rem;
       margin: 0 0.5rem;
     }
   }
+}
+
+.paginatorContainer {
+  margin-right: 1.5rem;
 }

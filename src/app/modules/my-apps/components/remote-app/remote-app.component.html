@@ -1,13 +1,14 @@
-<dstore-center-title>
-  <span title i18n>Remote App</span>
-  <button routerLink="../local" routerLinkActive="active">
-    <ng-container i18n>Local Apps</ng-container>
-  </button>
-  <button routerLink="../remote" routerLinkActive="active">
-    <ng-container i18n>Remote Apps</ng-container>
-  </button>
-</dstore-center-title>
-<dstore-remote-install (freeChange)="freeChange($event)"></dstore-remote-install>
+<header>
+  <div class="tabs">
+    <div class="tab" routerLink="../local" routerLinkActive="active">
+      <ng-container i18n>Local Apps</ng-container>
+    </div>
+    <div class="tab" routerLink="../remote" routerLinkActive="active">
+      <ng-container i18n>Remote Apps</ng-container>
+    </div>
+  </div>
+  <dstore-remote-install (freeChange)="freeChange($event)"></dstore-remote-install>
+</header>
 
 <m-refund *ngIf="refund" [remoteApp]="refund" (cancel)="refund = null; refresh()"> </m-refund>
 
@@ -15,13 +16,11 @@
   <div class="remote-apps" *ngIf="installing$ | async as installing; else loading">
     <ng-container *ngIf="apps$ | async as apps; else loading">
       <div class="remote-app" *ngFor="let remoteApp of apps">
-        <img class="icon" dstoreCover="icon" [src]="remoteApp.soft.info.icon"
-          [routerLink]="['/app', remoteApp.soft.id]" />
+        <img class="icon" dstoreCover="icon" [src]="remoteApp.soft.info.icon" [routerLink]="['/app', remoteApp.soft.id]" />
         <div class="content">
           <div class="info">{{ remoteApp.soft.info.name }}</div>
           <div class="time">
-            <span i18n>Date installed:</span>
-            {{ remoteApp.created_at | date: 'yyyy.MM.dd' }}
+            <span i18n>Date installed:</span> {{ remoteApp.created_at | date: 'yyyy.MM.dd' }}
           </div>
           <ng-container *ngIf="
               remoteApp.soft?.package?.remoteVersion && remoteApp.soft?.active && !remoteApp.unavailable;
@@ -31,22 +30,23 @@
 
             <div class="control">
               <ng-container *ngIf="remoteApp.order_number">
-                <ng-container *ngIf="remoteApp.can_refund; else canNotRefundRef" [ngSwitch]="remoteApp.refund_status">
-                  <ng-container *ngSwitchCase="RefundStatus.RefundStatusWaiting">
-                    <div class="refund-waiting" i18n>Refunding</div>
-                  </ng-container>
-
-                  <ng-container *ngSwitchDefault>
-                    <button class="secondary" (click)="refund = remoteApp" i18n>Refund</button>
-                  </ng-container>
+                <ng-container *ngIf="remoteApp.can_refund; else canNotRefundRef">
+                  <button class="secondary" (click)="refund = remoteApp" i18n>Refund</button>
                 </ng-container>
+
                 <ng-template #canNotRefundRef>
+                  <ng-container [ngSwitch]="remoteApp.refund_status">
+                    <ng-container *ngSwitchCase="RefundStatus.RefundStatusReviewing||RefundStatus.RefundStatusWaiting">
+                      <div class="refund-waiting" i18n>Refunding</div>
+                    </ng-container>
 
-                  <button class="secondary toolTip" disabled>
-                    <ng-container i18n-title title="Two-hour refund period has expired" i18n>Refund</ng-container>
-                    <div i18n class="toolTip_content">Two-hour refund period has expired</div>
-                  </button>
-
+                    <ng-container *ngSwitchDefault>
+                      <button class="secondary toolTip" disabled>
+                        <ng-container i18n-title title="Two-hour refund period has expired" i18n>Refund</ng-container>
+                        <div i18n class="toolTip_content">Two-hour refund period has expired</div>
+                      </button>
+                    </ng-container>
+                  </ng-container>
                 </ng-template>
               </ng-container>
               &nbsp;
@@ -54,18 +54,19 @@
                 <button i18n disabled>Installing</button>
               </ng-container>
               <ng-template #update>
-                <ng-container *ngIf="remoteApp.soft.package.upgradable;else installedRef" >
-                  <ng-container *ngIf="sysAuthStatus$ | async;else $noAuthorizaedUpdateRef">
-                    <button (click)="installApp(remoteApp.soft)" i18n>Update</button>
+                <ng-container *ngIf="!installed.has(remoteApp.soft.package_name);else installedRef">
+                  <ng-container *ngIf="remoteApp.soft.package.upgradable;else installedRef">
+                    <ng-container *ngIf="sysAuthStatus$ | async;else $noAuthorizaedUpdateRef">
+                      <button (click)="installApp(remoteApp.soft)" i18n>Update</button>
+                    </ng-container>
+                    <ng-template #$noAuthorizaedUpdateRef>
+                      <button (click)="sysAuthMessage()" i18n>Update</button>
+                    </ng-template>
                   </ng-container>
-                  <ng-template #$noAuthorizaedUpdateRef>
-                    <button (click)="sysAuthMessage()" i18n>Update</button>
-                  </ng-template>
                 </ng-container>
               </ng-template>
               <ng-template #installedRef>
-                <button disabled
-                  *ngIf="remoteApp.soft.package.localVersion != '' || installed.has(remoteApp.soft.package_name); else install">
+                <button disabled *ngIf="remoteApp.soft.package.localVersion != '' || installed.has(remoteApp.soft.package_name); else install">
                   <ng-container i18n>Installed</ng-container>
                 </button>
               </ng-template>

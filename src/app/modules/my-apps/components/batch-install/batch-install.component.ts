@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { switchMap, share, map, distinctUntilChanged, publishReplay, refCount, first } from 'rxjs/operators';
 
 import { RemoteAppService } from './../../services/remote-app.service';
@@ -31,7 +31,7 @@ export class BatchInstallComponent implements OnInit {
     publishReplay(1),
     refCount(),
   );
-  length$ = this.result$.pipe(map(result => result.count));
+  length$ = this.result$.pipe(map(result => result.items.length));
   apps$ = this.result$.pipe(
     map(result => {
       console.log(

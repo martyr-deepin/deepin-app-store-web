@@ -4,7 +4,6 @@ import { first } from 'rxjs/operators';
 
 import { environment } from 'environments/environment';
 import { AuthService } from './auth.service';
-import { Channel } from 'app/modules/client/utils/channel';
 import { Software } from './software.service';
 import { Subject } from 'rxjs';
 

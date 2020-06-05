@@ -2,25 +2,63 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  dstore-center-title {
-    padding: 0 1rem;
-  }
   dstore-remote-install {
     padding: 0 1rem;
   }
+}
 
-
+header {
+  height: 2.77rem;
+  padding: 1rem 0 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-shrink: 0;
+  align-items: center;
+  .tabs {
+    float: left;
+    height: 2.77rem;
+    .tab {
+      display: inline-block;
+      font-size: 1.08rem;
+      text-align: center;
+      width: 7.69rem;
+      cursor: pointer;
+      height: 100%;
+      line-height: 2.77rem;
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--tab-bg-color);
+      background: var(--main-bg-color);
+      //box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.05), 0px 2px 0px 0px rgba(255, 255, 255, 0.15);
+      &:not(:first-child) {
+        margin-left: -1px;
+      }
+      &:first-child {
+        border-radius: 0.31rem 0 0 0.31rem;
+      }
+      &:last-child {
+        border-radius: 0 0.31rem 0.31rem 0;
+      }
+      &:not(.active):hover {
+        background: var(--nav-bg-color);
+      }
+    }
+    .active {
+      border-color: var(--primary-color);
+      color: var(--main-bg-color);
+      background: linear-gradient(0deg, var(--nav-bg-color-active) 0%, var(--primary-color) 100%);
+    }
+  }
 }
 
 .remote-apps {
   flex: 1;
   overflow: hidden;
-  padding: 0 1rem 1rem 1rem;
+  padding: 0 1rem 1rem 1.5rem;
   .remote-app {
     display: flex;
     height: 64px;
     align-items: center;
-
     .content {
       display: flex;
       width: 100%;
@@ -28,11 +66,9 @@
       padding-left: 0.5rem;
       align-items: center;
       border-bottom: 1px solid var(--main-item-hr-color);
-
       .info {
         flex: 1;
       }
-
       .version,
       .time {
         color: gray;
@@ -41,18 +77,15 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
-
       .control {
         flex: 1;
         display: flex;
         justify-content: space-between;
         text-align: right;
-
         button {
           min-width: 100px;
         }
       }
-
       .no-version {
         flex: 2;
         color: red;

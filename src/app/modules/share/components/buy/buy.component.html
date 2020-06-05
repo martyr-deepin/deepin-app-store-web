@@ -1,4 +1,4 @@
-<dialog class="buy-dialog" #dialogRef>
+<dialog noouter="true" class="buy-dialog" #dialogRef>
   <dstore-close-button [dialog]="dialogRef"></dstore-close-button>
   <ng-container *ngIf="payment$ | async as order; else formRef" [ngSwitch]="order.status">
     <ng-container *ngSwitchCase="OrderStatus.OrderStatusWaiting">
@@ -31,11 +31,11 @@
           <ng-container *ngFor="let item of paymentList">
             <label>
               <ng-container *ngIf="item.region===soft.pricing.currency">
-                <input type="radio" name="method" formControlName="method" [value]="item.name" />
+                <input type="radio" name="third" formControlName="third" [value]="item.name" />
               </ng-container>
 
               <ng-container *ngIf="item.region!==soft.pricing.currency">
-                <input type="radio" name="method" formControlName="method" disabled [value]="item.name" />
+                <input type="radio" name="third" formControlName="third" disabled [value]="item.name" />
               </ng-container>
               <img class="paymentIcon {{item.name}}" />
             </label>

@@ -39,3 +39,16 @@ interface LocaleName {
   name: string;
   language: string;
 }
+
+export enum CategoryType {
+  Internet = "Internet",
+  Chat = "Chat",
+  Music = "Music",
+  Video = "Video",
+  Graphics = "Graphics",
+  Games = "Games",
+  Office = "Office",
+  Reading = "Reading",
+  Development = "Development",
+  System = "System"
+}

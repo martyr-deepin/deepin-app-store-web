@@ -1,17 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './services/auth-guard.service';
-import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'index',
     pathMatch: 'full',
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
   },
   // home page
   {
@@ -32,6 +27,10 @@ const routes: Routes = [
   {
     path: 'download',
     loadChildren: () => import('app/modules/download/download.module').then(m => m.DownloadModule),
+  },
+  {
+    path: 'my/updates',
+    loadChildren: () => import('app/modules/my-updates/my-updates.module').then(m => m.MyUpdatesModule),
   },
   {
     path: 'my/apps',

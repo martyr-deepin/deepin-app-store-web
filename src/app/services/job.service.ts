@@ -6,10 +6,7 @@ import { StoreService } from 'app/modules/client/services/store.service';
 import {
   StoreJobInfo,
   StoreJobType,
-  StoreJobStatus,
-  StoreJobError,
-  StoreJobErrorType,
-  CanFixError,
+  StoreJobStatus
 } from 'app/modules/client/models/store-job-info';
 
 @Injectable({

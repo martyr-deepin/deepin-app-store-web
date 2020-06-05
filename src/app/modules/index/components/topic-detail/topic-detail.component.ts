@@ -1,9 +1,9 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { first, switchMap } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import { KeyvalueService } from 'app/services/keyvalue.service';
-import { Section, SectionApp, SectionTopicItem } from '../../services/section.service';
-import { SoftwareService, Software } from 'app/services/software.service';
+import {  SectionTopicItem } from '../../services/section.service';
+import { SoftwareService } from 'app/services/software.service';
 import { SectionItemBase } from '../section-item-base';
 
 @Component({
