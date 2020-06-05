@@ -1,19 +1,13 @@
+
 import { Component, OnInit, Input, OnChanges, ViewChild, ElementRef } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { DomSanitizer } from '@angular/platform-browser';
-import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
-import { Subject, BehaviorSubject, combineLatest } from 'rxjs';
-import { first, flatMap, map } from 'rxjs/operators';
-
+import { HttpErrorResponse } from '@angular/common/http';
+import { first, tap, find } from 'rxjs/operators';
 import * as _ from 'lodash';
-
 import smoothScrollIntoView from 'smooth-scroll-into-view-if-needed';
-
 import { AuthService, UserInfo } from 'app/services/auth.service';
 import { CommentService, AppComment, CommentDisableStatus, CommentDisableReason } from '../../services/comment.service';
-import { switchMap, filter, tap } from 'rxjs/operators';
-import { APIBase } from 'app/services/api';
-import { FormBuilder, Validators, FormGroup, FormArray, FormGroupName } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { environment } from 'environments/environment';
 
 enum CommentType {
@@ -47,7 +41,6 @@ export enum CommentError {
 })
 export class AppCommentComponent implements OnInit, OnChanges {
   constructor(
-    private domSanitizer: DomSanitizer,
     private authService: AuthService,
     private commentService: CommentService,
     private auth: AuthService,
@@ -55,10 +48,8 @@ export class AppCommentComponent implements OnInit, OnChanges {
   ) {}
   readonly supportSignIn = environment.supportSignIn;
   @ViewChild('commentRef', { static: true }) commentRef: ElementRef<HTMLDivElement>;
-  @Input()
-  appID: number;
-  @Input()
-  appVersion: string;
+  @Input() appID: number;
+  @Input() appVersion: string;
 
   content = this.fb.control('', Validators.required);
   score = this.fb.control(0, Validators.min(0.5));
@@ -109,8 +100,11 @@ export class AppCommentComponent implements OnInit, OnChanges {
   get publicAPI() {
     return this.commentService.publicAPI(this.appID);
   }
+  get comments() {
+    return this.commentService.getComments(this.appID);
+  }
   get userAPI() {
-    return this.commentService.userAPI(this.appID);
+    return this.commentService.userAPI();
   }
   // comment first page size
   get firstPageSize() {
@@ -126,12 +120,10 @@ export class AppCommentComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
   ngOnChanges() {
-    console.log(this.score);
     this.commentGroup.patchValue({
       app_id: this.appID,
       app_version: this.appVersion,
     });
-    //this.init();
   }
   async init() {
     await this.getCount();
@@ -149,7 +141,6 @@ export class AppCommentComponent implements OnInit, OnChanges {
     const info = await this.info$.pipe(first()).toPromise();
     if (info) {
       this.disableStatus = await this.commentService.getDisableStatus(this.appID, this.appVersion).toPromise();
-      console.log(this.disableStatus)
     }
   }
   async getCount() {
@@ -184,45 +175,28 @@ export class AppCommentComponent implements OnInit, OnChanges {
         return;
       }
     }
+    const resp = await this.comments.list({
+      limit: 20,
+      offset: this.page.index * 20,
+      version: this.appVersion,
+      history: this.select !== CommentType.News
+    });
     this.loadCount++;
     const mark = this.loadCount;
     this.loading = true;
-    const opt = {
-      limit: 20,
-      offset: (Math.ceil(this.total[this.select] / this.page.size) - (this.page.index + 1)) * this.page.size,
-      ...this.selectVersion,
-    };
-    // get comment list
-    const resp = await this.publicAPI.list(opt);
-    if (this.firstPageSize > 0) {
-      if (opt.offset > 0) {
-        opt.offset -= this.page.size;
-        if (opt.offset < 0) {
-          opt.offset = 0;
-        }
-        const nextResp = await this.publicAPI.list(opt);
-        resp.items = [...resp.items, ...nextResp.items];
-      }
-      if (this.page.index !== 0) {
-        resp.items = resp.items.slice(this.page.size - this.firstPageSize);
-      }
-      resp.items = resp.items.slice(0, this.page.size);
-    }
     if (this.page.index === 0) {
       // get hot comment
-      const topResp = await this.publicAPI.list({ top: true, ...this.selectVersion });
+      const topResp = await this.comments.list({ top: true });
+      const topIds = [];
       topResp.items.forEach(item => {
-        item.isHot = true;
-        const index = resp.items.findIndex(c => c.id === item.id);
-        if (index !== -1) {
-          resp.items.splice(index, 1);
-        }
+        topIds.push(item.id);
       });
-      resp.items = [...topResp.items, ...resp.items];
-
+      resp.items.map(item => {
+        item.isHot = topIds.includes(item.id);
+      });
       const info = await this.info$.pipe(first()).toPromise();
       if (info) {
-        const userResp = await this.userAPI.list({ app_id: this.appID, ...this.selectVersion });
+        const userResp = await this.userAPI.list({ app_id: this.appID, ...this.selectVersion });  
         if (this.appVersion !== undefined || this.appVersion !== null) {
           if (this.select === CommentType.News) {
             this.own = userResp.items[0];
@@ -230,23 +204,22 @@ export class AppCommentComponent implements OnInit, OnChanges {
         } else {
           this.select = CommentType.History;
         }
-
-        resp.items = [...userResp.items, ...resp.items.filter(c => c.commenter !== info.uid)];
+        const aheadResp = resp.items.find(c => {
+          return c.commenter === info.uid;
+        });
+        resp.items = resp.items.filter(c => c.commenter !== info.uid);
+        if (aheadResp) { resp.items.unshift(aheadResp); }
       }
     }
-    resp.items.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
     if (this.loadCount === mark) {
       this.list = resp.items;
       this.loading = false;
     }
   }
   async submitComment() {
-    console.log(this.commentGroup);
     const content = this.commentGroup.get('content');
-    console.log(content)
     content.setValue(content.value.trim());
     this.commentGroup.markAllAsTouched();
-
     if (this.commentGroup.invalid) {
       return;
     }
@@ -264,7 +237,6 @@ export class AppCommentComponent implements OnInit, OnChanges {
       if (err instanceof HttpErrorResponse) {
         this.commentGroup.enable();
         this.commentGroup.setErrors({ error: true });
-        console.log(this.commentGroup, 'szdsadas');
       }
     }
   }

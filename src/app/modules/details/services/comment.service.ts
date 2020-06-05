@@ -15,7 +15,8 @@ export class CommentService {
   private server = environment.operationServer;
   sourceCount$ = new Subject<any>();
   constructor(private http: HttpClient, private auth: AuthService) {}
-  publicAPI(app_id: number) {
+
+  publicAPI(appId: number) {
     interface CommentListOption extends ListOption {
       version?: string;
       exclude_version?: string;
@@ -26,8 +27,23 @@ export class CommentService {
         return super.list(opt);
       }
     }
-    return new CommentAPI(this.http, `/api/public/app/${app_id}/comment`);
+    return new CommentAPI(this.http, `/api/public/app/${appId}/comment`);
   }
+
+  getComments(appId: number) {
+    interface CommentListOption extends ListOption {
+      version?: string;
+      history?: boolean;
+      top?: boolean;
+    }
+    class CommentAPI extends APIBase<AppComment> {
+      list(opt: CommentListOption) {
+        return super.list(opt);
+      }
+    }
+    return new CommentAPI(this.http, `/api/public/app/${appId}/merge/comment`);
+  }
+
   getDisableStatus(appID: number, appVersion: string) {
     return this.http.get<CommentDisableStatus>(`/api/user/comment/${appID}/disable_status`, {
       params: new HttpParams({
@@ -36,7 +52,7 @@ export class CommentService {
       }),
     });
   }
-  userAPI(app_id: number) {
+  userAPI() {
     interface CommentListOption extends ListOption {
       app_id?: number;
       version?: string;
@@ -61,6 +77,7 @@ export interface AppComment {
   id: number;
   created_at: string;
   commenter: number;
+  commenterInfo: CommenterInfo;
   content: string;
   score: number;
   app_id: number;
@@ -83,4 +100,12 @@ export enum CommentDisableReason {
   CommentDisableReasonBanned = 'std:banned', // 用户被禁言
   CommentDisableReasonUnused = 'std:unused', // 用户未使用过(下载)应用
   CommentDisableReasonSubmitted = 'std:submitted', // 用户已提交过应用
+}
+
+export interface CommenterInfo {
+  nickname: string;
+  profile_image: string;
+  region: string;
+  uid: number;
+  username: string;
 }

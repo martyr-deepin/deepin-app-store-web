@@ -146,7 +146,7 @@
             <ng-container *ngFor="let c of list; index as $index; first as first">
               <tr [@myComment]="haveNewComment && first && c.commenter === info?.uid ? 'in' : ''">
                 <td rowspan="2">
-                  <div class="head" *ngIf="c.commenter | deepinid | async as info; else deepinInfoDefault">
+                  <div class="head" *ngIf="c.commenterInfo as info; else deepinInfoDefault">
                     <ng-container *ngIf="info.uid; else deletedRef">
                       <img
                         [src]="info.profile_image"
