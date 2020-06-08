@@ -1,4 +1,4 @@
-<button class="bg" [disabled]="disabled">
+<button class="bg" [disabled]="disabled || type === StoreJobType.install">
   <span *ngIf="status === StoreJobStatus.paused || status === StoreJobStatus.failed; else bgRunning" i18n @fadeRight
     >Paused</span
   >
@@ -11,7 +11,7 @@
   </ng-template>
 </button>
 <div class="fg">
-  <button class="btn control" [style]="style" (click)="click()" [disabled]="disabled">
+  <button class="btn control" [style]="style" (click)="click()" [disabled]="disabled || type === StoreJobType.install">
     <span *ngIf="status === StoreJobStatus.paused || status === StoreJobStatus.failed; else fgRunning" i18n @fadeRight
       >Paused</span
     >

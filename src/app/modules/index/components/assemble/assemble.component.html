@@ -2,7 +2,7 @@
 <div class="list">
 
   <ng-container *ngFor="let assemble of this.assembles; index as index">
-    <section class='assemble' *ngIf="section.cols > index &&index<4">
+    <section class='assemble'>
       <header class="category cursor" [routerLink]="'/list/category/' + assemble.category">
         {{ assemble.category | categoryText | async }}
       </header>
@@ -18,7 +18,7 @@
             <main>
               <div class="info">
                 <span class="name">{{ soft.info.name }}</span>
-                <div class="slogan">{{ soft.info.slogan }}</div>
+                <div class="slogan" [title]="soft.info.slogan">{{ soft.info.slogan }}</div>
               </div>
               <dstore-control class="control" [soft]="soft"></dstore-control>
             </main>
@@ -30,8 +30,6 @@
   </ng-container>
 
   <ng-container *ngIf="assembleSection.y!==assembles.length">
-
     <section class="item empty" *ngFor="let empty of 7 | range"></section>
   </ng-container>
-
 </div>
