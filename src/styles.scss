@@ -164,3 +164,12 @@ progress[value] {
     border-radius: 4px;
   }
 }
+
+//storeTips
+.dstore_directive_tips {
+  background-color: var(--primary-color);
+  word-break: break-all;
+  color: #fff;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+}

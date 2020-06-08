@@ -40,7 +40,7 @@ export class RefundComponent implements OnInit {
     };
 
     this.refund_code =  <{code:number}>await this.refundService.create(this.remoteApp.order_number, formValue);
-    this.confirm.emit(null);
+    this.confirm.emit(this.remoteApp.app_id);
     this.successTip = true;
   }
 }

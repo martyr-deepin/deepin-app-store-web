@@ -40,14 +40,14 @@
             <ng-container *ngIf="(software.id===0?software.package:software.info) as softwares">
               <img class="icon" dstoreCover="icon" [routerLink]="['/app', installed.software.id]" [src]="softwares.icon" />
               <div class="info">
-                <span>{{ softwares.name?softwares.name: installed.package.appName}}</span>
+                <span dstoreTips>{{ softwares.name?softwares.name: installed.package.appName}}</span>
               </div>
             </ng-container>
           </ng-container>
           <ng-template #noSoftwareRef>
             <img class="icon" dstoreCover="icon" [routerLink]="['/app', 0]" [src]='installed.package.icon' />
             <div class="info">
-              <span>{{ installed.localName }}</span>
+              <span dstoreTips>{{ installed.localName }}</span>
             </div>
           </ng-template>
 
@@ -72,7 +72,7 @@
               <ng-template #$infos>
                 <ng-container *ngIf="selected != installed.name; else confirm">
                   <div class="score">
-                    <ng-container *ngIf="installed.software.stat&&installed.software.stat.score_count>20; else $noneScore">
+                    <ng-container *ngIf="installed.software.stat&&installed.software.stat.score_count>=20; else $noneScore">
                       <dstore-star [rate]="installed.software.stat.score/2||0"></dstore-star>
                       <span>{{installed.software.stat.score | appScore}}</span>
                     </ng-container>

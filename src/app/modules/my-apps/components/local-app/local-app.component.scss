@@ -137,7 +137,7 @@ header {
     }
     .score {
       width: 0;
-      flex: 3;
+      flex: 32;
       display: flex;
       align-items: center;
       padding-right: 0.2rem;
@@ -152,7 +152,7 @@ header {
     }
     .size {
       width: 0;
-      flex: 2;
+      flex: 21;
       display: flex;
       color: var(--font-color-gray);
       align-items: center;
@@ -165,7 +165,7 @@ header {
     }
     .time {
       width: 0;
-      flex: 2.3;
+      flex: 24;
       display: flex;
       align-items: center;
       color: var(--font-color-gray);
@@ -178,7 +178,7 @@ header {
     }
     .version {
       width: 0;
-      flex: 2;
+      flex: 21;
       display: flex;
       align-items: center;
       color: var(--font-color-gray);
@@ -191,13 +191,14 @@ header {
   }
   .control {
     width: 12rem;
+    box-sizing: border-box;
     padding-right: 0.5rem;
     display: flex;
     align-items: center;
     button {
       min-width: 5rem;
       padding: 0 0.6rem;
-      margin: 0 0.5rem;
+      margin-right: 0.5rem;
     }
   }
 }

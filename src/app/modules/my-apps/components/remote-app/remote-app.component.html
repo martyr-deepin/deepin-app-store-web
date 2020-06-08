@@ -10,7 +10,7 @@
   <dstore-remote-install (freeChange)="freeChange($event)"></dstore-remote-install>
 </header>
 
-<m-refund *ngIf="refund" [remoteApp]="refund" (cancel)="refund = null; refresh()"> </m-refund>
+<m-refund *ngIf="refund" [remoteApp]="refund" (confirm)="refunding($event)" (cancel)="refund = null"> </m-refund>
 
 <dstore-scrollbar>
   <div class="remote-apps" *ngIf="installing$ | async as installing; else loading">
@@ -31,7 +31,12 @@
             <div class="control">
               <ng-container *ngIf="remoteApp.order_number">
                 <ng-container *ngIf="remoteApp.can_refund; else canNotRefundRef">
-                  <button class="secondary" (click)="refund = remoteApp" i18n>Refund</button>
+                  <ng-container *ngIf="refundeds.includes(remoteApp.app_id); else canRefundRef">
+                    <div class="refund-waiting" i18n>Refunding</div>
+                  </ng-container>
+                  <ng-template #canRefundRef>
+                    <button class="secondary" (click)="refund = remoteApp" i18n>Refund</button>
+                  </ng-template>
                 </ng-container>
 
                 <ng-template #canNotRefundRef>

@@ -73,12 +73,12 @@ export class ScreenBoxComponent implements OnInit {
     //this.checkedList = this.checkedList.map(item=>false)
   }
 
-  appLength$=this.service.installedSofts$.pipe(map(res=>res.length));
-
+  appLength = 0;
   //从已下载应用中获取分类
   checkboxList$ = this.service.installedSofts$.pipe(
     first(),
     map(apps => {
+      this.appLength = apps.length;
       for(var key in CategoryType) {
         let categorys = apps.filter(item => item.software.info.category === CategoryType[key].toLowerCase())
         if(categorys.length>0) {

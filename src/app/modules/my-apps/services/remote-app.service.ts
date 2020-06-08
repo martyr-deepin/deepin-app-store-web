@@ -58,6 +58,6 @@ export interface RemoteApp {
   refund_reason: string;
   refund_status: string;
   unavailable: boolean;
-
+  app: Software;
   soft?: Software;
 }

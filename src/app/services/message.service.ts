@@ -1,10 +1,11 @@
-import { Injectable, NgZone } from '@angular/core';
-import { merge, Observable, empty } from 'rxjs';
-import { filter, map, switchMap, share, retry } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { filter, map, publishReplay } from 'rxjs/operators';
 
 import { environment } from 'environments/environment';
 import { AuthService } from './auth.service';
 import { ClientIdService } from './client-id.service';
+import { StoreService } from 'app/modules/client/services/store.service';
+import { refCountDelay } from 'rxjs-etc/operators';
 
 export enum MessageType {
   Ping = 'ping',
@@ -16,87 +17,45 @@ export enum MessageType {
   providedIn: 'root',
 })
 export class MessageService {
-  constructor(private zone: NgZone, private authService: AuthService, private clientID: ClientIdService) {
-    this.message.subscribe(msg => {
-      console.warn('[message] ', msg);
-    });
-  }
-  message = this.authService.info$.pipe(
-    switchMap(info => {
-      console.log('message', { info });
-      if (info) {
-        return merge(this.wsMessage().pipe(retry(3)));
+  constructor(
+    private authService: AuthService, 
+    private clientID: ClientIdService,
+    private storeService:StoreService) {
+    this.authService.info$.subscribe(
+      info => {
+        if(info) {
+          this.qwsMessage()
+        }
       }
-      return empty();
-    }),
-    share(),
-  );
+    )
+  }
+
+  message$ = this.storeService.onMessage().pipe(
+    map(msg => JSON.parse(msg) as Message),
+    publishReplay(1),
+    refCountDelay(1000),
+  )
+  
   private Authorization() {
     return 'Bearer ' + localStorage.getItem('token');
   }
-  private sseMessage() {
-    return new Observable<Message>(obs => {
-      try {
-        const url = new URL(`${environment.server}/api/user/message_stream`);
-        url.searchParams.set('id', this.clientID.clientID());
-        url.searchParams.set('Authorization', this.Authorization());
-        const es = new EventSource(url.toString());
-        es.addEventListener('error', err => {
-          obs.error(err);
-        });
-        es.addEventListener('message', e => {
-          const msg = JSON.parse(e.data) as Message;
-          if (msg.Type === MessageType.Ping) {
-            return;
-          }
+ 
+  private qwsMessage() {
+    const url = new URL(`ws://${new URL(environment.server).host}/api/user/message_stream`);
+    url.searchParams.set('id', this.clientID.clientID());
+    url.searchParams.set('Authorization', this.Authorization());
+    this.storeService.newWebSocket(url.toString())
+  }
 
-          this.zone.run(() => obs.next(msg));
-        });
-        return () => es.close();
-      } catch (err) {
-        obs.error(err);
-      }
-    });
-  }
-  private wsMessage() {
-    return new Observable<Message>(obs => {
-      try {
-        const url = new URL(`ws://${new URL(environment.server).host}/api/user/message_stream`);
-        url.searchParams.set('id', this.clientID.clientID());
-        url.searchParams.set('Authorization', this.Authorization());
-        let ws = new WebSocket(url.toString());
-        ws.addEventListener('open',()=>{
-          console.log("----=======-------websocket连接成功")
-        })
-        ws.addEventListener('error', err => {
-          console.error("websocket进入error",err)
-          obs.error(err);
-        });
-        ws.addEventListener('message', e => {
-          const msg = JSON.parse(e.data) as Message;
-          if (msg.Type === MessageType.Ping) {
-            return;
-          }
-          console.log(msg);
-          this.zone.run(() => obs.next(msg));
-        });
-        ws.addEventListener('close', () => {
-          obs.complete();
-        });
-        return () => ws.close();
-      } catch (err) {
-        console.log("websocket进入error产生异常")
-        obs.error(err);
-      }
-    });
-  }
-  onMessage<T>(type?: string) {
-    console.log(this.message, 'websocketS');
-    let msg$ = this.message;
-    if (type) {
+  onMessage<T>(type?:string) {
+    let msg$ = this.message$;
+    if(type) {
       msg$ = msg$.pipe(filter(msg => msg.Type === type));
     }
-    return msg$.pipe(map(msg => msg.Data as T));
+    return msg$.pipe(
+      map(msg => {
+      return msg.Data as T
+    }));
   }
 }
 interface Message {

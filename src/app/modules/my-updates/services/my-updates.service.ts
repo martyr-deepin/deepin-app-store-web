@@ -62,12 +62,6 @@ export class MyUpdatesService{
       recentlyApps = {}
     }
     software.updated_at = new Date().getTime()+"";
-    let old =  recentlyApps[software.id]
-    if(old){
-      if(software.package.size === 0) {
-        software.package.size = old.package.size;
-      }
-    }
     recentlyApps[software.id] = software
     this.setRecentlyApp(recentlyApps)
     //从可更新列表中移除

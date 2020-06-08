@@ -1,20 +1,19 @@
 :host {
-  max-height: 20rem;
+  max-height: 50%;
   min-width: 22rem;
-  max-width: 40rem;
-  display: block;
-  overflow: auto;
+  max-width: 40%;
+  display: none;
   border-radius: 0.31rem;
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-  position: fixed;
+  position: absolute;
+  padding: 1rem;
+  background: var(--main-bg-color);
 }
 
 pre {
   color: var(--font-color);
-  width: 100%;
   margin: 0;
-  box-sizing: border-box;
-  padding: 1rem;
-  background: var(--main-bg-color);
+  // box-sizing: border-box;
+  //background: var(--main-bg-color);
 }

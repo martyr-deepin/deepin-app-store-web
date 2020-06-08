@@ -4,12 +4,13 @@
       <div class="info_left">
         <img class="icon" dstoreCover="icon" [src]="app.info.icon" />
         <div class="info_content">
-          <div class="info_content_title">{{app.info.name}}
+          <div class="info_content_title">
+            <span dstoreTips class="info_content_title_context">{{app.info.name}}</span>
             <ng-container *ngIf="!app.skip">
               <img class="safe_icon" />
             </ng-container>
           </div>
-          <div class="info_content_subtitle">
+          <div dstoreTips class="info_content_subtitle">
             {{app.info.slogan}}
           </div>
           <div class="info_content_rate">
@@ -80,7 +81,7 @@
             {{ app.updated_at | date: 'yyyy-MM-dd HH:mm' }}
           </label>
         </td>
-        <td>
+        <td dstoreTips>
           <label class="info_item" i18n>Website:</label>
           <ng-container *ngIf="app.info.homePage; else $unknown">
             <label title="Open" i18n-title class="webSite" (click)="openURL(app.info.homePage)">
@@ -141,7 +142,7 @@
 
   <ng-template #$DropOff>
     <div class="dropOff">
-      <img class="tips_bg" src="/assets/icons/tips_bg.svg" />
+      <img class="tips_bg" />
       <span i18n>Sorry</span>
       <span i18n>It's in adjustment, you can return to</span>
       <a href="javascript:history.go(-1)" i18n>Previous</a>

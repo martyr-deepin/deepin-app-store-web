@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, Input,ElementRef, HostListener, OnDestroy } from '@angular/core';
 import PerfectScrollbar from 'perfect-scrollbar';
 
 @Component({
@@ -6,7 +6,7 @@ import PerfectScrollbar from 'perfect-scrollbar';
   templateUrl: './pre-detail.component.html',
   styleUrls: ['./pre-detail.component.scss']
 })
-export class PreDetailComponent implements OnInit {
+export class PreDetailComponent implements OnInit,OnDestroy {
 
   constructor(
     private el: ElementRef<HTMLDivElement>
@@ -14,14 +14,15 @@ export class PreDetailComponent implements OnInit {
 
   @Input() detail:string;
 
-  destruction:boolean = false;
-
   ngOnInit(): void {
     new PerfectScrollbar(this.el.nativeElement, {
-      suppressScrollY: false,
-      suppressScrollX: true,
-      wheelPropagation: false,
+      wheelPropagation: true
     });
+    //插入dom到body
+    document.getElementById("scrollbar").appendChild(this.el.nativeElement)
+  }
+  ngOnDestroy(): void {
+    document.getElementById("scrollbar").removeChild(this.el.nativeElement)
   }
 
   @HostListener('document:click', ['$event.target'])
@@ -33,12 +34,13 @@ export class PreDetailComponent implements OnInit {
   }
 
   close(){
-    this.destruction = false;
+    this.el.nativeElement.style.display = "none"
   }
 
   toggle(e:MouseEvent,right?:boolean,maxWidth?:number) {
     event.cancelBubble = true;
-    if(this.destruction) {
+    const display = this.el.nativeElement.style.display;
+    if(display === "block") {
       this.close()
     }else {
       this.show(e,right,maxWidth)
@@ -46,6 +48,7 @@ export class PreDetailComponent implements OnInit {
   }
 
   show(e:MouseEvent,right?:boolean,maxWidth?:number){
+    this.el.nativeElement.style.display = "block"
     if(e) {
       const pre = this.el.nativeElement
       let x = e.clientX;
@@ -55,14 +58,14 @@ export class PreDetailComponent implements OnInit {
       }
       //确定弹出的位置
       if(!right) {
-        x = x - pre.clientWidth + 20;
+        x = x - pre.clientWidth - 100;
       }else {
-        x = x - 20
+        x = x - 20 - 100
       }
       pre.style["left"] = x+"px"
       pre.style["top"] = y+"px"
     }
-    this.destruction = true;
+    
   }
 
 }

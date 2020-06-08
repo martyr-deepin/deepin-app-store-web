@@ -12,7 +12,6 @@ import { MenuService } from 'app/services/menu.service';
 import { SoftwareService, Software } from 'app/services/software.service';
 import { ClientService, RequestErrorType } from 'app/services/client.service';
 import { BuyService } from 'app/services/buy.service';
-import { MessageService } from 'app/services/message.service';
 
 @Component({
   selector: 'dstore-main',
@@ -28,8 +27,7 @@ export class MainComponent implements OnInit {
     private searchService: SearchService,
     private softwareService: SoftwareService,
     private clientService: ClientService,
-    private buyService: BuyService,
-    private messageService: MessageService,
+    private buyService: BuyService
   ) {}
 
   buyDialogShow$ = this.buyService.buyDialogShow$;
@@ -37,7 +35,6 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.clientService.store);
     this.switchTheme();
-    this.messageService.onMessage();
     if (!environment.native) {
       return;
     }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Channel } from '../utils/channel';
 import { Observable, from } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, shareReplay, share } from 'rxjs/operators';
 import * as _ from 'lodash';
 
 import { StoreJobInfo, StoreJobStatus } from '../models/store-job-info';
@@ -58,6 +58,14 @@ export class StoreService {
 
   getAllowShowPackageName(): Promise<boolean> {
     return Channel.exec('settings.allowShowPackageName');
+  }
+
+  onMessage(): Observable<string> {
+    return Channel.connect('websocket.onMsg')
+  }
+
+  newWebSocket(url:string) {
+    return Channel.exec("websocket.newWebSocket",url);
   }
 
   InstalledPackages() {

@@ -1,63 +1,80 @@
 :host {
-  >.ng-star-inserted {
-    margin: 2rem 2rem 0 2rem;
-  }
+  display: block;
+  margin: 2rem 2rem 0 2rem;
+}
+
+.text_overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .appInfo {
-  .info_left {
-    float: left;
-    .icon {
-      display: inline-block;
-      width: 6.15rem;
-      height: 6.15rem;
-    }
-    .info_content {
-      vertical-align: top;
-      margin-left: 0.4rem;
-      height: 6.15rem;
-      display: inline-block;
-      .info_content_title {
-        margin-top: 0.15rem;
-        height: 2.5rem;
-        line-height: 2.5rem;
-        font-size: 1.85rem;
-        font-weight: 400;
-        .safe_icon {
-          content: var(--safe-icon);
-          display: inline-block;
-          margin-left: 0.8rem;
-          position: relative;
-          top: 0.1rem;
-        }
-      }
-      .info_content_subtitle {
-        height: 1.7rem;
-        line-height: 1.8rem;
-        font-size: 0.92rem;
-        color: var(--font-color-gray);
-      }
-      .info_content_rate {
-        height: 1.5rem;
-        display: flex;
-        align-items: baseline;
-        font-size: 0.77rem;
-        line-height: 1.5rem;
-        .details {
-          margin-right: 1rem;
-        }
-        .score {
-          font-size: 1rem;
-          font-weight: 400;
-        }
-      }
-    }
-  }
-  .info_right {
-    float: right;
-    height: 6.15rem;
+  .base_info {
     display: flex;
-    align-items: center;
+    .info_left {
+      flex: 6;
+      width: 0;
+      white-space: nowrap;
+      display: flex;
+      .icon {
+        width: 6.15rem;
+        height: 6.15rem;
+      }
+      .info_content {
+        vertical-align: top;
+        margin-left: 0.4rem;
+        height: 6.15rem;
+        max-width: calc(100% - 9.55rem);
+        .info_content_title {
+          margin-top: 0.15rem;
+          height: 2.5rem;
+          line-height: 2.5rem;
+          font-size: 1.85rem;
+          font-weight: 400;
+          .info_content_title_context {
+            @extend .text_overflow;
+            max-width: 100%;
+            display: inline-block;
+          }
+          .safe_icon {
+            content: var(--safe-icon);
+            display: inline-block;
+            margin-left: 0.6rem;
+            position: relative;
+            bottom: 0.3rem;
+          }
+        }
+        .info_content_subtitle {
+          @extend .text_overflow;
+          height: 1.7rem;
+          line-height: 1.8rem;
+          font-size: 0.92rem;
+          color: var(--font-color-gray);
+        }
+        .info_content_rate {
+          height: 1.5rem;
+          display: flex;
+          align-items: baseline;
+          font-size: 0.77rem;
+          line-height: 1.5rem;
+          .details {
+            margin-right: 1rem;
+          }
+          .score {
+            font-size: 1rem;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+    .info_right {
+      float: right;
+      height: 6.15rem;
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
   }
   .both {
     clear: both;
@@ -83,9 +100,7 @@
     }
     td {
       padding-left: 1rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      @extend .text_overflow;
       label {
         display: inline-block;
         margin-right: 0.5rem;
@@ -101,9 +116,7 @@
         color: var(--nav-bg-color-active);
       }
       .description_content {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        @extend .text_overflow;
         .info_description_more {
           position: absolute;
           right: 1rem;
@@ -128,6 +141,9 @@ dstore-layer ::ng-deep {
   p {
     text-indent: 2rem;
     margin-bottom: 0;
+  }
+  .layer_content {
+    max-width: 65%;
   }
 }
 
@@ -175,6 +191,9 @@ dstore-layer ::ng-deep {
   }
   * {
     margin: 0.3rem 0;
+  }
+  .tips_bg {
+    content: var(--tips_bg)
   }
 }
 
