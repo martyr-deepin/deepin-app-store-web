@@ -1,5 +1,4 @@
-<?xml version="1.0" ?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+<?xml version="1.0" ?><xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file datatype="plaintext" original="ng2.template" source-language="en" target-language="uk">
     <body>
       <trans-unit datatype="html" id="07db550ae114d9faad3a0cbb68bcc16ab6cd31fc">
@@ -63,7 +62,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="04b741bf33a6b8359849d6085278e54b35acd0b9">
@@ -167,7 +166,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="dee8c41edf822a0124c80cc1e44643f947b3bc5c">
@@ -195,11 +194,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">80</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">83</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="1befce3c6f0c468b06ae5199116e5b096a35a3ef">
@@ -223,23 +222,19 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
-          <context context-type="linenumber">68</context>
+          <context context-type="linenumber">62</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">65</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">65</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
-          <context context-type="linenumber">61</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
-          <context context-type="linenumber">62</context>
+          <context context-type="linenumber">68</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="15c02cb6b6c3be53477e502d3e1ee26955b23af0">
@@ -351,7 +346,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/screen-box.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">25</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/edit/edit.component.html</context>
@@ -911,7 +906,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="e33d805f0c1ce97c92b68fc882084fef23cca646">
@@ -939,11 +934,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
-          <context context-type="linenumber">53</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
-          <context context-type="linenumber">62</context>
+          <context context-type="linenumber">73</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="ac0f81713a84217c9bd1d9bb460245d8190b073f">
@@ -955,11 +946,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">103</context>
+          <context context-type="linenumber">108</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">16</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/recently-item/recently-item.component.html</context>
@@ -979,15 +970,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">143</context>
+          <context context-type="linenumber">146</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">151</context>
+          <context context-type="linenumber">154</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">157</context>
+          <context context-type="linenumber">160</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="2f5c0cf0b18104b3e46f65bbe5d9db6663a1e8e8">
@@ -1243,7 +1234,7 @@
         <target><x equiv-text="{{ downloads }}" id="INTERPOLATION"/> завантаження</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="2424f9fcf779e49e1ccd1095b2d7daa8d66d395b">
@@ -1251,7 +1242,7 @@
         <target><x equiv-text="{{ score_count }}" id="INTERPOLATION"/> оцінки</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="c85caed94bd76ad556d77bff7a566bec46fa1489">
@@ -1259,19 +1250,19 @@
         <target>Правила відшкодування</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="7e86eb903f967e7286071dfa2db633c1166adbd7">
+      <trans-unit datatype="html" id="e377a16669a400b27815a87473cf2a42149e4039">
         <source>1. Users can request a refund within two hours after payment.
-2. The first three refund requests are processed automatically, and the refunds are returned to the original account in real time.
+2. Your first three refund requests are processed automatically, and the refunds are returned to the original account in real time.
 3. The fourth and later refund requests must be reviewed manually (2-3 working days). Your refund will be issued if approved, and you will receive an explanation if rejected.</source>
         <target>1. Користувачі можуть надіслати запит щодо скасування покупки протягом двох годин з моменту сплати.
 2. Перші три запити щодо скасування покупок буде оброблено автоматично. Відшкодовані кошти буде повернуто на початковий рахунок у режимі реального часу.
 3. Четвертий та подальші запити щодо скасування покупок буде оброблено вручну (протягом 2-3 робочих днів). Якщо скасування покупки буде підтверджено, вам буде відшкодовано кошти. Якщо покупку не буде скасовано, ви отримаєте пояснення причин відмови.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="0cc1dec590ecd74bef71a865fb364779bc42a749">
@@ -1279,7 +1270,7 @@
         <target>Категорія</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="ca17606ffe979fb5b411861280c33d2ad3e7a216">
@@ -1287,7 +1278,7 @@
         <target>Версія</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">54</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
@@ -1315,7 +1306,7 @@
         <target>Журнал змін</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="04380b03179685f28fc991c2ae855696d7f6ca44">
@@ -1323,7 +1314,7 @@
         <target>Розмір</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">64</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="e8c021c9d36ccd882cb337c19cbca3067c249d41">
@@ -1331,11 +1322,11 @@
         <target>Отримано</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">62</context>
+          <context context-type="linenumber">67</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">71</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
@@ -1344,10 +1335,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
           <context context-type="linenumber">71</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
-          <context context-type="linenumber">7</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/progress/progress.component.html</context>
@@ -1363,11 +1350,7 @@
         <target>Обчислення</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">65</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="c865350c1e557f8c00140a145e33f39ff822cdc0">
@@ -1375,7 +1358,7 @@
         <target>Дата оновлення:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">74</context>
+          <context context-type="linenumber">79</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/recently-item/recently-item.component.html</context>
@@ -1387,7 +1370,7 @@
         <target>Вебсайт</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="fcd2b61b74ed190b5176b5c45599627fa3addfd6">
@@ -1395,7 +1378,7 @@
         <target>Розробник:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">88</context>
+          <context context-type="linenumber">93</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="4a22c6843133f0b0d7dc0d28f864f2f90c1de7ad">
@@ -1403,7 +1386,7 @@
         <target>Опис</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="e5d8bb389c702588877f039d72178f219453a72d">
@@ -1411,7 +1394,7 @@
         <target>Невідомо</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">109</context>
+          <context context-type="linenumber">114</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="eec715de352a6b114713b30b640d319fa78207a0">
@@ -1419,7 +1402,7 @@
         <target>Опис</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="c0331aa0a5a4589294b7826d8613515c597812a8">
@@ -1427,7 +1410,7 @@
         <target>Підтримка CDN, UPYUN</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">128</context>
+          <context context-type="linenumber">133</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="0166106da9d18911cf205d22548b9f4d21008f3f">
@@ -1435,7 +1418,7 @@
         <target>Виконується коригування, ви можете повернутися до</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">142</context>
+          <context context-type="linenumber">147</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="680d5c75b7fd8d37961083608b9fcdc4167b4c43">
@@ -1443,7 +1426,7 @@
         <target>Назад</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">143</context>
+          <context context-type="linenumber">148</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="6dd070f6eb99a4e300bce2af82d76f3d01c61edd">
@@ -1451,7 +1434,7 @@
         <target>Не вдалося зв'язатися. Будь ласка, перевірте працездатність мережі і оновіть сторінку</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">150</context>
+          <context context-type="linenumber">155</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="2631d08f671cb06e269dfe7ce2268ab52ef73375">
@@ -1459,7 +1442,7 @@
         <target>Щось пішло не так.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">155</context>
+          <context context-type="linenumber">160</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="fbc4fa343f8695b5ef5fb4e3da3a9b6f0b4eddd8">
@@ -1647,7 +1630,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
-          <context context-type="linenumber">67</context>
+          <context context-type="linenumber">75</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="fa7441de0e4fda8e4c4d6937e5c093aa656abf48">
@@ -1736,7 +1719,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="39fbd7900978de3e8fe21ee784f76368b0ede5e4">
         <source>Pause All</source>
-        <target>Pause All</target>
+        <target>Призупинити усі</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">17</context>
@@ -1744,7 +1727,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="62921597cdaf2661aee0ddaea6e9943e4c2cbf87">
         <source>Resume All</source>
-        <target>Resume All</target>
+        <target>Поновити усі</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">20</context>
@@ -1799,7 +1782,7 @@
         <target>Немає журналу змін</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">23</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/recently-item/recently-item.component.html</context>
@@ -1811,7 +1794,7 @@
         <target>Ігнорувати цю версію</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="29583c85e33322e5d03ea2d30ae75b793debe0f2">
@@ -1819,7 +1802,7 @@
         <target>Ігнорувати усі оновлення</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="7fdc8522031bbeba05f9d0a020e0b18002243f03">
@@ -1827,7 +1810,7 @@
         <target>Поточна:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
-          <context context-type="linenumber">57</context>
+          <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="15d409daa04c55a3d40410bab3b0c7b730db375c">
@@ -1835,7 +1818,7 @@
         <target>Доступна:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
-          <context context-type="linenumber">61</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="82bb671bd60c07a8cf7fd67524eade9cee63ff5b">
@@ -1935,7 +1918,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/screen-box.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">28</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/edit/edit.component.html</context>
@@ -1958,24 +1941,28 @@
           <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="d80a31b2d80af8803b4b1e7143cd3e91b7cc92d2">
-        <source>Refund</source>
-        <target>Скасувати покупку</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
-          <context context-type="linenumber">34</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
-          <context context-type="linenumber">44</context>
-        </context-group>
-      </trans-unit>
       <trans-unit datatype="html" id="38668245768f805d5b377b1d88efe49712c08ed5">
         <source>Refunding</source>
         <target>Відшкодування</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="d80a31b2d80af8803b4b1e7143cd3e91b7cc92d2">
+        <source>Refund</source>
+        <target>Скасувати покупку</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
+          <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="b3ee252823339c59dc8c83a52540c8699368a067">
@@ -1983,11 +1970,15 @@
         <target>Двогодинний період скасування минув</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">50</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="6d48642a9e3605994dfff2cd1e326c9ec18b4749">
@@ -1995,7 +1986,7 @@
         <target>Немає доступу до програми. Будь ласка, повторіть спробу або залиште відгук</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
-          <context context-type="linenumber">81</context>
+          <context context-type="linenumber">89</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="0b2e98d9b35d8849ed9a5a6532bbcaeac2d95d1f">
@@ -2080,10 +2071,14 @@
       </trans-unit>
       <trans-unit datatype="html" id="c2b90311c81e08c31a2d90a88afeeb109460cc4e">
         <source>Your refund request is approved. The refunds will be returned to the original account in 1-2 working days, please wait patiently.</source>
-        <target>Your refund request is approved. The refunds will be returned to the original account in 1-2 working days, please wait patiently.</target>
+        <target>Ваш запит щодо відшкодування схвалено. Кошти буде повернуто на ваш рахунок протягом 1-2 робочих днів. Будь ласка, зачекайте.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
-          <context context-type="linenumber">74</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
+          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="73edc6fed01d739dd25bc6c81d9f81c28d958a77">
@@ -2091,7 +2086,11 @@
         <target>Ми розглянемо ваш запит протягом 2-3 робочих днів.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="aaff35cada193aa9c1ec8630b3e6e4eb32778c9d">
@@ -2099,7 +2098,26 @@
         <target>Будь ласка, зачекайте. Щойно запит буде схвалено, ви отримуєте відшкодовані кошти на ваш початкових рахунок.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="2c5fbc739107fbac37b97ce9b3441cc515be86a9">
+        <source>Your order is in exception status, please deal with it first and then request a refund.</source>
+        <target>Ваше замовлення перебуває у стані виключення. Будь ласка, розберіться спершу з цим, а потім надсилайте запит щодо відшкодування.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="a6f87856a82187df418e6fcbef708d00f59358e1">
+        <source>Your refund request is being processed, please wait patiently.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
+          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="a6d22b1c074d9fcae92f1f41cd8522f2acb2d740">
@@ -2166,6 +2184,14 @@
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
+      <trans-unit datatype="html" id="aedb2dfda6730c518172efb4d7f1ed8c3062fc29">
+        <source>All apps</source>
+        <target>Усі програми</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/screen-box.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
       <trans-unit datatype="html" id="7e892ba15f2c6c17e83510e273b3e10fc32ea016">
         <source>Search</source>
         <target>Пошук</target>
@@ -2174,20 +2200,12 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="aedb2dfda6730c518172efb4d7f1ed8c3062fc29">
-        <source>All apps</source>
-        <target>Усі програми</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/components/checkbox-group/checkbox-group.component.html</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-      </trans-unit>
       <trans-unit datatype="html" id="4e2f29ed065f9ad6f46098da0ab7d0d130aacb3b">
         <source>Low-rating apps</source>
         <target>Програми із низькою оцінкою</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/components/checkbox-group/checkbox-group.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="69fd53a5021a2dd01e5d53dee676064d38813686">
@@ -2195,7 +2213,7 @@
         <target>Безкоштовніі програми</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/components/checkbox-group/checkbox-group.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="d440f5873112ab3029847ba6e34966b75b264228">
@@ -2203,7 +2221,7 @@
         <target>Платні програми</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/components/checkbox-group/checkbox-group.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="2415e1d10667078d7c7a52970880f2930717febe">
