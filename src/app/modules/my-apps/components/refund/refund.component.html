@@ -81,7 +81,7 @@
                 <ng-container i18n>Your order is in exception status, please deal with it first and then request a refund.</ng-container>
               </div>
               <div *ngSwitchCase="RefundCode.Reviewing">
-                <ng-container i18n>your order is under refund review, no need to apply again,please wait..</ng-container>
+                <ng-container i18n>Your refund request is being processed, please wait patiently.</ng-container>
               </div>
               <div *ngSwitchDefault>
                 <span style="color:red">Error code: {{refund_code.code}}</span>

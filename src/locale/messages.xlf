@@ -1909,8 +1909,8 @@
           <context context-type="linenumber">81</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5e0e3ca8ea36defd4a14d405141c9b43ddf00934" datatype="html">
-        <source>your order is under refund review, no need to apply again,please wait..</source>
+      <trans-unit id="a6f87856a82187df418e6fcbef708d00f59358e1" datatype="html">
+        <source>Your refund request is being processed, please wait patiently.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">84</context>
