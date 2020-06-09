@@ -15,6 +15,8 @@ export class ScrollbarComponent implements OnInit, OnDestroy {
   savePosition: boolean;
   @Input()
   full = false;
+  @Input()
+  both = false;
   position = new Map<number, [number, number]>();
   restored: Subscription;
   resize$: Observable<void>;
@@ -29,11 +31,18 @@ export class ScrollbarComponent implements OnInit, OnDestroy {
     return this.scrollbarEl.nativeElement;
   }
   ngOnInit() {
-    const scrollbar = new PerfectScrollbar(this.el, {
-      suppressScrollY: false,
-      suppressScrollX: true,
-      wheelPropagation: false,
-    });
+    let scrollbar;
+    if(this.both) {
+      scrollbar = new PerfectScrollbar(this.el, {
+        wheelPropagation: true
+      });
+    }else {
+      scrollbar = new PerfectScrollbar(this.el, {
+        suppressScrollY: false,
+        suppressScrollX: true,
+        wheelPropagation: false,
+      });
+    }
     this.resize$ = fromEvent(window, 'resize').pipe(
       map(() => {
         scrollbar.update();

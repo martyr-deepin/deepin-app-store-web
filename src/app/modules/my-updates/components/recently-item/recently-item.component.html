@@ -1,6 +1,6 @@
 <img class="icon" dstoreCover="icon" [routerLink]="['/app', software.id]" [src]="software.info.icon" />
 <div class="title">
-  <div class="name">{{ software.info.name?software.info.name: software.package.appName }}</div>
+  <div dstoreTips class="name">{{ software.info.name?software.info.name: software.package.appName }}</div>
   <div class="size">{{ software.package.size | sizeHuman }}</div>
 </div>
 <div class="log">
@@ -12,12 +12,9 @@
     </ng-container>
   </div>
   <ng-container *ngIf="judgeOverflow$ | async">
-    <span (click)="preDetail.toggle($event)" class="log_btn">
+    <span (click)="$layer.show()" class="log_btn">
       <ng-container i18n>More</ng-container> 〉
     </span>
-    <dstore-pre-detail #preDetail>
-      {{software.info.changelog}}
-    </dstore-pre-detail>
   </ng-container>
   <ng-template #message>
     <div class="log_context" i18n>No changelogs</div>
@@ -35,3 +32,11 @@
     <span>{{software.updated_at | date:'yyyy-MM-dd' }}</span>
   </div>
 </div>
+
+<dstore-layer [main]="true" [both]="true" #$layer>
+  <ng-container class="layer_scroll_content">
+    <pre>
+      {{software.info.changelog}}
+    </pre>
+  </ng-container>
+</dstore-layer>

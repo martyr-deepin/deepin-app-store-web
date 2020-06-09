@@ -84,7 +84,7 @@
                     <span>{{ installed.package.size | sizeHuman }}</span>
                   </div>
                   <div class="version">
-                    <span>{{ installed.package.localVersion }}</span>
+                    <span dstoreTips>{{ installed.package.localVersion }}</span>
                   </div>
                   <div class="time">
                     <span>{{ installed.package.installedTime * 1000 | date: 'yyyy-MM-dd' }}</span>

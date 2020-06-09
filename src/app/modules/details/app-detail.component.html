@@ -54,11 +54,16 @@
           <label class="info_item" i18n>Version:</label>
           <ng-container *ngIf="controlRef.package$ | async as package">
             <label>{{ package.remoteVersion || package.localVersion }}</label>
-            <label *ngIf="app.info.changelog" (click)="preDetail.toggle($event)" class="log_btn" i18n>Changelog</label>
+            <label *ngIf="app.info.changelog" (click)="$loglayer.show()" class="log_btn" i18n>Changelog</label>
           </ng-container>
-          <dstore-pre-detail #preDetail>
-            {{app.info.changelog}}
-          </dstore-pre-detail>
+          <!-- 查看更新日志的弹窗 -->
+          <dstore-layer [main]="true" [both]="true" #$loglayer>
+            <ng-container class="layer_scroll_content">
+              <pre>
+                {{app.info.changelog}}
+              </pre>
+            </ng-container>
+          </dstore-layer>
         </td>
         <td>
           <label class="info_item" i18n>Size:</label>
@@ -121,6 +126,7 @@
       <p>{{app.info.description}}</p>
     </ng-container>
   </dstore-layer>
+
   <app-screenshot [screenshotList]="app.info.screenshot"></app-screenshot>
 
   <ng-container *ngIf="supportSignIn && controlRef.package$ | async as package">

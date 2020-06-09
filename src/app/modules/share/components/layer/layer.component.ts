@@ -15,6 +15,12 @@ export class LayerComponent {
 
   @Input()
   height:number = null;//是否固定高度，滚动内容必须指定高度
+
+  @Input()
+  both=false;
+
+  @Input()
+  main=false;
   
   destruction:boolean = false;
   visible:boolean = false;

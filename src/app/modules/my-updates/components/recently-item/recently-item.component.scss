@@ -23,13 +23,16 @@
 .div_style {
   flex: 1;
   align-items: center;
-  display: flex;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .title {
   flex: 1;
   display: flex;
   flex-flow: column;
+  width: 0;
   >div {
     @extend .div_style;
   }
@@ -44,6 +47,7 @@
   word-break: break-all;
   white-space: pre-wrap;
   position: relative;
+  width: 0;
   //line-height: 3.2rem;
   .log_content {
     max-height: 100%;
@@ -60,6 +64,7 @@
   .log_btn {
     color: var(--primary-color);
     position: absolute;
+    background-color: var(--main-bg-color);
     right: 0;
     font-size: 0.8rem;
     font-weight: 600;
@@ -73,8 +78,10 @@
   display: flex;
   flex-flow: column;
   align-items: center;
+  width: 0;
   >div {
     @extend .div_style;
+    line-height: 3rem;
   }
 }
 
@@ -83,6 +90,7 @@
   display: flex;
   align-items: center;
   justify-items: center;
+  width: 0;
   >div {
     text-align: right;
     width: 100%;
