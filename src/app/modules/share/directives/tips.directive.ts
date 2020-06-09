@@ -4,7 +4,7 @@ import { Directive, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 @Directive({
   selector: '[dstoreTips]',
 })
-export class TipsDirective implements AfterViewInit, OnDestroy {
+export class TipsDirective implements AfterViewInit {
 
   constructor(private elRef: ElementRef<HTMLElement>) {}
 
@@ -18,35 +18,45 @@ export class TipsDirective implements AfterViewInit, OnDestroy {
     this.maxWidth = dom.offsetWidth;
     //判断文字是否溢出
     if(dom.scrollWidth>dom.clientWidth) {
-      //获取需要显示的信息
       const text = dom.innerText;
-      this.fontWidth = this.getTextWidth(text,document.body.style.fontSize);
-      //生成tip弹框组件
-      this.div = document.createElement("div")
-      this.div.classList.add("dstore_directive_tips");
-      this.div.innerText = text;
-      this.div.style.display = 'none'
-      this.div.style.position = "absolute"
-      this.div.style.maxWidth = this.maxWidth+"px";
-      //添加hover事件
-      dom.addEventListener("mouseenter",() => {
-        this.div.style.left = this.getElementLeft(dom)+"px";
-        this.div.style.top = this.getElementTop(dom)+"px";
-        this.div.style.display = "block"
-      })
-      dom.addEventListener("mouseleave",() => {
-        this.div.style.display = "none"
-      })
-      //插入body
-      document.body.appendChild(this.div)
+      dom.setAttribute("title",text)
     }
   }
 
-  ngOnDestroy() {
-    if(this.div) {
-    document.body.removeChild(this.div)
-    }
-  }
+  // ngAfterViewInit(): void {
+  //   let dom = this.elRef.nativeElement;
+  //   this.maxWidth = dom.offsetWidth;
+  //   //判断文字是否溢出
+  //   if(dom.scrollWidth>dom.clientWidth) {
+  //     //获取需要显示的信息
+  //     const text = dom.innerText;
+  //     this.fontWidth = this.getTextWidth(text,document.body.style.fontSize);
+  //     //生成tip弹框组件
+  //     this.div = document.createElement("div")
+  //     this.div.classList.add("dstore_directive_tips");
+  //     this.div.innerText = text;
+  //     this.div.style.display = 'none'
+  //     this.div.style.position = "absolute"
+  //     this.div.style.maxWidth = this.maxWidth+"px";
+  //     //添加hover事件
+  //     dom.addEventListener("mouseenter",() => {
+  //       this.div.style.left = this.getElementLeft(dom)+"px";
+  //       this.div.style.top = this.getElementTop(dom)+"px";
+  //       this.div.style.display = "block"
+  //     })
+  //     dom.addEventListener("mouseleave",() => {
+  //       this.div.style.display = "none"
+  //     })
+  //     //插入body
+  //     document.body.appendChild(this.div)
+  //   }
+  // }
+
+  // ngOnDestroy() {
+  //   if(this.div) {
+  //   document.body.removeChild(this.div)
+  //   }
+  // }
 
   getElementLeft(element:HTMLElement){
     var actualLeft = element.offsetLeft;

@@ -35,7 +35,7 @@
             <dstore-progress-button [job]="job.job" [type]="job.type" [status]="job.status" [progress]="job.progress" [disabled]="!job.cancelable || job.status === StoreJobStatus.failed"></dstore-progress-button>
           </ng-container>
           <div *ngIf="!app.free" class="refund">
-            <div title="1. Users can request a refund within two hours after payment.&#10;2. The first three refund requests are processed automatically, and the refunds are returned to the original account in real time.&#10;3. The fourth and later refund requests must be reviewed manually (2-3 working days). Your refund will be issued if approved, and you will receive an explanation if rejected."
+            <div title="1. Users can request a refund within two hours after payment.&#10;2. Your first three refund requests are processed automatically, and the refunds are returned to the original account in real time.&#10;3. The fourth and later refund requests must be reviewed manually (2-3 working days). Your refund will be issued if approved, and you will receive an explanation if rejected."
               i18n-title>
               <i>i</i><span i18n>Refund Policy</span>
             </div>

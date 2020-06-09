@@ -42,15 +42,17 @@ export enum RefundStatus {
 
 export enum RefundCode {
   Success = 0,
-  Review = 1,
-  DataError = 2,
-  SysError = 3,
-  OrderDefind = 4,
-  OrderNotPay = 5,
-  TimeOut = 6,
-  NoPower = 7,
-  Successful = 8,
-  Refunding = 9,
-  Reviewing = 10,
-  fail = 11
+  Review,
+  DataError,
+  SysError,
+  OrderDefind,
+  OrderNotPay,
+  TimeOut,
+  NoPower,
+  Successful,
+  Refunding,
+  Reviewing,
+  orderCreated,
+  fail,
+  error
 }

@@ -35,7 +35,17 @@
             <span i18n>Submission successful</span>
           </div>
           <div class="s_content">
-            <ng-container [ngTemplateOutlet]="TipContent0"></ng-container>
+            <ng-container [ngSwitch]="refund_code.code">
+              <ng-container *ngSwitchCase="RefundCode.Success">
+                <span i18n>Your refund request is approved. The refunds will be returned to the original account in 1-2 working days, please wait patiently.</span>
+              </ng-container>
+              <ng-container *ngSwitchCase="RefundCode.Review">
+                <span>
+                  <ng-container i18n>Your request is under review, which takes 2-3 working days.</ng-container>
+                  <ng-container i18n> Please wait patiently. Once approved, the refunds will be returned to the original account.</ng-container>
+                </span>
+              </ng-container>
+            </ng-container>
           </div>
         </ng-container>
         <ng-container *ngSwitchCase="RefundCode.Review">
@@ -44,16 +54,17 @@
             <span i18n>Submission successful</span>
           </div>
           <div class="s_content">
-            <ng-container [ngTemplateOutlet]="TipContent1"></ng-container>
-          </div>
-        </ng-container>
-        <ng-container *ngSwitchCase="RefundCode.TimeOut">
-          <div class="s_title">
-            <i class="failed"></i>
-            <span i18n>Submission failed</span>
-          </div>
-          <div class="s_content">
-            <ng-container i18n>Two-hour refund period has expired</ng-container>
+            <ng-container [ngSwitch]="refund_code.code">
+              <ng-container *ngSwitchCase="RefundCode.Success">
+                <span i18n>Your refund request is approved. The refunds will be returned to the original account in 1-2 working days, please wait patiently.</span>
+              </ng-container>
+              <ng-container *ngSwitchCase="RefundCode.Review">
+                <span>
+                  <ng-container i18n>Your request is under review, which takes 2-3 working days.</ng-container>
+                  <ng-container i18n> Please wait patiently. Once approved, the refunds will be returned to the original account.</ng-container>
+                </span>
+              </ng-container>
+            </ng-container>
           </div>
         </ng-container>
         <ng-container *ngSwitchDefault>
@@ -62,23 +73,23 @@
             <span i18n>Submission failed</span>
           </div>
           <div class="s_content">
-            <span style="color:red" >Error code: {{refund_code.code}}</span>
+            <ng-container [ngSwitch]="refund_code.code">
+              <div *ngSwitchCase="RefundCode.TimeOut">
+                <ng-container i18n>Two-hour refund period has expired</ng-container>
+              </div>
+              <div *ngSwitchCase="RefundCode.error">
+                <ng-container i18n>Your order is in exception status, please deal with it first and then request a refund.</ng-container>
+              </div>
+              <div *ngSwitchCase="RefundCode.Reviewing">
+                <ng-container i18n>your order is under refund review, no need to apply again,please wait..</ng-container>
+              </div>
+              <div *ngSwitchDefault>
+                <span style="color:red">Error code: {{refund_code.code}}</span>
+              </div>
+            </ng-container>
           </div>
         </ng-container>
       </ng-container>
     </div>
   </ng-container>
 </dialog>
-<ng-template #TipContent0>
-  <span>
-    <ng-container i18n>Your refund request is approved. The refunds will be returned to the original account in 1-2 working days, please wait patiently.</ng-container>
-  </span>
-</ng-template>
-
-<ng-template #TipContent1>
-  <span>
-    <ng-container i18n>Your request is under review, which takes 2-3 working days.</ng-container>
-    <ng-container i18n> Please wait patiently. Once approved, the refunds will be returned to the original account.</
-        ng-container>
-  </span>
-</ng-template>
