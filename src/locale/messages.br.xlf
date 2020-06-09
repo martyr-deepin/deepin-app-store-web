@@ -1,4 +1,5 @@
-<?xml version="1.0" ?><xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+<?xml version="1.0" ?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file datatype="plaintext" original="ng2.template" source-language="en" target-language="br">
     <body>
       <trans-unit datatype="html" id="07db550ae114d9faad3a0cbb68bcc16ab6cd31fc">
@@ -755,7 +756,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6f5f4f9eeeacbc4b5aaf55a9a307c0cbcfa6f1f8">
         <source>Input No if no license is required</source>
-        <target>Lakait &quot;Ket&quot; ma neket rekis al lisañs.</target>
+        <target>Lakait "Ket" ma neket rekis al lisañs.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/recommend/recommend.component.html</context>
           <context context-type="linenumber">62</context>
@@ -1257,6 +1258,9 @@
         <source>1. Users can request a refund within two hours after payment.
 2. Your first three refund requests are processed automatically, and the refunds are returned to the original account in real time.
 3. The fourth and later refund requests must be reviewed manually (2-3 working days). Your refund will be issued if approved, and you will receive an explanation if rejected.</source>
+        <target>1. Users can request a refund within two hours after payment.
+2. Your first three refund requests are processed automatically, and the refunds are returned to the original account in real time.
+3. The fourth and later refund requests must be reviewed manually (2-3 working days). Your refund will be issued if approved, and you will receive an explanation if rejected.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">38</context>
@@ -1716,6 +1720,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="39fbd7900978de3e8fe21ee784f76368b0ede5e4">
         <source>Pause All</source>
+        <target>Pause All</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">17</context>
@@ -1723,6 +1728,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="62921597cdaf2661aee0ddaea6e9943e4c2cbf87">
         <source>Resume All</source>
+        <target>Resume All</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">20</context>
@@ -2066,6 +2072,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c2b90311c81e08c31a2d90a88afeeb109460cc4e">
         <source>Your refund request is approved. The refunds will be returned to the original account in 1-2 working days, please wait patiently.</source>
+        <target>Your refund request is approved. The refunds will be returned to the original account in 1-2 working days, please wait patiently.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">40</context>
@@ -2101,6 +2108,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="2c5fbc739107fbac37b97ce9b3441cc515be86a9">
         <source>Your order is in exception status, please deal with it first and then request a refund.</source>
+        <target>Your order is in exception status, please deal with it first and then request a refund.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">81</context>
@@ -2108,6 +2116,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a6f87856a82187df418e6fcbef708d00f59358e1">
         <source>Your refund request is being processed, please wait patiently.</source>
+        <target>Your refund request is being processed, please wait patiently.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">84</context>

@@ -1,4 +1,5 @@
-<?xml version="1.0" ?><xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+<?xml version="1.0" ?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file datatype="plaintext" original="ng2.template" source-language="en" target-language="it">
     <body>
       <trans-unit datatype="html" id="07db550ae114d9faad3a0cbb68bcc16ab6cd31fc">
@@ -2115,6 +2116,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a6f87856a82187df418e6fcbef708d00f59358e1">
         <source>Your refund request is being processed, please wait patiently.</source>
+        <target>Your refund request is being processed, please wait patiently.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">84</context>
