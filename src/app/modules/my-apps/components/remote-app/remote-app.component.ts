@@ -77,7 +77,7 @@ export class RemoteAppComponent implements OnInit {
   }
   freeChange(free: boolean) {
     this.free = free;
-    this.router.navigate([], { queryParams: { page: 0, free: this.free } });
+    this.router.navigate([], { queryParams: { page: 0, free: this.free, num: Math.random() } });
   }
 
   refundeds:number[]=[];
