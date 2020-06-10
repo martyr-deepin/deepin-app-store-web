@@ -4,7 +4,7 @@
   <ng-container *ngFor="let assemble of this.assembles; index as index">
     <section class='assemble'>
       <header class="category cursor" [routerLink]="'/list/category/' + assemble.category">
-        {{ assemble.category | categoryText | async }}
+        <m-category-name [category]="assemble.category"></m-category-name>
       </header>
       <main>
         <ng-container *ngFor="let soft of softs.get(assemble.category) | async; first as first;index as itemIndex">

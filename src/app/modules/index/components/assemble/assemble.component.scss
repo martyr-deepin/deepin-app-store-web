@@ -65,11 +65,9 @@
       .slogan {
         color: gray;
         min-height: 2rem;
-        word-break: break-all;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
+        white-space: nowrap;
         overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }

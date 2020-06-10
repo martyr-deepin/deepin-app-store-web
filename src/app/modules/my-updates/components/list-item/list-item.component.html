@@ -1,6 +1,8 @@
 <img class="icon" dstoreCover="icon" [routerLink]="['/app', software.id]" [src]="software.info.icon" />
 <div class="title">
-  <div class="name">{{ software.info.name?software.info.name: software.package.appName }}</div>
+  <div class="name" [title]="software.info.name || software.package.appName">
+    <p>{{ software.info.name?software.info.name: software.package.appName }}</p> 
+  </div>
   <div class="size">{{software.package.size | sizeHuman}}</div>
 </div>
 <div class="log">

@@ -28,6 +28,7 @@
 
 .title {
   flex: 3;
+  min-width: 0;
   display: flex;
   flex-flow: column;
   >div {
@@ -36,6 +37,11 @@
   .name {
     color: var(--font-color);
     font-size: 0.92rem;
+    >p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 }
 
@@ -60,7 +66,7 @@
   .log_btn {
     color: var(--primary-color);
     position: absolute;
-    right: 0;
+    right: -30px;
     font-size: 0.8rem;
     font-weight: 600;
     top: 2.8rem;

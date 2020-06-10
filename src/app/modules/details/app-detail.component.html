@@ -132,7 +132,7 @@
   <ng-container *ngIf="supportSignIn && controlRef.package$ | async as package">
     <app-donate [appName]="app.name"></app-donate>
   </ng-container>
-  <ng-container *ngIf="sysAuthStatus$ | async ">
+  <ng-container>
     <dstore-app-comment #$commentRef [appID]="app.id" [appVersion]="app.package.remoteVersion"></dstore-app-comment>
 
     <div class="ad" *ngIf="adVisible$ | async">
