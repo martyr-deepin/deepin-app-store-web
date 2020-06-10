@@ -133,17 +133,17 @@
 }
 
 dstore-layer ::ng-deep {
-  h1 {
-    text-align: center;
-    margin-top: 0;
-    font-weight: 400;
-  }
-  p {
-    text-indent: 2rem;
-    margin-bottom: 0;
-  }
-  .layer_content {
-    max-width: 65%;
+  section {
+    flex-flow: column;
+    h1 {
+      text-align: center;
+      margin-top: 0;
+      font-weight: 400;
+    }
+    p {
+      text-indent: 2rem;
+      margin-bottom: 0;
+    }
   }
 }
 

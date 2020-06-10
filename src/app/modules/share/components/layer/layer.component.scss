@@ -14,13 +14,14 @@
 
 .layer_content {
   max-width: 60%;
+  max-height: 80%;
   transition: all 0.3s;
   margin-top: -5rem;
+  display: flex;
   opacity: 0;
   box-shadow: 0rem 0.15rem 1.54rem 0rem var(--main-item-bg-color-hover);
   border-radius: 1.23rem;
   background-color: var(--main-bg-color);
-  display: flex;
   flex-flow: column;
   header {
     height: 3rem;
@@ -47,6 +48,10 @@
     flex: 1;
     padding: 0 1rem;
     word-break: break-all;
+    display: flex;
+    dstore-scrollbar {
+      height: auto;
+    }
   }
   footer {
     height: 3.77rem;

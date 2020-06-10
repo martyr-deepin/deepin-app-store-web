@@ -28,8 +28,9 @@ export class SoftwareService {
   ) {
     // Uninstall software after refund
     this.messageService.onMessage<{ app_id: number }>(MessageType.Refund).subscribe(async (msg) => {
-      const softs = await this.list({}, { id: [msg.app_id] });
+      let softs = await this.list({}, { id: [msg.app_id] });
       if (softs) {
+        softs = softs.filter(soft=>soft.package?.localVersion)
         this.remove(...softs);
       }
     });

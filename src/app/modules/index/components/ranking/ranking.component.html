@@ -1,17 +1,16 @@
 <index-title [titles]="section.name" [more]=" '/list/ranking/ranking'">
 </index-title>
 <div class="list">
-  <section class="cursor" *ngFor="let soft of softs$ | async; index as index" [class.hover]="controlRef.show"
-    [routerLink]="['app', soft.id]">
+  <section class="cursor" *ngFor="let soft of softs$ | async; index as index" [class.hover]="controlRef.show" [routerLink]="['app', soft.id]">
     <header>
       <img class="icon" dstoreCover="icon" [src]="soft.info.icon" dstoreCover="icon" />
     </header>
     <main>
       <span class="number">{{ index + 1 }}.</span>
       <div class="info">
-        <span class="name">{{ soft.info.name }}</span>
+        <span dstoreTips class="name">{{ soft.info.name }}</span>
         <span class="subtitle" [routerLink]="['/list', 'category', soft.info.category]">
-          {{ soft.info.category | categoryText | async }}
+          <m-category-name [category]="soft.info.category"></m-category-name>
         </span>
       </div>
       <div class="control">

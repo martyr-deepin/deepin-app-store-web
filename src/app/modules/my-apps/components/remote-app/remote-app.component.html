@@ -18,7 +18,7 @@
       <div class="remote-app" *ngFor="let remoteApp of apps">
         <img class="icon" dstoreCover="icon" [src]="remoteApp.soft.info.icon" [routerLink]="['/app', remoteApp.soft.id]" />
         <div class="content">
-          <div class="info">{{ remoteApp.soft.info.name }}</div>
+          <div dstoreTips class="info">{{ remoteApp.soft.info.name }}</div>
           <div class="time">
             <span i18n>Date installed:</span> {{ remoteApp.created_at | date: 'yyyy.MM.dd' }}
           </div>

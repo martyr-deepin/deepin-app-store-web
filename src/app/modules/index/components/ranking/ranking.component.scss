@@ -3,12 +3,14 @@
   display: flex;
   flex-direction: column;
 }
+
 .list {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
+
 section {
   display: flex;
   align-items: center;
@@ -41,13 +43,11 @@ section {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      @media (max-width: 1152px) {
-        display: none;
-      }
+      // @media (max-width: 1152px) {
+      //   display: none;
+      // }
     }
-
   }
-
   .control {
     display: none;
   }

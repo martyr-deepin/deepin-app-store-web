@@ -23,7 +23,9 @@
 .div_style {
   flex: 1;
   align-items: center;
-  display: flex;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .title {
@@ -31,6 +33,7 @@
   min-width: 0;
   display: flex;
   flex-flow: column;
+  width: 0;
   >div {
     @extend .div_style;
   }
@@ -47,10 +50,8 @@
 
 .log {
   flex: 5;
-  word-break: break-all;
-  white-space: pre-wrap;
-  position: relative;
   //line-height: 3.2rem;
+  position: relative;
   width: 0;
   .log_content {
     max-height: 100%;
@@ -65,6 +66,7 @@
   }
   .log_btn {
     color: var(--primary-color);
+    background-color: var(--main-bg-color);
     position: absolute;
     right: -30px;
     font-size: 0.8rem;
@@ -77,6 +79,7 @@
 .progress {
   flex: 5;
   position: relative;
+  width: 0;
   my-update-progress {
     position: relative;
     top: 1rem;

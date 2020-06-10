@@ -59,9 +59,7 @@
           <!-- 查看更新日志的弹窗 -->
           <dstore-layer [main]="true" [both]="true" #$loglayer>
             <ng-container class="layer_scroll_content">
-              <pre>
-                {{app.info.changelog}}
-              </pre>
+              <pre>{{app.info.changelog}}</pre>
             </ng-container>
           </dstore-layer>
         </td>

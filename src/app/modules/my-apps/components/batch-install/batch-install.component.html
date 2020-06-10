@@ -8,8 +8,7 @@
         <dstore-scrollbar [full]="true">
           <div class="app-list">
             <div class="app" dstoreHover #dstoreHover="dstoreHover" *ngFor="let app of apps" (click)="touch(app)">
-              <dstore-checkbox-button [class.hover]="dstoreHover.hover" [disabled]="unavailable(app)"
-                [value]="batchInstall.has(app.name)"></dstore-checkbox-button>
+              <dstore-checkbox-button [class.hover]="dstoreHover.hover" [disabled]="unavailable(app)" [value]="batchInstall.has(app.name)"></dstore-checkbox-button>
               <img [src]="app.info.icon" /> {{ app.info.name }}
             </div>
           </div>
@@ -26,9 +25,16 @@
       </ng-container>
     </div>
     <div class="text-align">
-      <button class="primary installAll" (click)="installAll()">
-        <ng-container i18n>Start Installation</ng-container>
-      </button>
+      <ng-container *ngIf="sysAuthStatus$ | async; else $noAuthorizaedInstallRef">
+        <button class="primary installAll" (click)="installAll()">
+          <ng-container i18n>Start Installation</ng-container>
+        </button>
+      </ng-container>
+      <ng-template #$noAuthorizaedInstallRef>
+        <button class="primary installAll" (click)="sysAuthMessage()">
+          <ng-container i18n>Start Installation</ng-container>
+        </button>
+      </ng-template>
     </div>
   </ng-container>
 </dialog>

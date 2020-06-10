@@ -207,7 +207,8 @@ export class AppCommentComponent implements OnInit, OnChanges {
         const aheadResp = resp.items.find(c => {
           return c.commenter === info.uid;
         });
-        resp.items = resp.items.filter(c => c.commenter !== info.uid);
+        //resp.items = resp.items.filter(c => c.commenter !== info.uid);
+        resp.items.shift();
         if (aheadResp) { resp.items.unshift(aheadResp); }
       }
     }

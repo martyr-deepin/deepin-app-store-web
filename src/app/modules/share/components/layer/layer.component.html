@@ -1,5 +1,5 @@
 <div *ngIf="destruction" (click)="outer_close()" class="layer_background">
-  <div (click)="$event.cancelBubble = true;" [ngClass]="{'show':visible}" [ngStyle]="{height: height?height+'rem':'auto'}" class="layer_content">
+  <div (click)="$event.cancelBubble = true;" [ngClass]="{'show':visible}" class="layer_content">
     <header *ngIf="!main">
       <div class="title">
         {{dialogTitle}}

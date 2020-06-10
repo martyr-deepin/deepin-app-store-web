@@ -27,7 +27,7 @@ export class TopicDetailComponent extends SectionItemBase implements OnInit {
     .then(key => this.keyvalue.get<SectionTopicItem>(key))
     .then(data => {
       console.log(data);
-      if (data.items.length === 0 || !data.items.find(v => v.show)) {
+      if (data.items?.length === 0 || !data.items?.find(v => v.show)) {
         return null;
       } else {
         return data;

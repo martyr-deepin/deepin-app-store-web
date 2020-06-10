@@ -20,10 +20,9 @@ export class RemoteAppComponent implements OnInit {
     public router: Router, 
     private remoteAppService: RemoteAppService,
     private SysAuth:SysAuthService,
-    private storeService:StoreService,
     private messageService:MessageService
   ) {}
-  readonly pageSize = 20;
+  readonly pageSize = 13;
   readonly RefundStatus = RefundStatus;
   free = true;
   pageIndex$ = this.route.queryParamMap.pipe(map(query => Number(query.get('page') || 0)));

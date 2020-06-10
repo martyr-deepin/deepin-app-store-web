@@ -27,7 +27,7 @@ header {
       border-width: 1px;
       border-style: solid;
       border-color: var(--tab-bg-color);
-      background: var(--main-bg-color);
+      background: var(--tab-bg-color);
       //box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.05), 0px 2px 0px 0px rgba(255, 255, 255, 0.15);
       &:not(:first-child) {
         margin-left: -1px;
@@ -43,9 +43,9 @@ header {
       }
     }
     .active {
-      border-color: var(--primary-color);
-      color: var(--main-bg-color);
-      background: linear-gradient(0deg, var(--nav-bg-color-active) 0%, var(--primary-color) 100%);
+      border-color: #30a4f4;
+      color: #fff;
+      background: #30a4f4;
     }
   }
   button {

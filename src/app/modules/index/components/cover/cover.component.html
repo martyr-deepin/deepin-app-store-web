@@ -1,18 +1,17 @@
 <index-title [titles]="section.name" [more]="more"></index-title>
 <div class="list count-{{ 3 * 3 }}">
   <ng-container *ngFor="let soft of softs$ | async; index as index$">
-    <section class="item" *ngIf="section.rows * section.cols > index$" [routerLink]="['app', soft.id]"
-      [class.hover]="controlRef?.show">
+    <section class="item" *ngIf="section.rows * section.cols > index$" [routerLink]="['app', soft.id]" [class.hover]="controlRef?.show">
       <ng-container>
         <main>
           <img dstoreCover="cover" [src]="soft?.info?.cover" />
         </main>
         <footer>
           <div class="info">
-            <div class="name">{{ soft?.info?.name }}</div>
+            <div dstoreTips class="name">{{ soft?.info?.name }}</div>
             <div class="subtitle">
               <div class="category" [routerLink]="['/list', 'category', soft.info.category]">
-                {{ soft?.info?.category | categoryText | async }}
+                <m-category-name [category]="soft.info.category"></m-category-name>
               </div>
               <dstore-star *ngIf="soft.stat.score_count >= 20" [rate]="soft.stat.score / 2 || 0"></dstore-star>
               <span *ngIf="soft.stat.score_count < 20" i18n></span>

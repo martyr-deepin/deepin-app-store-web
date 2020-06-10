@@ -1,17 +1,24 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap, share, map, distinctUntilChanged, publishReplay, refCount, first } from 'rxjs/operators';
 
 import { RemoteAppService } from './../../services/remote-app.service';
 import { Software } from 'app/services/software.service';
 import { JobService } from 'app/services/job.service';
+import { SysAuthService } from 'app/services/sys-auth.service';
 
 @Component({
   selector: 'dstore-batch-install',
   templateUrl: './batch-install.component.html',
   styleUrls: ['./batch-install.component.scss'],
 })
-export class BatchInstallComponent implements OnInit {
+export class BatchInstallComponent {
+  constructor(
+    private remoteAppService: RemoteAppService,
+    private jobService: JobService,
+    private sysAuthService: SysAuthService
+  ) {}
+  
   @Input() free = null;
   @ViewChild('dialog', { static: true })
   dialogRef: ElementRef<HTMLDialogElement>;
@@ -31,30 +38,16 @@ export class BatchInstallComponent implements OnInit {
     publishReplay(1),
     refCount(),
   );
-  length$ = this.result$.pipe(map(result => result.items.length));
+  length$ = this.result$.pipe(map(result => result.count));
   apps$ = this.result$.pipe(
-    map(result => {
-      console.log(
-        result.items.map(apps => apps.soft),
-        '云端',
-      );
-      return result.items.map(apps => apps.soft);
-    }),
+    map(result => 
+      result.items.map(apps => apps.soft)
+    ),
     share(),
   );
-
-  constructor(
-    private remoteAppService: RemoteAppService,
-    private jobService: JobService
-  ) {}
+  sysAuthStatus$ = this.sysAuthService.sysAuthStatus$;
 
   private jobList:string[]=[];
-  ngOnInit() {
-  }
-
-  ngOnDestroy() {
-    
-  }
 
   async show() {
     this.batchInstall.clear();
@@ -93,5 +86,8 @@ export class BatchInstallComponent implements OnInit {
   installAll() {
     this.remoteAppService.installApps([...this.batchInstall.values()]);
     this.hide();
+  }
+  sysAuthMessage() {
+    this.sysAuthService.authorizationNotify();
   }
 }

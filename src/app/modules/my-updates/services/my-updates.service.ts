@@ -4,7 +4,6 @@ import { SoftwareService, Software } from 'app/services/software.service';
 import { StorageService, StorageKey } from 'app/services/storage.service';
 import { BehaviorSubject } from 'rxjs';
 import { StoreService, QueryParam } from 'app/modules/client/services/store.service';
-import { LocalAppService } from 'app/modules/my-apps/services/local-app.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +12,7 @@ export class MyUpdatesService{
   constructor(
     private softwareService:SoftwareService,
     private storageService:StorageService,
-    private storeService:StoreService,
-    private localAppService:LocalAppService
+    private storeService:StoreService
   ){
     //初始化的时候查询可更新列表
     this.storeService.InstalledPackages().subscribe( async packages => {
@@ -33,7 +31,7 @@ export class MyUpdatesService{
       //计算可更新应用的大小
       // const sizes = await this.storeService.queryDownloadSize(softs.map(this.toQuery)).toPromise();
       softs.map(soft => {
-        soft.package.size = packages.find(pack => soft.package_name===pack.packageName).size
+        soft.package.size = packages.find(pack => soft.package_name===pack.packageName)?.size
         return soft;
       })
 
