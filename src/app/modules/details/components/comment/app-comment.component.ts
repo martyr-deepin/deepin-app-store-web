@@ -204,12 +204,12 @@ export class AppCommentComponent implements OnInit, OnChanges {
         } else {
           this.select = CommentType.History;
         }
-        const aheadResp = resp.items.find(c => {
+        const aheadResp = resp.items.filter(c => {
           return c.commenter === info.uid;
         });
-        //resp.items = resp.items.filter(c => c.commenter !== info.uid);
-        resp.items.shift();
-        if (aheadResp) { resp.items.unshift(aheadResp); }
+        resp.items = resp.items.filter(c => c.commenter !== info.uid);
+        //resp.items.shift();
+        if (aheadResp) { console.log(aheadResp); resp.items.unshift(...aheadResp); }
       }
     }
     if (this.loadCount === mark) {

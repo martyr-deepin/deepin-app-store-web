@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,ElementRef, HostListener, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input,ElementRef, HostListener } from '@angular/core';
 import PerfectScrollbar from 'perfect-scrollbar';
 
 @Component({
@@ -6,7 +6,7 @@ import PerfectScrollbar from 'perfect-scrollbar';
   templateUrl: './pre-detail.component.html',
   styleUrls: ['./pre-detail.component.scss']
 })
-export class PreDetailComponent implements OnInit,OnDestroy {
+export class PreDetailComponent implements OnInit {
 
   constructor(
     private el: ElementRef<HTMLDivElement>
@@ -14,15 +14,15 @@ export class PreDetailComponent implements OnInit,OnDestroy {
 
   @Input() detail:string;
 
+  fontSize:number;
+
   ngOnInit(): void {
-    new PerfectScrollbar(this.el.nativeElement, {
-      wheelPropagation: true
+    new PerfectScrollbar(this.el.nativeElement.getElementsByClassName("pre_detail")[0], {
+      suppressScrollY: false,
+      suppressScrollX: true,
+      wheelPropagation: false,
     });
-    //插入dom到body
-    document.getElementById("scrollbar").appendChild(this.el.nativeElement)
-  }
-  ngOnDestroy(): void {
-    document.getElementById("scrollbar").removeChild(this.el.nativeElement)
+    this.fontSize = Number(getComputedStyle(document.getElementsByTagName("html")[0]).fontSize.slice(0,-2))
   }
 
   @HostListener('document:click', ['$event.target'])
@@ -37,35 +37,49 @@ export class PreDetailComponent implements OnInit,OnDestroy {
     this.el.nativeElement.style.display = "none"
   }
 
-  toggle(e:MouseEvent,right?:boolean,maxWidth?:number) {
+  toggle(e:MouseEvent,auto:boolean,offset?:Offset) {
+    let y = this.getElementTop(<HTMLElement>e.target)
     event.cancelBubble = true;
     const display = this.el.nativeElement.style.display;
     if(display === "block") {
       this.close()
     }else {
-      this.show(e,right,maxWidth)
+      if(auto) {
+        if(!offset){
+          offset = {x:0,y:0};
+        }
+        offset.x += e.clientX/this.fontSize
+        offset.y += y/this.fontSize+1
+      }
+      this.show(e,offset)
     }
   }
 
-  show(e:MouseEvent,right?:boolean,maxWidth?:number){
+  show(e:MouseEvent,offset?:Offset){
     this.el.nativeElement.style.display = "block"
     if(e) {
       const pre = this.el.nativeElement
-      let x = e.clientX;
-      let y = e.clientY+15;
-      if(maxWidth) {
-        pre.style["width"] = maxWidth+"px";
-      }
       //确定弹出的位置
-      if(!right) {
-        x = x - pre.clientWidth - 100;
-      }else {
-        x = x - 20 - 100
+      if(offset) {
+        pre.style["left"] = offset.x+"rem";
+        pre.style["top"] = offset.y+"rem"
       }
-      pre.style["left"] = x+"px"
-      pre.style["top"] = y+"px"
     }
-    
   }
 
+  getElementTop(element:HTMLElement){
+    var actualTop = element.offsetTop;
+    var current = <HTMLElement>element.offsetParent;
+    while (current !== null){
+      actualTop += current.offsetTop;
+      current =  <HTMLElement>current.offsetParent;
+    }
+    return actualTop;
+  }
+
+}
+
+interface Offset {
+  x:number,
+  y:number
 }

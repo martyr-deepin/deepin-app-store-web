@@ -33,7 +33,8 @@ export class MyUpdatesComponent implements OnInit,OnDestroy{
 
   dueTime:number=1000*60*60*24*30;
   selectChange(value:number) {
-    let nowTime = new Date(new Date().toLocaleDateString()).getTime()+1000*60*60*24
+    //let nowTime = new Date("2020/08/01").getTime()+1000*60*60*24
+    let nowTime = new Date().setHours(0,0,0,0)+1000*60*60*24
     if(value){
       this.dueTime = value;
     }
@@ -124,4 +125,5 @@ export class MyUpdatesComponent implements OnInit,OnDestroy{
   sysAuthMessage() {
     this.sysAuth.authorizationNotify()
   }
+
 }

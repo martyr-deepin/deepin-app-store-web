@@ -55,6 +55,9 @@
     display: inline-block;
     vertical-align: middle;
     line-height: 1.6rem;
+    .log_context {
+      white-space: pre-wrap;
+    }
   }
   .log_content_none {
     width: 100%;

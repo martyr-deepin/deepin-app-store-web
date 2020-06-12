@@ -54,14 +54,8 @@
           <label class="info_item" i18n>Version:</label>
           <ng-container *ngIf="controlRef.package$ | async as package">
             <label>{{ package.remoteVersion || package.localVersion }}</label>
-            <label *ngIf="app.info.changelog" (click)="$loglayer.show()" class="log_btn" i18n>Changelog</label>
+            <label *ngIf="app.info.changelog" (click)="preDetailRef.toggle($event,true,{x:-13,y:0})" class="log_btn" i18n>Changelog</label>
           </ng-container>
-          <!-- 查看更新日志的弹窗 -->
-          <dstore-layer [main]="true" [both]="true" #$loglayer>
-            <ng-container class="layer_scroll_content">
-              <pre>{{app.info.changelog}}</pre>
-            </ng-container>
-          </dstore-layer>
         </td>
         <td>
           <label class="info_item" i18n>Size:</label>
@@ -137,6 +131,7 @@
       <ng-container i18n>CDN supported by UPYUN</ng-container>
     </div>
   </ng-container>
+  <dstore-pre-detail [detail]="app.info.changelog" #preDetailRef></dstore-pre-detail>
 </div>
 
 <ng-template #$loading let-$app>

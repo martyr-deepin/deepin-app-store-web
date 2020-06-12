@@ -58,6 +58,9 @@
     overflow: hidden;
     display: inline-block;
     line-height: 1.6rem;
+    .log_context {
+      white-space: pre-wrap;
+    }
   }
   .log_content_none {
     width: 100%;
@@ -65,10 +68,11 @@
     line-height: 3.2rem;
   }
   .log_btn {
+    z-index: 1000;
     color: var(--primary-color);
     background-color: var(--main-bg-color);
     position: absolute;
-    right: -30px;
+    right: 0;
     font-size: 0.8rem;
     font-weight: 600;
     top: 2.8rem;

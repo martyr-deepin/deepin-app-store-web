@@ -6,19 +6,19 @@
 <div class="log">
   <div class="log_content" [ngClass]="{log_content_none:!software.info.changelog||software.info.changelog==''}">
     <ng-container *ngIf="software.info.changelog&&software.info.changelog!='';else message">
-      <div class="log_context">
-        {{ software.info.changelog}}
-      </div>
+      <div class="log_context">{{software.info.changelog}}</div>
     </ng-container>
   </div>
   <ng-container *ngIf="judgeOverflow$ | async">
-    <span (click)="$layer.show()" class="log_btn">
+    <span (click)="preDetail.toggle($event,false,{x:-2,y:4})" class="log_btn">
       <ng-container i18n>More</ng-container> 〉
     </span>
   </ng-container>
   <ng-template #message>
     <div class="log_context" i18n>No changelogs</div>
   </ng-template>
+  <dstore-pre-detail [detail]="software.info.changelog" #preDetail>
+  </dstore-pre-detail>
 </div>
 <ng-container *ngIf="job;else $info">
   <div class="progress">
@@ -63,9 +63,3 @@
     </ng-template>
   </div>
 </ng-template>
-
-<dstore-layer [main]="true" [both]="true" #$layer>
-  <ng-container class="layer_scroll_content">
-    <pre>{{software.info.changelog}}</pre>
-  </ng-container>
-</dstore-layer>

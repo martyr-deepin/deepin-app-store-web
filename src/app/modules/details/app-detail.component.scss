@@ -10,6 +10,7 @@
 }
 
 .appInfo {
+  position: relative;
   .base_info {
     display: flex;
     .info_left {
@@ -85,6 +86,7 @@
     border-spacing: 0;
     font-size: 0.92rem;
     td {
+      position: relative;
       border-right: 1px solid var(--main-title-hr-color);
       border-bottom: 1px solid var(--main-title-hr-color);
     }
