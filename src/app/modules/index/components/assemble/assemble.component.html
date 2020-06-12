@@ -2,13 +2,13 @@
 <div class="list">
 
   <ng-container *ngFor="let assemble of this.assembles; index as index">
-    <section class='assemble'>
+    <section class='assemble' *ngIf="index < section.rows * section.cols">
       <header class="category cursor" [routerLink]="'/list/category/' + assemble.category">
         <m-category-name [category]="assemble.category"></m-category-name>
       </header>
       <main>
-        <ng-container *ngFor="let soft of softs.get(assemble.category) | async; first as first;index as itemIndex">
-          <section class="item cursor" *ngIf="section.rows  > itemIndex" [class.first]="first"
+        <ng-container *ngFor="let soft of softs.get(assemble.category+ '-'+index) | async; first as first;index as itemIndex">
+          <section class="item cursor" [class.first]="first"
             [routerLink]="['app', soft.id]">
 
             <header>
@@ -18,7 +18,7 @@
             <main>
               <div class="info">
                 <span class="name">{{ soft.info.name }}</span>
-                <div class="slogan" [title]="soft.info.slogan">{{ soft.info.slogan }}</div>
+                <div class="slogan">{{ soft.info.slogan }}</div>
               </div>
               <dstore-control class="control" [soft]="soft"></dstore-control>
             </main>

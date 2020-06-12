@@ -20,10 +20,10 @@ export class AssembleComponent extends SectionItemBase implements OnInit {
     console.log(this.section, '分类secation');
     this.assembles = (this.section.items as SectionItem[]).filter(a => a.show);
 
-    this.assembles.forEach(assemble => {
+    this.assembles.forEach((assemble, index) => {
       let isShowIitem = assemble.items.filter(v => v.show);
       const softs$ = this.softwareService.list({ ids: isShowIitem.map(app => app.app_id) });
-      this.softs.set(assemble.category, softs$);
+      this.softs.set(`${assemble.category}-${index}`, softs$);
     });
     this.wait().finally(() => this.loaded.emit(true));
   }
