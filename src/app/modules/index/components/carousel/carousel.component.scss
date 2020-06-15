@@ -2,6 +2,8 @@
   height: 180px;
   transform: translateX(13%);
   display: block;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 img {

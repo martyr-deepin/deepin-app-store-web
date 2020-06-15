@@ -33,14 +33,18 @@ header {
   text-overflow: ellipsis;
 }
 
-main img {
-  width: 100%;
-  //filter: brightness(80%);
+main {
+  background: #999999;
   border-radius: 4px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), inset 0 2px 0 0 rgba(255, 255, 255, 0.1);
-  height: 100%;
-}
-
+  img {
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), inset 0 2px 0 0 rgba(255, 255, 255, 0.1);
+    height: 100%;
+    opacity:0.6; filter: alpha(opacity=60);
+  }
+} 
+ 
 .empty {
   margin-bottom: unset;
 }
