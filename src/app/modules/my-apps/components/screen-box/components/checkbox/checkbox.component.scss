@@ -47,11 +47,8 @@
   }
   .default {
     &::after {
-      box-sizing: content-box;
       content: "";
-      border: 1px solid #fff;
-      border-left: 0;
-      border-top: 0;
+      box-sizing: content-box;
       height: 0.7rem;
       left: 0.35rem;
       position: absolute;
@@ -78,6 +75,13 @@
       background-color: #2CA7F8;
       border-color: #2CA7F8;
     }
+    .dstore-checked {
+      &::after {
+        border: 1px solid #fff;
+        border-left: 0;
+        border-top: 0;
+      }
+    }
     .default {
       &::after {
         transform: rotate(45deg) scaleY(1);
@@ -94,6 +98,13 @@
     .mixed {
       background-color: #5cb85c;
       border-color: #5cb85c;
+    }
+    .dstore-checked {
+      &::after {
+        border: 1px solid #fff;
+        border-left: 0;
+        border-top: 0;
+      }
     }
     .default {
       &::after {
@@ -129,6 +140,13 @@
       background-color: #5bc0de;
       border-color: #5bc0de;
     }
+    .dstore-checked {
+      &::after {
+        border: 1px solid #fff;
+        border-left: 0;
+        border-top: 0;
+      }
+    }
     .default {
       &::after {
         transform: rotate(45deg) scaleY(1);
@@ -145,6 +163,13 @@
     .mixed {
       background-color: #d9534f;
       border-color: #d9534f;
+    }
+    .dstore-checked {
+      &::after {
+        border: 1px solid #fff;
+        border-left: 0;
+        border-top: 0;
+      }
     }
     .default {
       &::after {

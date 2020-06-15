@@ -3,7 +3,7 @@ import { map } from 'rxjs/operators';
 import { SoftwareService, Software } from 'app/services/software.service';
 import { StorageService, StorageKey } from 'app/services/storage.service';
 import { BehaviorSubject } from 'rxjs';
-import { StoreService, QueryParam } from 'app/modules/client/services/store.service';
+import { StoreService } from 'app/modules/client/services/store.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
 
 @Injectable({
@@ -16,10 +16,22 @@ export class MyUpdatesService{
     private storeService:StoreService,
     private sysAuthService:SysAuthService
   ){
-    this.init()
+    this.sysAuthService.sysAuthStatus$.pipe(
+      map(status=>{
+        if(this.sysAuthStatus != status) {
+          this.sysAuthStatus = status;
+          if(status) {
+            this.sysAuthStatus = status;
+            this.init()
+          }else {
+            this.renewableApps$.next([])
+          }
+        }
+      })
+    ).subscribe()
   }
 
-  sysAuthStatus = false;
+  sysAuthStatus=false;
 
   //订阅可更新应用信息集合
   renewableApps$ = new BehaviorSubject<Software[]>([]);
@@ -38,21 +50,6 @@ export class MyUpdatesService{
   updatings:string[] = [];
 
   init(){
-    this.sysAuthService.sysAuthStatus$.pipe(
-      map(status=>{
-        if(this.sysAuthStatus != status) {
-          this.sysAuthStatus = status;
-          if(status) {
-            this.query()
-          }else {
-            this.renewableApps$.next([])
-          }
-        }
-      })
-    ).subscribe()
-  }
-
-  query(){
     //初始化的时候查询可更新列表
     this.storeService.InstalledPackages().subscribe( async packages => {
       const package_names = packages.map(pack=> pack.packageName );
@@ -114,14 +111,5 @@ export class MyUpdatesService{
     this.recentlyApps$.next(value)
   }
 
-
-  private toQuery(soft: Software) {
-    // console.log(soft, 'asdasd');
-    return {
-      name: soft.id && soft.id !== 0 ? soft.id.toString() : soft.package.appName,
-      localName: soft.info.name,
-      packages: soft.info.packages,
-    } as QueryParam;
-  }
 
 }
