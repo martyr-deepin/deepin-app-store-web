@@ -134,7 +134,7 @@
                   <div class="head" *ngIf="c.commenterInfo as info; else deepinInfoDefault">
                     <ng-container *ngIf="info.uid; else deletedRef">
                       <img [src]="info.profile_image" #avatarRef (error)="avatarRef.src = '/assets/images/default_avatar.jpeg?default'" class="profile" />
-                      <span>{{ info.nickname }}</span>
+                      <span dstoreTips>{{ info.nickname }}</span>
                     </ng-container>
                     <ng-template #deletedRef>
                       <img [src]="'/assets/images/default_avatar.jpeg?default'" class="profile" />
