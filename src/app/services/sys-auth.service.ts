@@ -11,7 +11,7 @@ export class SysAuthService {
   constructor(private zone: NgZone) {
     this.init();
   }
-  sysAuthStatus$ = new BehaviorSubject(true);
+  sysAuthStatus$ = new BehaviorSubject(null);
   AuthorizationState = AuthorizationState;
   init() {
     (window as any).setAuthorized = (state: boolean) => {

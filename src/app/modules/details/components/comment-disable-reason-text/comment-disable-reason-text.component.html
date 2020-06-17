@@ -14,5 +14,8 @@
   <ng-container *ngSwitchCase="CommentDisableReason.CommentDisableReasonUnused">
     <ng-container i18n>Please post your comment after using it</ng-container>
   </ng-container>
+  <ng-container *ngSwitchCase="undefined">
+    <ng-container i18n>Loading... Please wait</ng-container>
+  </ng-container>
   <ng-container *ngSwitchDefault i18n>Due to {{ reason }}, you cannot post a comment</ng-container>
 </ng-container>

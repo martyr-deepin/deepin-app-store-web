@@ -4,6 +4,7 @@ import { SoftwareService, Software } from 'app/services/software.service';
 import { StorageService, StorageKey } from 'app/services/storage.service';
 import { BehaviorSubject } from 'rxjs';
 import { StoreService, QueryParam } from 'app/modules/client/services/store.service';
+import { SysAuthService } from 'app/services/sys-auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +13,44 @@ export class MyUpdatesService{
   constructor(
     private softwareService:SoftwareService,
     private storageService:StorageService,
-    private storeService:StoreService
-  ){
+    private storeService:StoreService,
+    private sysAuthService:SysAuthService
+  ){}
+
+  sysAuthStatus = false;
+
+  //订阅可更新应用信息集合
+  renewableApps$ = new BehaviorSubject<Software[]>([]);
+  
+  //最近更新应用缓存
+  recentlyApps$ = new BehaviorSubject<object>({});
+
+  softCache:Software[] = [] 
+
+  //可更新的数量
+  renewableSize$ = this.renewableApps$.pipe(
+    map(apps=>apps.length)
+  )
+
+  //更新中的应用
+  updatings:string[] = [];
+
+  init(){
+    this.sysAuthService.sysAuthStatus$.pipe(
+      map(status=>{
+        if(this.sysAuthStatus != status) {
+          this.sysAuthStatus = status;
+          if(status) {
+            this.query()
+          }else {
+            this.renewableApps$.next([])
+          }
+        }
+      })
+    ).subscribe()
+  }
+
+  query(){
     //初始化的时候查询可更新列表
     this.storeService.InstalledPackages().subscribe( async packages => {
       const package_names = packages.map(pack=> pack.packageName );
@@ -39,22 +76,6 @@ export class MyUpdatesService{
       this.renewableApps$.next(this.softCache)
     })
   }
-
-  //订阅可更新应用信息集合
-  renewableApps$ = new BehaviorSubject<Software[]>([]);
-  
-  //最近更新应用缓存
-  recentlyApps$ = new BehaviorSubject<object>({});
-
-  softCache:Software[] = [] 
-
-  //可更新的数量
-  renewableSize$ = this.renewableApps$.pipe(
-    map(apps=>apps.length)
-  )
-
-  //更新中的应用
-  updatings:string[] = [];
 
   //加入近期更新列表
   addRecentlyApps(software:Software){

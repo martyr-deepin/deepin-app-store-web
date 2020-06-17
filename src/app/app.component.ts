@@ -7,6 +7,7 @@ import { AuthService } from './services/auth.service';
 
 import { StoreService } from './modules/client/services/store.service';
 import { StoreJobStatus } from 'app/modules/client/models/store-job-info';
+import { MyUpdatesService } from './modules/my-updates/services/my-updates.service';
 
 @Component({
   selector: 'm-root',
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
     private region: RegionService,
     private auth: AuthService,
     private store: StoreService,
+    private myUPdateService: MyUpdatesService
   ) {}
   title = 'deepin-app-store-web';
   installing = true;
@@ -120,18 +122,17 @@ export class AppComponent implements OnInit {
         } else {
           if (!sessionStorage.getItem(storeUpdate)) {
             console.warn('store update');
-            setTimeout(() => {
-              this.store
-                .storeUpdate()
-                .toPromise()
-                .finally(() => sessionStorage.setItem('storeUpdate', t));
-            }, 1000 * 5);
+            this.store
+              .storeUpdate()
+              .toPromise()
+              .finally(() => sessionStorage.setItem('storeUpdate', t));
           }
         }
+        this.myUPdateService.init()
       //}
+      // native client inited
+      environment.native = true;
     }
-    // native client inited
-    environment.native = true;
   }
 
   async selectRegion() {
