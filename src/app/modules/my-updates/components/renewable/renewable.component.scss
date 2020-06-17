@@ -1,8 +1,38 @@
 :host {
   flex: 1;
   display: flex;
+  .renewable_content {
+    padding: 0 0.5rem;
+  }
 }
 
 dstore-scrollbar {
   padding: 1rem 1.5rem 0 1.5rem;
+}
+
+.table_head {
+  display: flex;
+  height: 40px;
+  line-height: 40px;
+  background-color: var(--nav-bg-color);
+  font-size: 13px;
+  font-weight: 500;
+  padding-left: 0.5rem;
+  .th {
+    &:first-child {
+      flex: 4.5;
+    }
+    &:nth-child(2) {
+      flex: 5;
+    }
+    &:nth-child(3) {
+      flex: 5;
+    }
+    &:nth-child(4) {
+      flex: 5;
+    }
+    &:nth-child(5) {
+      width: 6.5rem;
+    }
+  }
 }

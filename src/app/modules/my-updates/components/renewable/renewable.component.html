@@ -1,13 +1,22 @@
 <dstore-scrollbar>
   <ng-container *ngIf="renewableApps$ | async as list; else loadingContainer">
-    <ng-container *ngFor="let item of list;">
-      <ng-container *ngIf="jobs$ | async as jobs; else $noJob">
-        <my-updates-list-item [software]="item" [job]="jobs.get(item.package_name)"></my-updates-list-item>
+    <div class="table_head">
+      <div class="th" i18n>Name</div>
+      <div class="th" i18n>Rating</div>
+      <div class="th" i18n>Changelog</div>
+      <div class="th" i18n>Version</div>
+      <div class="th" i18n>Action</div>
+    </div>
+    <div class="renewable_content">
+      <ng-container *ngFor="let item of list;">
+        <ng-container *ngIf="jobs$ | async as jobs; else $noJob">
+          <my-updates-list-item [software]="item" [job]="jobs.get(item.package_name)"></my-updates-list-item>
+        </ng-container>
+        <ng-template #$noJob>
+          <my-updates-list-item [software]="item" ></my-updates-list-item>
+        </ng-template>
       </ng-container>
-      <ng-template #$noJob>
-        <my-updates-list-item [software]="item" ></my-updates-list-item>
-      </ng-template>
-    </ng-container>
+    </div>
   </ng-container>
   <ng-template #loadingContainer>
     <div class="loadingContainer">

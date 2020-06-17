@@ -3,6 +3,15 @@
   <div dstoreTips class="name">{{ software.info.name?software.info.name: software.package.appName }}</div>
   <div class="size">{{software.package.size | sizeHuman}}</div>
 </div>
+<div class="score">
+  <ng-container *ngIf="software.stat&&software.stat.score_count>=20; else $noneScore">
+    <dstore-star [rate]="software.stat.score/2||0"></dstore-star>
+    <span class="score_text">{{software.stat.score | appScore}}</span>
+  </ng-container>
+  <ng-template #$noneScore>
+    <span class="score_none" i18n>No ratings</span>
+  </ng-template>
+</div>
 <div class="log">
   <div class="log_content" [ngClass]="{log_content_none:!software.info.changelog||software.info.changelog==''}">
     <ng-container *ngIf="software.info.changelog&&software.info.changelog!='';else message">

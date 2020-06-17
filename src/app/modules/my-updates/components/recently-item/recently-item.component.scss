@@ -27,23 +27,24 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-.title {
-  flex: 1;
+.title_wrap {
   display: flex;
-  flex-flow: column;
-  width: 0;
-  >div {
-    @extend .div_style;
-  }
-  .name {
-    color: var(--font-color);
-    font-size: 0.92rem;
-  }
+  flex: 4;
+  .title {
+    margin-left: 1rem;
+    min-width: 0;
+    >div {
+      @extend .div_style;
+    }
+    .name {
+      color: var(--font-color);
+      font-size: 0.92rem;
+    }
+  }  
 }
 
 .log {
-  flex: 1;
+  flex: 5;
   word-break: break-all;
   white-space: pre-wrap;
   position: relative;
@@ -61,7 +62,6 @@
   }
   .log_content_none {
     width: 100%;
-    text-align: center;
     line-height: 3.2rem;
   }
   .log_btn {
@@ -77,10 +77,9 @@
 }
 
 .progress {
-  flex: 1;
+  flex: 4;
   display: flex;
   flex-flow: column;
-  align-items: center;
   width: 0;
   >div {
     @extend .div_style;
@@ -89,16 +88,34 @@
 }
 
 .update_date {
-  flex: 1;
+  flex: 3;
   display: flex;
   align-items: center;
-  justify-items: center;
   width: 0;
   >div {
-    text-align: right;
     width: 100%;
   }
   span {
     color: var(--font-color)
+  }
+}
+
+.score {
+  width: 0;
+  flex: 4;
+  display: flex;
+  align-items: center;
+  padding-right: 0.2rem;
+  font-size: 0.875rem;
+  span {
+    margin-left: 0.5rem;
+    font-weight: 500;
+  }
+  .score_text {
+    color: #303030;
+  }
+  .score_none {
+    margin-left: 0;
+    color: var(--font-color-gray);
   }
 }
