@@ -15,7 +15,9 @@ export class MyUpdatesService{
     private storageService:StorageService,
     private storeService:StoreService,
     private sysAuthService:SysAuthService
-  ){}
+  ){
+    this.init()
+  }
 
   sysAuthStatus = false;
 
