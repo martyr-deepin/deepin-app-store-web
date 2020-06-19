@@ -21,7 +21,7 @@ export class RemoteAppService extends APIBase<RemoteApp> {
       return resp;
     }
     // { noFilter: true }
-    const softs = await this.softService.list({}, { id: resp.items.map(item => item.app_id) },{noFilter:true});
+    const softs = await this.softService.list({}, { id: resp.items.map(item => item.app_id) });
     resp.items.forEach(item => {
       item.soft = softs.find(soft => soft.id === item.app_id);
     });

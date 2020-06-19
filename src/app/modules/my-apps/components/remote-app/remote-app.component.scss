@@ -5,11 +5,12 @@
   dstore-remote-install {
     padding: 0 1rem;
   }
+  font-size: 12px;
 }
 
 header {
   height: 2.77rem;
-  padding: 1rem 0 1rem 1.5rem;
+  padding: 1.5rem 1.5rem 1rem;
   display: flex;
   justify-content: space-between;
   flex-shrink: 0;
@@ -56,22 +57,44 @@ header {
   overflow: hidden;
   padding: 0 1rem 1rem 1.5rem;
   .remote-app {
-    display: flex;
-    height: 64px;
-    align-items: center;
     .content {
       display: flex;
       width: 100%;
       height: 100%;
-      padding-left: 0.5rem;
       align-items: center;
       border-bottom: 1px solid var(--main-item-hr-color);
-      .info {
+      .title_wrap {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+        flex: 2;
+        margin: 1rem 0;
+        .right {
+          flex: 1;
+          min-width: 0;  
+          .info {
+            white-space: nowrap;
+            flex: 1;           /* ADJUSTED */
+            text-overflow: ellipsis;
+            overflow: hidden;
+            min-width: 0;
+            margin-left: 1rem;
+          }
+        }
+      }
+      .score {
         flex: 1;
-        width: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        display: flex;
+        margin-left: 2rem;
+        span {
+          font-weight: 500;
+        }
+      }
+      .score_none {
+        color: gray;
+      }
+      .size {
+        flex: 1;
       }
       .version,
       .time {
@@ -82,12 +105,13 @@ header {
         text-overflow: ellipsis;
       }
       .control {
-        flex: 1;
+        flex: 2;
         display: flex;
-        justify-content: space-between;
+        justify-content: start;
         text-align: right;
         button {
-          min-width: 100px;
+          min-width: 80px;
+          margin-right: 0.5rem;
         }
       }
       .no-version {
@@ -140,4 +164,43 @@ header {
 
 .paginatorContainer {
   margin-right: 1.5rem;
+}
+
+
+.table_head {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  line-height: 40px;
+  padding: 0 1rem 0 1.5rem;
+  background-color: var(--nav-bg-color);
+  font-size: 13px;
+  font-weight: 500;
+  .th {
+    &:first-child {
+      flex: 2;
+    }
+    &:nth-child(2) {
+      flex: 1;
+      margin-left: 2rem;
+    }
+    &:nth-child(3) {
+      flex: 1;
+    }
+    &:nth-child(4) {
+      flex: 1;
+      // display: inline-block;
+      margin-left: 0.5rem;
+    }
+    &:nth-child(5) {
+      flex: 2;
+      // display: inline-block;
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+.remote-app-wrap {
+  overflow: hidden;
+  flex: 1;
 }
