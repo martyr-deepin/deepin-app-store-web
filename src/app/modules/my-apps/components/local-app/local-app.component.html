@@ -33,25 +33,24 @@
 <div class="installed-list">
   <dstore-scrollbar>
     <ng-container *ngIf="(result$ | async)?.list as installedList; else loadingContainer">
-      <!-- {{installedList | json}} -->
-      <ng-container *ngFor="let installed of installedList">
-        <div class="installed-app">
-          <ng-container *ngIf="installed.software as software; else noSoftwareRef">
-            <ng-container *ngIf="(software.id===0?software.package:software.info) as softwares">
-              <img class="icon" dstoreCover="icon" [routerLink]="['/app', installed.software.id]" [src]="softwares.icon" />
-              <div class="info">
-                <span dstoreTips>{{ softwares.name?softwares.name: installed.package.appName}}</span>
-              </div>
+      <ng-container *ngIf="removingList$ | async as removingList">
+        <!-- {{installedList | json}} -->
+        <ng-container *ngFor="let installed of installedList">
+          <div class="installed-app">
+            <ng-container *ngIf="installed.software as software; else noSoftwareRef">
+              <ng-container *ngIf="(software.id===0?software.package:software.info) as softwares">
+                <img class="icon" dstoreCover="icon" [routerLink]="['/app', installed.software.id]" [src]="softwares.icon" />
+                <div class="info">
+                  <span dstoreTips>{{ softwares.name?softwares.name: installed.package.appName}}</span>
+                </div>
+              </ng-container>
             </ng-container>
-          </ng-container>
-          <ng-template #noSoftwareRef>
-            <img class="icon" dstoreCover="icon" [routerLink]="['/app', 0]" [src]='installed.package.icon' />
-            <div class="info">
-              <span dstoreTips>{{ installed.localName }}</span>
-            </div>
-          </ng-template>
-
-          <ng-container *ngIf="removingList$ | async as removingList">
+            <ng-template #noSoftwareRef>
+              <img class="icon" dstoreCover="icon" [routerLink]="['/app', 0]" [src]='installed.package.icon' />
+              <div class="info">
+                <span dstoreTips>{{ installed.localName }}</span>
+              </div>
+            </ng-template>
             <div class="installed">
               <ng-template #confirm>
                 <div class="confirm">
@@ -63,7 +62,7 @@
 
                 </div>
               </ng-template>
-              <ng-container *ngIf="removing.includes(installed.name)||removing.includes(installed.software.name)||removingList.includes(installed.name);else $infos">
+              <ng-container *ngIf="removing.includes(installed.software.package_name)||removingList.includes(installed.software.package_name);else $infos">
                 <div class="removing">
                   <img />
                   <ng-container i18n>Uninstalling...</ng-container>
@@ -105,15 +104,15 @@
                     <ng-container i18n>Uninstall</ng-container>
                   </button>
                 </ng-template>
-                <ng-container *ngIf="removing.includes(installed.name)||removing.includes(installed.software.name)||removingList.includes(installed.name) ; else uninstall">
+                <ng-container *ngIf="removing.includes(installed.software.package_name)||removingList.includes(installed.software.package_name) ; else uninstall">
                   <!-- <button class="default"  disabled>
                     <ng-container i18n>Uninstalling</ng-container>
                   </button> -->
                 </ng-container>
               </ng-container>
             </div>
-          </ng-container>
-        </div>
+          </div>
+        </ng-container>
       </ng-container>
     </ng-container>
   </dstore-scrollbar>

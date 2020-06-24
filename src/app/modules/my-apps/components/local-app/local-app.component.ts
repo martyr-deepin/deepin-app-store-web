@@ -38,10 +38,13 @@ export class LocalAppComponent implements OnInit {
     share(),
   );
   count$ = this.result$.pipe(map(result => Math.ceil(result.total / this.pageSize)));
-  removingList$ = this.localAppService.removingList();
+  removingList$ = this.localAppService.removingList().pipe(
+    map(list=>list)
+  );
 
   remove(soft: Software) {
-    this.removing.push(soft.name);
+    this.localAppService.onRemove = true;
+    this.removing.push(soft.package_name);
     this.localAppService.removeLocal(soft);
     this.selected = null;
   }

@@ -5,7 +5,7 @@ import { refCountDelay } from 'rxjs-etc/operators';
 import { chunk, cloneDeep } from 'lodash';
 
 import { JobService } from 'app/services/job.service';
-import { StoreService } from 'app/modules/client/services/store.service';
+import { StoreService, LocalApp } from 'app/modules/client/services/store.service';
 import { StoreJobType } from 'app/modules/client/models/store-job-info';
 import { environment } from 'environments/environment';
 import { SoftwareService, Software } from 'app/services/software.service';
@@ -15,16 +15,23 @@ import * as _ from 'lodash';
   providedIn: 'root',
 })
 export class LocalAppService {
-  metadataServer = environment.metadataServer;
   constructor(
     private jobService: JobService,
     private storeService: StoreService,
     private softwareService: SoftwareService,
   ) {}
+  cache:LocalApp[];
+  onRemove:boolean = false;
+
   installed$ = this.jobService.jobList().pipe(
     debounceTime(300),
-    switchMap(() => {
-      return this.storeService.InstalledPackages();
+    switchMap(async() => {
+      if(!this.onRemove) {
+        const data = await this.storeService.InstalledPackages().toPromise();
+        this.cache = data;
+      }
+      this.onRemove = false;
+      return this.cache;
     }),
     publishReplay(1),
     refCountDelay(1000),
@@ -79,7 +86,9 @@ export class LocalAppService {
         });
       } catch {}
       return list
-    })
+    }),
+    publishReplay(1),
+    refCountDelay(1000),
   )
 
   removingList() {
@@ -92,7 +101,7 @@ export class LocalAppService {
             acc.push(...names);
             return acc;
           }, []);
-      }),
+      })
     );
   }
 
