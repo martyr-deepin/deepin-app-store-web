@@ -27,18 +27,17 @@ export class MyUpdatesComponent implements OnInit,OnDestroy{
 
   ngOnInit(){
     this.path = this.route.firstChild.snapshot.routeConfig['path']
-    //初始化消息
+    // init subscribe
     this.selectChange(0)
   }
 
   dueTime:number=1000*60*60*24*30;
   selectChange(value:number) {
-    //let nowTime = new Date("2020/08/01").getTime()+1000*60*60*24
     let nowTime = new Date().setHours(0,0,0,0)+1000*60*60*24
     if(value){
       this.dueTime = value;
     }
-    //获取已更新列表
+    // Query updated list
     let apps = this.service.getRecentlyApps()
     if(apps) {
       const beforeTime = nowTime - this.dueTime
@@ -54,16 +53,15 @@ export class MyUpdatesComponent implements OnInit,OnDestroy{
 
   jobList = []
 
-  //正在执行的任务状态
+  // Runing jobs status
   jobsStatus$ = this.jobService.jobsInfo().pipe(
     switchMap(async infoList => {
       const CountType = [StoreJobType.install, StoreJobType.download];
-      //获取更新列表
+      // Query renewableApps
       const apps = await this.service.renewableApps$.pipe(first()).toPromise()
       const packageNames = apps.map(app=>app.package_name)
       const result = infoList.filter(info => CountType.includes(info.type))
         .filter(info => packageNames.includes(info.packages[0]) );
-      //判断全部暂停/全部恢复
       let status = 0;
       if(result.length>0) {
         status = 1;
@@ -76,7 +74,7 @@ export class MyUpdatesComponent implements OnInit,OnDestroy{
     })
   )
 
-  //最近更新的任务数量
+  // Recent updated count
   recentlyLength$ = this.service.recentlyApps$.pipe(
     switchMap(async result => {
       const recents = Object.keys(result).map(val => ({id:parseInt(val),updateDate:result[val]}))
@@ -84,8 +82,10 @@ export class MyUpdatesComponent implements OnInit,OnDestroy{
     })
   )
 
+  /**
+   * Update all
+   */
   updateAll(){
-    //全部更新
     const res = this.service.softCache;
     if(res.length) {
       this.service.updatings = res.map(soft => soft.package_name)
@@ -93,21 +93,25 @@ export class MyUpdatesComponent implements OnInit,OnDestroy{
     }
   }
 
+  /**
+   * Pause All
+   */
   pauseAll(){
-    //全部暂停
     this.jobList.forEach(e => {
       this.jobService.stopJob(e.job)
     })
   }
 
+  /**
+   * Start all
+   */
   startAll() {
-    //全部启动
     this.jobList.forEach(e => {
       this.jobService.startJob(e.job)
     })
   }
 
-  //当前路由path
+  // Switch router path
   path:string;
   path$ = this.router.events.subscribe(event=>{
     if(event instanceof NavigationEnd) {
