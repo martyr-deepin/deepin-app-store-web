@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import 'theme';
 html {
   font-size: 13px;
@@ -73,7 +72,7 @@ a {
   text-decoration: none;
   color: unset;
   cursor: pointer;
-  color: #0082fa;
+  color: var(--activityColor);
 }
 
 [hidden] {
@@ -172,4 +171,12 @@ progress[value] {
   color: #fff;
   padding: 0.3rem;
   border-radius: 0.3rem;
+}
+
+.ps__rail-y {
+  transition: none !important;
+}
+
+.ps__rail-x {
+  transition: none !important;
 }

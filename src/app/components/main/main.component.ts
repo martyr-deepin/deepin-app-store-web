@@ -35,6 +35,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.clientService.store);
     this.switchTheme();
+    this.switchActiveColor();
     if (!environment.native) {
       return;
     }
@@ -50,6 +51,12 @@ export class MainComponent implements OnInit {
       console.log('主题切换', theme);
       document.body.className = theme;
     });
+  }
+  switchActiveColor() {
+    this.themeService.getActiveColor().subscribe(activeColor => {
+      document.getElementsByTagName('html')[0].style.setProperty("--activityColor",activeColor)
+      document.getElementsByTagName('html')[0].style.setProperty("--activityColorHover",this.themeService.switchActiveColor(activeColor))
+    })
   }
   // switch font family and font size
   switchFont() {

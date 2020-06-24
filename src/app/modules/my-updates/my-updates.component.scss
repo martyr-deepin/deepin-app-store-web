@@ -43,9 +43,13 @@ header {
       }
     }
     .active {
-      border-color: #30a4f4;
+      border-color: var(--activityColor);
       color: #fff;
-      background: #30a4f4;
+      background: var(--activityColor);
+      &:hover {
+        border-color: var(--activityColorHover);
+        background: var(--activityColorHover);
+      }
     }
   }
   button {

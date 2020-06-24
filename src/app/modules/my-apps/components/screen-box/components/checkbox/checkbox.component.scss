@@ -39,7 +39,7 @@
       background-color: #fff;
       height: 2px;
       transform: scale(0);
-      transition: transform .15s ease-in .05s;
+      //transition: transform .15s ease-in .05s;
       left: 0;
       right: 0;
       top: 6px;
@@ -55,7 +55,7 @@
       top: 1px;
       transform: rotate(45deg) scaleY(0);
       width: 0.4rem;
-      transition: transform .15s ease-in .05s;
+      //transition: transform .15s ease-in .05s;
       transform-origin: center;
     }
   }
@@ -72,8 +72,8 @@
   .primary {
     .dstore-checked,
     .mixed {
-      background-color: #2CA7F8;
-      border-color: #2CA7F8;
+      background-color: var(--activityColor);
+      border-color: var(--activityColor);
     }
     .dstore-checked {
       &::after {
