@@ -34,10 +34,6 @@ export class AuthService {
       this.login();
     });
     Channel.connect('account.onAuthorized').subscribe(([code, state]) => this.auth(code, state));
-    this.unauthorized.unauthorized$.pipe(throttleTime(1000)).subscribe(() => {
-      console.log('requestLogin，unauthorized');
-      this.login();
-    });
     const userInfo = await Channel.exec('account.getUserInfo');
     Channel.connect('account.userInfoChanged')
       .pipe(startWith(userInfo))
@@ -48,7 +44,6 @@ export class AuthService {
           return;
         }
         const info = await this.userInfo$.pipe(first()).toPromise();
-        console.log(info);
         if (!info || info.uid !== UserID) {
           this.logout();
           await this.login();

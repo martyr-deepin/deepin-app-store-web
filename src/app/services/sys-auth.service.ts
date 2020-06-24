@@ -17,8 +17,8 @@ export class SysAuthService {
     (window as any).setAuthorized = (state: boolean) => {
       this.zone.run(() => this.sysAuthStatus$.next(state));
     };
-    //this.getAuthorizationState()
-    merge(Channel.connect('settings.authStateChanged'), timer(1000, 10000)).subscribe(() => {
+    this.getAuthorizationState()
+    Channel.connect('settings.authStateChanged').subscribe(() => {
       this.getAuthorizationState()
     });
   }
