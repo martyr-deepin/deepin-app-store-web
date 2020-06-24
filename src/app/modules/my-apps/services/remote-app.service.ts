@@ -25,7 +25,6 @@ export class RemoteAppService extends APIBase<RemoteApp> {
     resp.items.forEach(item => {
       item.soft = softs.find(soft => soft.id === item.app_id);
     });
-    resp.items = resp.items.filter(item => item.soft);
     return resp;
   }
 
@@ -57,6 +56,24 @@ export interface RemoteApp {
   refund_reason: string;
   refund_status: string;
   unavailable: boolean;
-  app: Software;
-  soft?: Software;
+  soft: Software;
+  app: {
+    id: number;
+    active: boolean;
+    name:string;
+    info: {
+      locales: [{
+        icon: string;
+        name: string;
+      }]
+    },
+    comment:{
+      app_id: number;
+      count: number;
+      score: number;
+    }
+  };
+  packages:[{
+    size: number;
+  }]
 }
