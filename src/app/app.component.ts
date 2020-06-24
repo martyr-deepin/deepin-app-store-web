@@ -90,12 +90,10 @@ export class AppComponent implements OnInit {
       if (settings.themeName) {
         environment.themeName = settings.themeName;
       }
-      if(settings.appStoreVersion) {
-        environment.store_env.client_version = settings.appStoreVersion;
+      if(settings.activeColor) {
+        environment.activeColor = settings.activeColor;
       }
-      if(settings.productName) {
-        environment.store_env.product_name = settings.productName;
-      }
+
       // exec apt update
       //if (AuthorizationState.includes(environment.authorizationState)) {
         const storeUpdate = 'storeUpdate';
@@ -174,6 +172,5 @@ interface Settings {
   product: string;
   GUIFramework: string;
   authorizationState: number;
-  appStoreVersion:string;
-  productName:string;
+  activeColor:string;
 }
