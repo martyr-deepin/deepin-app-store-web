@@ -7,9 +7,9 @@
 
         <dstore-scrollbar [full]="true">
           <div class="app-list">
-            <div class="app" dstoreHover #dstoreHover="dstoreHover" *ngFor="let app of apps" (click)="touch(app)">
-              <dstore-checkbox-button [class.hover]="dstoreHover.hover" [disabled]="unavailable(app)" [value]="batchInstall.has(app.name)"></dstore-checkbox-button>
-              <img [src]="app.info.icon" /> {{ app.info.name }}
+            <div class="app" dstoreHover #dstoreHover="dstoreHover" *ngFor="let app of apps" (click)="touch(app.soft)">
+              <dstore-checkbox-button [class.hover]="dstoreHover.hover" [disabled]="unavailable(app.soft)" [value]="batchInstall.has(app.soft?.name)"></dstore-checkbox-button>
+              <img [src]="app.app?.info.locales[0]?.icon | coverImage" /> {{ app.app?.info.locales[0]?.name }}
             </div>
           </div>
         </dstore-scrollbar>

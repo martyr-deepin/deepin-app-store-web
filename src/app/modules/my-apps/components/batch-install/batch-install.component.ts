@@ -2,7 +2,7 @@ import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap, share, map, distinctUntilChanged, publishReplay, refCount, first } from 'rxjs/operators';
 
-import { RemoteAppService } from './../../services/remote-app.service';
+import { RemoteAppService, RemoteApp } from './../../services/remote-app.service';
 import { Software } from 'app/services/software.service';
 import { JobService } from 'app/services/job.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
@@ -41,10 +41,7 @@ export class BatchInstallComponent {
   length$ = this.result$.pipe(map(result => result.count));
   apps$ = this.result$.pipe(
     map(result => 
-      result.items.map(app =>{
-        app.soft.unavailable = app.unavailable
-        return app.soft
-      })
+      result.items
     ),
     share(),
   );
@@ -62,6 +59,7 @@ export class BatchInstallComponent {
     this.dialogRef.nativeElement.close();
   }
   unavailable(app: Software) {
+    if(!app) return true;
     return !app.package.remoteVersion || !app.active || app.unavailable || app.package.localVersion !== '' || this.jobList.includes(app.package_name)
       ? true
       : false;
@@ -78,13 +76,13 @@ export class BatchInstallComponent {
       this.batchInstall.set(app.name, app);
     }
   }
-  touchPage(apps: Software[]) {
+  touchPage(apps: RemoteApp[]) {
     apps.forEach(app => {
-      this.touch(app);
+      this.touch(app.soft);
     });
   }
-  selectPage(apps: Software[]) {
-    apps.filter(app => !this.unavailable(app)).forEach(app => this.batchInstall.set(app.name, app));
+  selectPage(apps: RemoteApp[]) {
+    apps.filter(app => !this.unavailable(app.soft)).forEach(remote => this.batchInstall.set(remote.soft.name, remote.soft));
   }
   installAll() {
     this.remoteAppService.installApps([...this.batchInstall.values()]);

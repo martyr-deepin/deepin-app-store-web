@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { map, switchMap, share, debounceTime, startWith } from 'rxjs/operators';
 import { Software } from 'app/services/software.service';
 import { RefundStatus } from 'app/services/refund.service';
 import { RemoteAppService, RemoteApp } from './../../services/remote-app.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
 import { MessageService, MessageType } from 'app/services/message.service';
-import { StoreService } from 'app/modules/client/services/store.service';
 
 @Component({
   selector: 'dstore-remote-app',

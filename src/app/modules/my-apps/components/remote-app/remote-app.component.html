@@ -25,22 +25,22 @@
         <div class="remote-app" *ngFor="let remoteApp of apps">
           <div class="content">
             <div class="title_wrap">
-              <img class="icon" dstoreCover="icon" [src]="remoteApp.soft.info.icon" [routerLink]="['/app', remoteApp.soft.id]" />
+              <img class="icon" dstoreCover="icon" [src]="remoteApp.app.info?.locales[0]?.icon | coverImage" [routerLink]="['/app', remoteApp.app.id]" />
               <div class="right">
-                <div dstoreTips class="info">{{ remoteApp.soft.info.name }}</div>
+                <div dstoreTips class="info">{{ remoteApp.app.info?.locales[0]?.name }}</div>
               </div>
             </div>
             <div class="score">
-              <ng-container *ngIf="remoteApp.soft?.stat?.score; else $noneScore">
-                <dstore-star [rate]="remoteApp.soft?.stat?.score/2||0"></dstore-star>
-                <span>{{remoteApp.soft?.stat?.score | appScore}}</span>
+              <ng-container *ngIf="remoteApp.app?.comment?.count>=20; else $noneScore">
+                <dstore-star [rate]="remoteApp.app.comment.score/remoteApp.app.comment.count | appScore"></dstore-star>
+                <span>{{remoteApp.app.comment.score/remoteApp.app.comment.count | appScore}}</span>
               </ng-container>
               <ng-template #$noneScore>
                 <span class="score_none" i18n>No ratings</span>
               </ng-template>
             </div>
             <div class="version">
-              <ng-container *ngIf="remoteApp.soft?.package?.remoteVersion && remoteApp.soft?.active && !remoteApp.unavailable;">
+              <ng-container *ngIf="remoteApp.soft?.package?.remoteVersion && remoteApp.app.active && !remoteApp.unavailable;">
                 {{ remoteApp.app_version }}
               </ng-container>
             </div>
@@ -50,7 +50,7 @@
             </div>
   
             <ng-container *ngIf="
-                remoteApp.soft?.package?.remoteVersion && remoteApp.soft?.active && !remoteApp.unavailable;
+                remoteApp.soft?.package?.remoteVersion && remoteApp.app.active && !remoteApp.unavailable;
                 else unavailableRef">
   
               <div class="control">
@@ -76,10 +76,10 @@
                 </ng-template>
                 <ng-template #install>
                   <ng-container *ngIf="sysAuthStatus$ | async;else $noAuthorizaedRef">
-                    <button (click)="installApp(remoteApp.soft)" i18n>Install</button>
+                    <button class="primary" (click)="installApp(remoteApp.soft)" i18n>Install</button>
                   </ng-container>
                   <ng-template #$noAuthorizaedRef>
-                    <button (click)="sysAuthMessage()" i18n>Install</button>
+                    <button class="primary" (click)="sysAuthMessage()" i18n>Install</button>
                   </ng-template>
                 </ng-template>
   
@@ -89,7 +89,7 @@
                       <div class="refund-waiting" i18n>Refunding</div>
                     </ng-container>
                     <ng-template #canRefundRef>
-                      <button class="secondary" (click)="refund = remoteApp" i18n>Refund</button>
+                      <button class="secondary default" (click)="refund = remoteApp" i18n>Refund</button>
                     </ng-template>
                   </ng-container>
   

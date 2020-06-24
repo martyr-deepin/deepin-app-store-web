@@ -37,6 +37,7 @@ import { SizeHuman } from './pipes/size-human';
 import { DeepinidPipe } from './pipes/deepinid.pipe';
 import { CategoryTextPipe } from './pipes/category-text.pipe';
 import { AppScorePipe } from './pipes/app-score.pipe'
+import { CoverImagePipe } from './pipes/cover-image.pipe'
 
 const components = [
   WaitComponent,
@@ -56,7 +57,7 @@ const components = [
   PreDetailComponent
 ];
 const directives = [DialogDirective, HoverDirective, ResizeDirective, CoverDirective, AuthfocusDirective,CircleDirective,TipsDirective];
-const pipes = [RangePipe, FitImage, FitLanguage, SizeHuman, DeepinidPipe, CategoryTextPipe, AppScorePipe];
+const pipes = [RangePipe, FitImage, FitLanguage, SizeHuman, DeepinidPipe, CategoryTextPipe, AppScorePipe,CoverImagePipe];
 const modules = [ClientModule, FormsModule, ReactiveFormsModule];
 @NgModule({
   declarations: [...components, ...directives, ...pipes],
