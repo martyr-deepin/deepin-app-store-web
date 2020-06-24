@@ -26,9 +26,11 @@ export class BatchInstallComponent {
   batchInstall = new Map<string, Software>();
 
   pageIndex$ = new BehaviorSubject<number>(0);
+  showLoading = true;
   result$ = this.pageIndex$.pipe(
     distinctUntilChanged(),
     switchMap(pageIndex => {
+      this.showLoading = true;
       let params = { offset: pageIndex * this.pageSize, limit: this.pageSize };
       if (this.free === false) {
         params['free'] = false;
@@ -40,9 +42,10 @@ export class BatchInstallComponent {
   );
   length$ = this.result$.pipe(map(result => result.count));
   apps$ = this.result$.pipe(
-    map(result => 
-      result.items
-    ),
+    map(result => {
+      this.showLoading = false;
+      return result.items
+    }),
     share(),
   );
   sysAuthStatus$ = this.sysAuthService.sysAuthStatus$;

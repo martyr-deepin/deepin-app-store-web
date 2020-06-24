@@ -8,13 +8,16 @@ dialog {
   padding-top: 1rem;
 }
 .container {
-  width: 800px;
+  width: 61rem;
   margin: 1rem;
-  height: 480px;
+  min-height: 25rem;
   border: 1px solid var(--main-title-hr-color);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  app-wait {
+    flex: 1;
+  }
 }
 .scrollbar {
   height: 100%;
