@@ -8,6 +8,7 @@ import { StoreJobInfo, StoreJobStatus } from 'app/modules/client/models/store-jo
 import { BuyService } from 'app/services/buy.service';
 import { UserAppsService } from 'app/services/user-apps.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
+import { MyUpdatesService } from 'app/modules/my-updates/services/my-updates.service';
 
 @Component({
   selector: 'dstore-control',
@@ -53,6 +54,7 @@ export class ControlComponent implements OnInit, OnChanges {
     private buyService: BuyService,
     private userAppService: UserAppsService,
     private sysAuth: SysAuthService,
+    private myUpdateService: MyUpdatesService
   ) {}
   @Input() soft: Software;
   @Output() job$: Observable<any>;
@@ -91,6 +93,8 @@ export class ControlComponent implements OnInit, OnChanges {
   }
   async queryPackage() {
     const pkg = await this.softwareService.query(this.soft).toPromise();
+    // update renewableApps
+    this.myUpdateService.sync(pkg,this.soft)
     this.package$.next(pkg);
   }
 

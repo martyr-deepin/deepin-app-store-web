@@ -3,7 +3,7 @@ import { map } from 'rxjs/operators';
 import { SoftwareService, Software } from 'app/services/software.service';
 import { StorageService, StorageKey } from 'app/services/storage.service';
 import { BehaviorSubject } from 'rxjs';
-import { StoreService } from 'app/modules/client/services/store.service';
+import { StoreService, Package } from 'app/modules/client/services/store.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
 
 @Injectable({
@@ -50,7 +50,35 @@ export class MyUpdatesService{
   updatings:string[] = [];
 
   init(){
-    //初始化的时候查询可更新列表
+    this.sysAuthService.sysAuthStatus$.pipe(
+      map(status=>{
+        if(this.sysAuthStatus != status) {
+          this.sysAuthStatus = status;
+          if(status) {
+            this.query()
+          }else {
+            this.renewableApps$.next([])
+          }
+        }
+      })
+    ).subscribe()
+  }
+
+  // sync renewableApps
+  sync(pkg:Package,soft:Software) {
+    if(pkg&&pkg.upgradable) {
+      let cache = this.softCache.find(s => s.id === soft.id)
+      if(!cache) {
+        console.log(soft)
+        console.log(pkg)
+        soft.package.size = pkg.size;
+        this.softCache.push(soft);
+        this.renewableApps$.next(this.softCache)
+      }
+    }
+  }
+
+  query(){
     this.storeService.InstalledPackages().subscribe( async packages => {
       const package_names = packages.map(pack=> pack.packageName );
       const param = {
