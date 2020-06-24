@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'environments/environment';
 import { switchMap } from 'rxjs/operators';
-import { StoreService, Package, QueryParam } from 'app/modules/client/services/store.service';
+import { StoreService, Package, QueryParam, InstallParam } from 'app/modules/client/services/store.service';
 import { PackageService } from './package.service';
 import { DownloadTotalService } from './download-total.service';
 import { AppService, AppJSON, Pricing } from './app.service';
@@ -103,7 +103,7 @@ export class SoftwareService {
     }
     const pkgMap = await this.packageService.querys(softs.map(this.toQuery));
     return softs.map((soft) => {
-      const pkg = pkgMap.get(soft.id.toString());
+      const pkg = pkgMap.get(soft.package_name);
       if (pkg) {
         soft.package = { localVersion: pkg.localVersion, remoteVersion: pkg.remoteVersion, upgradable: pkg.upgradable };
         // disable app based on blacklist
@@ -183,15 +183,26 @@ export class SoftwareService {
     return soft;
   }
 
-  // software convert to package query
-  private toQuery(soft: Software) {
-    // console.log(soft, 'asdasd');
+  private toInstall(soft:Software) {
     return {
-      name: soft.id && soft.id !== 0 ? soft.id.toString() : soft.package.appName,
-      localName: soft.info.name,
-      packages: soft.info.packages,
-    } as QueryParam;
+      name: soft.info.name,
+      packageName: soft.package_name
+    } as InstallParam;
   }
+
+  private toQuery(soft:Software):string {
+    return soft.package_name
+  }
+
+  // software convert to package query
+  // private toQuery(soft: Software) {
+  //   // console.log(soft, 'asdasd');
+  //   return {
+  //     name: soft.id && soft.id !== 0 ? soft.id.toString() : soft.package.appName,
+  //     localName: soft.info.name,
+  //     packages: soft.info.packages,
+  //   } as QueryParam;
+  // }
 
   // software download size
   size(soft: Software) {
@@ -203,12 +214,12 @@ export class SoftwareService {
   }
   // remove software
   remove(...softs: Software[]) {
-    return this.storeService.execWithCallback('storeDaemon.removePackages', softs.map(this.toQuery)).toPromise();
+    return this.storeService.execWithCallback('storeDaemon.removePackages', softs.map(this.toInstall)).toPromise();
   }
   // install software
   install(...softs: Software[]) {
     this.downloadCounter.installed(softs);
-    return this.storeService.execWithCallback('storeDaemon.installPackages', softs.map(this.toQuery)).toPromise();
+    return this.storeService.execWithCallback('storeDaemon.installPackages', softs.map(this.toInstall)).toPromise();
   }
   query(soft: Software) {
     return this.packageService.query(this.toQuery(soft)).pipe(

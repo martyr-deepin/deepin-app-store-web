@@ -16,7 +16,7 @@ export class PackageService {
   }
   private result$ = new Subject<Map<string, Package>>();
   private cache = new Map<string, Package>();
-  private queryArr: QueryOption[] = [];
+  private queryArr: string[] = [];
 
   async start() {
     while (true) {
@@ -24,30 +24,30 @@ export class PackageService {
       if (this.queryArr.length === 0) {
         continue;
       }
-      const arr = this.queryArr.splice(0, 20);
+      const arr = this.queryArr.splice(0, 40);
       const m = await this.storeService.query(arr).toPromise();
       m.forEach((pkg, name) => this.cache.set(name, pkg));
       this.result$.next(m);
     }
   }
 
-  query(opt: QueryOption) {
-    if (this.cache.has(opt.name)) {
-      return of(this.cache.get(opt.name));
+  query(pkgId: string) {
+    if (this.cache.has(pkgId)) {
+      return of(this.cache.get(pkgId));
     }
-    setTimeout(() => this.queryArr.push(opt));
+    setTimeout(() => this.queryArr.push(pkgId));
     return this.result$.pipe(
-      filter(m => m.has(opt.name)),
-      map(m => m.get(opt.name)),
+      filter(m => m.has(pkgId)),
+      map(m => m.get(pkgId)),
       first(),
     );
   }
 
-  async querys(opts: QueryOption[]) {
+  async querys(pkgIds: string[]) {
     let result = new Map<string, Package>();
-    opts.forEach(opt => this.cache.has(opt.name) && result.set(opt.name, this.cache.get(opt.name)));
-    if (result.size < opts.length) {
-      const mm = await this.storeService.query(opts.filter(opt => !result.has(opt.name))).toPromise();
+    pkgIds.forEach(id => this.cache.has(id) && result.set(id, this.cache.get(id)));
+    if (result.size < pkgIds.length) {
+      const mm = await this.storeService.query(pkgIds.filter(id => !result.has(id))).toPromise();
       mm.forEach((pkg, name) => {
         this.cache.set(name, pkg);
         result.set(name, pkg);
@@ -57,8 +57,3 @@ export class PackageService {
   }
 }
 
-interface QueryOption {
-  name: string;
-  localName: string;
-  packages: { packageURI: string }[];
-}

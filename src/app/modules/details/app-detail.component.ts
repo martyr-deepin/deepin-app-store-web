@@ -66,7 +66,7 @@ export class AppDetailComponent implements OnInit {
   size$ = this.storeService.jobListChange().pipe(
     startWith(null),
     switchMap(() => this.app$.pipe(
-      switchMap(app => this.softwareService.size(app).then(m => m.get(app.id.toString()))),
+      switchMap(app => this.softwareService.size(app).then(m => m.get(app.package_name))),
       share(),
       first()
     ).toPromise().then(res=>{

@@ -69,44 +69,26 @@ export class StoreService {
   }
 
   InstalledPackages() {
-    interface LocalApp {
-      allLocalName: AllLocalName;
-      appName: string;
-      downloadSize: number;
-      installedTime: number;
-      localName: string;
-      localVersion: string;
-      packageName: string;
-      packageURI: string;
-      remoteVersion: string;
-      size: number;
-      upgradable: boolean;
-      icon?: string;
-    }
-    interface AllLocalName {
-      en_US: string;
-      zh_CN: string;
-    }
     return this.execWithCallback<LocalApp[]>('storeDaemon.installedPackages');
   }
 
-  queryDownloadSize(param: QueryParam[]) {
+  queryDownloadSize(param: string[]) {
     return this.execWithCallback<QueryResult>('storeDaemon.queryDownloadSize', param).pipe(
       map(result => {
-        const arr = Object.values(result).filter(r => r && r.packages && r.packages.length > 0);
-        return new Map(arr.map(pkg => [pkg.name, pkg.packages[0].downloadSize]));
+        const arr = Object.values(result).filter(r => r );
+        return new Map(arr.map(pkg => [pkg.packageName, pkg.downloadSize]));
       }),
     );
   }
-  query(opts: QueryParam[]) {
+  query(opts: string[]) {
     return this.execWithCallback<QueryResult>('storeDaemon.query', opts).pipe(
       map(results => {
-        const arr = opts.map(opt => {
-          const result = results[opt.name];
+        const arr = opts.map(name => {
+          const result = results[name];
           if (!result) {
-            return [opt.name, null] as [string, Package];
+            return [name, null] as [string, Package];
           }
-          return [opt.name, result.packages.find(pkg => Boolean(pkg.appName))] as [string, Package];
+          return [name, result] as [string, Package];
         });
         return new Map(arr);
       }),
@@ -133,10 +115,7 @@ class StoreResponse {
 }
 
 interface QueryResult {
-  [key: string]: {
-    name: string;
-    packages: Package[];
-  };
+  [key: string]: Package
 }
 export interface Package {
   appName: string;
@@ -147,10 +126,32 @@ export interface Package {
   upgradable: boolean;
   installedTime: number;
   downloadSize: number;
-  packageSize: number;
+  size: number;
 }
 export interface QueryParam {
   name: string;
   localName: string;
   packages: { packageURI: string }[];
+}
+export interface InstallParam {
+  name: string;
+  packageName: string;
+}
+export interface LocalApp {
+  allLocalName: AllLocalName;
+  appName: string;
+  downloadSize: number;
+  installedTime: number;
+  localName: string;
+  localVersion: string;
+  packageName: string;
+  packageURI: string;
+  remoteVersion: string;
+  size: number;
+  upgradable: boolean;
+  icon?: string;
+}
+interface AllLocalName {
+  en_US: string;
+  zh_CN: string;
 }
