@@ -5,9 +5,6 @@ import { first, filter } from 'rxjs/operators';
 import { RegionService } from './services/region.service';
 import { AuthService } from './services/auth.service';
 
-import { StoreService } from './modules/client/services/store.service';
-import { StoreJobStatus } from 'app/modules/client/models/store-job-info';
-
 @Component({
   selector: 'm-root',
   templateUrl: './app.component.html',
@@ -17,8 +14,7 @@ export class AppComponent implements OnInit {
   constructor(
     private zone: NgZone,
     private region: RegionService,
-    private auth: AuthService,
-    private store: StoreService,
+    private auth: AuthService
   ) {}
   title = 'deepin-app-store-web';
   installing = true;
@@ -94,45 +90,6 @@ export class AppComponent implements OnInit {
         environment.activeColor = settings.activeColor;
       }
 
-      // exec apt update
-      //if (AuthorizationState.includes(environment.authorizationState)) {
-        const storeUpdate = 'storeUpdate';
-        const t = new Date().toISOString();
-        if (!localStorage.getItem(storeUpdate)) {
-          console.warn('store first update');
-          const jobID = await this.store.storeUpdate().toPromise();
-          if (jobID) {
-            await new Promise(resolve => {
-              const interval = setInterval(() => {
-                this.store
-                  .getJobStatus(jobID)
-                  .toPromise()
-                  .then(({ status }) => {
-                    if (status !== StoreJobStatus.running) {
-                      resolve();
-                      clearInterval(interval);
-                    }
-                  })
-                  .catch(() => {
-                    resolve();
-                    clearInterval(interval);
-                  });
-              }, 1000);
-            });
-          }
-          localStorage.setItem(storeUpdate, t);
-        } else {
-          if (!sessionStorage.getItem(storeUpdate)) {
-            console.warn('store update');
-            setTimeout(() => {
-              this.store
-                .storeUpdate()
-                .toPromise()
-                .finally(() => sessionStorage.setItem('storeUpdate', t));
-            }, 1000 * 5);
-          }
-        }
-      //}
       // native client inited
       environment.native = true;
     }
