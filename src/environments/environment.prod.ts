@@ -29,4 +29,5 @@ export const environment = {
   },
   authorizationState: 1,
   activeColor: '#0081ff',
+  appVersion: ''
 };

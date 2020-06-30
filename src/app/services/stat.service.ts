@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { APIBase, ListOption } from './api';
 import { isEqual } from 'lodash';
+import {environment} from 'environments/environment'
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,9 @@ export class StatService extends APIBase<AppStat> {
     let time = new Date().getTime()
     if((time-this.cacheTime)>this.cacheSlot || !isEqual(this.opt,opt)) {
       this.cacheTime = new Date().getTime()
+      if(environment.appVersion) {
+        opt.version = environment.appVersion
+      }
       this.opt = opt;
       this.resp = super.list(opt);
     }
@@ -34,6 +38,7 @@ interface StatListOption extends ListOption {
   tag?: string;
   author?: number;
   keyword: string;
+  version: string;
 }
 export interface AppStat {
   app_id: number;

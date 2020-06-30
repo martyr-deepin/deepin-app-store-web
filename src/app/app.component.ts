@@ -89,7 +89,12 @@ export class AppComponent implements OnInit {
       if(settings.activeColor) {
         environment.activeColor = settings.activeColor;
       }
-
+      const version = await new Promise<string>(resolve => {
+        channel.objects.settings.getAppVersion(resolve);
+      });
+      if(version) {
+        environment.appVersion = version;
+      }
       // native client inited
       environment.native = true;
     }
