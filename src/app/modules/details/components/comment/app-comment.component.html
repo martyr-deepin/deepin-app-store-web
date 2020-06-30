@@ -127,7 +127,7 @@
           <ng-container i18n>No user comments available</ng-container>
         </div>
         <ng-container *ngSwitchCase="list && list.length > 0">
-          <table class="list">
+          <table cellspacing="0" class="list">
             <ng-container *ngFor="let c of list; index as $index; first as first">
               <tr [@myComment]="haveNewComment && first && c.commenter === info?.uid ? 'in' : ''">
                 <td rowspan="2">

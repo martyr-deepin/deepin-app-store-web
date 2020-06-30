@@ -3,7 +3,8 @@ dialog {
   overflow: hidden;
 }
 pre {
-  user-select: auto;
+  user-select: text;
+  white-space: pre-wrap;
 }
 .details {
   margin-left: 1rem;
