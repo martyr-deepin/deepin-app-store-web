@@ -32,7 +32,7 @@
   &.first {
     padding-top: 0;
     main {
-      padding-top: 0.5rem;
+      padding: 0.5rem;
     }
     img {
       width: 100%;
@@ -74,19 +74,22 @@
         text-overflow: ellipsis;
       }
     }
-  }
-
-  .control {
-    display: none;
-  }
-
-  &:hover {
-    background-color: var(--main-item-bg-color-hover);
-    border-bottom-color: transparent;
 
     .control {
-      display: flex;
-      align-items: center;
+      display: none;
     }
+
+    &:hover,
+    &.hover {
+      background-color: var(--main-item-bg-color-hover);
+      border-bottom-color: transparent;
+
+      .control {
+        display: flex;
+        align-items: center;
+      }
+    }
+    
   }
+
 }
