@@ -33,6 +33,10 @@ export class AuthService {
       console.log('requestLogin，profile login');
       this.login();
     });
+    this.unauthorized.unauthorized$.pipe(throttleTime(1000)).subscribe(() => {
+      console.log('requestLogin，unauthorized');
+      this.login();
+    });
     Channel.connect('account.onAuthorized').subscribe(([code, state]) => this.auth(code, state));
     const userInfo = await Channel.exec('account.getUserInfo');
     Channel.connect('account.userInfoChanged')
