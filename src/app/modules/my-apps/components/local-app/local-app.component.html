@@ -62,7 +62,7 @@
 
                 </div>
               </ng-template>
-              <ng-container *ngIf="removing.includes(installed.software.package_name)||removingList.includes(installed.software.package_name);else $infos">
+              <ng-container *ngIf="removing.includes(installed.software?.package_name)||removingList.includes(installed.software?.package_name);else $infos">
                 <div class="removing">
                   <img />
                   <ng-container i18n>Uninstalling...</ng-container>
@@ -71,9 +71,9 @@
               <ng-template #$infos>
                 <ng-container *ngIf="selected != installed.name; else confirm">
                   <div class="score">
-                    <ng-container *ngIf="installed.software.stat&&installed.software.stat.score_count>=20; else $noneScore">
-                      <dstore-star [rate]="installed.software.stat.score/2||0"></dstore-star>
-                      <span>{{installed.software.stat.score | appScore}}</span>
+                    <ng-container *ngIf="installed.software?.stat&&installed.software?.stat.score_count>=20; else $noneScore">
+                      <dstore-star [rate]="installed.software?.stat.score/2||0"></dstore-star>
+                      <span>{{installed.software?.stat.score | appScore}}</span>
                     </ng-container>
                     <ng-template #$noneScore>
                       <span class="score_none" i18n>No ratings</span>
@@ -104,7 +104,7 @@
                     <ng-container i18n>Uninstall</ng-container>
                   </button>
                 </ng-template>
-                <ng-container *ngIf="removing.includes(installed.software.package_name)||removingList.includes(installed.software.package_name) ; else uninstall">
+                <ng-container *ngIf="removing.includes(installed.software?.package_name)||removingList.includes(installed.software?.package_name) ; else uninstall">
                   <!-- <button class="default"  disabled>
                     <ng-container i18n>Uninstalling</ng-container>
                   </button> -->

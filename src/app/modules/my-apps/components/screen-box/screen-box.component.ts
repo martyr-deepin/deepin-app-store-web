@@ -83,7 +83,7 @@ export class ScreenBoxComponent implements OnInit {
     first(),
     map(apps => {
       for(var key in CategoryType) {
-        let categorys = apps.filter(item => item.software.info.category === CategoryType[key].toLowerCase())
+        let categorys = apps.filter(item => item.software?.info.category === CategoryType[key].toLowerCase())
         if(categorys.length>0) {
           this.checkboxList.push({label:CategoryType[key],value:CategoryType[key],data1:categorys.length})
         }
@@ -101,13 +101,13 @@ export class ScreenBoxComponent implements OnInit {
           item.data1 = apps.length;
           break;
         case ScreenBoxKeys.lowScore:
-          item.data1 = apps.filter(app=>(app.software.stat&&app.software.stat.score&&app.software.stat.score_count>20&&app.software.stat.score<5)).length
+          item.data1 = apps.filter(app=>(app.software?.stat&&app.software?.stat.score&&app.software?.stat.score_count>20&&app.software?.stat.score<5)).length
           break;
         case ScreenBoxKeys.freeApp:
-          item.data1 = apps.filter(app=>app.software.free||app.software.free===undefined).length
+          item.data1 = apps.filter(app=>app.software?.free||app.software?.free===undefined).length
           break;
         case ScreenBoxKeys.paidApp:
-          item.data1 = apps.filter(app=>app.software.free===false).length
+          item.data1 = apps.filter(app=>app.software?.free===false).length
           break;
       }
     })
