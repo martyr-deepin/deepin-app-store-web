@@ -11,6 +11,22 @@ body {
   color: var(--font-color);
 }
 
+//jqueryui
+@import '~jquery-ui-dist/jquery-ui.min.css';
+//jquery-ui tooltip
+.light {
+  .ui-tooltip {
+    white-space: pre-wrap;
+  }
+}
+.dark {
+  .ui-tooltip {
+    white-space: pre-wrap;
+    background-color: var(--main-bg-color);
+    color: var(--font-color);
+  }
+}
+
 // 滚动条
 @import '~perfect-scrollbar/css/perfect-scrollbar.css';
 .ps {

@@ -12,6 +12,7 @@ import { CoverDirective } from './directives/cover.directive';
 import { CircleDirective } from './directives/circle.directive';
 import { AuthfocusDirective } from './directives/authfocus.directive';
 import { TipsDirective } from "./directives/tips.directive";
+import { JqueryToolTip } from "./directives/jquery-tooltip.directive"
 
 import { WaitComponent } from './components/wait/wait.component';
 import { ScrollbarComponent } from './components/scrollbar/scrollbar.component';
@@ -56,7 +57,7 @@ const components = [
   CircleComponent,ListCategory,
   PreDetailComponent
 ];
-const directives = [DialogDirective, HoverDirective, ResizeDirective, CoverDirective, AuthfocusDirective,CircleDirective,TipsDirective];
+const directives = [DialogDirective, HoverDirective, ResizeDirective, CoverDirective, AuthfocusDirective,CircleDirective,TipsDirective,JqueryToolTip];
 const pipes = [RangePipe, FitImage, FitLanguage, SizeHuman, DeepinidPipe, CategoryTextPipe, AppScorePipe,CoverImagePipe];
 const modules = [ClientModule, FormsModule, ReactiveFormsModule];
 @NgModule({
