@@ -83,20 +83,22 @@ export class AppComponent implements OnInit {
         environment.remoteDebug = settings.remoteDebug;
         environment.authorizationState = settings.authorizationState;
       }
+      // native client inited
+      environment.native = true;
+
+      //init theme
       if (settings.themeName) {
         environment.themeName = settings.themeName;
       }
+      //init active color
       if(settings.activeColor) {
         environment.activeColor = settings.activeColor;
       }
-      const version = await new Promise<string>(resolve => {
-        channel.objects.settings.getAppVersion(resolve);
-      });
-      if(version) {
-        environment.appVersion = version;
+      //init app version
+      if(settings.appStoreVersion) {
+        environment.appStoreVersion = settings.appStoreVersion;
       }
-      // native client inited
-      environment.native = true;
+      
     }
   }
 
@@ -135,4 +137,5 @@ interface Settings {
   GUIFramework: string;
   authorizationState: number;
   activeColor:string;
+  appStoreVersion:string;
 }

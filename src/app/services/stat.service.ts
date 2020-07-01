@@ -21,8 +21,8 @@ export class StatService extends APIBase<AppStat> {
     let time = new Date().getTime()
     if((time-this.cacheTime)>this.cacheSlot || !isEqual(this.opt,opt)) {
       this.cacheTime = new Date().getTime()
-      if(environment.appVersion) {
-        opt.version = environment.appVersion
+      if(environment.appStoreVersion) {
+        opt.version = environment.appStoreVersion
       }
       this.opt = opt;
       this.resp = super.list(opt);
