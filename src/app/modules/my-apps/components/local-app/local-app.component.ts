@@ -44,7 +44,7 @@ export class LocalAppComponent implements OnInit {
 
   remove(soft: Software) {
     this.localAppService.onRemove = true;
-    this.removing.push(soft.package_name);
+    this.removing.push(soft.package_name || soft.package.appName);
     this.localAppService.removeLocal(soft);
     this.selected = null;
   }

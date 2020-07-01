@@ -62,7 +62,7 @@
 
                 </div>
               </ng-template>
-              <ng-container *ngIf="removing.includes(installed.software?.package_name)||removingList.includes(installed.software?.package_name);else $infos">
+              <ng-container *ngIf="removing.includes(installed.package.appName)||removing.includes(installed.software?.package_name)||removingList.includes(installed.software?.package_name);else $infos">
                 <div class="removing">
                   <img />
                   <ng-container i18n>Uninstalling...</ng-container>
@@ -104,7 +104,7 @@
                     <ng-container i18n>Uninstall</ng-container>
                   </button>
                 </ng-template>
-                <ng-container *ngIf="removing.includes(installed.software?.package_name)||removingList.includes(installed.software?.package_name) ; else uninstall">
+                <ng-container *ngIf="removing.includes(installed.package.appName)||removing.includes(installed.software?.package_name)||removingList.includes(installed.software?.package_name) ; else uninstall">
                   <!-- <button class="default"  disabled>
                     <ng-container i18n>Uninstalling</ng-container>
                   </button> -->

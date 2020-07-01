@@ -186,7 +186,7 @@ export class SoftwareService {
   private toInstall(soft:Software) {
     return {
       name: soft.info.name,
-      packageName: soft.package_name
+      packageName: soft.package_name || soft.package.appName
     } as InstallParam;
   }
 
