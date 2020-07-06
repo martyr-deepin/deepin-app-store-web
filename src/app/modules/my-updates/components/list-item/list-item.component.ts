@@ -36,15 +36,20 @@ export class ListItemComponent implements OnChanges {
   inited:number = 0;
 
   ngOnChanges(c: SimpleChanges): void {
-    if(c.job) {
+    if(!c.job.firstChange) {
       this.queryPackage();
     }
   }
 
   async queryPackage() {
     const pkg = await this.softwareService.query(this.software).toPromise();
-    if(pkg && pkg.localVersion === this.software.package.remoteVersion) {
-      this.service.addRecentlyApps(this.software)
+    if(pkg) {
+      if(pkg.localVersion === this.software.package.remoteVersion){
+        this.service.addRecentlyApps(this.software)
+      }
+      if(this.job === undefined&&this.updatings.includes(this.software.package_name)){
+        this.service.addRecentlyApps(this.software)
+      }
     }
   }
 
