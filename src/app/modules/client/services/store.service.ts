@@ -32,7 +32,7 @@ export class StoreService {
     return this.execWithCallback('storeDaemon.getJobsInfo', jobPaths);
   }
 
-  getJobStatus(jobPath: string): Observable<{ status: StoreJobStatus }> {
+  getJobStatus(jobPath: string): Observable<StoreJobInfo> {
     return this.execWithCallback('storeDaemon.getJobStatus', jobPath);
   }
 

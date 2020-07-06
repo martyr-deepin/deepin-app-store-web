@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, HostListener, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, Input, Output, HostListener, SimpleChanges, OnChanges, ElementRef } from '@angular/core';
 import { Software, SoftwareService } from 'app/services/software.service';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { share, startWith, map, pairwise, switchMap } from 'rxjs/operators';
 import { JobService } from 'app/services/job.service';
 import { trigger, animate, style, transition, keyframes } from '@angular/animations';
@@ -9,6 +9,7 @@ import { BuyService } from 'app/services/buy.service';
 import { UserAppsService } from 'app/services/user-apps.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
 import { MyUpdatesService } from 'app/modules/my-updates/services/my-updates.service';
+import { UpdateSourceListService } from 'app/services/update-source-list.service';
 
 @Component({
   selector: 'dstore-control',
@@ -47,14 +48,16 @@ import { MyUpdatesService } from 'app/modules/my-updates/services/my-updates.ser
     ]),
   ],
 })
-export class ControlComponent implements OnInit, OnChanges {
+export class ControlComponent implements OnChanges {
   constructor(
+    private elRef: ElementRef<HTMLElement>,
     private softwareService: SoftwareService,
     private jobService: JobService,
     private buyService: BuyService,
     private userAppService: UserAppsService,
     private sysAuth: SysAuthService,
-    private myUpdateService: MyUpdatesService
+    private myUpdateService: MyUpdatesService,
+    private updateSourceList: UpdateSourceListService,
   ) {}
   @Input() soft: Software;
   @Output() job$: Observable<any>;
@@ -65,20 +68,23 @@ export class ControlComponent implements OnInit, OnChanges {
   id = Math.random();
   sysAuthStatus$ = this.sysAuth.sysAuthStatus$;
 
-  ngOnInit() {}
-  ngOnChanges(c: SimpleChanges) {
+  async ngOnChanges(c: SimpleChanges) {
     if (c.soft) {
-      this.init();
+      await this.init();
+      let t = setTimeout(() => {
+        this.updateSourceList.controlInit(<HTMLButtonElement>this.elRef.nativeElement.firstElementChild, this.soft.id);
+        clearTimeout(t);
+      }, 100);
     }
   }
   @HostListener('click', ['$event']) click(event: Event) {
     event.preventDefault();
     event.stopPropagation();
   }
-  init() {
+  async init() {
     this.queryPackage();
     this.job$ = this.jobService.jobsInfo().pipe(
-      map(jobs => jobs.find(job => job.names.includes(this.soft.package_name))),
+      map((jobs) => jobs.find((job) => job.names.includes(this.soft.package_name))),
       startWith(null),
       pairwise(),
       switchMap(async ([old, job]) => {
@@ -90,11 +96,16 @@ export class ControlComponent implements OnInit, OnChanges {
       }),
       share(),
     );
+    // this.updateSourceList.updateSouceList$.subscribe(res=>{
+    //   if(res){
+    //     console.log(res.status)
+    //   }
+    // })
   }
   async queryPackage() {
     const pkg = await this.softwareService.query(this.soft).toPromise();
     // update renewableApps
-    this.myUpdateService.sync(pkg,this.soft)
+    this.myUpdateService.sync(pkg, this.soft);
     this.package$.next(pkg);
   }
 
@@ -102,8 +113,10 @@ export class ControlComponent implements OnInit, OnChanges {
     this.softwareService.open(this.soft);
   }
 
+  updateSubscription:Subscription;
   installApp(e: Event) {
-    this.softwareService.install(this.soft);
+    this.updateSourceList.installApp(e,this.soft,this.updateSubscription);
+    
   }
 
   buyApp(e: Event) {
