@@ -24,7 +24,7 @@ export const environment = {
     region: 'CN',
     language: 'zh_CN',
     display: 'x11',
-    version: '',
+    client_version: '',
     product_name: ''
   },
   authorizationState: 1,

@@ -91,7 +91,7 @@ export class AppComponent implements OnInit {
         environment.themeName = settings.themeName;
       }
       if(settings.appStoreVersion) {
-        environment.store_env.version = settings.appStoreVersion;
+        environment.store_env.client_version = settings.appStoreVersion;
       }
       if(settings.productName) {
         environment.store_env.product_name = settings.productName;
