@@ -36,7 +36,7 @@ export class DownloadTotalService {
     this.http
       .post(url, {
         app_id: app.id,
-        app_version: app.package.remoteVersion,
+        app_version: app.package.remoteVersion||app.package.localVersion,
       })
       .subscribe();
   }
@@ -46,7 +46,7 @@ export class DownloadTotalService {
     this.http
       .post(url, {
         app_id: app.id,
-        app_version: app.package.remoteVersion,
+        app_version: app.package.remoteVersion||app.package.localVersion,
       })
       .subscribe();
   }
