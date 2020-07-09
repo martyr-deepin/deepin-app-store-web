@@ -10,7 +10,7 @@
   color: var(--font-color-gray);
   >div {
     border-bottom: 1px solid var(--main-item-hr-color);
-    padding: 1rem 0.5rem;
+    padding: 0.5rem 0;
   }
 
   .icon {
@@ -25,13 +25,13 @@
     display: flex;
     align-items: center;
     padding-right: 0.2rem;
-    font-size: 0.875rem;
     span {
       margin-left: 0.5rem;
       font-weight: 500;
+      font-size: 0.875rem;
     }
     .score_text {
-      color: #303030;
+      color: var(--font-color)
     }
     .score_none {
       margin-left: 0;
@@ -47,25 +47,30 @@
     text-overflow: ellipsis;
   }
 
-  .title {
-    flex: 3.5;
-    min-width: 0;
+  .title_wrap {
     display: flex;
-    flex-flow: column;
-    width: 0;
-
-    >div {
-      @extend .div_style;
-    }
-
-    .name {
-      color: var(--font-color);
-      font-size: 0.92rem;
-
-      >p {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    flex: 4.5;
+    width:0;
+    padding:0;
+    border-bottom: 0;
+    .title {
+      padding: 1rem 0 0 0.5rem;
+      flex:1;
+      min-width: 0;
+      display: flex;
+      flex-flow: column;
+      border-bottom: 1px solid var(--main-item-hr-color);
+      >div {
+        @extend .div_style;
+      }
+      .name {
+        color: var(--font-color);
+        font-size: 0.92rem;
+        >p {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
     }
   }
@@ -89,7 +94,7 @@
 
     .log_content_none {
       width: 100%;
-      line-height: 3.2rem;
+      line-height: 4.6rem;
     }
 
     .log_btn {
@@ -105,7 +110,7 @@
   }
 
   .remote_version {
-    color: #303030;
+    color: var(--font-color)
   }
   .progress {
     flex: 5;
@@ -170,7 +175,7 @@
   }
 
   .button {
-    width: 6.15rem;
+    width: 6.5rem;
     line-height: 3.7rem;
 
     .plain {

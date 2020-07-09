@@ -10,7 +10,7 @@
   color: var(--font-color-gray);
   >div {
     border-bottom: 1px solid var(--main-item-hr-color);
-    padding: 1rem 0.5rem;
+    padding: 0.5rem 0;
   }
 }
 
@@ -31,17 +31,28 @@
   display: flex;
   flex: 4;
   width:0;
+  padding:0 !important;
+  border-bottom: 0 !important;
   .title {
-    margin-left: 1rem;
+    padding: 1rem 0 0 0.5rem;
+    flex:1;
     min-width: 0;
+    display: flex;
+    flex-flow: column;
+    border-bottom: 1px solid var(--main-item-hr-color);
     >div {
       @extend .div_style;
     }
     .name {
       color: var(--font-color);
       font-size: 0.92rem;
+      >p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
-  }  
+  }
 }
 
 .log {
@@ -63,7 +74,7 @@
   }
   .log_content_none {
     width: 100%;
-    line-height: 3.2rem;
+    line-height: 4.6rem;
   }
   .log_btn {
     color: #199ff3;
@@ -84,7 +95,7 @@
   width: 0;
   >div {
     @extend .div_style;
-    line-height: 3rem;
+    line-height: 4.6rem;
   }
 }
 
@@ -107,10 +118,10 @@
   display: flex;
   align-items: center;
   padding-right: 0.2rem;
-  font-size: 0.875rem;
   span {
     margin-left: 0.5rem;
     font-weight: 500;
+    font-size: 0.875rem;
   }
   .score_text {
     color: #303030;

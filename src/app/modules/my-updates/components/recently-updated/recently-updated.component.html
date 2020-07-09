@@ -1,21 +1,21 @@
-<dstore-scrollbar>
-  <ng-container *ngIf="(recentUpdatedList$ | async) as list; else loadingContainer" >
-    <div class="table_head">
-      <div class="th" i18n>Name</div>
-      <div class="th" i18n>Rating</div>
-      <div class="th" i18n>Changelog</div>
-      <div class="th" i18n>Version</div>
-      <div class="th" i18n>Date Installed</div>
-    </div>
+<ng-container *ngIf="(recentUpdatedList$ | async) as list; else loadingContainer" >
+  <div class="table_head">
+    <div class="th" i18n>Name</div>
+    <div class="th" i18n>Rating</div>
+    <div class="th" i18n>Changelog</div>
+    <div class="th" i18n>Version</div>
+    <div class="th" i18n>Date Installed</div>
+  </div>
+  <dstore-scrollbar>
     <div class="recently_content">
       <ng-container *ngFor="let item of list">
         <my-updates-recently-item [software]="item" ></my-updates-recently-item>
       </ng-container>
     </div>
-  </ng-container>
-  <ng-template #loadingContainer >
-    <div class="loadingContainer">
-      <app-wait></app-wait>
-    </div>
-  </ng-template>
-</dstore-scrollbar>
+  </dstore-scrollbar>
+</ng-container>
+<ng-template #loadingContainer >
+  <div class="loadingContainer">
+    <app-wait></app-wait>
+  </div>
+</ng-template>

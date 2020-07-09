@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, ElementRef } from '@angular/core';
 import { Software, SoftwareService } from 'app/services/software.service';
 import { StoreJobInfo, StoreJobStatus, StoreJobError, StoreJobErrorType, CanFixError } from 'app/modules/client/models/store-job-info';
 import { switchMap, filter } from 'rxjs/operators';
@@ -13,7 +13,7 @@ import { SysAuthService } from 'app/services/sys-auth.service';
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.scss']
 })
-export class ListItemComponent implements OnChanges {
+export class ListItemComponent {
 
   constructor(
     private service:MyUpdatesService,
@@ -30,32 +30,14 @@ export class ListItemComponent implements OnChanges {
   
   StoreJobStatus = StoreJobStatus;
 
-  updatings = this.service.updatings;
-
   subscribe:Subscription;
   inited:number = 0;
 
-  ngOnChanges(c: SimpleChanges): void {
-    if(!c.job.firstChange) {
-      this.queryPackage();
-    }
-  }
-
-  async queryPackage() {
-    const pkg = await this.softwareService.query(this.software).toPromise();
-    if(pkg) {
-      if(pkg.localVersion === this.software.package.remoteVersion){
-        this.service.addRecentlyApps(this.software)
-      }
-      if(this.job === undefined&&this.updatings.includes(this.software.package_name)){
-        this.service.addRecentlyApps(this.software)
-      }
-    }
-  }
+ 
 
   update(): void {
-    if(!this.service.updatings.includes(this.software.package_name)){
-      this.service.updatings.push(this.software.package_name)
+    if(!this.service.updatings.get(this.software.package_name)){
+      this.service.updatings.set(this.software.package_name,this.software)
     }
     this.softwareService.install(this.software)
   }
@@ -68,8 +50,6 @@ export class ListItemComponent implements OnChanges {
     }
     apps[this.software.id]=this.software.package.remoteVersion
     this.service.setIgnoreApp(apps)
-    //刷新
-    //this.service.renewableApps$.next(new Date().getTime())
   }
 
   //开始任务
@@ -83,10 +63,7 @@ export class ListItemComponent implements OnChanges {
   //取消任务
   cancelled:boolean = false;
   cancel = (job:string) => {
-    let index = this.service.updatings.findIndex(e=>e === this.software.package_name);
-    if(index>-1){
-      this.service.updatings.splice(index,1)
-    }
+    this.service.updatings.delete(this.software.package_name)
     this.cancelled = true;
     this.jobService.clearJob(job)
   };

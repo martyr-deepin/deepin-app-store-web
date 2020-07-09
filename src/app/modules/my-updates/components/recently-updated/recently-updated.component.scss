@@ -1,10 +1,10 @@
 :host {
   flex: 1;
   display: flex;
-}
-
-dstore-scrollbar {
-  padding: 1rem 1.5rem 0 1.5rem;
+  flex-flow: column;
+  .recently_content {
+    padding: 0 1.5rem;
+  }
 }
 
 .table_head {
@@ -14,7 +14,8 @@ dstore-scrollbar {
   background-color: var(--nav-bg-color);
   font-size: 13px;
   font-weight: 500;
-  padding-left: 0.5rem;
+  padding: 0 1.5rem;
+  margin-top: 1rem;
   .th {
     &:first-child {
       flex: 4;
