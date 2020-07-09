@@ -96,7 +96,10 @@ export class AppComponent implements OnInit {
       }
       //init app version
       if(settings.appStoreVersion) {
-        environment.appStoreVersion = settings.appStoreVersion;
+        environment.store_env.client_version = settings.appStoreVersion;
+      }
+      if(settings.productName) {
+        environment.store_env.product_name = settings.productName
       }
       
     }
@@ -138,4 +141,5 @@ interface Settings {
   authorizationState: number;
   activeColor:string;
   appStoreVersion:string;
+  productName:string;
 }

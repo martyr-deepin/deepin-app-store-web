@@ -28,6 +28,5 @@ export const environment = {
     product_name: ''
   },
   authorizationState: 1,
-  activeColor: '#0081ff',
-  appStoreVersion: ''
+  activeColor: '#0081ff'
 };
