@@ -28,7 +28,7 @@ export class BlacklistService {
       console.warn('[blacklist]', ids);
       return new Map(ids as [number, BlacklistOperation][]);
     } catch (err) {
-      console.error(err);
+      console.warn(err);
       return new Map<number, BlacklistOperation>();
     }
   }
