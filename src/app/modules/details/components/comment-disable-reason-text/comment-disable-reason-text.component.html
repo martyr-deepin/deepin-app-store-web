@@ -1,6 +1,7 @@
 <ng-container [ngSwitch]="reason">
   <ng-container *ngSwitchCase="CommentDisableReason.CommentDisableReasonUnavailable">
-    <ng-container i18n>The application is not available</ng-container>
+    <!-- <ng-container i18n>The application is not available</ng-container> -->
+    <ng-container i18n>Please post your comment after using it</ng-container>
   </ng-container>
   <ng-container *ngSwitchCase="CommentDisableReason.CommentDisableReasonBanned">
     <ng-container i18n>You are banned</ng-container>

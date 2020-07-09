@@ -1,6 +1,6 @@
-import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { publishReplay, refCount, switchMap, share, map, startWith, first } from 'rxjs/operators';
+import { switchMap, map, startWith, publishReplay, refCount } from 'rxjs/operators';
 
 import { StoreService } from 'app/modules/client/services/store.service';
 import { StoreJobType, StoreJobStatus } from 'app/modules/client/models/store-job-info';
@@ -15,7 +15,6 @@ import { DownloadTotalService } from 'app/services/download-total.service';
 import { CommentService } from './services/comment.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
 import { JobService } from 'app/services/job.service';
-import { AppCommentComponent } from './components/comment/app-comment.component';
 
 @Component({
   selector: 'dstore-app-detail',
@@ -33,7 +32,8 @@ export class AppDetailComponent implements OnInit {
     private downloadTotalServer: DownloadTotalService,
     private comment: CommentService,
     private sysAuth: SysAuthService,
-    private el: ElementRef
+    private el: ElementRef,
+    private jobService: JobService
   ) {}
 
   crumbs = false;
@@ -44,9 +44,6 @@ export class AppDetailComponent implements OnInit {
   StoreJobStatus = StoreJobStatus;
   StoreJobType = StoreJobType;
   SoftSource = Source;
-
-  @ViewChild('$commentRef')
-  appComment:AppCommentComponent;
 
   openURL = DstoreObject.openURL;
   pause = this.storeService.pauseJob;
@@ -59,22 +56,9 @@ export class AppDetailComponent implements OnInit {
   sourceCount$ = this.comment.sourceCount$.pipe(map(app => parseInt(app)));
   app$ = this.route.paramMap.pipe(
     switchMap(param => this.softwareService.list({ ids: [Number(param.get('id'))] }).then(softs => softs[0])),
-    publishReplay(1),
+    publishReplay(1), 
     refCount(),
   );
-
-  size$ = this.storeService.jobListChange().pipe(
-    startWith(null),
-    switchMap(() => this.app$.pipe(
-      switchMap(app => this.softwareService.size(app).then(m => m.get(app.package_name))),
-      share(),
-      first()
-    ).toPromise().then(res=>{
-      this.appComment.init()
-      return res
-    }))
-
-  )
 
   allowName$ = this.storeService.getAllowShowPackageName();
 

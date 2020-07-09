@@ -63,11 +63,12 @@
             <ng-template #$Downloaded>
               <ng-container i18n>Downloaded</ng-container>
             </ng-template>
-            <ng-container *ngFor="let size of [size$ | async]" [ngSwitch]="size">
-              <ng-container *ngSwitchCase="null" i18n>Calculating</ng-container>
-              <ng-container *ngSwitchCase="0" i18n>Downloaded</ng-container>
-              <ng-container *ngSwitchDefault>{{ size | sizeHuman }}</ng-container>
+            <ng-container *ngIf="controlRef.package$ | async as package;else CalculatingRef">
+              <ng-container i18n>{{ package.size | sizeHuman }}</ng-container>
             </ng-container>
+            <ng-template #CalculatingRef>
+              <ng-container i18n>Calculating</ng-container>
+            </ng-template>
           </label>
         </td>
       </tr>
@@ -121,12 +122,11 @@
 
   <app-screenshot [screenshotList]="app.info.screenshot"></app-screenshot>
 
-  <ng-container *ngIf="supportSignIn && controlRef.package$ | async as package">
+  <!-- <ng-container *ngIf="supportSignIn && controlRef.package$ | async as package">
     <app-donate [appName]="app.name"></app-donate>
-  </ng-container>
+  </ng-container> -->
   <ng-container>
-    <dstore-app-comment #$commentRef [appID]="app.id" [appVersion]="app.package.remoteVersion"></dstore-app-comment>
-
+    <dstore-app-comment [pkg$]="controlRef.package$" [appID]="app.id" [appVersion]="app.package.remoteVersion||app.package.localVersion"></dstore-app-comment>
     <div class="ad" *ngIf="adVisible$ | async">
       <ng-container i18n>CDN supported by UPYUN</ng-container>
     </div>

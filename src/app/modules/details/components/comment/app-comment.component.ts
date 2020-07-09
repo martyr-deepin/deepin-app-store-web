@@ -1,14 +1,15 @@
-
 import { Component, OnInit, Input, OnChanges, ViewChild, ElementRef } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { HttpErrorResponse } from '@angular/common/http';
-import { first, tap, find } from 'rxjs/operators';
+import { first, tap, map } from 'rxjs/operators';
 import * as _ from 'lodash';
 import smoothScrollIntoView from 'smooth-scroll-into-view-if-needed';
 import { AuthService, UserInfo } from 'app/services/auth.service';
 import { CommentService, AppComment, CommentDisableStatus, CommentDisableReason } from '../../services/comment.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { environment } from 'environments/environment';
+import { Observable } from 'rxjs';
+import { Package } from 'app/modules/client/services/store.service';
 
 enum CommentType {
   News,
@@ -50,6 +51,7 @@ export class AppCommentComponent implements OnInit, OnChanges {
   @ViewChild('commentRef', { static: true }) commentRef: ElementRef<HTMLDivElement>;
   @Input() appID: number;
   @Input() appVersion: string;
+  @Input() pkg$: Observable<Package>;
 
   content = this.fb.control('', Validators.required);
   score = this.fb.control(0, Validators.min(0.5));
@@ -118,6 +120,14 @@ export class AppCommentComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this.pkg$
+      .pipe(
+        map((pkg) => {
+          this.init();
+          return pkg;
+        }),
+      )
+      .subscribe();
   }
   ngOnChanges() {
     this.commentGroup.patchValue({
@@ -179,7 +189,7 @@ export class AppCommentComponent implements OnInit, OnChanges {
       limit: 20,
       offset: this.page.index * 20,
       version: this.appVersion,
-      history: this.select !== CommentType.News
+      history: this.select !== CommentType.News,
     });
     this.loadCount++;
     const mark = this.loadCount;
@@ -188,15 +198,15 @@ export class AppCommentComponent implements OnInit, OnChanges {
       // get hot comment
       const topResp = await this.comments.list({ top: true });
       const topIds = [];
-      topResp.items.forEach(item => {
+      topResp.items.forEach((item) => {
         topIds.push(item.id);
       });
-      resp.items.map(item => {
+      resp.items.map((item) => {
         item.isHot = topIds.includes(item.id);
       });
       const info = await this.info$.pipe(first()).toPromise();
       if (info) {
-        const userResp = await this.userAPI.list({ app_id: this.appID, ...this.selectVersion });  
+        const userResp = await this.userAPI.list({ app_id: this.appID, ...this.selectVersion });
         if (this.appVersion !== undefined || this.appVersion !== null) {
           if (this.select === CommentType.News) {
             this.own = userResp.items[0];
@@ -204,12 +214,14 @@ export class AppCommentComponent implements OnInit, OnChanges {
         } else {
           this.select = CommentType.History;
         }
-        const aheadResp = resp.items.filter(c => {
+        const aheadResp = resp.items.filter((c) => {
           return c.commenter === info.uid;
         });
-        resp.items = resp.items.filter(c => c.commenter !== info.uid);
+        resp.items = resp.items.filter((c) => c.commenter !== info.uid);
         //resp.items.shift();
-        if (aheadResp) { console.log(aheadResp); resp.items.unshift(...aheadResp); }
+        if (aheadResp) {
+          resp.items.unshift(...aheadResp);
+        }
       }
     }
     if (this.loadCount === mark) {
@@ -247,7 +259,7 @@ export class AppCommentComponent implements OnInit, OnChanges {
       this.login();
       return;
     }
-    const by = c.likes.findIndex(like => like.liker === info.uid);
+    const by = c.likes.findIndex((like) => like.liker === info.uid);
     if (by === -1) {
       await this.commentService.like(c.id).toPromise();
       c.likes.push({ liker: info.uid });
@@ -268,7 +280,7 @@ export class AppCommentComponent implements OnInit, OnChanges {
     });
   }
   likeByMe(likes: { liker: number }[], uid: number) {
-    return likes.find(like => like.liker === uid);
+    return likes.find((like) => like.liker === uid);
   }
 
   selectTag(tag: string) {
