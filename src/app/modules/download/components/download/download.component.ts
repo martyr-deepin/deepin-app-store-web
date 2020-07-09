@@ -13,6 +13,7 @@ import {
 } from 'app/modules/client/models/store-job-info';
 import { JobService } from 'app/services/job.service';
 import { SoftwareService, Software } from 'app/services/software.service';
+import { UpdateSourceListService } from 'app/services/update-source-list.service';
 
 @Component({
   selector: 'dstore-download',
@@ -31,6 +32,7 @@ export class DownloadComponent implements OnInit {
     private storeService: StoreService,
     private jobService: JobService,
     private softwareService: SoftwareService,
+    private updaetSourceListService:UpdateSourceListService
   ) {}
 
   StoreJobType = StoreJobType;
@@ -83,6 +85,7 @@ export class DownloadComponent implements OnInit {
       err = { ErrType: StoreJobErrorType.unknown, ErrDetail: job.description };
     }
 
+    this.updaetSourceListService.updateSourceList().toPromise()
     this.jobService.startJob(job.job);
 
     if (CanFixError.includes(err.ErrType)) {

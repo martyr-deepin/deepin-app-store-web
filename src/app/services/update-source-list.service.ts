@@ -9,14 +9,14 @@ import { Software, SoftwareService } from './software.service';
   providedIn: 'root',
 })
 export class UpdateSourceListService {
-  private updateSouceList$ = new BehaviorSubject<StoreJobInfo>(undefined);
+  private updateSourceList$ = new BehaviorSubject<StoreJobInfo>(undefined);
   private buttonCache:Map<number,HTMLButtonElement> = new Map<number,HTMLButtonElement>();
   private jobId= '/com/deepin/lastore/Jobupdate_source';
   private interval = undefined;
 
   constructor(private store: StoreService,private softwareService:SoftwareService) {}
 
-  updateSouceList() {
+  updateSourceList() {
     return this.store.getJobStatus(this.jobId).pipe(
       switchMap(job=> {
         if(job.status == undefined || !this.interval) {
@@ -32,12 +32,12 @@ export class UpdateSourceListService {
                       //   break;
                       case undefined:
                         resolve()
-                        this.updateSouceList$.next(undefined)
+                        this.updateSourceList$.next(undefined)
                         clearInterval(this.interval);
                         this.interval = undefined;
                         break;
                       default:
-                        this.updateSouceList$.next(obj)
+                        this.updateSourceList$.next(obj)
                         break;
                     }
                   })
@@ -52,7 +52,7 @@ export class UpdateSourceListService {
             })
           })
         }
-        return this.updateSouceList$
+        return this.updateSourceList$
       })
     )
   }
@@ -95,7 +95,6 @@ export class UpdateSourceListService {
   }
 
   async installApp(e:Event,soft:Software,updateSubscription:Subscription){
-    //let pkg = await this.package$.toPromise();
     let pkg = await this.softwareService.query(soft).toPromise();
     if(pkg&&pkg.remoteVersion) {
       this.softwareService.install(soft)
@@ -105,7 +104,7 @@ export class UpdateSourceListService {
         updateSubscription.unsubscribe()
       }
       updateSubscription = this
-        .updateSouceList()
+        .updateSourceList()
         .pipe(
           filter(jobInfo=>jobInfo!=undefined),
           take(1)

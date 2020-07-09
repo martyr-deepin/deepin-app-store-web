@@ -11,6 +11,7 @@
   table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
     tr {
       height: 70px;
       td:first-child {
@@ -21,6 +22,16 @@
       }
       td:not(:first-child) {
         border-bottom: 1px solid var(--main-item-hr-color);
+      }
+      td:last-child {
+        width: 8rem;
+      }
+      td {
+        .name {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
     }
   }
