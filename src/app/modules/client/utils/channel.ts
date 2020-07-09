@@ -39,7 +39,9 @@ export const Channel = {
     const t = performance.now();
     const resp = await new Promise<T>(resolve => Channel.getSlot(method)(...args, resolve));
     const consumes = performance.now() - t;
-    console.warn('[exec]', method, { time: consumes.toFixed(2) + 'ms', args, resp });
+    if(localStorage.loggerOn){
+      console.warn('[exec]', method, { time: consumes.toFixed(2) + 'ms', args, resp });
+    }
     return resp;
   },
   connect<T>(method: string): Observable<T> {
