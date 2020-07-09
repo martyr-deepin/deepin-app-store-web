@@ -88,7 +88,9 @@ export class MyUpdatesComponent implements OnInit,OnDestroy{
   updateAll(){
     const res = this.service.softCache;
     if(res.length) {
-      this.service.updatings = res.map(soft => soft.package_name)
+      res.map(soft => {
+        this.service.updatings.set(soft.package_name,soft)
+      })
       this.softwareService.install(...res)
     }
   }

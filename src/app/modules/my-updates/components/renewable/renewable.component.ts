@@ -17,6 +17,7 @@ export class RenewableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.service.query()
   }
 
   renewableApps$ = this.service.renewableApps$

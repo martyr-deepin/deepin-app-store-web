@@ -5,6 +5,7 @@ import { StorageService, StorageKey } from 'app/services/storage.service';
 import { BehaviorSubject } from 'rxjs';
 import { StoreService, Package } from 'app/modules/client/services/store.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
+import { JobService } from 'app/services/job.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,21 +15,21 @@ export class MyUpdatesService{
     private softwareService:SoftwareService,
     private storageService:StorageService,
     private storeService:StoreService,
-    private sysAuthService:SysAuthService
+    private sysAuthService:SysAuthService,
+    private jobService:JobService
   ){
-    this.sysAuthService.sysAuthStatus$.pipe(
-      map(status=>{
-        if(this.sysAuthStatus != status) {
-          this.sysAuthStatus = status;
-          if(status) {
-            this.sysAuthStatus = status;
-            this.init()
-          }else {
-            this.renewableApps$.next([])
+    this.init();
+    this.jobService.jobList().subscribe(res=>{
+      this.updatings.forEach(async (soft,key)=>{
+        const pkg = await this.softwareService.query(soft).toPromise();
+        if(pkg) {
+          if(pkg.localVersion != soft.package.localVersion){
+            this.addRecentlyApps(soft)
+            this.updatings.delete(key)
           }
         }
       })
-    ).subscribe()
+    })
   }
 
   sysAuthStatus=false;
@@ -39,7 +40,7 @@ export class MyUpdatesService{
   //最近更新应用缓存
   recentlyApps$ = new BehaviorSubject<object>({});
 
-  softCache:Software[] = [] 
+  softCache:Software[] = []
 
   //可更新的数量
   renewableSize$ = this.renewableApps$.pipe(
@@ -47,7 +48,7 @@ export class MyUpdatesService{
   )
 
   //更新中的应用
-  updatings:string[] = [];
+  updatings:Map<string,Software> = new Map<string,Software>();
 
   init(){
     this.sysAuthService.sysAuthStatus$.pipe(
@@ -69,8 +70,6 @@ export class MyUpdatesService{
     if(pkg&&pkg.upgradable) {
       let cache = this.softCache.find(s => s.id === soft.id)
       if(!cache) {
-        console.log(soft)
-        console.log(pkg)
         soft.package.size = pkg.size;
         this.softCache.push(soft);
         this.renewableApps$.next(this.softCache)
@@ -116,6 +115,7 @@ export class MyUpdatesService{
     //从可更新列表中移除
     this.softCache = this.softCache.filter(soft=>soft.id != software.id)
     this.renewableApps$.next(this.softCache)
+    this.updatings.delete(software.package_name)
   }
 
   //从缓存中查询被忽略的应用
