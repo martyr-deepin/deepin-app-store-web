@@ -1,7 +1,7 @@
 import { Component, Input, Output, HostListener, SimpleChanges, OnChanges, ElementRef } from '@angular/core';
 import { Software, SoftwareService } from 'app/services/software.service';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
-import { share, startWith, map, pairwise, switchMap } from 'rxjs/operators';
+import { share, map, pairwise } from 'rxjs/operators';
 import { JobService } from 'app/services/job.service';
 import { trigger, animate, style, transition, keyframes } from '@angular/animations';
 import { StoreJobInfo, StoreJobStatus } from 'app/modules/client/models/store-job-info';
@@ -10,6 +10,7 @@ import { UserAppsService } from 'app/services/user-apps.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
 import { MyUpdatesService } from 'app/modules/my-updates/services/my-updates.service';
 import { UpdateSourceListService } from 'app/services/update-source-list.service';
+import { Package } from 'app/modules/client/services/store.service';
 
 @Component({
   selector: 'dstore-control',
@@ -60,17 +61,18 @@ export class ControlComponent implements OnChanges {
     private updateSourceList: UpdateSourceListService,
   ) {}
   @Input() soft: Software;
-  @Output() job$: Observable<any>;
-  package$ = new BehaviorSubject(null);
+  @Output() job$: Observable<StoreJobInfo>;
+  package$ = new BehaviorSubject<Package>(undefined);
   userAppIDs$ = this.userAppService.userAllApp$;
   JobStatus = StoreJobStatus;
   show = false;
+  last = false;
   id = Math.random();
   sysAuthStatus$ = this.sysAuth.sysAuthStatus$;
 
-  async ngOnChanges(c: SimpleChanges) {
+  ngOnChanges(c: SimpleChanges) {
     if (c.soft) {
-      await this.init();
+      this.init();
       let t = setTimeout(() => {
         this.updateSourceList.controlInit(<HTMLButtonElement>this.elRef.nativeElement.firstElementChild, this.soft.id);
         clearTimeout(t);
@@ -81,42 +83,54 @@ export class ControlComponent implements OnChanges {
     event.preventDefault();
     event.stopPropagation();
   }
-  async init() {
-    this.queryPackage();
+  init() {
+    this.queryPackageInit();
     this.job$ = this.jobService.jobsInfo().pipe(
       map((jobs) => jobs.find((job) => job.names.includes(this.soft.package_name))),
-      startWith(null),
       pairwise(),
-      switchMap(async ([old, job]) => {
+      map(([old, job]) => {
         setTimeout(() => (this.show = Boolean(job)));
         if (old && !job) {
-          await this.queryPackage();
+          this.last = true;
+          this.queryPackage();
+        }
+        if (!old && !job) {
+          if (this.last) {
+            this.queryPackage();
+            this.last = false;
+          }
         }
         return job;
       }),
       share(),
     );
-    // this.updateSourceList.updateSouceList$.subscribe(res=>{
-    //   if(res){
-    //     console.log(res.status)
-    //   }
-    // })
   }
-  async queryPackage() {
-    const pkg = await this.softwareService.query(this.soft).toPromise();
-    // update renewableApps
-    this.myUpdateService.sync(pkg, this.soft);
-    this.package$.next(pkg);
+  queryPackage() {
+    this.softwareService
+      .query(this.soft)
+      .toPromise()
+      .then((pkg) => {
+        this.package$.next(pkg);
+      });
+  }
+  queryPackageInit() {
+    this.softwareService
+      .query(this.soft)
+      .toPromise()
+      .then((pkg) => {
+        // update renewableApps
+        this.myUpdateService.sync(pkg, this.soft);
+        this.package$.next(pkg);
+      });
   }
 
   openApp(e: Event) {
     this.softwareService.open(this.soft);
   }
 
-  updateSubscription:Subscription;
+  updateSubscription: Subscription;
   installApp(e: Event) {
-    this.updateSourceList.installApp(e,this.soft,this.updateSubscription);
-    
+    this.updateSourceList.installApp(e, this.soft, this.updateSubscription);
   }
 
   buyApp(e: Event) {
