@@ -10,7 +10,7 @@
   color: var(--font-color-gray);
   >div {
     border-bottom: 1px solid var(--main-item-hr-color);
-    padding: 0.5rem 0;
+    padding: 0.5rem 0.5rem 0 0;
   }
 
   .icon {
@@ -94,7 +94,13 @@
 
     .log_content_none {
       width: 100%;
-      line-height: 4.6rem;
+      height: 100%;
+      .log_context {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-items: center;
+      }
     }
 
     .log_btn {
@@ -104,7 +110,7 @@
       right: 0;
       font-size: 0.8rem;
       font-weight: 600;
-      top: 2.8rem;
+      top: 3.8rem;
       cursor: pointer;
     }
   }

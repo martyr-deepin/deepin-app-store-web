@@ -28,8 +28,7 @@ export class RecentlyItemComponent implements OnInit {
   judge_overflow() {
     const nativeElement = this.el.nativeElement
     const log_content = nativeElement.querySelector('.log_content')
-    const log_context =  nativeElement.querySelector('.log_context')
-    return log_context.clientHeight > log_content.clientHeight || false;
+    return log_content.scrollHeight > log_content.clientHeight || false;
   }
 
 }
