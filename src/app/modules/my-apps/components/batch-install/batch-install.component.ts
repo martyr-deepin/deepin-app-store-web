@@ -41,7 +41,10 @@ export class BatchInstallComponent {
   length$ = this.result$.pipe(map(result => result.count));
   apps$ = this.result$.pipe(
     map(result => 
-      result.items.map(apps => apps.soft)
+      result.items.map(app =>{
+        app.soft.unavailable = app.unavailable
+        return app.soft
+      })
     ),
     share(),
   );
