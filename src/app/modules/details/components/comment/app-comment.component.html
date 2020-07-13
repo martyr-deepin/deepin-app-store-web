@@ -1,6 +1,6 @@
 <div #commentRef></div>
 <ng-container *ngFor="let info of [info$ | async]">
-  <div [hidden]="!supportSignIn">
+  <div *ngIf="supportSignIn">
     <div class="commentInput" [formGroup]="commentGroup">
       <div class="title">
         <ng-container *ngIf="!info; else logged">

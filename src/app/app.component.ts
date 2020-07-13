@@ -21,15 +21,12 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.init().finally(() => {
       this.installing = false;
-
       console.log(new Date().getTime());
       const loading = document.getElementById('loading');
-      const main = document.getElementById('main');
-      loading.style.display = 'none';
-      main.style.display = 'block';
+      document.body.removeChild(loading)
     });
   }
-  async init() {
+   async init() {
     await this.initChannel();
     await this.auth.init();
     await this.selectRegion();

@@ -1,18 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef, NgZone, ViewChild } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { SafeResourceUrl } from '@angular/platform-browser';
 
-import { Observable, of, iif, timer } from 'rxjs';
-import { map, catchError, switchMap, share, find, takeWhile, pairwise } from 'rxjs/operators';
-import { debounce } from 'lodash';
+import { Observable, timer } from 'rxjs';
+import { switchMap, share } from 'rxjs/operators';
 
-import * as QRCode from 'qrcode';
-
-import { Payment, PayReq, PayCheck } from '../../services/donate.model';
-import { DonateService } from '../../services/donate.service';
-import { AuthService } from 'app/services/auth.service';
+import { Payment, PayCheck } from '../../services/donate.model';
 import { DstoreObject } from 'app/modules/client/utils/dstore-objects';
 import { DonorsComponent } from '../donors/donors.component';
-import { environment } from 'environments/environment';
 import { OrderService, OrderStatus } from '../../../../services/order.service';
 
 @Component({
@@ -22,9 +16,6 @@ import { OrderService, OrderStatus } from '../../../../services/order.service';
 })
 export class DonateComponent implements OnInit {
   constructor(
-    private authService: AuthService,
-    private donateService: DonateService,
-    private sanitizer: DomSanitizer,
     private orderService: OrderService,
   ) {}
   @ViewChild(DonorsComponent, { static: true })

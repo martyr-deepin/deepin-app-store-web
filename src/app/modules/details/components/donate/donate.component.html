@@ -2,10 +2,10 @@
   <button class="primary" (click)="dialog.showModal()" i18n>Donate</button>
   <span class="statement" (click)="statement.showModal()" i18n>Statement for Delivery and Donation</span>
 </div> -->
-<dialog class="statementDialog" #statement>
+<!-- <dialog class="statementDialog" #statement>
   <dstore-close-button [dialog]="statement"></dstore-close-button>
   <app-statement></app-statement>
-</dialog>
+</dialog> -->
 <dialog class="donateDialog" (close)="close()" #dialog>
   <dstore-close-button [dialog]="dialog"></dstore-close-button>
   <ng-container *ngIf="dialog.open">

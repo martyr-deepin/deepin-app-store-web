@@ -11,9 +11,7 @@ import { ShareModule } from 'app/modules/share/share.module';
 
 import { MainComponent } from './components/main/main.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
-import { RecommendComponent } from './components/recommend/recommend.component';
 import { NotifyComponent } from './components/notify/notify.component';
-import { PrivacyAgreementComponent } from './components/privacy-agreement/privacy-agreement.component';
 import { ProxyInterceptor } from './services/proxy-interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -39,9 +37,7 @@ registerLocaleData(localeAM, 'am');
   declarations: [
     AppComponent,
     SideNavComponent,
-    RecommendComponent,
     NotifyComponent,
-    PrivacyAgreementComponent,
     MainComponent,
   ],
   imports: [

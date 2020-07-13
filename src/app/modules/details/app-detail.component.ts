@@ -14,7 +14,6 @@ import { SettingService } from 'app/services/settings.service';
 import { DownloadTotalService } from 'app/services/download-total.service';
 import { CommentService } from './services/comment.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
-import { JobService } from 'app/services/job.service';
 
 @Component({
   selector: 'dstore-app-detail',
@@ -32,8 +31,7 @@ export class AppDetailComponent implements OnInit {
     private downloadTotalServer: DownloadTotalService,
     private comment: CommentService,
     private sysAuth: SysAuthService,
-    private el: ElementRef,
-    private jobService: JobService
+    private el: ElementRef
   ) {}
 
   crumbs = false;
