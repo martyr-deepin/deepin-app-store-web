@@ -54,7 +54,7 @@ export class BuyComponent implements OnInit {
         this.cancel.next();
       }
     });
-    console.error({ soft: this.soft });
+    console.log({ soft: this.soft });
     this.form.patchValue({
       app_id: this.soft.id,
       app_version: this.soft.package.remoteVersion,

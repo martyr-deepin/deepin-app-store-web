@@ -130,7 +130,7 @@ export class SoftwareService {
     if (!locale) {
       locale = app.info.locales[0];
       if (!locale) {
-        console.error('Not found locale', app);
+        console.warn('Not found locale', app);
         return null;
       }
     }
