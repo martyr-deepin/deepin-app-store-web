@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { map, switchMap, share } from 'rxjs/operators';
+import { map, switchMap, share, startWith } from 'rxjs/operators';
 
 import { LocalAppService } from '../../services/local-app.service';
 import { AuthService } from 'app/services/auth.service';
@@ -37,7 +37,7 @@ export class LocalAppComponent implements OnInit {
     }),
     share(),
   );
-  count$ = this.result$.pipe(map(result => Math.ceil(result.total / this.pageSize)));
+  count$ = this.localAppService.installedSofts$.pipe(map(result => Math.ceil(result.length / this.pageSize)));
   removingList$ = this.localAppService.removingList().pipe(
     map(list=>list)
   );
