@@ -52,7 +52,7 @@
               </div>
 
               <div class="time">
-                {{ remoteApp.created_at | date: 'yyyy.MM.dd' }}
+                {{ remoteApp.updated_at || remoteApp.created_at | date: 'yyyy.MM.dd' }}
               </div>
 
               <div class="control">
