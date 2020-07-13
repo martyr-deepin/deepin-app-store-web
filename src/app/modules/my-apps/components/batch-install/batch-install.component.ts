@@ -61,16 +61,18 @@ export class BatchInstallComponent {
   hide() {
     this.dialogRef.nativeElement.close();
   }
-  unavailable(app: Software) {
-    if(!app) return true;
+  unavailable(remote: RemoteApp) {
+    const app = remote.soft;
+    if(!app||remote.unavailable) return true;
     return !app.package.remoteVersion || !app.active || app.unavailable || app.package.localVersion !== '' || this.jobList.includes(app.package_name)
       ? true
       : false;
   }
   
 
-  touch(app: Software) {
-    if (this.unavailable(app)) {
+  touch(remote: RemoteApp) {
+    const app = remote.soft;
+    if (this.unavailable(remote)) {
       return;
     }
     if (this.batchInstall.has(app.name)) {
@@ -81,11 +83,11 @@ export class BatchInstallComponent {
   }
   touchPage(apps: RemoteApp[]) {
     apps.forEach(app => {
-      this.touch(app.soft);
+      this.touch(app);
     });
   }
   selectPage(apps: RemoteApp[]) {
-    apps.filter(app => !this.unavailable(app.soft)).forEach(remote => this.batchInstall.set(remote.soft.name, remote.soft));
+    apps.filter(app => !this.unavailable(app)).forEach(remote => this.batchInstall.set(remote.soft.name, remote.soft));
   }
   installAll() {
     this.remoteAppService.installApps([...this.batchInstall.values()]);
