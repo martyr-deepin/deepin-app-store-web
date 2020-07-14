@@ -133,6 +133,11 @@ export class ControlComponent implements OnChanges {
     this.updateSourceList.installApp(e, this.soft, this.updateSubscription);
   }
 
+  updateApp(e: Event) {
+    this.myUpdateService.updatings.set(this.soft.package_name,this.soft)
+    this.updateSourceList.installApp(e, this.soft, this.updateSubscription);
+  }
+
   buyApp(e: Event) {
     this.buyService.buyDialogShow$.next(this.soft);
   }

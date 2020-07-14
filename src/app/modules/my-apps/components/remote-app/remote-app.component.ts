@@ -6,6 +6,7 @@ import { RefundStatus } from 'app/services/refund.service';
 import { RemoteAppService, RemoteApp } from './../../services/remote-app.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
 import { MessageService, MessageType } from 'app/services/message.service';
+import { MyUpdatesService } from 'app/modules/my-updates/services/my-updates.service';
 
 @Component({
   selector: 'dstore-remote-app',
@@ -18,7 +19,8 @@ export class RemoteAppComponent implements OnInit {
     public router: Router, 
     private remoteAppService: RemoteAppService,
     private SysAuth:SysAuthService,
-    private messageService:MessageService
+    private messageService:MessageService,
+    private myUpdateService:MyUpdatesService
   ) {}
   readonly pageSize = 13;
   readonly RefundStatus = RefundStatus;
@@ -69,6 +71,10 @@ export class RemoteAppComponent implements OnInit {
     this.installed.add(soft.package_name);
 
     this.remoteAppService.installApps([soft]);
+  }
+  updateApp(soft: Software) {
+    this.myUpdateService.updatings.set(soft.package_name,soft)
+    this.installApp(soft)
   }
   gotoPage(pageIndex: number) {
     this.router.navigate([], { queryParams: { page: pageIndex } });

@@ -63,7 +63,7 @@
                   <ng-container *ngIf="!installed.has(remoteApp.soft.package_name);else installedRef">
                     <ng-container *ngIf="remoteApp.soft.package.upgradable;else installedRef">
                       <ng-container *ngIf="sysAuthStatus$ | async;else $noAuthorizaedUpdateRef">
-                        <button (click)="installApp(remoteApp.soft)" i18n>Update</button>
+                        <button (click)="updateApp(remoteApp.soft)" i18n>Update</button>
                       </ng-container>
                       <ng-template #$noAuthorizaedUpdateRef>
                         <button (click)="sysAuthMessage()" i18n>Update</button>

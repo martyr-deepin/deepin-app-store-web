@@ -105,7 +105,7 @@ export class SoftwareService {
     return softs.map((soft) => {
       const pkg = pkgMap.get(soft.package_name);
       if (pkg) {
-        soft.package = { localVersion: pkg.localVersion, remoteVersion: pkg.remoteVersion, upgradable: pkg.upgradable };
+        soft.package = pkg
         // disable app based on blacklist
         if (blacklist.get(soft.id) === BlacklistOperation.Disable) {
           soft.package.remoteVersion = '';
@@ -175,7 +175,13 @@ export class SoftwareService {
       package: {
         remoteVersion: '',
         localVersion: '',
-        upgradable: false
+        upgradable: false,
+        size:0,
+        appName:'',
+        installedTime: 0,
+        downloadSize: 0,
+        packageName: '',
+        packageURI: ''
       },
       free: app.free,
       pricing: app.pricings[0],
@@ -282,14 +288,7 @@ export interface Software {
   free: boolean;
   pricing: Pricing;
   skip: boolean,
-  package?: {
-    localVersion: string;
-    remoteVersion: string;
-    upgradable: boolean;
-    appName?: string;
-    icon?: string;
-    size?:number;
-  };
+  package?: Package;
   // 下面是服务器返回结构，全部解析到info内部
   desc?: Desc;
   versions?: any;
