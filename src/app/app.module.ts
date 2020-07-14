@@ -24,6 +24,7 @@ import localeKN from '@angular/common/locales/kn';
 import localeHI from '@angular/common/locales/hi';
 import localeGL from '@angular/common/locales/gl';
 import localeAM from '@angular/common/locales/am';
+import localeJP from "@angular/common/locales/ja";
 
 registerLocaleData(localeZH, 'zh');
 registerLocaleData(localeEN, 'en');
@@ -32,6 +33,7 @@ registerLocaleData(localeKN, 'kn');
 registerLocaleData(localeHI, 'hi');
 registerLocaleData(localeGL, 'gl');
 registerLocaleData(localeAM, 'am');
+registerLocaleData(localeJP, 'ja');
 
 @NgModule({
   declarations: [

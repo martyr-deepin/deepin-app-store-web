@@ -24,6 +24,20 @@
       border: 0px;
       outline: 0px;
       resize: none;
+      word-break: keep-all;
+      &::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+     }
+     &::-webkit-scrollbar-thumb {
+       border-radius: 3px;
+         -moz-border-radius: 3px;
+         -webkit-border-radius: 3px;
+         background-color: #aaa;
+     }
+     &::-webkit-scrollbar-track {
+       background-color: transparent;
+     }
     }
   }
   .fixed {

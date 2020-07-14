@@ -130,6 +130,11 @@
               "localize": [
                 "am-ET"
               ]
+            },
+            "ja-JP": {
+              "localize": [
+                "ja-JP"
+              ]
             }
           }
         },
@@ -150,6 +155,9 @@
             },
             "am-ET": {
               "browserTarget": "deepin-app-store-web:build:am-ET"
+            },
+            "ja-JP": {
+              "browserTarget": "deepin-app-store-web:build:ja-JP"
             }
           }
         },
