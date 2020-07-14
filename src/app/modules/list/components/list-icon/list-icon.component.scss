@@ -21,6 +21,7 @@ dstore-list-icon {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
       .images {
         width: 3.7rem;
         height: 3.7rem;
@@ -75,15 +76,17 @@ dstore-list-icon {
             vertical-align: bottom;
             float: right;
           }
-          .control {
-            display: none;
-            float: right;
-            max-width: 6rem;
-            height: 1.5rem;
-            line-height: 1rem;
-            font-size: 0.87rem;
-          }
         }
+      }
+      .main_control {
+        display: none;
+        position: absolute;
+        max-width: 6rem;
+        right: 0;
+        bottom: 0.2rem;
+        height: 1.5rem;
+        line-height: 1rem;
+        font-size: 0.87rem;
       }
     }
     .downLoading {
@@ -93,7 +96,7 @@ dstore-list-icon {
       span {
         display: none;
       }
-      .info .subtitle .control {
+      .main_control {
         display: block;
       }
     }
@@ -106,7 +109,7 @@ dstore-list-icon {
       span {
         display: none;
       }
-      main .info .subtitle .control {
+      main .main_control {
         display: block;
       }
     }

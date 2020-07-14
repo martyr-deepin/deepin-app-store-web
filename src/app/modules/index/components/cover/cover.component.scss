@@ -18,6 +18,7 @@
   padding: 5px;
   margin-bottom: 1rem;
   cursor: pointer;
+  animation: show 0.3s;
 
   main {
     width: 216px;
@@ -76,6 +77,15 @@
     span {
       display: none;
     }
+  }
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
