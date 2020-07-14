@@ -10,45 +10,45 @@ const animateTime = 250;
   selector: 'dstore-progress-button',
   templateUrl: './progress-button.component.html',
   styleUrls: ['./progress-button.component.scss'],
-  animations: [
-    trigger('fadeLeft', [
-      transition(':enter', [
-        style({
-          transform: 'translateX(-4rem) translateY(-50%)',
-          opacity: 0,
-        }),
-        animate(animateTime),
-      ]),
-      transition(':leave', [
-        animate(
-          animateTime,
-          style({
-            transform: 'translateX(-4rem) translateY(-50%)',
-            opacity: 0,
-          }),
-        ),
-      ]),
-    ]),
+  // animations: [
+  //   trigger('fadeLeft', [
+  //     transition(':enter', [
+  //       style({
+  //         transform: 'translateX(-4rem) translateY(-50%)',
+  //         opacity: 0,
+  //       }),
+  //       animate(animateTime),
+  //     ]),
+  //     transition(':leave', [
+  //       animate(
+  //         animateTime,
+  //         style({
+  //           transform: 'translateX(-4rem) translateY(-50%)',
+  //           opacity: 0,
+  //         }),
+  //       ),
+  //     ]),
+  //   ]),
 
-    trigger('fadeRight', [
-      transition(':enter', [
-        style({
-          transform: 'translateX(2rem) translateY(-50%)',
-          opacity: 0,
-        }),
-        animate(animateTime),
-      ]),
-      transition(':leave', [
-        animate(
-          animateTime,
-          style({
-            transform: 'translateX(2rem) translateY(-50%)',
-            opacity: 0,
-          }),
-        ),
-      ]),
-    ]),
-  ],
+  //   trigger('fadeRight', [
+  //     transition(':enter', [
+  //       style({
+  //         transform: 'translateX(2rem) translateY(-50%)',
+  //         opacity: 0,
+  //       }),
+  //       animate(animateTime),
+  //     ]),
+  //     transition(':leave', [
+  //       animate(
+  //         animateTime,
+  //         style({
+  //           transform: 'translateX(2rem) translateY(-50%)',
+  //           opacity: 0,
+  //         }),
+  //       ),
+  //     ]),
+  //   ]),
+  // ],
 })
 export class ProgressButtonComponent implements OnInit {
   constructor(private storeService: StoreService, private sanitizer: DomSanitizer) {}

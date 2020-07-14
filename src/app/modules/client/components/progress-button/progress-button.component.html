@@ -3,7 +3,7 @@
     >Paused</span
   >
   <ng-template #bgRunning>
-    <span [ngSwitch]="type" @fadeLeft>
+    <span [ngSwitch]="type">
       <ng-container *ngSwitchCase="StoreJobType.download" i18n>Downloading</ng-container>
       <ng-container *ngSwitchCase="StoreJobType.install" i18n>Installing</ng-container>
       <ng-container *ngSwitchCase="StoreJobType.uninstall" i18n>Uninstalling</ng-container>
@@ -16,7 +16,7 @@
       >Paused</span
     >
     <ng-template #fgRunning>
-      <span [ngSwitch]="type" @fadeLeft>
+      <span [ngSwitch]="type">
         <ng-container *ngSwitchCase="StoreJobType.download" i18n>Downloading</ng-container>
         <ng-container *ngSwitchCase="StoreJobType.install" i18n>Installing</ng-container>
         <ng-container *ngSwitchCase="StoreJobType.uninstall" i18n>Uninstalling</ng-container>
