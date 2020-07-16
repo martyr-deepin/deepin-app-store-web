@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, Input, NgZone } from '@angular/core';
 import { Router, RouterEvent, NavigationStart, NavigationEnd } from '@angular/router';
 import PerfectScrollbar from 'perfect-scrollbar';
 import { Subscription, fromEvent, Observable } from 'rxjs';
@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./scrollbar.component.scss'],
 })
 export class ScrollbarComponent implements OnInit, OnDestroy {
-  constructor(private scrollbarEl: ElementRef<HTMLDivElement>, private router: Router) {}
+  constructor(private scrollbarEl: ElementRef<HTMLDivElement>,private zone:NgZone, private router: Router) {}
   @Input()
   savePosition: boolean;
   @Input()
@@ -62,7 +62,7 @@ export class ScrollbarComponent implements OnInit, OnDestroy {
           }
         }
       } else if (event instanceof NavigationEnd) {
-        window['requestIdleCallback'](() => {
+        this.zone.run(()=>{
           scrollbar.update();
           if (restoreID) {
             const pos = this.position.get(restoreID);
@@ -73,7 +73,7 @@ export class ScrollbarComponent implements OnInit, OnDestroy {
           } else {
             this.setPos();
           }
-        });
+        })
       }
     });
   }

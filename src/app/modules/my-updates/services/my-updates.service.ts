@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { SoftwareService, Software } from 'app/services/software.service';
 import { StorageService, StorageKey } from 'app/services/storage.service';
@@ -16,9 +16,12 @@ export class MyUpdatesService{
     private storageService:StorageService,
     private storeService:StoreService,
     private sysAuthService:SysAuthService,
-    private jobService:JobService
+    private jobService:JobService,
+    private zone:NgZone
   ){
-    this.init();
+    this.zone.run(()=>{
+      this.init();
+    })
     this.jobService.jobList().subscribe(res=>{
       this.updatings.forEach(async (soft,key)=>{
         const pkg = await this.softwareService.query(soft).toPromise();

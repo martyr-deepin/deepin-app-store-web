@@ -43,6 +43,9 @@ section {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
       // @media (max-width: 1152px) {
       //   display: none;
       // }

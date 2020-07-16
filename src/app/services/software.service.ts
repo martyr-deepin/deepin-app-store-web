@@ -35,7 +35,7 @@ export class SoftwareService {
       }
     });
   }
-  packages = this.http.get<PackagesURL>('/api/public/packages').toPromise();
+  //packages = this.http.get<PackagesURL>('/api/public/packages').toPromise();
   backlist$ = this.blacklistService.blacklist();
 
   async list(

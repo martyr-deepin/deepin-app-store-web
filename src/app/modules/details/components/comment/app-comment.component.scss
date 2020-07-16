@@ -24,7 +24,6 @@
       border: 0px;
       outline: 0px;
       resize: none;
-      word-break: keep-all;
       &::-webkit-scrollbar {
         width: 6px;
         height: 6px;
@@ -139,7 +138,7 @@
       button {
         border-radius: 4px;
         box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
-        padding: 0.3rem 1rem;
+        //padding: 0.3rem 1rem;
         cursor: pointer;
         &:first-child {
           border-right: none;

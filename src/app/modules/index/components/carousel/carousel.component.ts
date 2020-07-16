@@ -81,12 +81,11 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
   ngOnInit() {
     this.init().finally(() => {
       this.loaded.emit(true);
-      console.log(this.carousels)
       this.current = new Ring(this.carousels);
       setTimeout(() => this.move(0));
       this.running$ = this.click$.pipe(
         throttleTime(500),
-        map(s => {
+        map((s) => {
           if (!s) {
             return;
           }
@@ -103,7 +102,6 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
             const topicIndex = c.topic_index.split('-').map(Number);
             const globalSection = this.sectionService.globalSection as SectionItem[];
             const topicData = globalSection[topicIndex[0]].items[topicIndex[1]];
-            console.log(globalSection, topicIndex);
             if (!topicData.show) {
               //如果禁用专题就让item=[]
               topicData.items = [];
@@ -123,44 +121,30 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
     if (this.carousels.length === 0) {
       return;
     }
-    this.carousels = this.carousels.filter(c => c.show);
+    this.carousels = this.carousels.filter((c) => c.show);
     //标记app:现已从number改为string
     // const names = this.carousels.filter(c => c.type === CarouselType.Topic).map(c => c.app_id);
-    console.log(this.carousels, 'asdasd');
-    const ids = this.carousels.map(c => c.app_id);
+    const ids = this.carousels.map((c) => c.app_id);
     const softs = await this.softwareService.list({ ids });
 
-    this.carousels = this.carousels.filter(c => {
+    this.carousels = this.carousels.filter((c) => {
       //CarouselType.Topic改为字符串
       //   if (c.type === CarouselType.Topic) {
       if (c.type === 'Topic') {
         return true;
       }
-      return softs.some(soft => soft.id === c.app_id);
+      return softs.some((soft) => soft.id === c.app_id);
     });
     if (!this.carousels || this.carousels.length === 0) {
       this.carousels = [];
       return;
     }
-    if (this.carousels.length <= 3) {
-      this.carousels.length = 3;
-      for(let i =0;i<this.carousels.length;i++) {
-        let s = this.carousels[i]
-        if(s){
-          //this.carousels[i] = s
-        }else {
-          this.carousels[i] = this.carousels[i-1]
-        }
-      }
+    while (this.carousels.length <= 3) {
+      this.carousels = [...this.carousels, ...this.carousels];
     }
     if (this.carousels.length >= 6) {
-      this.carousels.splice(6, this.carousels.length - 5);
+      this.carousels.splice(6);
     }
-    console.log(this.carousels, '轮播图');
-    //return this.carousels;
-    // while (this.carousels.length < 5) {
-    //
-    // }
   }
   async goto(index: number) {
     const left = [];
@@ -175,7 +159,7 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
     for (const i of sorttest) {
       this.move(i);
       this.click$.next('');
-      await new Promise(resolve => setTimeout(resolve, 200));
+      await new Promise((resolve) => setTimeout(resolve, 200));
     }
   }
   // move image (-1,1)
