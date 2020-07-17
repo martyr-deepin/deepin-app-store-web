@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SectionService, SectionType } from './services/section.service';
-import { of, Observable } from 'rxjs';
-import { environment } from 'environments/environment.prod';
 
 @Component({
   selector: 'app-index',

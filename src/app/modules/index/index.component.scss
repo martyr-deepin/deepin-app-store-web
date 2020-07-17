@@ -22,4 +22,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  .empty {
+    content: url('/assets/images/empty-image.svg');
+    cursor: auto;
+  }
 }

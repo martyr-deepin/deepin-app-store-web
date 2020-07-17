@@ -190,10 +190,7 @@ progress[value] {
   border-radius: 0.3rem;
 }
 
-.ps__rail-y {
-  transition: none !important;
-}
-
-.ps__rail-x {
-  transition: none !important;
+//off outline
+button,input,textarea,select {
+  outline: none;
 }
