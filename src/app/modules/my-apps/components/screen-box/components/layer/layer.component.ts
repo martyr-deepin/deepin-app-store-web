@@ -1,5 +1,4 @@
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
-import PerfectScrollbar from 'perfect-scrollbar';
 
 @Component({
   selector: 'screen-layer',
@@ -15,14 +14,6 @@ export class LayerComponent implements OnInit {
   destruction:boolean = false;
 
   ngOnInit(): void {
-    const center = this.el.nativeElement.querySelector('.center');
-    if(center) {
-      new PerfectScrollbar(center, {
-        suppressScrollY: false,
-        suppressScrollX: true,
-        wheelPropagation: false,
-      });
-    }
   }
 
   @HostListener('document:click', ['$event.target'])

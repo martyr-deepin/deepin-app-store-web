@@ -1,87 +1,21 @@
-import { Component, OnInit, OnDestroy, ElementRef, Input } from '@angular/core';
-import { Router, RouterEvent, NavigationStart, NavigationEnd } from '@angular/router';
-import PerfectScrollbar from 'perfect-scrollbar';
-import { Subscription, fromEvent, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'dstore-scrollbar',
   templateUrl: './scrollbar.component.html',
   styleUrls: ['./scrollbar.component.scss'],
 })
-export class ScrollbarComponent implements OnInit, OnDestroy {
-  constructor(private scrollbarEl: ElementRef<HTMLDivElement>, private router: Router) {}
-  @Input()
-  savePosition: boolean;
-  @Input()
-  full = false;
-  @Input()
-  both = false;
-  position = new Map<number, [number, number]>();
-  restored: Subscription;
-  resize$: Observable<void>;
+export class ScrollbarComponent implements OnInit {
+  constructor(private scrollbarEl: ElementRef<HTMLDivElement>) {}
 
-  getPos(): [number, number] {
-    return [this.el.scrollTop, this.el.scrollLeft];
-  }
-  setPos(pos: [number, number] = [0, 0]) {
-    [this.el.scrollTop, this.el.scrollLeft] = pos;
-  }
-  get el() {
-    return this.scrollbarEl.nativeElement;
-  }
-  ngOnInit() {
-    let scrollbar;
-    if(this.both) {
-      scrollbar = new PerfectScrollbar(this.el, {
-        wheelPropagation: true
-      });
-    }else {
-      scrollbar = new PerfectScrollbar(this.el, {
-        suppressScrollY: false,
-        suppressScrollX: true,
-        wheelPropagation: false,
-      });
-    }
-    this.resize$ = fromEvent(window, 'resize').pipe(
-      map(() => {
-        scrollbar.update();
-      }),
-    );
+  @Input()full:Boolean=false;
 
-    let restoreID: number;
-    this.restored = this.router.events.subscribe((event: RouterEvent) => {
-      if (event instanceof NavigationStart) {
-        if (this.savePosition) {
-          this.position.set(this.router['lastSuccessfulId'], this.getPos());
+  @Input()flex:Boolean = false;
 
-          if (event.restoredState) {
-            restoreID = event.restoredState.navigationId;
-          } else {
-            restoreID = null;
-          }
-        }
-      } else if (event instanceof NavigationEnd) {
-        if(window['requestIdleCallback']){
-          window['requestIdleCallback'](() => {
-            scrollbar.update();
-            if (restoreID) {
-              const pos = this.position.get(restoreID);
-              setTimeout(() => {
-                console.log('scrollbar restore', pos);
-                this.setPos(pos);
-              }, 200);
-            } else {
-              this.setPos();
-            }
-          })
-        }
-      }
-    });
-  }
-  ngOnDestroy() {
-    if (this.restored) {
-      this.restored.unsubscribe();
+  ngOnInit(): void {
+    if(this.flex){
+      this.scrollbarEl.nativeElement.classList.add("flex")
     }
   }
+  
 }

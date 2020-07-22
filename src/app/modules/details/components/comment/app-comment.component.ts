@@ -1,14 +1,13 @@
-import { Component, OnInit, Input, OnChanges, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, OnChanges, ViewChild, ElementRef, SimpleChanges } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { HttpErrorResponse } from '@angular/common/http';
-import { first, tap, map } from 'rxjs/operators';
+import { first, tap } from 'rxjs/operators';
 import * as _ from 'lodash';
 import smoothScrollIntoView from 'smooth-scroll-into-view-if-needed';
 import { AuthService, UserInfo } from 'app/services/auth.service';
 import { CommentService, AppComment, CommentDisableStatus, CommentDisableReason } from '../../services/comment.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { environment } from 'environments/environment';
-import { Observable } from 'rxjs';
 import { Package } from 'app/modules/client/services/store.service';
 
 enum CommentType {
@@ -40,7 +39,7 @@ export enum CommentError {
     ]),
   ],
 })
-export class AppCommentComponent implements OnInit, OnChanges {
+export class AppCommentComponent implements  OnChanges {
   constructor(
     private authService: AuthService,
     private commentService: CommentService,
@@ -51,7 +50,7 @@ export class AppCommentComponent implements OnInit, OnChanges {
   @ViewChild('commentRef', { static: true }) commentRef: ElementRef<HTMLDivElement>;
   @Input() appID: number;
   @Input() appVersion: string;
-  @Input() pkg$: Observable<Package>;
+  @Input() pkg: Package;
 
   content = this.fb.control('', Validators.required);
   score = this.fb.control(0, Validators.min(0.5));
@@ -119,21 +118,12 @@ export class AppCommentComponent implements OnInit, OnChanges {
     return { exclude_version: this.appVersion };
   }
 
-  ngOnInit() {
-    this.pkg$
-      .pipe(
-        map((pkg) => {
-          this.init();
-          return pkg;
-        }),
-      )
-      .subscribe();
-  }
-  ngOnChanges() {
+  ngOnChanges(c: SimpleChanges) {
     this.commentGroup.patchValue({
       app_id: this.appID,
       app_version: this.appVersion,
     });
+    this.init()
   }
   async init() {
     await this.getCount();

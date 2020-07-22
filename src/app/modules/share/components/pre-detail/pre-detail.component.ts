@@ -1,5 +1,4 @@
 import { Component, OnInit, Input,ElementRef, HostListener } from '@angular/core';
-import PerfectScrollbar from 'perfect-scrollbar';
 
 @Component({
   selector: 'dstore-pre-detail',
@@ -17,11 +16,6 @@ export class PreDetailComponent implements OnInit {
   fontSize:number;
 
   ngOnInit(): void {
-    new PerfectScrollbar(this.el.nativeElement.getElementsByClassName("pre_detail")[0], {
-      suppressScrollY: false,
-      suppressScrollX: true,
-      wheelPropagation: false,
-    });
     this.fontSize = Number(getComputedStyle(document.getElementsByTagName("html")[0]).fontSize.slice(0,-2))
   }
 

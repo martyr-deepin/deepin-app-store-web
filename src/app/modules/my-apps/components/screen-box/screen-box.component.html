@@ -13,12 +13,14 @@
     <screen-search-box #searchBoxRef [(ngModel)]="searchName"></screen-search-box>
   </div>
   <div (click)="searchBoxRef.close()" class="center_content">
-    <dstore-checkbox [config]="allCheckConfig" [(ngModel)]="allChecked" (ngModelChange)="allCheckChange($event)">
-      <span class="label">
-        <span i18n>All apps</span>（{{appLength$ | async}}）
-      </span>
-    </dstore-checkbox>
-    <dstore-checkbox-group align="column" [config]="checkboxList$ | async" [(ngModel)]="checkedList" (ngModelChange)="itemCheckChange($event)"></dstore-checkbox-group>
+    <dstore-scrollbar [flex]="true">
+      <dstore-checkbox [config]="allCheckConfig" [(ngModel)]="allChecked" (ngModelChange)="allCheckChange($event)">
+        <span class="label">
+          <span i18n>All apps</span>（{{appLength$ | async}}）
+        </span>
+      </dstore-checkbox>
+      <dstore-checkbox-group align="column" [config]="checkboxList$ | async" [(ngModel)]="checkedList" (ngModelChange)="itemCheckChange($event)"></dstore-checkbox-group>
+    </dstore-scrollbar>
   </div>
   <div class="footer_content">
     <div class="btn_item">

@@ -1,5 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
 @import 'theme';
+/* You can add global styles to this file, and also import other style files */
 html {
   font-size: 13px;
 }
@@ -28,17 +28,43 @@ body {
 }
 
 // 滚动条
-@import '~perfect-scrollbar/css/perfect-scrollbar.css';
-.ps {
-  .ps__rail-y {
-    background-color: transparent !important;
-    .ps__thumb-y {
-      width: 4px;
-    }
-    &:hover,
-    &.ps--clicking {
-      .ps__thumb-y {
+body{
+  dstore-scrollbar {
+    &:hover {
+      &::-webkit-scrollbar {
         width: 8px;
+      }
+    }
+    &::-webkit-scrollbar {
+      width: 0px;
+      background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+      background-color: #aaa;
+      &:hover {
+        background-color: #666;
+      }
+      &:active {
+        background-color: #1c1c1c;
+      }
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+  }
+}
+.dark {
+  dstore-scrollbar {
+    &::-webkit-scrollbar-thumb {
+      background-color: #5b5e5f;
+      &:hover {
+        background-color: #8b8c8d;
+      }
+      &:active {
+        background-color: #5b5e5f;
       }
     }
   }

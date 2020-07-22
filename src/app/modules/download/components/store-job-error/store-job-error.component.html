@@ -22,7 +22,9 @@
 <dialog #dialogRef>
   <dstore-close-button [dialog]="dialogRef"></dstore-close-button>
   <div class="details_content" (click)="click($event)">
-    <h3 i18n>Details</h3>
-    <pre>{{ errDetail }}</pre>
+      <h3 i18n>Details</h3>
+    <dstore-scrollbar [flex]="true" >
+      <pre>{{ errDetail }}</pre>
+    </dstore-scrollbar>
   </div>
 </dialog>

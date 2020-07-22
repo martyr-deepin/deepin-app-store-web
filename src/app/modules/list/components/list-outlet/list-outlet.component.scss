@@ -1,10 +1,10 @@
 :host {
   display: flex;
   flex-flow: column;
+  display: block;
   height: 100vh;
   dstore-list-icon {
-    flex: 1;
-    overflow: hidden;
+    height: calc(100% - 4rem);
     display: block;
   }
 }

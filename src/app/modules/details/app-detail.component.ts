@@ -1,12 +1,9 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, map, startWith, publishReplay, refCount } from 'rxjs/operators';
 
 import { StoreService } from 'app/modules/client/services/store.service';
 import { StoreJobType, StoreJobStatus } from 'app/modules/client/models/store-job-info';
-import { ReminderService } from 'app/services/reminder.service';
-import { NotifyService } from 'app/services/notify.service';
-import { NotifyType } from 'app/services/notify.model';
 import { DstoreObject } from 'app/modules/client/utils/dstore-objects';
 import { environment } from 'environments/environment';
 import { SoftwareService, Source } from 'app/services/software.service';
@@ -20,13 +17,11 @@ import { SysAuthService } from 'app/services/sys-auth.service';
   templateUrl: './app-detail.component.html',
   styleUrls: ['./app-detail.component.scss'],
 })
-export class AppDetailComponent implements OnInit {
+export class AppDetailComponent{
   constructor(
     private route: ActivatedRoute,
     private softwareService: SoftwareService,
     private storeService: StoreService,
-    private reminderService: ReminderService,
-    private notifyService: NotifyService,
     private settingService: SettingService,
     private downloadTotalServer: DownloadTotalService,
     private comment: CommentService,
@@ -60,28 +55,9 @@ export class AppDetailComponent implements OnInit {
 
   allowName$ = this.storeService.getAllowShowPackageName();
 
-  ngOnInit() {}
-  reminder(name: string, version: string) {
-    this.reminderService.reminder(name, version).subscribe(
-      () => {
-        this.notifyService.success(NotifyType.Reminder);
-      },
-      () => {
-        this.notifyService.error(NotifyType.Reminder);
-      },
-    );
-  }
-
-
   description_overflow() {
     const nativeElement = this.el.nativeElement
     const log_content = nativeElement.querySelector('.description_content')
-    if(log_content) {
-      const log_context =  nativeElement.querySelector('.info_item_description')
-      const log_context2 = nativeElement.querySelector('.info_description')
-      return (log_context.clientWidth+log_context2.clientWidth) > log_content.clientWidth || false;
-    }else {
-      return false;
-    }
+    return log_content?.scrollWidth > log_content?.clientWidth || false;
   }
 }

@@ -103,7 +103,7 @@
             <label class="info_description">
               {{ app.info.description }}
             </label>
-            <span *ngIf="description_overflow()" (click)="$layer.show()" class="info_description_more" i18n>More</span>
+            <span *ngIf="description_overflow" (click)="$layer.show()" class="info_description_more" i18n>More</span>
           </div>
         </td>
       </tr>
@@ -126,7 +126,7 @@
     <app-donate [appName]="app.name"></app-donate>
   </ng-container> -->
   <ng-container>
-    <dstore-app-comment [pkg$]="controlRef.package$" [appID]="app.id" [appVersion]="app.package.remoteVersion||app.package.localVersion"></dstore-app-comment>
+    <dstore-app-comment [pkg]="controlRef.package$ | async" [appID]="app.id" [appVersion]="app.package.remoteVersion||app.package.localVersion"></dstore-app-comment>
     <div class="ad" *ngIf="adVisible$ | async">
       <ng-container i18n>CDN supported by UPYUN</ng-container>
     </div>

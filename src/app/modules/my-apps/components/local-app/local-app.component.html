@@ -31,7 +31,7 @@
   <div class="th" i18n>Action</div>
 </div>
 <div class="installed-list">
-  <dstore-scrollbar>
+  <dstore-scrollbar [full]="true">
     <ng-container *ngIf="(result$ | async)?.list as installedList; else loadingContainer">
       <ng-container *ngIf="removingList$ | async as removingList">
         <!-- {{installedList | json}} -->

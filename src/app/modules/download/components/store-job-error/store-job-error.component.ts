@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, ElementRef} from '@angular/core';
 import { StoreJobErrorType, StoreJobError } from 'app/modules/client/models/store-job-info';
-import PerfectScrollbar from "perfect-scrollbar";
 
 @Component({
   selector: 'app-store-job-error',
@@ -9,7 +8,6 @@ import PerfectScrollbar from "perfect-scrollbar";
 })
 export class StoreJobErrorComponent implements OnInit {
   constructor(
-    private el: ElementRef<HTMLDivElement>
   ) {}
 
   StoreJobErrorType = StoreJobErrorType;
@@ -29,10 +27,6 @@ export class StoreJobErrorComponent implements OnInit {
   errType: StoreJobErrorType;
   errDetail: string;
   ngOnInit() {
-    new PerfectScrollbar(this.el.nativeElement.querySelector(".details_content"),{
-      wheelPropagation: true
-    })
-
   }
   click(event: Event) {
     event.stopPropagation();

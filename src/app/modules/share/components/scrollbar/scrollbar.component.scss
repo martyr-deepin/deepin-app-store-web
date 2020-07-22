@@ -4,16 +4,20 @@
   //max-height: 100vh;
   height: 100%;
   position: relative;
-  overflow: auto;
+  overflow-y: overlay;
 
   .container {
     width: 100%;
     // padding: 0 1rem;
     min-height: 98%;
+    overflow: hidden;
   }
-
   .full {
-    width: 100%;
-    padding: 0;
+    padding-bottom: 0.3rem;
   }
+}
+:host.flex {
+  flex:1;
+  height:auto;
+  width: auto;
 }
