@@ -1,11 +1,11 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Channel } from 'app/modules/client/utils/channel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AutoInstallService {
-  constructor(private zone: NgZone) {}
+  constructor() {}
   setAutoInstall(auto: boolean) {
     return Channel.exec('settings.setAutoInstall', auto);
   }

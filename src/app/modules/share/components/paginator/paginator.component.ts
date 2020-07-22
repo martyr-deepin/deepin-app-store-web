@@ -1,12 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
 import { chain } from 'lodash';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-paginator',
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss'],
 })
-export class PaginatorComponent implements OnInit, OnChanges {
+export class PaginatorComponent implements OnInit, OnChanges, OnDestroy {
   constructor() {}
   @Input() length: number;
   @Input() size: number;
@@ -21,11 +22,17 @@ export class PaginatorComponent implements OnInit, OnChanges {
 
   pageList: number[] = [];
 
+  pageSubscription:Subscription;
   ngOnInit() {
-    this.pageIndexChange.subscribe(page => {
+    this.pageSubscription = this.pageIndexChange.subscribe(page => {
       this.pageIndex = page;
       this.pageList = this.getPageList();
     });
+  }
+  ngOnDestroy(): void {
+    if(this.pageSubscription) {
+      this.pageSubscription.unsubscribe()
+    }
   }
   ngOnChanges() {
     this.pageList = this.getPageList();

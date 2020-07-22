@@ -9,6 +9,7 @@ import {
   Output,
   EventEmitter,
   ViewEncapsulation,
+  OnDestroy,
 } from '@angular/core';
 import { WaitIconComponent } from 'app/modules/share/components/wait-icon/wait-icon.component';
 @Component({
@@ -17,7 +18,7 @@ import { WaitIconComponent } from 'app/modules/share/components/wait-icon/wait-i
   styleUrls: ['./list-icon.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class ListIconComponent implements OnInit, OnChanges {
+export class ListIconComponent implements OnInit, OnChanges,OnDestroy {
   constructor() {}
   @ViewChild('loadingRef', { static: true }) elRef: ElementRef<HTMLDivElement>;
   @ViewChild('waitIcon', { static: true }) waitIcon: WaitIconComponent;
@@ -39,6 +40,10 @@ export class ListIconComponent implements OnInit, OnChanges {
   });
 
   ngOnInit(): void {}
+  
+  ngOnDestroy(): void {
+    this.intersection.disconnect()
+  }
 
   ngOnChanges(changed: SimpleChanges) {
     if (changed.list) {
@@ -57,7 +62,10 @@ export class ListIconComponent implements OnInit, OnChanges {
       }
       if (this.lazyload) {
         console.log('loading');
-        setTimeout(() => this.intersection.observe(this.elRef.nativeElement), 500);
+        var i = setTimeout(() => {
+          this.intersection.observe(this.elRef.nativeElement)
+          clearTimeout(i)
+        }, 500);
       }
     }
   }

@@ -1,5 +1,4 @@
-$category-list: homepage ranking internet chat music video graphics game office reading development system others downloads uninstall myapp update;
-$control-button: ('cancel' 'pause' 'restart' 'start');
+@import "var-list";
 html {
   --activityColor: #0081ff;
   --activityColorHover: #3298ff;

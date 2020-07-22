@@ -1,4 +1,4 @@
-import { Component, Input, Output, HostListener, SimpleChanges, OnChanges, ElementRef } from '@angular/core';
+import { Component, Input, HostListener, SimpleChanges, OnChanges, ElementRef, OnDestroy } from '@angular/core';
 import { Software, SoftwareService } from 'app/services/software.service';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { share, map, pairwise } from 'rxjs/operators';
@@ -49,7 +49,7 @@ import { Package } from 'app/modules/client/services/store.service';
     ]),
   ],
 })
-export class ControlComponent implements OnChanges {
+export class ControlComponent implements OnChanges,OnDestroy {
   constructor(
     private elRef: ElementRef<HTMLElement>,
     private softwareService: SoftwareService,
@@ -60,8 +60,9 @@ export class ControlComponent implements OnChanges {
     private myUpdateService: MyUpdatesService,
     private updateSourceList: UpdateSourceListService,
   ) {}
+
   @Input() soft: Software;
-  @Output() job$: Observable<StoreJobInfo>;
+  job$: Observable<StoreJobInfo>;
   package$ = new BehaviorSubject<Package>(undefined);
   userAppIDs$ = this.userAppService.userAllApp$;
   JobStatus = StoreJobStatus;
@@ -73,7 +74,7 @@ export class ControlComponent implements OnChanges {
   ngOnChanges(c: SimpleChanges) {
     if (c.soft) {
       this.init();
-      let t = setTimeout(() => {
+      var t = setTimeout(() => {
         this.updateSourceList.controlInit(<HTMLButtonElement>this.elRef.nativeElement.firstElementChild, this.soft.id);
         clearTimeout(t);
       }, 100);
@@ -105,6 +106,11 @@ export class ControlComponent implements OnChanges {
       share(),
     );
   }
+  ngOnDestroy(): void {
+    if(this.package$) {
+      this.package$.unsubscribe();
+    }
+  }
   queryPackage() {
     this.softwareService
       .query(this.soft)
@@ -135,7 +141,7 @@ export class ControlComponent implements OnChanges {
 
   updateApp(e: Event) {
     this.myUpdateService.updatings.set(this.soft.package_name,this.soft)
-    this.updateSourceList.installApp(e, this.soft, this.updateSubscription);
+    this.softwareService.install(this.soft)
   }
 
   buyApp(e: Event) {

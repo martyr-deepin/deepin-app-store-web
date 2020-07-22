@@ -20,7 +20,12 @@ export class PackageService {
 
   async start() {
     while (true) {
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise((resolve) => {
+        var t = setTimeout(() => {
+          resolve();
+          clearTimeout(t);
+        }, 100);
+      });
       if (this.queryArr.length === 0) {
         continue;
       }
@@ -35,10 +40,13 @@ export class PackageService {
     if (this.cache.has(pkgId)) {
       return of(this.cache.get(pkgId));
     }
-    setTimeout(() => this.queryArr.push(pkgId));
+    var i = setTimeout(() => {
+      this.queryArr.push(pkgId);
+      clearTimeout(i);
+    });
     return this.result$.pipe(
-      filter(m => m.has(pkgId)),
-      map(m => m.get(pkgId)),
+      filter((m) => m.has(pkgId)),
+      map((m) => m.get(pkgId)),
       first(),
     );
   }
@@ -56,4 +64,3 @@ export class PackageService {
     return result;
   }
 }
-

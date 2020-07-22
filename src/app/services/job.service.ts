@@ -34,9 +34,10 @@ export class JobService {
       .filter(job => !list.includes(job.job))
       .map(job => job.job);
     if (defer.length > 0) {
-      setTimeout(() => {
+      var i = setTimeout(() => {
         defer.forEach(id => this.cache.delete(id));
         this.jobInfoList$.next(Array.from(this.cache.values()));
+        clearTimeout(i)
       }, 500);
     }
     if (list.length > 0) {

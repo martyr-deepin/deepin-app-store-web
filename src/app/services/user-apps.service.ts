@@ -15,9 +15,7 @@ export class UserAppsService {
     private buyService: BuyService,
     private messageService: MessageService,
     private authService: AuthService,
-  ) {
-    this.userAllApp$.subscribe(v => console.log({ v }));
-  }
+  ) {}
   userAllApp$ = this.authService.info$.pipe(
     switchMap(info =>
       merge(this.buyService.buy$, this.messageService.onMessage(MessageType.AppsChange)).pipe(

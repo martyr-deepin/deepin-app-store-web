@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { range } from 'lodash';
-import { Observable, timer, from, animationFrameScheduler, of, interval } from 'rxjs';
-import { tap, repeat, takeUntil } from 'rxjs/operators';
+import { Observable, from, animationFrameScheduler } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'dp-circle',
@@ -24,21 +24,8 @@ export class CircleComponent implements OnInit {
   dasharray = '0 999999';
   anime$: Observable<number> = null;
   ngOnInit() {
-    if (this.v === null) {
-      this.init(this.v);
-    }
   }
   init(v: number) {
-    if (v === null) {
-      interval(0, animationFrameScheduler).subscribe(() => {
-        this.progress += 1;
-        if (this.progress > 100) {
-          this.progress = 0;
-        }
-        this.dasharray = `calc((100% - 10)*3.1415926*${this.progress / 100}) 999999`;
-      });
-      return;
-    }
     v = Number(v);
     const p = Number((v / (this.max || 1)).toFixed(2)) * 100;
     const ranges = [...range(this.progress, p), p];

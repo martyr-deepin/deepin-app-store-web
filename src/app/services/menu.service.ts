@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
-import { DeepinidInfoService } from '../modules/share/services/deepinid.service';
 import { Channel } from 'app/modules/client/utils/channel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MenuService {
-  constructor(private router: Router, private auth: AuthService, private dService: DeepinidInfoService) {}
+  constructor(private router: Router, private auth: AuthService) {}
   serve() {
     // menu user info
     this.auth.info$.subscribe(async dInfo => {
@@ -34,7 +33,6 @@ export class MenuService {
     // bind route
     this.connectToRouter('menu.appsRequested', '/my/apps');
     this.connectToRouter('menu.commentRequested', '/my/comments');
-    this.connectToRouter('menu.donateRequested', '/my/donates');
   }
 
   connectToRouter(signal: string, url: string) {

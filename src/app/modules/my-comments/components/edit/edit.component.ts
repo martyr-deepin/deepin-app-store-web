@@ -23,7 +23,6 @@ export class EditComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private commentService: CommentsService,
-    private softwareService: SoftwareService,
   ) {}
 
   comment: UserComment;
@@ -36,7 +35,7 @@ export class EditComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.commentGroup.valueChanges.subscribe(v => console.log(v));
+    //this.commentGroup.valueChanges.subscribe(v => console.log(v));
     this.init();
     this.dialogRef.nativeElement.addEventListener('close', () => {
       this.closed();

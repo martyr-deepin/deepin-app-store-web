@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'dstore-star',
@@ -13,7 +14,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
     },
   ],
 })
-export class StarComponent implements OnInit, ControlValueAccessor {
+export class StarComponent implements OnInit,OnDestroy, ControlValueAccessor {
   @Input() rate = 0;
   @Output() rateChange = new EventEmitter<number>();
   @Input() readonly = true;
@@ -33,16 +34,22 @@ export class StarComponent implements OnInit, ControlValueAccessor {
     }
     this.rate = score;
   }
+  registerSubscription:Subscription;
   registerOnChange(fn: any): void {
-    this.rateChange.subscribe((v: number) => {
+    this.registerSubscription = this.rateChange.subscribe((v: number) => {
       this.writeValue(v);
       fn(v);
     });
   }
   registerOnTouched(fn: any): void {
-    this.rateChange.subscribe(fn);
+    //this.rateChange.pipe(tag('star')).subscribe(fn);
   }
   setDisabledState?(isDisabled: boolean): void {
     this.readonly = isDisabled;
+  }
+  ngOnDestroy(): void {
+    if(this.registerSubscription) {
+      this.registerSubscription.unsubscribe()
+    }
   }
 }
