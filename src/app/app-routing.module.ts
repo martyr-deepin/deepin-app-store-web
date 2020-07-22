@@ -41,11 +41,6 @@ const routes: Routes = [
     loadChildren: () => import('app/modules/my-comments/my-comments.module').then(m => m.MyCommentsModule),
     canActivate: [AuthGuardService],
   },
-  {
-    path: 'my/donates',
-    loadChildren: () => import('app/modules/my-donates/my-donates.module').then(m => m.MyDonatesModule),
-    canActivate: [AuthGuardService],
-  },
   // 404
   {
     path: "**",
