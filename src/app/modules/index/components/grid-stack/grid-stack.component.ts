@@ -1,63 +1,48 @@
-import { Component, OnInit, TemplateRef, ContentChild, Input, ElementRef, Output, EventEmitter } from '@angular/core';
-import 'gridstack';
+import { Component, OnInit, TemplateRef, ContentChild, Input, ElementRef, Output, EventEmitter, AfterViewInit } from '@angular/core';
 @Component({
   selector: 'm-grid-stack',
   templateUrl: './grid-stack.component.html',
-  styleUrls: ['./grid-stack.component.scss'],
+  styleUrls: ['./grid-stack.component.scss']
 })
-export class GridStackComponent<T extends GridType> implements OnInit {
+export class GridStackComponent<T extends GridType> implements OnInit,AfterViewInit {
   constructor(private el: ElementRef) {}
   @Input() data: Array<T> = [];
-  @Input() cellHeight = 60;
-  @Input() resize = false;
-  @Input() drag = true;
-  @Output() change = new EventEmitter<ChangeEvent>(true);
+  @Input() cellHeight:number;
   @ContentChild(TemplateRef, { static: false }) template: TemplateRef<HTMLElement>;
-  grid: GridStack;
-  ngOnInit() {
-    setTimeout(() => {
-      const grid = $(this.el.nativeElement.querySelector('.grid-stack')) as any;
-      grid.gridstack({
-        float: false,
-        width: 4,
-        cellHeight: this.cellHeight,
-        animate: true,
-        disableResize: !this.resize,
-        disableDrag: !this.drag,
-      });
-      this.grid = grid.data('gridstack');
-      {
-        // fix Bug: https://github.com/gridstack/gridstack.js/issues/937
-        (this.grid as any)._initStyles = () => {};
+
+  rowHeight=60;
+  ngOnInit(): void {
+    this.dataHandle();
+  }
+
+  ngAfterViewInit() {
+    this.setHight();
+  }
+  maxHeight:number = 0;
+  dataHandle() {
+    let cols = new Array<number>(4).fill(0)
+    let top = 0;
+    this.data.forEach((value) => {
+      for(let i=value.x;i<(value.x+value.width);i++) {
+        if(cols[i]>top) {
+          top = cols[i]
+        }
+        cols[i] += value.height;
       }
-      grid.on('change', (_, items) => this.itemsChange(items));
+      value.y = top;
+      //value['y'] = y;
     });
+    this.maxHeight = cols.sort((a,b)=>b-a)[0]
   }
-  itemsChange(items: { id: string; x: number; y: number; width: number; height: number }[]) {
-    for (const item of items) {
-      this.change.emit({
-        index: Number(item.id),
-        x: item.x,
-        y: item.y,
-        width: item.width,
-        height: item.height,
-      });
-    }
-  }
-  trackBy(index: number) {
-    return index;
+
+  setHight(){
+    const el = this.el.nativeElement.querySelector('.grid-stack')
+    const sum = this.maxHeight*60+"px";
+    el.style.height = sum;
   }
 }
 
 interface GridType {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-}
-
-interface ChangeEvent {
-  index: number;
   x: number;
   y: number;
   width: number;

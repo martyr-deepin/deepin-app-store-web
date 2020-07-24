@@ -1,22 +1,22 @@
 <div>
-  <div class="grid-stack grid-stack-4 grid-stack-animate" *ngIf="template">
-    <ng-container *ngFor="let item of data; trackBy: trackBy; index as index">
-      <div
-        class="grid-stack-item"
-        [attr.data-gs-id]="index"
-        [attr.data-gs-x]="item.x"
-        [attr.data-gs-y]="item.y"
-        [attr.data-gs-width]="item.width"
-        [attr.data-gs-height]="item.height"
-        [attr.data-gs-no-resize]="!resize"
-      >
-        <div class="grid-stack-item-content">
-          <ng-container
-            [ngTemplateOutlet]="template"
-            [ngTemplateOutletContext]="{ $implicit: item, index: index }"
-          ></ng-container>
+    <div class="grid-stack" *ngIf="template">
+      <ng-container *ngFor="let item of data; index as index">
+        <div
+          class="grid-stack-item"
+          [attr.data-gs-id]="index"
+          [attr.data-gs-x]="item.x"
+          [style.top]="item.y*rowHeight+'px'" 
+          [attr.data-gs-width]="item.width"
+          [style.height]="item.height*rowHeight+'px'"
+        >
+          <div class="grid-stack-item-content">
+            <ng-container
+              [ngTemplateOutlet]="template"
+              [ngTemplateOutletContext]="{ $implicit: item, index: index }"
+            ></ng-container>
+          </div>
         </div>
-      </div>
-    </ng-container>
+      </ng-container>
+    </div>
   </div>
-</div>
+  

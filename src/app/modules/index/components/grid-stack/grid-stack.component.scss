@@ -1,23 +1,27 @@
-:host ::ng-deep {
-  @import '~gridstack/dist/gridstack.min';
-
-  .grid-stack > .grid-stack-item {
-    user-select: none;
-    $gridstack-columns: 4;
-
-    @for $i from 1 through $gridstack-columns {
-      &[data-gs-width='#{$i}'] {
-        width: (100% / $gridstack-columns) * $i;
+:host {
+  .grid-stack {
+    position: relative;
+    .grid-stack-item {
+      position: absolute;
+      user-select: none;
+      $gridstack-columns: 4;
+  
+      @for $i from 1 through $gridstack-columns {
+        &[data-gs-width='#{$i}'] {
+          width: (100% / $gridstack-columns) * $i;
+        }
+        &[data-gs-x='#{$i}'] {
+          left: (100% / $gridstack-columns) * $i;
+        }
       }
-      &[data-gs-x='#{$i}'] {
-        left: (100% / $gridstack-columns) * $i;
-      }
-      &[data-gs-min-width='#{$i}'] {
-        min-width: (100% / $gridstack-columns) * $i;
-      }
-      &[data-gs-max-width='#{$i}'] {
-        max-width: (100% / $gridstack-columns) * $i;
+      .grid-stack-item-content {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        margin: auto;
       }
     }
   }
 }
+    
+  

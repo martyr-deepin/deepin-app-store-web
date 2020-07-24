@@ -11,8 +11,6 @@ body {
   color: var(--font-color);
 }
 
-//jqueryui
-@import '~jquery-ui-dist/jquery-ui.min.css';
 //jquery-ui tooltip
 .light {
   .ui-tooltip {
@@ -30,29 +28,14 @@ body {
 // 滚动条
 body{
   dstore-scrollbar {
-    &:hover {
-      &::-webkit-scrollbar {
-        width: 8px;
-      }
-    }
-    &::-webkit-scrollbar {
-      width: 0px;
-      background-color: transparent;
-    }
     &::-webkit-scrollbar-thumb {
-      border-radius: 4px;
-      -moz-border-radius: 4px;
-      -webkit-border-radius: 4px;
       background-color: #aaa;
       &:hover {
-        background-color: #666;
+        background-color: #999;
       }
       &:active {
-        background-color: #1c1c1c;
+        background-color: #666;
       }
-    }
-    &::-webkit-scrollbar-track {
-      background-color: transparent;
     }
   }
 }

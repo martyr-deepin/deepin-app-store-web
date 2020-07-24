@@ -1,6 +1,6 @@
 <ng-container *ngIf="sectionList$ | async as $sectionList; else $wait">
   <ng-container *ngIf="$sectionList.section;else $empty">
-    <m-grid-stack [data]="$sectionList.section.dataset" [cellHeight]="40" [drag]="false">
+    <m-grid-stack [data]="$sectionList.section.dataset" [cellHeight]="40">
       <ng-template let-section let-index="index">
         <section [ngSwitch]="section.type">
           <ng-container *ngIf="loadedCount >= index">
