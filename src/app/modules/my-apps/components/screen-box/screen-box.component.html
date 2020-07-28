@@ -13,7 +13,7 @@
     <screen-search-box #searchBoxRef [(ngModel)]="searchName"></screen-search-box>
   </div>
   <div (click)="searchBoxRef.close()" class="center_content">
-    <dstore-scrollbar [flex]="true">
+    <dstore-scrollbar>
       <dstore-checkbox [config]="allCheckConfig" [(ngModel)]="allChecked" (ngModelChange)="allCheckChange($event)">
         <span class="label">
           <span i18n>All apps</span>（{{appLength$ | async}}）

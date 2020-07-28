@@ -25,34 +25,6 @@ body {
   }
 }
 
-// 滚动条
-body{
-  dstore-scrollbar {
-    &::-webkit-scrollbar-thumb {
-      background-color: #aaa;
-      &:hover {
-        background-color: #999;
-      }
-      &:active {
-        background-color: #666;
-      }
-    }
-  }
-}
-.dark {
-  dstore-scrollbar {
-    &::-webkit-scrollbar-thumb {
-      background-color: #5b5e5f;
-      &:hover {
-        background-color: #8b8c8d;
-      }
-      &:active {
-        background-color: #5b5e5f;
-      }
-    }
-  }
-}
-
 input,
 textarea,
 select {
@@ -60,27 +32,7 @@ select {
   font-family: unset;
 }
 
-// ::-webkit-scrollbar {
-//   width: 8px;
-//   height: 8px;
-//   background-color: var(--scrollbar-bg-color);
-// }
-// ::-webkit-scrollbar-thumb {
-//   background-clip: content-box;
-//   background-color: var(--scrollbar-color);
-//   border: 2px solid transparent;
-//   border-radius: 4px;
-// }
-// ::-webkit-scrollbar-thumb:hover {
-//   $color: var(--scrollbar-color-hover);
-//   background-color: $color;
-//   border: 2px solid $color;
-// }
-// ::-webkit-scrollbar-thumb:active {
-//   $color: var(--scrollbar-color-active);
-//   background-color: $color;
-//   border: 2px solid $color;
-// }
+
 .icon {
   position: relative;
   width: 48px;

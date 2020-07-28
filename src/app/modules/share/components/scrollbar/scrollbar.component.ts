@@ -1,7 +1,7 @@
-import { Component, AfterViewInit, ElementRef, Renderer2, OnDestroy, Input, OnInit } from '@angular/core';
-import { BehaviorSubject, Subscription } from 'rxjs';
-import {debounceTime} from "rxjs/operators"
-
+import { Component, AfterViewInit, ElementRef, Renderer2, OnDestroy, Input, OnInit, HostListener, ViewChild } from '@angular/core';
+import { BehaviorSubject, Subscription,fromEvent } from 'rxjs';
+import {debounceTime} from "rxjs/operators";
+import {mutationOption,isMac,mouseMove,mouseUp,clickY,scrollY} from "./scrollbar.function"
 @Component({
   selector: 'dstore-scrollbar',
   templateUrl: './scrollbar.component.html',
@@ -16,77 +16,85 @@ export class ScrollbarComponent implements OnInit,AfterViewInit,OnDestroy {
 
   @Input()full:Boolean=false;
   @Input()flex:Boolean=false;
-  hideY = new BehaviorSubject<boolean>(false);
-
+  hideY$ = new BehaviorSubject<boolean>(false);
+  reloadBar$ = new BehaviorSubject<boolean>(false);
+  mutationObserver:MutationObserver;
+  
   hideYSubscription:Subscription;
+  reloadBarSubscription:Subscription;
+  onResizeSubscription:Subscription;
 
-  bar_height:number;
-  scroll_box:HTMLDivElement;
-  scroll_content:HTMLDListElement;
-  scroll_Y:HTMLDivElement;
-  scroll_bar:HTMLDivElement;
+  @ViewChild('scrollBoxRef', { static: true })
+  scrollRef:ElementRef<HTMLDivElement>;
+
+  $scroll_box:HTMLDivElement;
+  $scroll_content:HTMLDivElement;
+  $scroll_Y:HTMLDivElement;
+  $scroll_bar:HTMLDivElement;
 
   click_y:number;
 
+  hash:number = Math.random()
+
   mousemoveFunc:Function;
   mouseupFunc:Function;
-  scrolling:boolean = false;
+  isMac=isMac;
 
   ngOnInit(): void {
-    this.hideYSubscription = this.hideY.pipe(
-      debounceTime(1000)
-    ).subscribe(res=>{
-      if(res){
-        this.scroll_Y.style.opacity = "";
-        this.scrolling = false;
-      }
-    })
+    if(!isMac()) {
+      this.hideYSubscription = this.hideY$.pipe(
+        debounceTime(1000)
+      ).subscribe(res=>{
+        if(res){
+          this.$scroll_Y.style.opacity = "";
+        }
+      })
+      this.reloadBarSubscription = this.reloadBar$.pipe(
+        debounceTime(150)
+      ).subscribe(res=>{
+        this.updateBar()
+      })
+    }
   }
 
   ngAfterViewInit(): void {
-    const nativeElement = this.el.nativeElement;
-    this.scroll_box = nativeElement.querySelector(".dstore_scroll");
-    this.scroll_content = nativeElement.querySelector(".scroll_content");
-    this.scroll_Y = nativeElement.querySelector(".scroll_y");
-    this.scroll_bar = nativeElement.querySelector(".scroll_bar")
-    this.updateBar()
+    if(!isMac()) {
+      const nativeElement = this.scrollRef.nativeElement;
+      if(this.flex) {
+        this.el.nativeElement.classList.add("flex")
+      }
+      this.$scroll_box = nativeElement;
+      this.$scroll_content = <HTMLDivElement>nativeElement.firstChild;
+      this.$scroll_Y = <HTMLDivElement>nativeElement.lastChild;
+      this.$scroll_bar = <HTMLDivElement>nativeElement.lastChild.firstChild;
+      this.addResizeListener()
+      this.onWindowResize()
+    }
+  }
+
+  @HostListener("mouseenter", ['$event.target'])
+  onMouseMove(){
+    this.updateBar();
+  }
+
+  scroll = ($event:MouseEvent) => {
+    scrollY($event,this)
   }
 
   updateBar(){
-    let height = (this.scroll_box.clientHeight * 100 / this.scroll_box.scrollHeight);
-    this.scroll_bar.style.height = height+"%";
-    this.scroll_Y.style.display = this.scroll_content.clientHeight>this.scroll_box.clientHeight?"block":"none"
-  }
-
-  scroll = ($event:Event) => {
-    this.scrollY($event)
-  }
-
-  scrollY(event:Event){
-    const moveY = (this.scroll_box.scrollTop*100/this.scroll_box.clientHeight)
-    this.scroll_bar.style.transform = "translateY("+moveY+"%)";
-    this.scroll_Y.style.opacity = "1";
-    if(!this.scrolling) {
-      this.updateBar()
-    }
-    this.scrolling = true;
-    this.hideY.next(true)
+    let height = (this.$scroll_box.clientHeight * 100 / this.$scroll_box.scrollHeight);
+    this.$scroll_bar.style.height = height+"%";
+    this.$scroll_Y.style.display = this.$scroll_box.scrollHeight>this.$scroll_box.clientHeight?"block":"none"
   }
 
   clickY(event:any) {
-    //获得点击位置与滚动框顶部之间的距离
-    let _this = this;
-    let offset = Math.abs(event.target.getBoundingClientRect().top - event.clientY)
-    let bar_center = _this.scroll_bar.offsetHeight / 2;
-    let bar_position = (offset - bar_center) * 100 / _this.scroll_box.offsetHeight;
-    let scrollTop = bar_position * _this.scroll_box.scrollHeight / 100
-    _this.scroll_box.scrollTop = scrollTop;
+    clickY(event,this)
   }
 
   clickBar(e){
     this.click_y = e.currentTarget.offsetHeight - (e.clientY - e.currentTarget.getBoundingClientRect().top);
-    this.scroll_Y.style.width = "10px";
-    this.scroll_Y.style.borderRadius = "5px";
+    this.$scroll_Y.style.width = "10px";
+    this.$scroll_Y.style.borderRadius = "5px";
     this.startDrag(e);
   }
 
@@ -112,25 +120,31 @@ export class ScrollbarComponent implements OnInit,AfterViewInit,OnDestroy {
   }
 
   mouseMove(event:any){
-    let _this = this;
-    const prevPage = _this.click_y;
-    if(!prevPage) return;
-    const offset = (this.el.nativeElement.getBoundingClientRect().top - event.clientY) * -1
-    const bar_position = (_this.scroll_bar.offsetHeight - _this.click_y);
-    const bar_position_Percentage = (offset - bar_position) * 100 / _this.scroll_box.offsetHeight;
-    _this.scroll_box.scrollTop = bar_position_Percentage * _this.scroll_box.scrollHeight / 100;
+    mouseMove(event,this);
   }
 
   mouseUp(e:EventTarget){
     this.stopListen()
-    this.scroll_Y.style.width = "";
-    this.scroll_Y.style.borderRadius = "";
-    document.onselectstart = null;
+    mouseUp(this);
   }
 
   moveY(event:MouseEvent){
-    this.scroll_Y.style.opacity = "1";
-    this.hideY.next(true)
+    this.$scroll_Y.style.opacity = "1";
+    this.hideY$.next(true)
+  }
+  
+  onWindowResize(){
+    this.onResizeSubscription = fromEvent(window, 'resize')
+    .subscribe((event) => {
+      this.reloadBar$.next(true)
+    });
+  }
+
+  addResizeListener() {
+    this.mutationObserver =  new MutationObserver((mutations,observer)=>{
+      this.reloadBar$.next(true)
+    })
+    this.mutationObserver.observe(this.$scroll_box,mutationOption)
   }
 
   ngOnDestroy(): void {
@@ -139,6 +153,12 @@ export class ScrollbarComponent implements OnInit,AfterViewInit,OnDestroy {
     }
     if(this.hideYSubscription) {
       this.hideYSubscription.unsubscribe()
+    }
+    if(this.onResizeSubscription) {
+      this.onResizeSubscription.unsubscribe()
+    }
+    if(this.mutationObserver) {
+      this.mutationObserver.disconnect()
     }
   }
 

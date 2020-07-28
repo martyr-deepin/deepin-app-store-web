@@ -8,7 +8,7 @@
     </header>
     <section>
       <ng-content select=".layer_content"></ng-content>
-      <dstore-scrollbar>
+      <dstore-scrollbar [flex]="true">
         <ng-content select=".layer_scroll_content"></ng-content>
       </dstore-scrollbar>
     </section>

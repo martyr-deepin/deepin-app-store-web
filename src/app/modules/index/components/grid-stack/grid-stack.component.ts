@@ -23,6 +23,9 @@ export class GridStackComponent<T extends GridType> implements OnInit,AfterViewI
     let cols = new Array<number>(4).fill(0)
     let top = 0;
     this.data.forEach((value) => {
+      if(value.x>4){
+        value.x = 0;
+      }
       for(let i=value.x;i<(value.x+value.width);i++) {
         if(cols[i]>top) {
           top = cols[i]
@@ -37,7 +40,7 @@ export class GridStackComponent<T extends GridType> implements OnInit,AfterViewI
 
   setHight(){
     const el = this.el.nativeElement.querySelector('.grid-stack')
-    const sum = this.maxHeight*60+"px";
+    const sum = this.maxHeight*this.rowHeight+"px";
     el.style.height = sum;
   }
 }

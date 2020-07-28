@@ -30,6 +30,9 @@
   padding: 0 0 0 1rem;
   max-height: 18rem;
   display:flex;
+  dstore-scrollbar {
+    height: auto;
+  }
 }
 
 .footer_content {

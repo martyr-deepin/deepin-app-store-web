@@ -103,7 +103,7 @@
             <label class="info_description">
               {{ app.info.description }}
             </label>
-            <span *ngIf="description_overflow" (click)="$layer.show()" class="info_description_more" i18n>More</span>
+            <span *ngIf="description_overflow()" (click)="$layer.show()" class="info_description_more" i18n>More</span>
           </div>
         </td>
       </tr>

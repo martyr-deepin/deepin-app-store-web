@@ -1,8 +1,8 @@
-<div (scroll)="scroll($event)" class="dstore_scroll">
-  <div class="scroll_content">
+<div #scrollBoxRef class="scroll_box" (scroll)="scroll($event)" [ngClass]="isMac()?'mac_scroll':'default_scroll'">
+  <div class="scroll_content" [class.full]="full">
       <ng-content></ng-content>
   </div>
   <div (mousedown)="clickY($event)" (mousemove)="moveY($event)" class="scroll_y">
-      <div (dragstart)="disableEvent()" (mousedown)="clickBar($event)" class="scroll_bar"></div>
+    <div (dragstart)="disableEvent()" (mousedown)="clickBar($event)" class="scroll_bar"></div>
   </div>
 </div>
