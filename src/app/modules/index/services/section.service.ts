@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'environments/environment';
 import { map } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,11 @@ export class SectionService {
   url = `/api/public/section`;
   public globalSection;
   private list = this.http.get(this.url).pipe(
-    map(v => {
+    map((v) => {
+      // 初始化空仓
+      if (v === null) {
+        return of(undefined);
+      }
       let dataList = this.handleData(v);
       dataList.section.dataset.sort((a, b) => {
         return a.y - b.y;
@@ -29,10 +34,10 @@ export class SectionService {
   handleData(data: any) {
     //console.log(data)
     let tmp = [];
-    if(navigator){
-      environment.store_env.language = navigator.language.replace('-', '_')
+    if (navigator) {
+      environment.store_env.language = navigator.language.replace('-', '_');
     }
-    const languages = [ data.section.language.default,environment.store_env.language];
+    const languages = [data.section.language.default, environment.store_env.language];
     for (let i = 0; i < data.section.dataset.length; i++) {
       let item = data.section.dataset[i];
       let params = {
@@ -53,7 +58,7 @@ export class SectionService {
       }
       //；轮播图、背景图、热门专题图
 
-      params.items = params.items.map(v => {
+      params.items = params.items.map((v) => {
         if (v.image) {
           v.image = this.fitImage(v.image);
         }
@@ -92,7 +97,7 @@ export class SectionService {
     if (devicePixelRatio > 1) {
       value.reverse();
     }
-    return value.filter(Boolean).map(v => environment.server + '/api/public/blob/' + v)[0];
+    return value.filter(Boolean).map((v) => environment.server + '/api/public/blob/' + v)[0];
   }
 }
 

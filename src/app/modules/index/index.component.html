@@ -24,16 +24,20 @@
       </ng-template>
     </m-grid-stack>
   </ng-container>
-  <ng-template #$empty>
-    <div class="wait">
-      <img class="empty" />
-    </div>
-  </ng-template>
+
   <!-- <ng-container *ngFor="let section of $sectionList.section.dataset; index as $index" [ngSwitch]="section.type">
  
   </ng-container> -->
 </ng-container>
+<ng-template #$empty>
+  <div class="wait">
+    <div calss="emptyBox">
+      <img class="empty" />
+      <div class="emptyFont">商店是空的哦，请联系管理员上架应用</div>
+    </div>
 
+  </div>
+</ng-template>
 <ng-template #$wait>
   <div class="wait">
     <app-wait></app-wait>

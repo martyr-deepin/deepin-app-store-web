@@ -11,6 +11,7 @@ import { SysAuthService } from 'app/services/sys-auth.service';
 import { MyUpdatesService } from 'app/modules/my-updates/services/my-updates.service';
 import { UpdateSourceListService } from 'app/services/update-source-list.service';
 import { Package } from 'app/modules/client/services/store.service';
+import { StoreMode } from 'app/services/storeMode';
 
 @Component({
   selector: 'dstore-control',
@@ -69,7 +70,9 @@ export class ControlComponent implements OnChanges {
   last = false;
   id = Math.random();
   sysAuthStatus$ = this.sysAuth.sysAuthStatus$;
-
+  noIntranetAuth$ = this.sysAuth.noIntranetAuth$;
+  readonly StoreMode = StoreMode;
+  storeMode = this.sysAuth.storeMode;
   ngOnChanges(c: SimpleChanges) {
     if (c.soft) {
       this.init();
@@ -134,7 +137,7 @@ export class ControlComponent implements OnChanges {
   }
 
   updateApp(e: Event) {
-    this.myUpdateService.updatings.set(this.soft.package_name,this.soft)
+    this.myUpdateService.updatings.set(this.soft.package_name, this.soft);
     this.updateSourceList.installApp(e, this.soft, this.updateSubscription);
   }
 

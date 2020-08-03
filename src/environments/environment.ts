@@ -22,9 +22,10 @@ export const environment = {
   remoteDebug: false, // native remote debug
   supportSignIn: true, // support sign in
   store_version: 0,
-
+  appStoreType: 0,
   // server: 'http://localhost:19000',
-  server: 'http://store-chinauos.sndu.cn',
+  server: 'https://professional-store.chinauos.com',
+  //server: 'http://qx-dstore.chinauos.com',
   store_env: {
     arch: 'amd64',
     mode: 'desktop',
@@ -33,10 +34,10 @@ export const environment = {
     language: 'zh_CN',
     display: 'x11',
     client_version: '',
-    product_name: ''
+    product_name: '',
   },
   authorizationState: 1,
-  activeColor: '#0081ff'
+  activeColor: '#0081ff',
 };
 
 /*
