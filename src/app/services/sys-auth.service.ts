@@ -12,9 +12,7 @@ import { StoreMode } from './storeMode';
 export class SysAuthService {
   constructor(private zone: NgZone, private authService: AuthService) {
     this.storeMode = environment.appStoreType;
-
     this.init();
-    console.log(environment, '商店配置', this.storeMode);
   }
   storeMode = -1;
   sysAuthStatus$ = new BehaviorSubject(true);
@@ -30,9 +28,10 @@ export class SysAuthService {
       this.getAuthorizationState();
       if (this.storeMode === StoreMode.IntranetAppStore) {
         this.getIntranetAuthState();
+      } else {
+        this.getAuthorizationState();
       }
     });
-    console.log('读取配置', this.storeMode);
     if (this.storeMode === StoreMode.IntranetAppStore) {
       this.getIntranetAuthState();
     }
@@ -40,37 +39,36 @@ export class SysAuthService {
   getAuthorizationState() {
     Channel.exec<number>('settings.getAuthorizationState').then((v) => {
       environment.authorizationState = v;
-
       if (this.AuthorizationState.includes(v)) {
         this.sysAuthStatus$.next(true);
       } else {
         this.sysAuthStatus$.next(false);
+        this.intranetAuthNotifyType = NotifyType.ExtranetNotAuthorized;
         // 未授权，退出登录
         this.authService.logout(true);
       }
     });
   }
   authorizationNotify() {
-    Channel.exec('account.authorizationNotify', 5000);
+    Channel.exec('account.authorizationNotify', this.intranetAuthNotifyType);
   }
-  setSysAuthMessage() {
-    if (this.AuthorizationState.includes(environment.authorizationState)) {
-      Channel.exec('account.getUserInfo');
-    } else {
-      this.notifyIntranetFail();
-    }
+  setAuthMessage() {
+    this.authorizationNotify();
   }
 
   async getIntranetAuthState() {
     try {
       const resp = await Channel.exec<any>('settings.getIntranetAuthState');
-      console.log(resp);
+
       const result = JSON.parse(resp) as PrivateSignResult;
 
       // 注册状态
-      let intranetAuthState = result.is_register === true;
+      console.log(result);
+      let intranetAuthState = result.is_register;
       if (intranetAuthState !== true) {
         this.configIntranetAuthNotifyType(result);
+        this.noIntranetAuth$.next(intranetAuthState);
+        return;
       }
       //在注册mac地址成功的基础之上判断试用期状态
       intranetAuthState = this.configProbationFail(result.expire_result.code);
@@ -82,7 +80,7 @@ export class SysAuthService {
     }
   }
   configProbationFail(code: number) {
-    if (code === 40004) {
+    if (code === privateAuthType.IntranetTrialExpired) {
       this.intranetAuthNotifyType = NotifyType.IntranetTrialExpired;
       return false;
     } else {
@@ -93,8 +91,8 @@ export class SysAuthService {
     Channel.exec('account.authorizationNotify', this.intranetAuthNotifyType);
   }
 
-  configIntranetAuthNotifyType(result: any = {}) {
-    if (result.code === 40005) {
+  configIntranetAuthNotifyType(result: PrivateSignResult) {
+    if (result.code === privateAuthType.IntranetExceedLimit) {
       this.intranetAuthNotifyType = NotifyType.IntranetExceedLimit;
     } else {
       this.intranetAuthNotifyType = NotifyType.IntranetNotAuthorized;
@@ -107,6 +105,11 @@ enum NotifyType {
   IntranetNotAuthorized,
   IntranetExceedLimit,
   IntranetTrialExpired,
+}
+enum privateAuthType {
+  IntranetExceedLimit = 40005,
+  IntranetTrialExpired = 40004,
+  IntranetSignSuccess = 10000,
 }
 
 interface PrivateSignResult {
