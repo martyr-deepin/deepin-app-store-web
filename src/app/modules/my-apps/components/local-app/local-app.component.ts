@@ -34,10 +34,9 @@ export class LocalAppComponent implements OnInit {
   result$ = this.pageIndex$.pipe(
     switchMap(pageIndex => {
       return this.localAppService.list({ pageSize: this.pageSize, pageIndex });
-    }),
-    share(),
+    })
   );
-  count$ = this.localAppService.installedSofts$.pipe(map(result => Math.ceil(result.length / this.pageSize)));
+  count$ = this.result$.pipe(map(res=> Math.ceil(res.total/this.pageSize)));
   removingList$ = this.localAppService.removingList().pipe(
     map(list=>list)
   );
