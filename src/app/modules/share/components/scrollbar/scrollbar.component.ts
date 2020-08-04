@@ -72,7 +72,7 @@ export class ScrollbarComponent implements OnInit,AfterViewInit,OnDestroy {
     }
   }
 
-  @HostListener("mouseenter", ['$event.target'])
+  @HostListener("mouseenter")
   onMouseMove(){
     this.updateBar();
   }

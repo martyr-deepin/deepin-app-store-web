@@ -22,7 +22,7 @@ export class DeepinidInfoService {
     }
     if (param instanceof Array) {
       const req = chunk(param, 20).map(ids => {
-        return this.http.get<DeepinInfo[]>(this.apiURL, { params: { uid: ids as any } });
+        return this.http.get<DeepinInfo[]>(this.apiURL, { params: { uid: ids.join(",") as any } });
       });
       return concat(...req);
     }

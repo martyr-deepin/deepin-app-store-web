@@ -22,12 +22,10 @@ export class DeepinidPipe implements PipeTransform {
       return this.service.getDeepinUserInfo(ids).pipe(
         map(result => {
           result.forEach(info => this.service.cache.set(info.uid, info));
-
           return this.service.cache;
         }),
       );
-    }),
-    share(),
+    })
   );
   transform(uid: number) {
     this.service.ids.add(uid);
