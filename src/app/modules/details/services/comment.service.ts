@@ -109,3 +109,11 @@ export interface CommenterInfo {
   uid: number;
   username: string;
 }
+
+export enum CommentError {
+  Unknown,
+  RateInvalid,
+  CommentInvalid,
+  AllInvalid,
+  Failed,
+}

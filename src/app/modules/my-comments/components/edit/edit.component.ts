@@ -2,8 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef }
 import { FormBuilder } from '@angular/forms';
 
 import { UserComment, CommentsService } from '../../services/comments.service';
-import { SoftwareService } from 'app/services/software.service';
-import { CommentError } from 'app/modules/details/components/comment/app-comment.component';
+import { CommentError } from 'app/modules/details/services/comment.service';
 
 @Component({
   selector: 'dstore-edit',
@@ -20,10 +19,7 @@ export class EditComponent implements OnInit {
 
   deleteConfirm = false;
 
-  constructor(
-    private fb: FormBuilder,
-    private commentService: CommentsService,
-  ) {}
+  constructor(private fb: FormBuilder, private commentService: CommentsService) {}
 
   comment: UserComment;
   CommentError = CommentError;
@@ -41,16 +37,17 @@ export class EditComponent implements OnInit {
       this.closed();
     });
   }
-  async init() {
-    const resp = await this.commentService.get(this.commentID);
-    this.comment = resp;
-    this.commentGroup.patchValue(this.comment);
-    this.dialogRef.nativeElement.showModal();
+  init() {
+    this.commentService.get(this.commentID).then((resp) => {
+      this.comment = resp;
+      this.commentGroup.patchValue(this.comment);
+      this.dialogRef.nativeElement.showModal();
+    });
   }
   closed(changed: boolean = false) {
     this.close.emit(changed);
   }
-  async submit() {
+  submit() {
     this.commentGroup.markAsDirty();
     const content = this.commentGroup.get('content');
     content.setValue(content.value.trim());
@@ -61,14 +58,17 @@ export class EditComponent implements OnInit {
       return;
     }
     try {
-      await this.commentService.put(this.comment.id, { ...this.commentGroup.value });
-      this.closed(true);
+      this.commentService.put(this.comment.id, { ...this.commentGroup.value })
+      .then(res=>{
+        this.closed(true);
+      });
     } catch {
       this.commentGroup.setErrors({ error: CommentError.Failed });
     }
   }
-  async delete() {
-    await this.commentService.delete(this.comment.id);
-    this.closed(true);
+  delete() {
+    this.commentService.delete(this.comment.id).then(res=>{
+      this.closed(true);
+    });
   }
 }

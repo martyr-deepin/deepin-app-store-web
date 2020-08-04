@@ -2338,6 +2338,14 @@
           <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
+      <trans-unit datatype="html" id="96e41129ef5d2fa12b7a6ffcab608e9af04d8cbd">
+        <source>Comments:</source>
+        <target>發表評論：</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/app-comment.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

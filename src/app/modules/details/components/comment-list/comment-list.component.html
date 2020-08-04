@@ -1,0 +1,91 @@
+<div #commentRef class="commentList">
+  <div class="header">
+    <div [ngClass]="appVersion ? 'select' : 'selectAlone'">
+      <span class="comment_title" i18n>User Comments</span>
+      <div class="tabs">
+        <div class="tab" *ngIf="appVersion" [class.active]="select === CommentType.News"
+          (click)="selectChange(CommentType.News)">
+          <ng-container i18n>Current Version</ng-container>
+          ({{ total[CommentType.News] }})
+        </div>
+        <div class="tab" [class.active]="select === CommentType.History" (click)="selectChange(CommentType.History)">
+          <ng-container i18n>History Versions</ng-container>
+          ({{ total[CommentType.History] }})
+        </div>
+      </div>
+    </div>
+    <div class="paginator" *ngIf="total[select] > pageSize">
+      <app-paginator [length]="total[select]" [size]="pageSize" [pageIndex]="page[select]"
+        (pageIndexChange)="pageChange($event)"></app-paginator>
+    </div>
+  </div>
+  <br />
+  <div class="body" [class.loading]="loading" >
+    <div class="app_wait" *ngIf="loading">
+      <app-wait></app-wait>
+    </div>
+    <ng-container [ngSwitch]="true">
+      <div class="empty error" *ngSwitchCase="!list">
+        <ng-container i18n>Failed to load comments</ng-container>
+      </div>
+      <div class="empty" *ngSwitchCase="list&&list.get(select)?.length === 0">
+        <ng-container i18n>No user comments available</ng-container>
+      </div>
+      <ng-container *ngSwitchCase="list&&list.get(select)?.length > 0">
+        <ng-container *ngFor="let c of list.get(select); first as first">
+          <div [@myComment]="haveNewComment && first && c.commenter === info?.uid ? 'in' : ''" class="comment_item">
+            <div class="img">
+              <img [src]="c.commenterInfo?.profile_image" #avatarRef
+                (error)="avatarRef.src = '/assets/images/default_avatar.jpeg?default'" class="profile" />
+            </div>
+            <div class="comment_context">
+              <div class="comment_head">
+                <div>
+                  <ng-container *ngIf="c.commenterInfo as info; else deepinInfoDefault">
+                    {{info.nickname}}
+                    <div class="star">
+                      <dstore-star [rate]="c.score"></dstore-star>
+                      <span>{{ c.score }}</span>
+                    </div>
+                  </ng-container>
+                </div>
+                <ng-template #deepinInfoDefault>
+                  <span i18n>[Closed Account]</span>
+                  <div class="star">
+                    <dstore-star [rate]="c.score"></dstore-star>
+                    <span>{{ c.score }}</span>
+                  </div>
+                </ng-template>
+                <div class="time">
+                  {{c.created_at | date: 'yyyy-MM-dd HH:mm:ss'}}
+                </div>
+              </div>
+              <div class="comment_body">{{c.content}}</div>
+              <div class="comment_reply" *ngIf="c.reply">
+                <span class="reply-head" i18n> [Developer reply]</span>
+                <span class="replay-content">{{c.reply.context}}</span>
+              </div>
+              <div class="comment_bottom">
+                <div class="tags">
+                  <ng-container *ngIf="c.tags?.length" >
+                    <span i18n>Tags:</span>
+                  </ng-container>
+                  <span class="tag" *ngFor="let tag of c.tags" >{{tag.tag}}</span>
+                </div>
+                <div class="like">
+                  <img class="thumbUp" [class.active]="likeByMe(c.likes, info?.uid)" 
+                  (click)="thumbUpClick(c)" />
+                  <span>&#40;{{c.likes?.length||0}}&#41;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+  <div class="bottom" *ngIf="!loading">
+    <a (click)="scrollToTop()" i18n>Back to top</a>
+    <app-paginator *ngIf="total[select] > pageSize" [pageIndex]="page[select]" [length]="total[select]" [size]="pageSize" (pageIndexChange)="pageChange($event)"></app-paginator>
+  </div>
+</div>
