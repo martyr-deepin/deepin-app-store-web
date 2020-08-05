@@ -72,7 +72,7 @@
                   </ng-container>
                   <span class="tag" *ngFor="let tag of c.tags" >{{tag.tag}}</span>
                 </div>
-                <div class="like">
+                <div *ngIf="info?.uid!=c.commenter" class="like">
                   <img class="thumbUp" [class.active]="likeByMe(c.likes, info?.uid)" 
                   (click)="thumbUpClick(c)" />
                   <span>&#40;{{c.likes?.length||0}}&#41;</span>

@@ -102,11 +102,14 @@ export class AppCommentComponent implements  OnInit,OnChanges {
     }
   }
 
-  queryOwn(){
-    this.userAPI.list({ app_id: this.appID, version: this.appVersion })
-    .then(res => {
-      this.own = res.items[0]
-    })
+  async queryOwn(){
+    let info = await this.info$.toPromise();
+    if(info) {
+      this.userAPI.list({ app_id: this.appID, version: this.appVersion })
+      .then(res => {
+        this.own = res.items[0]
+      })
+    }
   }
   
   async submitComment() {
