@@ -5,7 +5,7 @@
   dstore-remote-install {
     padding: 0 1rem;
   }
-  font-size: 12px;
+  font-size: 0.92rem;
 }
 
 header {
@@ -174,12 +174,11 @@ header {
 
 .table_head {
   display: flex;
-  height: 40px;
+  height: 3.07rem;
+  line-height: 3.07rem;
   align-items: center;
-  line-height: 40px;
   padding: 0 1rem 0 1.5rem;
   background-color: var(--nav-bg-color);
-  font-size: 13px;
   font-weight: 500;
   .th {
     &:first-child {

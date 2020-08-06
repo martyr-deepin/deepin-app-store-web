@@ -16,10 +16,10 @@
   cursor: pointer;
   display: inline-block;
   .screenIcon {
-    margin-left: 0.2rem;
+    margin-left: 3px;
     vertical-align: top;
-    width: 16px;
-    height: 16px;
+    width: 1.2rem;
+    height: 1.2rem;
     background-color: var(--activityColor);
     -webkit-mask: var(--screen-icon) no-repeat center;
     mask: var(--screen-icon) no-repeat center;

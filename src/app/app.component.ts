@@ -98,7 +98,9 @@ export class AppComponent implements OnInit {
       if(settings.productName) {
         environment.store_env.product_name = settings.productName
       }
-      
+      if(settings.fontPixelSize && settings.fontPixelSize>=10) {
+        environment.fontSize = settings.fontPixelSize
+      }
     }
   }
 
@@ -139,4 +141,5 @@ interface Settings {
   activeColor:string;
   appStoreVersion:string;
   productName:string;
+  fontPixelSize: number;
 }

@@ -28,5 +28,6 @@ export const environment = {
     product_name: ''
   },
   authorizationState: 1,
-  activeColor: '#0081ff'
+  activeColor: '#0081ff',
+  fontSize: 13,
 };

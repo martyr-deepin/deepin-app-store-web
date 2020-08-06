@@ -31,7 +31,7 @@
       background-size: 100% 100%;
       background-repeat: no-repeat;
       background-position-x: 0, -100px;
-      padding: 0 1rem 0 1.2rem;
+      padding: 0 13px 0 15px;
       @each $v in $category-list {
         &.#{$v} {
           background-image: var(--nav-icon-#{$v});

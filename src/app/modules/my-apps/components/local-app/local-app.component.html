@@ -39,19 +39,22 @@
           <div class="installed-app">
             <ng-container *ngIf="installed.software as software; else noSoftwareRef">
               <ng-container *ngIf="(software.id===0?software.package:software.info) as softwares">
-                <img class="icon" dstoreCover="icon" [routerLink]="['/app', installed.software.id]" [src]="softwares.icon" />
-                <div class="info">
-                  <span dstoreTips>{{ softwares.name?softwares.name: installed.package.appName}}</span>
+                <div class="installed-info" >
+                  <img class="icon" dstoreCover="icon" [routerLink]="['/app', installed.software.id]" [src]="softwares.icon" />
+                  <div class="info">
+                    <span dstoreTips>{{ softwares.name?softwares.name: installed.package.appName}}</span>
+                  </div>
                 </div>
               </ng-container>
             </ng-container>
             <ng-template #noSoftwareRef>
-              <img class="icon" dstoreCover="icon" [routerLink]="['/app', 0]" [src]='installed.package.icon' />
-              <div class="info">
-                <span dstoreTips>{{ installed.localName }}</span>
+              <div class="installed-info" >
+                <img class="icon" dstoreCover="icon" [routerLink]="['/app', 0]" [src]='installed.package.icon' />
+                <div class="info">
+                  <span dstoreTips>{{ installed.localName }}</span>
+                </div>
               </div>
             </ng-template>
-            <div class="installed">
               <ng-template #confirm>
                 <div class="confirm">
                   <ng-container i18n>Are you sure you want to uninstall this application?</ng-container>
@@ -90,7 +93,6 @@
                   </div>
                 </ng-container>
               </ng-template>
-            </div>
             <div class="control">
               <ng-template #confirmBtn>
                 <button class="default" (click)="selected = null" i18n>Cancel</button>

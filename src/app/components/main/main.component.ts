@@ -60,9 +60,9 @@ export class MainComponent implements OnInit {
   }
   // switch font family and font size
   switchFont() {
+    document.querySelector("html").style.fontSize = environment.fontSize+"px";
     this.sysFontService.fontChange$.subscribe(([fontFamily, fontSize]) => {
       const HTMLGlobal = document.querySelector('html');
-      console.log('字体', fontSize);
       HTMLGlobal.style.fontFamily = fontFamily;
       HTMLGlobal.style.fontSize = fontSize + 'px';
     });
