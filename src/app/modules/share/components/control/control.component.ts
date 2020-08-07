@@ -11,6 +11,7 @@ import { SysAuthService } from 'app/services/sys-auth.service';
 import { MyUpdatesService } from 'app/modules/my-updates/services/my-updates.service';
 import { UpdateSourceListService } from 'app/services/update-source-list.service';
 import { Package } from 'app/modules/client/services/store.service';
+import { StoreMode } from 'app/services/storeMode';
 
 @Component({
   selector: 'dstore-control',
@@ -70,7 +71,9 @@ export class ControlComponent implements OnChanges,OnDestroy {
   last = false;
   id = Math.random();
   sysAuthStatus$ = this.sysAuth.sysAuthStatus$;
-
+  noIntranetAuth$ = this.sysAuth.noIntranetAuth$;
+  readonly StoreMode = StoreMode;
+  storeMode = this.sysAuth.storeMode;
   ngOnChanges(c: SimpleChanges) {
     if (c.soft) {
       this.init();
@@ -149,7 +152,7 @@ export class ControlComponent implements OnChanges,OnDestroy {
   }
   sysAuthMessage() {
     console.log('trigger sys Authorizaed message ');
-    this.sysAuth.authorizationNotify();
+    this.sysAuth.setAuthMessage();
   }
   trigger(e: Event, job: StoreJobInfo) {
     e.stopPropagation();

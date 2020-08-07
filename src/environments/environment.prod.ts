@@ -15,7 +15,7 @@ export const environment = {
   remoteDebug: false,
   supportSignIn: false,
   store_version: 0,
-
+  appStoreType: -1,
   server: 'http://store-chinauos.sndu.cn',
   store_env: {
     arch: 'amd64',
@@ -25,7 +25,7 @@ export const environment = {
     language: 'zh_CN',
     display: 'x11',
     client_version: '',
-    product_name: ''
+    product_name: '',
   },
   authorizationState: 1,
   activeColor: '#0081ff',

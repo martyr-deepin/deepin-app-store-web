@@ -4,6 +4,7 @@ import { AuthService, UserInfo } from 'app/services/auth.service';
 import smoothScrollIntoView from 'smooth-scroll-into-view-if-needed';
 import { trigger, state, transition, style, animate } from '@angular/animations';
 import { Subscription } from 'rxjs';
+import { environment } from 'environments/environment';
 
 enum CommentType {
   News,
@@ -33,6 +34,8 @@ export class CommentListComponent implements OnInit {
     private auth: AuthService,
     private commentService: CommentService
   ) { }
+
+  readonly supportSignIn = environment.supportSignIn;
 
   @Input()
   appID:number;

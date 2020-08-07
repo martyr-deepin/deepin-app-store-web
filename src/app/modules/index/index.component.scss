@@ -22,8 +22,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   .empty {
     content: url('/assets/images/empty-image.svg');
     cursor: pointer;
+  }
+
+  .emptyBox {
+    width: 100%;
+    text-align: center;
+
+
+  }
+
+  .emptyFont {
+    color: #333333;
+    font-size: 14px;
+    opacity: 0.5;
   }
 }

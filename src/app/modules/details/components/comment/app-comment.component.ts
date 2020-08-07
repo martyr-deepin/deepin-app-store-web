@@ -66,6 +66,7 @@ export class AppCommentComponent implements  OnInit,OnChanges {
   };
   ngOnInit(){
     this.queryOwn()
+    console.log(this.supportSignIn)
   }
 
   ngOnChanges(changes: SimpleChanges): void {

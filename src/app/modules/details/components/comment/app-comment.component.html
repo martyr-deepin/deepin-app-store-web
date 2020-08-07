@@ -1,5 +1,5 @@
 <ng-container *ngFor="let info of [info$ | async]">
-  <div >
+  <div *ngIf="supportSignIn;else commentList">
     <div class="comment-info" [formGroup]="commentGroup">
       <div>
         <ng-container *ngIf="own;else commentedRef">
@@ -84,4 +84,7 @@
     </div>
     <dstore-comment-list #commentListRef [appID]="appID" [appVersion]="appVersion" [info]="info" ></dstore-comment-list>
   </div>
+  <ng-template #commentList>
+    <dstore-comment-list #commentListRef [appID]="appID" [appVersion]="appVersion" [info]="info" ></dstore-comment-list>
+  </ng-template>
 </ng-container>
