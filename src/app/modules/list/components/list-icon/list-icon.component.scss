@@ -1,11 +1,12 @@
 dstore-list-icon {
   .item-icon {
-    flex-wrap: wrap;
     margin-top: 0.2rem;
     box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
   }
   .item {
-    display: inline-block;
     box-sizing: border-box;
     width: 17rem;
     padding: 0.5rem;

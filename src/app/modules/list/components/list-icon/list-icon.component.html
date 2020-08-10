@@ -39,6 +39,6 @@
     <section class="item" *ngFor="let empty of 4 | range" [style.height]="0" [style.padding]="0"></section>
   </div>
   <section #loadingRef class="wait">
-    <m-wait-icon #waitIcon *ngIf="wait" [wait]="wait"></m-wait-icon>
+    <m-wait-icon *ngIf="wait" [wait]="wait"></m-wait-icon>
   </section>
 </dstore-scrollbar>
