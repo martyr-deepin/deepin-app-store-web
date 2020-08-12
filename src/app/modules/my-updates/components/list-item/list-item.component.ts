@@ -49,12 +49,16 @@ export class ListItemComponent implements OnInit {
 
   privateStoreAuth = false;
 
-  update(): void {
+  update(event:MouseEvent): void {
     /**
      * private store auth logic
      */
     if (environment.appStoreType === StoreMode.IntranetAppStore && !this.privateStoreAuth) {
       this.sysAuth.setAuthMessage();
+      let si = setTimeout(()=>{
+        (<HTMLButtonElement>event.target).disabled = false;
+        clearTimeout(si)
+      },100)
       return;
     }
     if (!this.service.updatings.get(this.software.package_name)) {

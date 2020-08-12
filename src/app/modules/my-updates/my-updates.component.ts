@@ -92,12 +92,16 @@ export class MyUpdatesComponent implements OnInit, OnDestroy {
   /**
    * Update all
    */
-  updateAll() {
+  updateAll(event:MouseEvent) {
     /**
      * private store auth logic
      */
     if (environment.appStoreType === StoreMode.IntranetAppStore && !this.privateStoreAuth) {
       this.sysAuth.setAuthMessage();
+      let si = setTimeout(()=>{
+        (<HTMLButtonElement>event.target).disabled = false;
+        clearTimeout(si)
+      },100)
       return;
     }
     const res = this.service.softCache;
