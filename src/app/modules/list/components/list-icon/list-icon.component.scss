@@ -3,14 +3,14 @@ dstore-list-icon {
     margin-top: 0.2rem;
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     justify-items: center;
   }
   .item {
     box-sizing: border-box;
     width: 17rem;
     padding: 0.5rem;
-    margin: 1rem;
+    margin: 0.4rem 0;
     animation: show 1s;
     border-radius: 4px;
     cursor: pointer;

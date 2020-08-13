@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef, Renderer2, OnDestroy, Input, OnInit, HostListener, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, Renderer2, OnDestroy, Input, OnInit, HostListener, ViewChild, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject, Subscription,fromEvent } from 'rxjs';
 import {debounceTime} from "rxjs/operators";
 import {mutationOption,isMac,mouseMove,mouseUp,clickY,scrollY} from "./scrollbar.function"
@@ -16,6 +16,7 @@ export class ScrollbarComponent implements OnInit,AfterViewInit,OnDestroy {
 
   @Input()full:Boolean=false;
   @Input()flex:Boolean=false;
+  @Output() onReload = new EventEmitter<void>();
   hideY$ = new BehaviorSubject<boolean>(false);
   reloadBar$ = new BehaviorSubject<boolean>(false);
   mutationObserver:MutationObserver;
@@ -53,6 +54,7 @@ export class ScrollbarComponent implements OnInit,AfterViewInit,OnDestroy {
         debounceTime(150)
       ).subscribe(res=>{
         this.updateBar()
+        this.onReload.emit(null)
       })
     }
   }

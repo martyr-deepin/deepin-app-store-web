@@ -1,4 +1,4 @@
-<dstore-scrollbar>
+<dstore-scrollbar (onReload)="gridGroup()">
   <div class="item-icon">
     <ng-container *ngFor="let soft of list">
       <section [routerLink]="[soft.id]" class="item" [class.hover]="controlRef.show">

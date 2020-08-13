@@ -12,8 +12,6 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { environment } from 'environments/environment';
-import { Subscription, fromEvent, BehaviorSubject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
 @Component({
   selector: 'dstore-list-icon',
   templateUrl: './list-icon.component.html',
@@ -30,7 +28,6 @@ export class ListIconComponent implements OnInit, OnChanges, OnDestroy {
   @Input() slogan = false;
   @Output() load = new EventEmitter<void>();
   wait = false;
-  reloadColumn$ = new BehaviorSubject<boolean>(false);
 
   // 监听是否到达底部
   intersection = new IntersectionObserver(([e]: IntersectionObserverEntry[]) => {
@@ -41,22 +38,12 @@ export class ListIconComponent implements OnInit, OnChanges, OnDestroy {
     }
   });
 
-  onResizeSubscription = fromEvent(window, 'resize').subscribe((event) => {
-    this.reloadColumn$.next(true);
-  });
-
-  reloadSubscription = this.reloadColumn$.pipe(debounceTime(100)).subscribe(() => {
-    this.gridGroup();
-  });
-
   ngOnInit(): void {
-    //this.gridGroup();
+    this.gridGroup();
   }
 
   ngOnDestroy(): void {
     this.intersection.disconnect();
-    this.onResizeSubscription.unsubscribe();
-    this.reloadSubscription.unsubscribe();
   }
 
   ngOnChanges(changed: SimpleChanges) {
