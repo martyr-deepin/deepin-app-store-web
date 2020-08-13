@@ -1,30 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
 @Component({
-  selector: 'dstore-layer',
-  templateUrl: './layer.component.html',
-  styleUrls: ['./layer.component.scss']
+  selector: 'dstore-confirm',
+  templateUrl: './confirm.component.html',
+  styleUrls: ['./confirm.component.scss']
 })
-export class LayerComponent {
+export class ConfirmComponent implements OnInit,OnDestroy {
 
-  constructor(
-  ){}
-
-  @Input()
-  dialogTitle:string = "";
+  constructor(){}
 
   @Input()
-  both=false;
+  dialogTitle:String;
 
   @Input()
-  main=false;
-
-  @Input()
-  outer:boolean = true;
+  header:boolean = false;
   
   destruction:boolean = false;
   visible:boolean = false;
-
 
   show() {
     this.destruction = true;
@@ -42,11 +34,10 @@ export class LayerComponent {
     },300)
   }
 
-  outer_close() {
-    if(this.outer) {
-      this.close();
-    }
+  ngOnInit(){
   }
 
+  ngOnDestroy(){
+  }
 
 }

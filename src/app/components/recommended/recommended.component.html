@@ -1,0 +1,79 @@
+<dstore-layer #dstoreLayer [outer]="false" [main]="true">
+	<ng-container class="layer_content">
+		<header>
+			<div class="img">
+				<img />
+			</div>
+			<div (click)="confirmRef.show()" class="close">×</div>
+		</header>
+		<section class="body">
+			<div class="body_content">
+				<dstore-scrollbar>
+					<div class="body_head">
+						<h3 i18n>recommended</h3>
+					</div>
+					<div *ngIf="list.length;else loadingRef" class="item-icon">
+						<ng-container *ngFor="let item of list">
+							<section class="item">
+								<main>
+									<span class="disabled" *ngIf="item.disabled" title="Installed" i18n-title></span>
+									<img dstoreCover="icon" class="images" [src]="item.soft?.info?.icon" />
+									<div class="info">
+										<div class="name">
+											<span class="name_context">{{ item.soft?.info?.name }}</span>
+										</div>
+										<ng-container *ngIf="item.soft.stat.score_count >= 20; else $starRef">
+											<dstore-star [rate]="item.soft.stat.score/2 || 0"></dstore-star>
+										</ng-container>
+										<ng-template #$starRef>
+											<dstore-star [rate]="0"></dstore-star>
+										</ng-template>
+										<div class="subtitle">
+											<div class="category">
+												<!-- {{ slogan ? soft?.info?.slogan : (soft?.info?.category | categoryText | async) }} &nbsp; -->
+												<div class="category-title" *ngIf="item.soft?.info?.slogan; else elsecategory">
+													{{ item.soft?.info?.slogan }}</div>
+												<ng-template #elsecategory>
+													<m-category-name [category]="item.soft?.info?.category"></m-category-name>
+													<!-- {{soft?.info?.category}} -->
+												</ng-template>
+											</div>
+										</div>
+									</div>
+									<dstore-main-checkbox [config]="{circle:true,disabled:item.disabled}" [(ngModel)]="item.checked"
+										(ngModelChange)="checkChange()"></dstore-main-checkbox>
+								</main>
+							</section>
+						</ng-container>
+					</div>
+					<ng-template #loadingRef>
+						<app-wait></app-wait>
+					</ng-template>
+				</dstore-scrollbar>
+			</div>
+			<footer>
+				<div>
+					<dstore-main-checkbox [config]="{circle:true,mixed:mixed}" [ngModel]="allChecked" (click)="change($event)">
+						<span class="label" style="margin-left: 0.4rem;">
+							<span i18n>All</span>
+						</span>
+					</dstore-main-checkbox>
+				</div>
+				<div>
+					<button (click)="installAll();$event.target.disabled = true" i18n>Install All</button>
+				</div>
+			</footer>
+		</section>
+	</ng-container>
+</dstore-layer>
+<dstore-confirm #confirmRef [header]="true">
+	<ng-container class="layer_header">
+		<img />
+		<div class="close" (click)="confirmRef.close()" >×</div>
+	</ng-container>
+	<p class="layer_content" i18n>Do you want to leave this page?</p>
+	<ng-container class="layer_buttons">
+		<button class="default" (click)="confirmRef.close();close()" i18n>Leave</button>
+		<button class="primary" i18n (click)="confirmRef.close()">Stay Here</button>
+	</ng-container>
+</dstore-confirm>

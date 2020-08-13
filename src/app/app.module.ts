@@ -16,6 +16,9 @@ import { ProxyInterceptor } from './services/proxy-interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LocalesService } from './services/locales.service';
+import { RecommendedComponent } from './components/recommended/recommended.component';
+import { DstoreCheckboxComponent } from "./components/checkbox/checkbox.component";
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { LocalesService } from './services/locales.service';
     SideNavComponent,
     NotifyComponent,
     MainComponent,
+    RecommendedComponent,
+    DstoreCheckboxComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,21 @@
+<div [ngClass]="{'show':visible}" class="layer_background">
+    <div class="layer_content">
+      <header *ngIf="!header" >
+        <div class="title">
+          {{dialogTitle}} 
+        </div>
+        <div (click)="close()" class="close">×</div>
+      </header>
+      <header *ngIf="header" >
+        <ng-content select=".layer_header"></ng-content>
+      </header>
+      <section>
+        <ng-content select=".layer_content"></ng-content>
+      </section>
+      <footer>
+        <div class="button_group">
+          <ng-content select=".layer_buttons"></ng-content>
+        </div>
+      </footer>
+    </div>
+  </div>

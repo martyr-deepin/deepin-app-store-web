@@ -23,4 +23,5 @@ export interface Settings {
   upyunBannerVisible: boolean;
   fontFamily: string;
   fontPixelSize: string;
+  recommend: string;
 }

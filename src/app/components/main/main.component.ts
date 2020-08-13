@@ -12,6 +12,8 @@ import { MenuService } from 'app/services/menu.service';
 import { SoftwareService, Software } from 'app/services/software.service';
 import { ClientService, RequestErrorType } from 'app/services/client.service';
 import { BuyService } from 'app/services/buy.service';
+import { Settings } from 'app/services/settings.service';
+import { StorageKey } from 'app/services/storage.service';
 
 @Component({
   selector: 'dstore-main',
@@ -65,6 +67,7 @@ export class MainComponent implements OnInit {
       const HTMLGlobal = document.querySelector('html');
       HTMLGlobal.style.fontFamily = fontFamily;
       HTMLGlobal.style.fontSize = fontSize + 'px';
+      environment.fontSize = fontSize;
     });
   }
   // preview software screenshot
@@ -180,4 +183,31 @@ export class MainComponent implements OnInit {
       )
       .subscribe();
   }
+
+  readonly ids: string =
+    '98;129;157;414;714;715;716;857;964;975;992;993;994;995\n' +
+    '98;129;157;414;714;715;716;857;964;975;992;993;994;995';
+
+  recommendedIds$ = new Promise((resolve)=>{
+    let ids: string;
+    const { channel } = window['dstore'];
+    if (channel) {
+      new Promise<Settings>((resolve) => {
+        channel.objects.settings.getSettings(resolve);
+      }).then(res => {
+        if(res.recommend) {
+          ids = res.recommend;
+          if (!ids || ids.trim() === '') {
+            ids = this.ids;
+          }
+          localStorage[StorageKey.recommendedIds] = ids;
+        }
+        ids = localStorage[StorageKey.recommendedIds];
+        resolve(ids)
+      })
+    }else {
+      resolve("")
+    }
+  })
+    
 }

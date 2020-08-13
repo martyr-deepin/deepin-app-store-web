@@ -6,5 +6,8 @@
     </dstore-scrollbar>
   </div>
   <app-notify></app-notify>
+  <ng-container *ngIf="recommendedIds$ | async as ids">
+    <dstore-recommended [ids]="ids"></dstore-recommended>
+  </ng-container>
   <m-buy *ngIf="buyDialogShow$ | async as soft" [soft]="soft" (cancel)="buyDialogShow$.next(null)"></m-buy>
 </div>
