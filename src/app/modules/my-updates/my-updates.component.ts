@@ -6,6 +6,8 @@ import { JobService } from 'app/services/job.service';
 import { StoreJobType, StoreJobStatus } from '../client/models/store-job-info';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { SysAuthService } from 'app/services/sys-auth.service';
+import { environment } from 'environments/environment';
+import { StoreMode } from 'app/services/storeMode';
 
 @Component({
   selector:"dstore-my-updates",
@@ -24,7 +26,8 @@ export class MyUpdatesComponent implements OnInit,OnDestroy{
   ){}
 
   sysAuthStatus$ = this.sysAuth.sysAuthStatus$;
-
+  
+  privateStoreAuth = true;
   ngOnInit(){
     this.path = this.route.firstChild.snapshot.routeConfig['path']
     // init subscribe
@@ -82,10 +85,19 @@ export class MyUpdatesComponent implements OnInit,OnDestroy{
     })
   )
 
-  /**
-   * Update all
-   */
-  updateAll(){
+  async updateAll(event:MouseEvent){
+    /**
+     * private store auth logic
+     */
+    this.privateStoreAuth = await this.sysAuth.noIntranetAuth$.toPromise()
+    if(environment.appStoreType === StoreMode.IntranetAppStore && !this.privateStoreAuth) {
+      this.sysAuth.setAuthMessage();
+      let st = setTimeout(() => {
+        (<HTMLButtonElement>event.target).disabled = false;
+        clearTimeout(st)
+      },100)
+      return;
+    }
     const res = this.service.softCache;
     if(res.length) {
       res.map(soft => {

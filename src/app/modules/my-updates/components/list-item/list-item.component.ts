@@ -7,6 +7,8 @@ import { JobService } from 'app/services/job.service';
 import { MyUpdatesService } from '../../services/my-updates.service';
 import { Subscription } from 'rxjs';
 import { SysAuthService } from 'app/services/sys-auth.service';
+import { environment } from 'environments/environment';
+import { StoreMode } from 'app/services/storeMode';
 
 @Component({
   selector: 'my-updates-list-item',
@@ -33,9 +35,22 @@ export class ListItemComponent {
   subscribe:Subscription;
   inited:number = 0;
 
+  privateStoreAuth:boolean;
  
 
-  update(): void {
+  async update(event:MouseEvent) {
+    /**
+     * private store auth logic
+     */
+    this.privateStoreAuth = await this.sysAuth.noIntranetAuth$.toPromise();
+    if(environment.appStoreType === StoreMode.IntranetAppStore && !this.privateStoreAuth) {
+      this.sysAuth.setAuthMessage();
+      let st = setTimeout(() => {
+        (<HTMLButtonElement>event.target).disabled = false;
+        clearTimeout(st)
+      },100)
+      return;
+    }
     if(!this.service.updatings.get(this.software.package_name)){
       this.service.updatings.set(this.software.package_name,this.software)
     }
