@@ -60,7 +60,7 @@
           </dstore-main-checkbox>
         </div>
         <div>
-          <button (click)="installAll();$event.target.disabled = true" i18n>Install All</button>
+          <button [disabled]="!mixed && !allChecked" (click)="installAll();$event.target.disabled = true" i18n>Install All</button>
         </div>
       </footer>
     </section>

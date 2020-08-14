@@ -70,6 +70,7 @@ export class RecommendedComponent implements OnInit, AfterViewInit {
       });
     } else {
       let st = setTimeout(() => {
+        this.allChecked = false;
         this.mixed = false;
         clearTimeout(st);
       });
