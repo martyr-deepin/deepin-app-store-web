@@ -67,10 +67,10 @@
               </div>
               <div class="comment_bottom">
                 <div class="tags">
-                  <ng-container *ngIf="c.tags?.length" >
+                  <!-- <ng-container *ngIf="c.tags?.length" >
                     <span i18n>Tags:</span>
                   </ng-container>
-                  <span class="tag" *ngFor="let tag of c.tags" >{{tag.tag}}</span>
+                  <span class="tag" *ngFor="let tag of c.tags" >{{tag.tag}}</span> -->
                 </div>
                 <ng-container *ngIf="supportSignIn">
                   <div *ngIf="info?.uid!=c.commenter" class="like">

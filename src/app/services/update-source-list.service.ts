@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { StoreService } from 'app/modules/client/services/store.service';
-import { StoreJobInfo,StoreJobStatus } from 'app/modules/client/models/store-job-info';
+import { StoreJobInfo } from 'app/modules/client/models/store-job-info';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { switchMap, filter, take } from 'rxjs/operators';
 import { Software, SoftwareService } from './software.service';
@@ -14,7 +14,9 @@ export class UpdateSourceListService {
   private jobId= '/com/deepin/lastore/Jobupdate_source';
   private interval = undefined;
 
-  constructor(private store: StoreService,private softwareService:SoftwareService) {}
+  constructor(private store: StoreService,private softwareService:SoftwareService) {
+    this.updateSourceList().toPromise()
+  }
 
   updateSourceList() {
     return this.store.getJobStatus(this.jobId).pipe(
@@ -111,9 +113,7 @@ export class UpdateSourceListService {
         )
         .subscribe((jobInfo) => {
           this.loadingOff(<HTMLButtonElement>e.target, soft.id)
-          if(jobInfo.status != StoreJobStatus.failed) {
-            this.softwareService.install(soft)
-          }
+          this.softwareService.install(soft)
           updateSubscription.unsubscribe()
         });
     }
