@@ -20,7 +20,7 @@
             <button (click)="startAll();$event.target.disabled=true" i18n>Resume All</button>
           </div>
           <div *ngSwitchDefault>
-            <button [disabled]="!(service.renewableApps$ | async).length" (click)="updateAll($event);$event.target.disabled=true" i18n>Update All</button>
+            <button [disabled]="!(service.renewableApps$ | async).length" (click)="updateAll($event);" i18n>Update All</button>
           </div>
         </ng-container>
       </ng-container>

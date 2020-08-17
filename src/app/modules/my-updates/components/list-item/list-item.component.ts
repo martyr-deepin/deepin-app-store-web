@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef } from '@angular/core';
+import { Component, Input, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { Software, SoftwareService } from 'app/services/software.service';
 import { StoreJobInfo, StoreJobStatus, StoreJobError, StoreJobErrorType, CanFixError } from 'app/modules/client/models/store-job-info';
 import { switchMap, filter } from 'rxjs/operators';
@@ -15,7 +15,7 @@ import { StoreMode } from 'app/services/storeMode';
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.scss']
 })
-export class ListItemComponent {
+export class ListItemComponent implements OnInit,OnDestroy {
 
   constructor(
     private service:MyUpdatesService,
@@ -35,22 +35,31 @@ export class ListItemComponent {
   subscribe:Subscription;
   inited:number = 0;
 
-  privateStoreAuth:boolean;
+  privateStoreAuth = true;
+
+  noIntranetAuthSubscription:Subscription;
  
+  ngOnInit(): void {
+    this.noIntranetAuthSubscription = this.sysAuth.noIntranetAuth$.subscribe(res => {
+      this.privateStoreAuth = res;
+    })
+  }
+
+  ngOnDestroy(): void {
+    if(this.noIntranetAuthSubscription) {
+      this.noIntranetAuthSubscription.unsubscribe();
+    }
+  }
 
   async update(event:MouseEvent) {
     /**
      * private store auth logic
      */
-    this.privateStoreAuth = await this.sysAuth.noIntranetAuth$.toPromise();
     if(environment.appStoreType === StoreMode.IntranetAppStore && !this.privateStoreAuth) {
       this.sysAuth.setAuthMessage();
-      let st = setTimeout(() => {
-        (<HTMLButtonElement>event.target).disabled = false;
-        clearTimeout(st)
-      },100)
       return;
     }
+    (<HTMLButtonElement>event.target).disabled = true;
     if(!this.service.updatings.get(this.software.package_name)){
       this.service.updatings.set(this.software.package_name,this.software)
     }

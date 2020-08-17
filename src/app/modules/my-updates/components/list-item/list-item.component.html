@@ -67,7 +67,7 @@
   </div>
   <div class="button">
     <ng-container *ngIf="sysAuthStatus$ | async;else $noAuthorizaedUpdateRef">
-      <button (click)="update($event);$event.target.disabled = true" class="commit" i18n>Update</button>
+      <button (click)="update($event);" class="commit" i18n>Update</button>
     </ng-container>
     <ng-template #$noAuthorizaedUpdateRef>
       <button (click)="sysAuthMessage()" class="commit" i18n>Update</button>
