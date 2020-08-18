@@ -195,18 +195,19 @@ export class MainComponent implements OnInit {
       new Promise<Settings>((resolve) => {
         channel.objects.settings.getSettings(resolve);
       }).then(res => {
-        if(res.recommend) {
+        if(res.recommend === undefined) {
+          resolve(localStorage[StorageKey.recommendedIds])
+        }else {
           ids = res.recommend;
           if (!ids || ids.trim() === '') {
             ids = this.ids;
-          }
+          } 
           localStorage[StorageKey.recommendedIds] = ids;
+          resolve(ids)
         }
-        ids = localStorage[StorageKey.recommendedIds];
-        resolve(ids)
       })
     }else {
-      resolve("")
+      resolve(undefined)
     }
   })
     
