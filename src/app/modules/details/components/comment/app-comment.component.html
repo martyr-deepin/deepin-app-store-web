@@ -1,67 +1,51 @@
 <ng-container *ngFor="let info of [info$ | async]">
-  <div *ngIf="supportSignIn;else commentList">
-    <div class="comment-info" [formGroup]="commentGroup">
-      <div>
-        <ng-container *ngIf="own;else commentedRef">
-          <ng-container i18n>Your Rating:</ng-container>
-        </ng-container>
-        <ng-template #commentedRef>
-          <ng-container i18n>Rate this app:</ng-container>
-        </ng-template>
+  <ng-container *ngIf="!own && supportSignIn">
+    <div class="comment_title">
+      <div i18n>My Comment</div>
+      <div (click)="dstoreLayer.show()" *ngIf="info">
+        <span class="comment_question">?</span>
+        <ng-container i18n>Report a bug</ng-container>
       </div>
-      <div class="star">
-        <ng-container *ngIf="own; else starEdit">
-          <dstore-star [rate]="own.score"></dstore-star>
-          <div>{{ own.score }}</div>
-        </ng-container>
-        <ng-template #starEdit>
-          <dstore-star formControlName="score" [readonly]="disableStatus.disable" #$star ></dstore-star>
-          <div>{{ $star.rateHover }}</div>
-        </ng-template>
+    </div>
+    <div class="comment-body">
+      <div class="cover">
+        <img [src]="info?.profile_image" #avatarRef
+          (error)="avatarRef.src = '/assets/images/default_avatar.jpeg?default'" class="profile" />
       </div>
-      <div i18n>Comment:</div>
-      <div style="position: relative;">
-        <textarea #commentTextRef  [readOnly]="!info||own || disableStatus.disable" formControlName="content" (keyup.control.enter)="submitComment()" maxlength="200"></textarea>
-        <div class="text_count">
-          {{content.value.length}} / 200
+      <div class="comment-info" [formGroup]="commentGroup">
+        <div>
+          <ng-container i18n>Rating:</ng-container>
         </div>
-        <div class="fixed">
-          <ng-container *ngIf="!info; else loggedMsg" >
-            <ng-container i18n>Please post your comment after sign in</ng-container>&nbsp;
-            <button (click)="login()">
-              <ng-container i18n>Sign In</ng-container>
-            </button>
-          </ng-container>
-          <ng-template #loggedMsg>
-            <div class="placeholder" *ngIf="own; else disableStatusRef">
-              <ng-container i18n>You have posted a comment</ng-container>
-            </div>
-            <ng-template #disableStatusRef>
+        <div class="star">
+          <dstore-star formControlName="score" [readonly]="disableStatus.disable" #$star></dstore-star>
+          <div>{{ $star.rateHover }}</div>
+        </div>
+        <div i18n>Comment:</div>
+        <div style="position: relative;">
+          <textarea #commentTextRef [readOnly]="!info||own || disableStatus.disable" formControlName="content"
+            (keyup.control.enter)="submitComment()" maxlength="200"></textarea>
+          <div class="text_count">
+            {{content.value.length}}/200
+          </div>
+          <div class="fixed">
+            <ng-container *ngIf="!info; else loggedMsg">
+              <div class="placeholder">
+                <span i18n>Please post your comment after</span>&nbsp;
+                <span class="login" (click)="login()" i18n>Sign in</span>
+              </div>
+            </ng-container>
+            <ng-template #loggedMsg>
               <div *ngIf="disableStatus.disable; else pleaseRef">
                 <m-comment-disable-reason-text [reason]="disableStatus.reason"></m-comment-disable-reason-text>
               </div>
+              <ng-template #pleaseRef>
+                <div class="placeholder" [hidden]="commentGroup.value.content">
+                  <ng-container i18n>Post your comment here</ng-container>
+                </div>
+              </ng-template>
             </ng-template>
-            <ng-template #pleaseRef>
-              <div class="placeholder" [hidden]="commentGroup.value.content">
-                <ng-container i18n>Post your comment here</ng-container>
-              </div>
-            </ng-template>
-          </ng-template>
-        </div>
-        <div class="tags" *ngIf="tags.length > 0; else tagSelectRef">
-          <label for="" i18n>Tags:</label>
-          <span *ngFor="let control of tags.controls; index as index" (click)="tags.removeAt(index)">
-            {{ control.value.tag }}
-          </span>
-        </div>
-        <ng-template #tagSelectRef>
-          <div class="tag-select" *ngIf="content.value === '#'">
-            <label for="" i18n>Comment Tag</label>
-            <ng-container *ngFor="let kv of { bug: 'Bug' } | keyvalue; first as first">
-              <button [mAuthfocus]="first" (click)="selectTag(kv.key); commentTextRef.focus()">{{ kv.value }}</button>
-            </ng-container>
           </div>
-        </ng-template>
+        </div>
       </div>
     </div>
     <div class="submit" *ngIf="info">
@@ -69,22 +53,64 @@
         <span class="submitError" *ngSwitchCase="content.invalid && score.invalid">
           <ng-container i18n>Please rate and post your comment</ng-container>
         </span>
-      <span class="submitError" *ngSwitchCase="content.invalid" i18n>Please input your comment</span>
-      <span class="submitError" *ngSwitchCase="score.invalid" i18n>Please rate</span>
-      <span class="submitError" *ngSwitchCase="submitted.invalid" i18n>Failed to submit</span>
-      <span class="submitError" *ngSwitchCase="commentGroup.controls['app_version'].invalid">
+        <span class="submitError" *ngSwitchCase="content.invalid" i18n>Please input your comment</span>
+        <span class="submitError" *ngSwitchCase="score.invalid" i18n>Please rate</span>
+        <span class="submitError" *ngSwitchCase="submitted.invalid" i18n>Failed to submit</span>
+        <span class="submitError" *ngSwitchCase="commentGroup.controls['app_version'].invalid">
           <ng-container i18n>The application is not available</ng-container>
         </span>
-      <span class="submitError" *ngSwitchCase="commentGroup.invalid" i18n>Network error</span>
+        <span class="submitError" *ngSwitchCase="commentGroup.invalid" i18n>Network error</span>
       </span>
       &nbsp;
       <button class="submitBtn" [disabled]="!info || own || disableStatus.disable" (click)="submitComment()">
         <ng-container i18n>Submit</ng-container>
       </button>
     </div>
-    <dstore-comment-list #commentListRef [appID]="appID" [appVersion]="appVersion" [info]="info" ></dstore-comment-list>
-  </div>
-  <ng-template #commentList>
-    <dstore-comment-list #commentListRef [appID]="appID" [appVersion]="appVersion" [info]="info" ></dstore-comment-list>
-  </ng-template>
+  </ng-container>
+  <dstore-comment-list #commentListRef [appID]="appID" [appVersion]="appVersion" [info]="info"></dstore-comment-list>
 </ng-container>
+
+<dstore-layer #dstoreLayer [outer]="false" [main]="true">
+  <ng-container class="layer_content">
+    <header>
+      <div class="img">
+        <img />
+      </div>
+      <div (click)="dstoreLayer.close()" class="close">×</div>
+    </header>
+    <section class="body" [formGroup]="commentLayerGroup">
+      <h3 i18n>Report a bug</h3>
+      <div class="star">
+        <span class="rating" i18n>Rating:</span>
+        <dstore-star formControlName="score" [readonly]="disableStatus.disable" #$star></dstore-star>
+        <div>{{ $star.rateHover }}</div>
+      </div>
+      <textarea formControlName="content" i18n-placeholder
+        placeholder="Give details of the bug, and describe your working steps please" maxlength="200"></textarea>
+      <div class="text_count">
+        {{layer_content.value.length}}/200
+      </div>
+    </section>
+    <span class="errorGroup" *ngIf="layer_submitted.touched && commentLayerGroup.invalid" [ngSwitch]="true">
+      <span class="submitError" *ngSwitchCase="layer_content.invalid && layer_score.invalid">
+        <ng-container i18n>Please rate and post your comment</ng-container>
+      </span>
+      <span class="submitError" *ngSwitchCase="layer_content.invalid" i18n>Please input your comment</span>
+      <span class="submitError" *ngSwitchCase="layer_score.invalid" i18n>Please rate</span>
+      <span class="submitError" *ngSwitchCase="layer_submitted.invalid" i18n>Failed to submit</span>
+      <span class="submitError" *ngSwitchCase="commentGroup.controls['app_version'].invalid">
+        <ng-container i18n>The application is not available</ng-container>
+      </span>
+      <span class="submitError" *ngSwitchCase="commentGroup.invalid" i18n>Network error</span>
+    </span>
+    <footer>
+      <div>
+        <button class="default" (click)="dstoreLayer.close()" i18n>Cancel</button>
+      </div>
+      <div class="line"></div>
+      <div>
+        <button (click)="bugSubmit(dstoreLayer);" i18n>Submit</button>
+      </div>
+    </footer>
+  </ng-container>
+</dstore-layer>

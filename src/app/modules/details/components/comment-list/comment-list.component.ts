@@ -48,7 +48,7 @@ export class CommentListComponent implements OnInit {
 
   @ViewChild('commentRef', { static: true }) commentRef: ElementRef<HTMLDivElement>;
 
-  pageSize = 20;
+  pageSize = 10;
   total: { [key: number]: number } = {};
   list = new Map<CommentType,AppComment[]>();
   page: { [key:number]:number} = {};
@@ -102,8 +102,8 @@ export class CommentListComponent implements OnInit {
 
   async queryComments(){
     let queryObj = {
-      limit: 20,
-      offset: this.page[this.select] * 20,
+      limit: 10,
+      offset: this.page[this.select] * 10,
       version: this.appVersion,
       history: this.select !== CommentType.News,
     }

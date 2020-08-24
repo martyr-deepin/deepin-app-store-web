@@ -2,50 +2,36 @@
 	.commentList {
 		padding-top: 1.2rem;
 		.comment_title {
+			font-weight: bold;
 			font-size: 1.2rem;
 			margin-right: 1.71rem;
 		}
 		.header {
-			display:grid;
-			grid-template-columns: auto auto;
-			.paginator {
-				text-align: right;
-			}
+			display: flex;
+			padding: 1rem 0;
+			margin-bottom: 2rem;
+			border-bottom: 1px solid rgba(0,0,0,0.1);
+			justify-content: space-between;
+			align-items: center;
 		}
 		.tabs {
 			display: inline-block;
+			span {
+				color: var(--activityColor);
+			}
 			.tab {
 				display: inline-block;
-				font-size: 1.08rem;
-				padding: 0 1.08rem;
+				font-size: 0.92rem;
+				padding: 0 0.4rem;
 				cursor: pointer;
 				height: 100%;
 				line-height: 2rem;
-				border-width: 1px;
-				border-style: solid;
-				border-color: var(--tab-bg-color);
-				background: var(--nav-bg-color);
-				//box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.05), 0px 2px 0px 0px rgba(255, 255, 255, 0.15);
-				&:not(:first-child) {
-					margin-left: -1px;
-				}
-				&:first-child {
-					border-radius: 0.31rem 0 0 0.31rem;
-				}
-				&:last-child {
-					border-radius: 0 0.31rem 0.31rem 0;
-				}
-				&:not(.active):hover {
-					background:rgba(0, 0, 0, 0.05);
-				}
+				color: var(--font-color-gray);
 			}
 			.active {
-				border-color: var(--activityColor);
-				color: #fff;
-				background: var(--activityColor);
+				color: var(--activityColor);
 				&:hover {
-					border-color: var(--activityColorHover);
-					background: var(--activityColorHover);
+					color: var(--activityColor);
 				}
 			}
 		}
@@ -76,17 +62,35 @@
 					}
 				}
 				.comment_context {
-					border-bottom: 1px solid var(--main-item-hr-color);
+					border-bottom: 1px solid rgba(0,0,0,0.1);
 					.comment_head {
 						display: grid;
 						grid-template-columns: 1fr 1fr;
+						.name {
+							font-size: 1.08rem;
+							margin-bottom: 0.3rem;
+							.my_tag {
+								display: inline-block;
+								padding: 0 0.4rem;
+								margin-left: 0.5rem;
+								font-size: 1rem;
+								line-height: 1.8rem;
+								color: var(--activityColor);
+								border-radius: 0.3rem;
+								border: solid 1px var(--activityColor);
+							}
+						}
 						.star {
+							line-height: 1.4rem;
+							display: flex;
+							align-items: center;
 							dstore-star {
 								display: inline-block;
+								font-size: 1.2rem;
 							}
 							span {
-								vertical-align: middle;
 								margin-left: 0.5rem;
+								font-size: 1.2rem;
 							}
 						}
 						.time {
@@ -121,28 +125,22 @@
 						display: flex;
 						justify-content: space-between;
 						align-items: center;
-						.tags {
-							.tag {
-								color: var(--activityColor);
-								border: 1px solid var(--activityColor);
-								display: inline-block;
-								line-height: 1rem;
-								border-radius: 0.3rem;
-								padding: 0.2rem 0.5rem;
-							}
-						}
 						.like {
 							text-align: right;
-							padding: 0.3rem 0;
+							padding: 1rem 0;
+							display: flex;
+							align-items: center;
+							color: var(--font-color-gray);
 							.thumbUp {
 								width: 1rem;
 								height: 1rem;
+								margin-right: 0.3rem;
 								content: url('/assets/buttons/thumbup_normal.svg');
 								&:hover {
 									content: url('/assets/buttons/thumbup_hover.svg');
 								}
 								&.active {
-									content: url('/assets/buttons/thumbup_press.svg');
+									content: url('/assets/buttons/thumbup_hover.svg');
 								}
 							}
 						}

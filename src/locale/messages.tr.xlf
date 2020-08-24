@@ -87,7 +87,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
-          <context context-type="linenumber">78</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
+          <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="172fa0aab2cb9ffc177b03a45af1715e0b58997d">
@@ -316,6 +320,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">95</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
+          <context context-type="linenumber">108</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/local-app/local-app.component.html</context>
@@ -751,7 +759,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/batch-install/batch-install.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="0c5beac3fe2c2731a51956b0d828195499bed15d">
@@ -768,7 +776,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a449ddaedd9a79bd39e9e7ef9f74c31e2c649e0b">
         <source>Do you want to leave this page?</source>
-        <target>Do you want to leave this page?</target>
+        <target>Bu sayfadan ayrılmak istiyor musunuz?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/recommended/recommended.component.html</context>
           <context context-type="linenumber">74</context>
@@ -776,7 +784,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="3eed3c0167ac14df9b8fcf72108d32ea25436c5d">
         <source>Leave</source>
-        <target>Leave</target>
+        <target>Ayrıl</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/recommended/recommended.component.html</context>
           <context context-type="linenumber">76</context>
@@ -784,7 +792,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="75c09bc09c5b5dc2c5f095457cd0c495121668cf">
         <source>Stay Here</source>
-        <target>Stay Here</target>
+        <target>Burada Kal</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/recommended/recommended.component.html</context>
           <context context-type="linenumber">77</context>
@@ -1103,7 +1111,7 @@
         <target>Kullanıcı Yorumları</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="9a1bd0840d2c3901d359e4a58a9c73545b7e9598">
@@ -1111,7 +1119,7 @@
         <target>Mevcut Sürüm</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="9e5ce729ba1ff21c6bed9417bca2d16cd6b8e1fd">
@@ -1119,7 +1127,7 @@
         <target>Önceki Sürümler</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="71890cc31aaa2b924675a1547355fc690c395146">
@@ -1127,7 +1135,7 @@
         <target>Yorumlar yüklenemedi</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="82182068adfbb019055ef30eff0fc438275441fa">
@@ -1135,7 +1143,19 @@
         <target>Henüz bir kullanıcı yorumu yok</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="e7fd1a829016fdc4cae60b85d7307feb0bb3309d">
+        <source>My Comment</source>
+        <target>My Comment</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="37a1a9afb9eb431fb36181d680e5e0bcc8726a05">
@@ -1143,7 +1163,7 @@
         <target>[Kapatılmış Hesap]</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="6e5f9a0a3c8d9b1cc1e9c9bda6dc3b8ea64ff9bc">
@@ -1151,19 +1171,7 @@
         <target>[Geliştirici yanıtı]</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
-          <context context-type="linenumber">65</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="d1c4e9d07d3789fb1c66dec61f2d52c6b81b10f6">
-        <source>Tags:</source>
-        <target>Etiketler:</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
-          <context context-type="linenumber">71</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="0f03eb1f27fee61229b02cb74d685bb4ad5add94">
@@ -1174,56 +1182,52 @@
           <context context-type="linenumber">90</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="0f1aaf212232f204b309551e62bac36f780d3b80">
-        <source>Your Rating:</source>
-        <target>Değerlendirmeniz:</target>
+      <trans-unit datatype="html" id="743236956b393f7122325a5dc71633112e6ea338">
+        <source>Report a bug</source>
+        <target>Report a bug</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
+          <context context-type="linenumber">82</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="dd7b5d4f4ea6e43932e87bc7d48812eef3f0dbb4">
-        <source>Rate this app:</source>
-        <target>Bu uygulamayı değerlendir:</target>
+      <trans-unit datatype="html" id="758496ccd0c37659b18828f3234eac3915c1a32f">
+        <source>Rating:</source>
+        <target>Değerlendirme:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
+          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="96e41129ef5d2fa12b7a6ffcab608e9af04d8cbd">
         <source>Comment:</source>
-        <target>Comment:</target>
+        <target>Yorum:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="f0b3887d752a5aa2e68c083304f31959fe662bb9">
-        <source>Please post your comment after sign in</source>
-        <target>Lütfen yorum yapmak için oturum açın</target>
+      <trans-unit datatype="html" id="420bca01801378c942f0683d8904b72e9c23cec8">
+        <source>Please post your comment after</source>
+        <target>Please post your comment after</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="ba4f24bf9bf3dc4db3d6bc1b8b63339295f0b806">
-        <source>Sign In</source>
-        <target>Oturum Aç</target>
+      <trans-unit datatype="html" id="287d3301a32a65a1b31116bda5d3a6463158c42a">
+        <source>Sign in</source>
+        <target>Sign in</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
-          <context context-type="linenumber">32</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="b2125f73794002b8bd9ab6720ef9e42ac0bb11e0">
-        <source>You have posted a comment</source>
-        <target>Bir yorum gönderdiniz</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
-          <context context-type="linenumber">37</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="c5241f32ed2c3992142d16ddc32a7d7fddf1984c">
@@ -1231,15 +1235,7 @@
         <target>Yorumlarınızı buraya yazın</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
-          <context context-type="linenumber">46</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="f7708582b423e156898739d5d04eb59891378e27">
-        <source>Comment Tag</source>
-        <target>Yorum Etiketi</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="4e0276c8e84978b2d250d9a8471dc1014fbee9f7">
@@ -1247,7 +1243,11 @@
         <target>Lütfen değerlendirip yorum yapın</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
+          <context context-type="linenumber">96</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/edit/edit.component.html</context>
@@ -1259,7 +1259,11 @@
         <target>Lütfen yorumunuzu yazın</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
+          <context context-type="linenumber">98</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/edit/edit.component.html</context>
@@ -1271,7 +1275,11 @@
         <target>Lütfen değerlendirin</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
-          <context context-type="linenumber">73</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
+          <context context-type="linenumber">99</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/edit/edit.component.html</context>
@@ -1283,7 +1291,11 @@
         <target>Gönderilemedi</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
-          <context context-type="linenumber">74</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
+          <context context-type="linenumber">100</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/edit/edit.component.html</context>
@@ -1295,7 +1307,11 @@
         <target>Uygulama mevcut değil</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
+          <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="71c77bb8cecdf11ec3eead24dd1ba506573fa9cd">
@@ -1303,7 +1319,11 @@
         <target>Gönder</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
+          <context context-type="linenumber">112</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
@@ -1312,6 +1332,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/edit/edit.component.html</context>
           <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="6332ffe44c21d002af92e2bab779f93a353f99e4">
+        <source>Give details of the bug, and describe your working steps please</source>
+        <target>Give details of the bug, and describe your working steps please</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
+          <context context-type="linenumber">89</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="5ebd0cb80937e3a7886fafa2a53aaa3d1bbe4da9">
@@ -1340,6 +1368,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
           <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="b2125f73794002b8bd9ab6720ef9e42ac0bb11e0">
+        <source>You have posted a comment</source>
+        <target>Bir yorum gönderdiniz</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="501169f2e77fecea8c2758007d9980669dbb8c16">
@@ -1871,7 +1907,7 @@
         <target>Tersine Çevir</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/batch-install/batch-install.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="a3c032ffde230f7037db8e9e21c50fa3b1448f38">
@@ -1879,11 +1915,11 @@
         <target>Kurulumu Başlat</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/batch-install/batch-install.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">33</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/batch-install/batch-install.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="f30af4a09e075741abc6fb9536fe6a5087583178">

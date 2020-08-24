@@ -1,48 +1,102 @@
-.comment-info {
+
+.comment_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  >div:first-child {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  >div:nth-child(2) {
+    color: var(--font-color-gray);
+    font-size: 0.92rem;
+    cursor: pointer;
+    .comment_question {
+      vertical-align: middle;
+      display: inline-block;
+      border-radius: 50%;
+      width: 1rem;
+      height: 1rem;
+      font-size: 0.9rem;
+      line-height: 1rem;
+      margin-right: 0.2rem;
+      text-align: center;
+      border: 1px solid var(--font-color-gray);
+    }
+  }
+}
+.comment-body {
   display: grid;
-  grid-template-columns: 6rem auto;
-  grid-gap: 1rem 0.5rem;
-  >div:nth-child(odd){
-    white-space:nowrap;
-  }
-  .star {
-    display: flex;
-    dstore-star {
-      font-size: 1.6rem;
-      line-height: 1.4rem;
-    }
-    >div {
-      font-size: 1.3rem;
-      margin-left: 0.5rem;
-      line-height: 1.4rem;
-      position: relative;
-      top: 0.05rem;
+  grid-template-columns: min-content 1fr;
+  .cover {
+    margin-right: 1rem;
+    img {
+      width: 3.8rem;
+      height: 3.8rem;
+      border-radius: 50%;
     }
   }
-  textarea {
-    height: 7rem;
-    width: 100%;
-    border: 2px solid #e5e5e5;
-    box-sizing: border-box;
-    border-radius: 8px;
-    resize: none;
-  }
-  .text_count {
-    position: absolute;
-    bottom: 0.6rem;
-    right: 0.5rem;
-  }
-  .fixed {
-    position: absolute;
-    right: 48%;
-    top: 40%;
-    color: gray;
-    button {
-      padding: 0 1rem;
+  .comment-info {
+    display: grid;
+    grid-template-columns: 6rem auto;
+    grid-gap: 1rem 0.5rem;
+    >div:nth-child(odd){
+      white-space:nowrap;
+    }
+    .star {
+      display: flex;
+      dstore-star {
+        font-size: 1.6rem;
+        line-height: 1.4rem;
+      }
+      >div {
+        font-size: 1.3rem;
+        margin-left: 0.5rem;
+        line-height: 1.4rem;
+        position: relative;
+        top: 0.05rem;
+      }
+    }
+    textarea {
+      height: 7rem;
+      width: 100%;
+      border: 2px solid #e5e5e5;
+      box-sizing: border-box;
+      border-radius: 8px;
+      resize: none;
+      padding: 0.3rem 0.6rem;
+    }
+    .text_count {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+    }
+    .fixed {
+      position: absolute;
+      white-space: nowrap;
+      width: calc(100% - 30rem);
+      text-align: center;
+      top: 40%;
+      margin: 0 15rem;
+      color: gray;
+      .login {
+        color: var(--activityColor);
+        cursor: pointer;
+      }
+    }
+    textarea {
+      background-color: var(--main-bg-color);
     }
   }
-  textarea {
-    background-color: var(--main-bg-color);
+}
+.errorGroup {
+  padding-left: 1.5rem;
+  .submitError {
+    color: red;
+    &:not(:first-child) {
+      display: none;
+    }
   }
 }
 
@@ -50,46 +104,109 @@
   display: flex;
   justify-content: flex-end;
   padding: 0.5rem 0;
-  .submitError {
-    color: red;
-    &:not(:first-child) {
-      display: none;
-    }
-  }
   .submitBtn {
     margin-left: 0.5rem;
   }
 }
 
-.tags {
-  position: absolute;
-  bottom: 0;
-  transform: translateY(2rem);
-  span {
-    text-transform: uppercase;
-    background-color: #c1e7f6;
-    padding: 0 5px;
-    margin: 0 5px;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-}
-
-.tag-select {
-  position: absolute;
-  top: 3rem;
-  left: 1.5rem;
-  width: 7.7rem;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
-  background-color: white;
-  text-align: center;
-  border-radius: 5px;
-  label {
-    color: gray;
-  }
-  button {
-    width: 100%;
-    background: unset;
-    color: black;
+dstore-layer ::ng-deep {
+	.layer_content {
+		width: 34.6rem;
+		height: 23rem;
+		overflow: hidden;
+		section {
+			padding: 0 !important;
+			flex-flow: column;
+			header {
+				height: 4rem;
+				width: 100%;
+				display: flex;
+				padding: 0 1rem 0 0.5rem;
+				box-sizing: border-box;
+				justify-content: space-between;
+				align-items: center;
+				background-color: var(--main-bg-color);
+				//box-shadow: 0px 5px 4px 0px var(--main-bg-color);
+				.img {
+					img {
+						width: 2.4rem;
+						height: 2.4rem;
+						content: url('/assets/icons/question_mark.svg');
+					}
+				}
+				.close {
+					font-size: 1.2rem;
+					cursor: pointer;
+					&:hover {
+						color: var(--nav-bg-color-active);
+					}
+				}
+      }
+      .body {
+        box-sizing: border-box;
+        padding: 0 1rem !important;
+        position: relative;
+        h3 {
+          text-align: center;
+          margin: 0;
+        }
+        .star {
+          display: flex;
+          overflow: hidden;
+          margin: 1rem 0;
+          .rating {
+            line-height: 1.4rem;
+            margin-right: 1.8rem;
+          }
+          dstore-star {
+            font-size: 1.6rem;
+            line-height: 1.4rem;
+          }
+          >div {
+            font-size: 1.3rem;
+            margin-left: 0.5rem;
+            line-height: 1.4rem;
+            position: relative;
+            top: 0.05rem;
+          }
+        }
+        textarea {
+          width: 100%;
+          height: 8.6rem;
+          border: 2px solid #e5e5e5;
+          box-sizing: border-box;
+          border-radius: 8px;
+          resize: none;
+          padding: 0.3rem 0.6rem;
+        }
+        .text_count {
+          position: absolute;
+          bottom: 1.2rem;
+          right: 2.5rem;
+        }
+      }
+      footer {
+        height: 5rem;
+        display: grid;
+        margin-top: 1rem;
+        padding:0 1rem;
+        box-sizing: border-box;
+        grid-template-columns: 1fr 1px 1fr;
+        justify-items: center;
+        button {
+          width: 13rem;
+          height: 2.8rem;
+          line-height: 2.8rem;
+          font-size: 1.1rem;
+          border-radius: 0.6rem;
+        }
+        .line {
+          width: 1px;
+          height: 2rem;
+          margin-top: 0.4rem;
+          background: rgba(0,0,0,0.1);
+        }
+      }
+    }
   }
 }

@@ -14,7 +14,7 @@ export class SectionService {
   private list = this.http.get(this.url).pipe(
     map((v) => {
       // 初始化空仓
-      if (v === null) {
+      if (v === null || v["section"] === null) {
         return of(undefined);
       }
       let dataList = this.handleData(v);

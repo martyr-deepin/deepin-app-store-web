@@ -1,22 +1,15 @@
 <div #commentRef class="commentList">
   <div class="header">
-    <div [ngClass]="appVersion ? 'select' : 'selectAlone'">
-      <span class="comment_title" i18n>User Comments</span>
-      <div class="tabs">
-        <div class="tab" *ngIf="appVersion" [class.active]="select === CommentType.News"
-          (click)="selectChange(CommentType.News)">
-          <ng-container i18n>Current Version</ng-container>
-          ({{ total[CommentType.News] }})
-        </div>
-        <div class="tab" [class.active]="select === CommentType.History" (click)="selectChange(CommentType.History)">
-          <ng-container i18n>History Versions</ng-container>
-          ({{ total[CommentType.History] }})
-        </div>
+    <div class="comment_title" i18n>User Comments</div>
+    <div class="tabs">
+      <div class="tab" *ngIf="appVersion" [class.active]="select === CommentType.News"
+        (click)="selectChange(CommentType.News)">
+        <ng-container i18n>Current Version</ng-container>
       </div>
-    </div>
-    <div class="paginator" *ngIf="total[select] > pageSize">
-      <app-paginator [length]="total[select]" [size]="pageSize" [pageIndex]="page[select]"
-        (pageIndexChange)="pageChange($event)"></app-paginator>
+      <span>/</span>
+      <div class="tab" [class.active]="select === CommentType.History || !appVersion" (click)="selectChange(CommentType.History)">
+        <ng-container i18n>History Versions</ng-container>
+      </div>
     </div>
   </div>
   <br />
@@ -41,8 +34,11 @@
             <div class="comment_context">
               <div class="comment_head">
                 <div>
-                  <ng-container *ngIf="c.commenterInfo as info; else deepinInfoDefault">
-                    {{info.nickname}}
+                  <ng-container *ngIf="c.commenterInfo as userInfo; else deepinInfoDefault">
+                    <div class="name">
+                      {{userInfo.nickname}}
+                      <span *ngIf="info?.uid === c.commenter" class="my_tag" i18n>My Comment</span>
+                    </div>
                     <div class="star">
                       <dstore-star [rate]="c.score"></dstore-star>
                       <span>{{ c.score }}</span>
@@ -72,11 +68,15 @@
                   </ng-container>
                   <span class="tag" *ngFor="let tag of c.tags" >{{tag.tag}}</span> -->
                 </div>
-                <ng-container *ngIf="supportSignIn">
-                  <div *ngIf="info?.uid!=c.commenter" class="like">
-                    <img class="thumbUp" [class.active]="likeByMe(c.likes, info?.uid)" 
-                    (click)="thumbUpClick(c)" />
-                    <span>&#40;{{c.likes?.length||0}}&#41;</span>
+                <ng-container>
+                  <div class="like">
+                    <ng-container *ngIf="supportSignIn">
+                      <ng-container *ngIf="info?.uid!=c.commenter">
+                        <img class="thumbUp" [class.active]="likeByMe(c.likes, info?.uid)" 
+                        (click)="thumbUpClick(c)" />
+                        <span>{{c.likes?.length||0}}</span>
+                      </ng-container>
+                    </ng-container>
                   </div>
                 </ng-container>
               </div>

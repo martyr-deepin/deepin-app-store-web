@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { APIBase, ListOption } from './api';
-import { isDeepStrictEqual } from 'util';
 import { isEqual } from 'lodash';
 
 @Injectable({
