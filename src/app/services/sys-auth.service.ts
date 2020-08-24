@@ -27,15 +27,13 @@ export class SysAuthService {
     merge(Channel.connect('settings.authStateChanged'), timer(5000)).subscribe(() => {
       if (this.storeMode === StoreMode.IntranetAppStore) {
         this.getIntranetAuthState();
-      } else {
-        this.getAuthorizationState();
       }
+      this.getAuthorizationState();
     });
     if (this.storeMode === StoreMode.IntranetAppStore) {
       this.getIntranetAuthState();
-    } else {
-      this.getAuthorizationState();
     }
+    this.getAuthorizationState();
   }
   getAuthorizationState() {
     Channel.exec<number>('settings.getAuthorizationState').then((v) => {

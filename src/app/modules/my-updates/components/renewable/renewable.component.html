@@ -6,7 +6,7 @@
       <div class="th" i18n>Version</div>
       <div class="th" i18n>Action</div>
     </div>
-    <dstore-scrollbar>
+    <dstore-scrollbar (intersecting)="intersecting($event)">
       <div class="renewable_content">
         <ng-container *ngFor="let item of list;">
           <ng-container *ngIf="jobs$ | async as jobs; else $noJob">
@@ -18,6 +18,9 @@
         </ng-container>
       </div>
     </dstore-scrollbar>
+    <div class="app_wait" *ngIf="loading">
+      <app-wait></app-wait>
+    </div>
   </ng-container>
   <ng-template #loadingContainer>
     <div class="loadingContainer">

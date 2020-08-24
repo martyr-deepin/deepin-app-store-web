@@ -31,8 +31,8 @@
   <div class="th" i18n>Action</div>
 </div>
 <div class="installed-list">
-  <dstore-scrollbar [full]="true">
-    <ng-container *ngIf="(result$ | async)?.list as installedList; else loadingContainer">
+  <dstore-scrollbar [full]="true" (intersecting)="intersecting($event)" >
+    <ng-container *ngIf="result$ | async as installedList; else loadingContainer">
       <ng-container *ngIf="removingList$ | async as removingList">
         <!-- {{installedList | json}} -->
         <ng-container *ngFor="let installed of installedList">
@@ -119,9 +119,6 @@
     </ng-container>
   </dstore-scrollbar>
 </div>
-
-<div class="paginatorContainer">
-  <ng-container *ngIf="count$ | async as count">
-    <app-paginator [hidden]="count <= 1" [count]="count" [pageIndex]="pageIndex$ | async" (pageIndexChange)="gotoPage($event)"></app-paginator>
-  </ng-container>
+<div class="app_wait" *ngIf="loading">
+  <app-wait></app-wait>
 </div>

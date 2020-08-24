@@ -20,9 +20,10 @@ import { MyUpdatesService } from 'app/modules/my-updates/services/my-updates.ser
   ],
 })
 export class SideNavComponent implements OnInit {
-  constructor(private sanitizer: DomSanitizer, 
+  constructor(
+    private sanitizer: DomSanitizer,
     private jobService: JobService,
-    private myUpdatesService:MyUpdatesService,
+    private myUpdatesService: MyUpdatesService,
   ) {}
   native = environment.native;
   // download count
@@ -31,14 +32,14 @@ export class SideNavComponent implements OnInit {
   ngOnInit() {
     const CountType = [StoreJobType.install, StoreJobType.download];
     this.dc$ = this.jobService.jobsInfo().pipe(
-      map(infoList => {
-        return infoList.filter(info => CountType.includes(info.type)).length;
+      map((infoList) => {
+        return infoList.filter((info) => CountType.includes(info.type)).length;
       }),
     );
   }
-  renewableSize$ = this.myUpdatesService.renewableSize$
+  renewableSize$ = this.myUpdatesService.renewableAppsLenght$;
 
   getStyle(icons: string[]) {
-    return this.sanitizer.bypassSecurityTrustStyle(icons.map(url => `url(${url})`).join(','));
+    return this.sanitizer.bypassSecurityTrustStyle(icons.map((url) => `url(${url})`).join(','));
   }
 }

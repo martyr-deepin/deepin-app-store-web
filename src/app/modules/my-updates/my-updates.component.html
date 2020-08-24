@@ -2,7 +2,7 @@
   <div class="tabs">
     <div class="tab" routerLink="renewable" routerLinkActive="active">
       <ng-container i18n>New</ng-container>
-      ({{(service.renewableApps$ | async)?.length||0}})
+      ({{service.renewableAppsLenght$ | async}})
     </div>
     <div class="tab" [routerLink]="['recently','updated']" routerLinkActive="active">
       <ng-container i18n>Recent</ng-container>
@@ -20,7 +20,7 @@
             <button (click)="startAll();$event.target.disabled=true" i18n>Resume All</button>
           </div>
           <div *ngSwitchDefault>
-            <button [disabled]="!(service.renewableApps$ | async).length" (click)="updateAll($event);" i18n>Update All</button>
+            <button [disabled]="!(service.renewableAppsLenght$ | async)" (click)="updateAll($event);" i18n>Update All</button>
           </div>
         </ng-container>
       </ng-container>

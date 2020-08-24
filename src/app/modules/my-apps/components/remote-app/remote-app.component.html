@@ -19,9 +19,9 @@
   <div class="th" i18n>Action</div>
 </div>
 <div class="remote-app-wrap">
-  <dstore-scrollbar>
-    <div class="remote-apps" *ngIf="installing$ | async as installing; else loading">
-      <ng-container *ngIf="apps$ | async as apps; else loading">
+  <dstore-scrollbar (intersecting)="intersecting($event)">
+    <div class="remote-apps" *ngIf="installing$ | async as installing; else loadingRef">
+      <ng-container *ngIf="apps$ | async as apps; else loadingRef">
         <div class="remote-app" *ngFor="let remoteApp of apps">
           <div class="content">
             <div class="title_wrap">
@@ -127,14 +127,11 @@
   </dstore-scrollbar>
 </div>
 
-<div class="paginatorContainer">
-  <ng-container *ngIf="count$ | async as count">
-    <app-paginator [count]="count" [pageIndex]="pageIndex$ | async" (pageIndexChange)="gotoPage($event)">
-    </app-paginator>
-  </ng-container>
+<div class="app_wait" *ngIf="loading$ | async">
+  <app-wait></app-wait>
 </div>
 
-<ng-template #loading>
+<ng-template #loadingRef>
   <div class="loadingContainer">
     <app-wait></app-wait>
   </div>

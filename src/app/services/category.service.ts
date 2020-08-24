@@ -46,9 +46,10 @@ export enum CategoryType {
   Music = "Music",
   Video = "Video",
   Graphics = "Graphics",
-  Games = "Games",
+  Game = "Game",
   Office = "Office",
   Reading = "Reading",
   Development = "Development",
-  System = "System"
+  System = "System",
+  Others = "Others"
 }

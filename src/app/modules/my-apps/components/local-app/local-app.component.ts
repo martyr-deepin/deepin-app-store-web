@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { map, switchMap, share, startWith } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { map, switchMap, first, tap, scan } from 'rxjs/operators';
 
 import { LocalAppService } from '../../services/local-app.service';
 import { AuthService } from 'app/services/auth.service';
@@ -12,12 +12,7 @@ import { Software } from 'app/services/software.service';
   styleUrls: ['./local-app.component.scss'],
 })
 export class LocalAppComponent implements OnInit {
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private localAppService: LocalAppService,
-    private authService: AuthService,
-  ) {}
+  constructor(private router: Router, private localAppService: LocalAppService, private authService: AuthService) {}
   readonly DisabledList = [
     'dde',
     'dde-control-center',
@@ -26,20 +21,31 @@ export class LocalAppComponent implements OnInit {
     'deepin-app-store',
     'deepin-manual',
   ];
-  readonly pageSize = 13;
+  readonly pageSize = 20;
   logged = this.authService.logged$;
   selected: string;
   removing: string[] = [];
-  pageIndex$ = this.route.queryParamMap.pipe(map(query => Number(query.get('page') || 0)));
-  result$ = this.pageIndex$.pipe(
-    switchMap(pageIndex => {
-      return this.localAppService.list({ pageSize: this.pageSize, pageIndex });
-    })
+  loading: boolean = false;
+
+  result$ = this.localAppService.offset$.pipe(
+    tap((offset) => {
+      if (offset > 0) {
+        this.loading = true;
+      }
+    }),
+    switchMap((offset) => {
+      return this.localAppService.list({ offset: offset });
+    }),
+    scan((acc, value) => {
+      return this.localAppService.jobFlush?value:[...acc, ...value];
+    }),
+    tap(() => {
+      this.loading = false;
+      this.localAppService.jobFlush = false;
+    }),
   );
-  count$ = this.result$.pipe(map(res=> Math.ceil(res.total/this.pageSize)));
-  removingList$ = this.localAppService.removingList().pipe(
-    map(list=>list)
-  );
+
+  removingList$ = this.localAppService.removingList().pipe(map((list) => list));
 
   remove(soft: Software) {
     this.localAppService.onRemove = true;
@@ -48,13 +54,22 @@ export class LocalAppComponent implements OnInit {
     this.selected = null;
   }
 
-  login = ()=> this.authService.login();
+  login = () => this.authService.login();
 
   ngOnInit() {
-    this.localAppService.query = {check:undefined,name:undefined}
+    this.localAppService.offset$.next(0);
+    this.localAppService.query = { check: undefined, name: undefined };
   }
 
   gotoPage(pageIndex: number) {
     this.router.navigate([], { queryParams: { page: pageIndex } });
+  }
+
+  intersecting(intersecting: boolean) {
+    if (intersecting) {
+      this.localAppService.offset$.pipe(first()).subscribe((offset) => {
+        this.localAppService.offset$.next(offset + this.pageSize);
+      });
+    }
   }
 }

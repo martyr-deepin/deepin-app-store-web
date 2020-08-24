@@ -7,25 +7,24 @@
         <app-wait></app-wait>
       </ng-template>
       <ng-container *ngIf="apps$ | async as apps;else $waiting">
-        <ng-container *ngIf="!showLoading;else $waiting">
-          <dstore-scrollbar [full]="true">
-            <div class="app-list">
-              <div class="app" dstoreHover #dstoreHover="dstoreHover" *ngFor="let app of apps" (click)="touch(app)">
-                <dstore-checkbox-button [class.hover]="dstoreHover.hover" [disabled]="unavailable(app)" [value]="batchInstall.has(app.soft?.name)"></dstore-checkbox-button>
-                <img dstoreCover="icon" [src]="app.app?.info.locales[0]?.icon | coverImage" /> {{ app.app?.info.locales[0]?.name }}
-              </div>
+        <dstore-scrollbar [flex]="true" (intersecting)="intersecting($event)">
+          <div class="app-list">
+            <div class="app" dstoreHover #dstoreHover="dstoreHover" *ngFor="let app of apps" (click)="touch(app)">
+              <dstore-checkbox-button [class.hover]="dstoreHover.hover" [disabled]="unavailable(app)" [value]="batchInstall.has(app.soft?.name)"></dstore-checkbox-button>
+              <img dstoreCover="icon" [src]="app.app?.info.locales[0]?.icon | coverImage" /> {{ app.app?.info.locales[0]?.name }}
             </div>
-          </dstore-scrollbar>
-          <div class="paginator">
-            <div class="select-control">
-              <a (click)="selectPage(apps)" i18n>All</a>
-              <a (click)="touchPage(apps)" i18n>Inverse</a>
-              <span>{{ batchInstall.size }}/{{ length$ | async }}</span>
-            </div>
-            <app-paginator [pageIndex]="pageIndex$ | async" [length]="length$ | async" [size]="pageSize" (pageIndexChange)="pageIndex$.next($event)">
-            </app-paginator>
           </div>
-        </ng-container>
+        </dstore-scrollbar>
+        <div class="app_wait" *ngIf="loading">
+          <app-wait></app-wait>
+        </div>
+        <div class="paginator">
+          <div class="select-control">
+            <a (click)="selectPage(apps)" i18n>All</a>
+            <a (click)="touchPage(apps)" i18n>Inverse</a>
+            <span>{{ batchInstall.size }}/{{ length$ | async }}</span>
+          </div>
+        </div>
       </ng-container>
     </div>
     <div class="text-align">

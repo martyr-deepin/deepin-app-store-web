@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { switchMap, share, map, distinctUntilChanged, publishReplay, refCount, first } from 'rxjs/operators';
+import { switchMap, share, map, distinctUntilChanged, publishReplay, refCount, first, tap, scan } from 'rxjs/operators';
 
 import { RemoteAppService, RemoteApp } from './../../services/remote-app.service';
 import { Software } from 'app/services/software.service';
@@ -25,17 +25,30 @@ export class BatchInstallComponent {
   pageSize = 20;
   batchInstall = new Map<string, Software>();
 
-  pageIndex$ = new BehaviorSubject<number>(0);
+  offset$ = new BehaviorSubject<number>(0);
   showLoading = true;
-  result$ = this.pageIndex$.pipe(
+  loading = false;
+  result$ = this.offset$.pipe(
     distinctUntilChanged(),
-    switchMap(pageIndex => {
+    tap((offset)=>{
+      if(offset>0) {
+        this.loading = true;
+      }
+    }),
+    switchMap(offset => {
       this.showLoading = true;
-      let params = { offset: pageIndex * this.pageSize, limit: this.pageSize };
+      let params = { offset: offset, limit: this.pageSize };
       if (this.free === false) {
         params['free'] = false;
       }
       return this.remoteAppService.list(params);
+    }),
+    scan((acc, value) => {
+      value.items = acc.items.concat(value.items);
+      return value;
+    }),
+    tap(()=>{
+      this.loading = false;
     }),
     publishReplay(1),
     refCount(),
@@ -56,6 +69,7 @@ export class BatchInstallComponent {
     this.batchInstall.clear();
     let jobsinfo = await this.jobService.jobsInfo().pipe(first()).toPromise()
     this.jobList = jobsinfo.map(jobinfo=>jobinfo.names[0])
+    this.offset$.next(0);
     this.dialogRef.nativeElement.showModal();
   }
   hide() {
@@ -95,5 +109,13 @@ export class BatchInstallComponent {
   }
   sysAuthMessage() {
     this.sysAuthService.authorizationNotify();
+  }
+
+  intersecting(intersecting:boolean) {
+    if(intersecting) {
+      this.offset$.pipe(first()).subscribe(offset => {
+        this.offset$.next(offset += this.pageSize)
+      })
+    }
   }
 }

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { map, switchMap, share, debounceTime, startWith } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { map, switchMap, share, debounceTime, startWith, scan, first, tap } from 'rxjs/operators';
 import { Software } from 'app/services/software.service';
 import { RefundStatus } from 'app/services/refund.service';
 import { RemoteAppService, RemoteApp } from './../../services/remote-app.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
 import { MessageService, MessageType } from 'app/services/message.service';
 import { MyUpdatesService } from 'app/modules/my-updates/services/my-updates.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'dstore-remote-app',
@@ -15,48 +16,59 @@ import { MyUpdatesService } from 'app/modules/my-updates/services/my-updates.ser
 })
 export class RemoteAppComponent implements OnInit {
   constructor(
-    private route: ActivatedRoute, 
-    public router: Router, 
+    public router: Router,
     private remoteAppService: RemoteAppService,
-    private SysAuth:SysAuthService,
-    private messageService:MessageService,
-    private myUpdateService:MyUpdatesService
+    private SysAuth: SysAuthService,
+    private messageService: MessageService,
+    private myUpdateService: MyUpdatesService,
   ) {}
-  readonly pageSize = 13;
+  readonly pageSize = 20;
   readonly RefundStatus = RefundStatus;
   free = true;
-  pageIndex$ = this.route.queryParamMap.pipe(map(query => Number(query.get('page') || 0)));
-  result$ = this.pageIndex$.pipe(
-    switchMap(pageIndex =>
+  loading$ = new BehaviorSubject(false);
+  offset$ = new BehaviorSubject(0);
+
+  result$ = this.offset$.pipe(
+    tap((offset) => {
+      if (offset > 0) {
+        this.loading$.next(true);
+      }
+    }),
+    switchMap((offset) =>
       this.messageService.onMessage(MessageType.AppsChange).pipe(
         startWith(null),
         debounceTime(100),
         map(() => {
-          return pageIndex
+          return offset;
         }),
-      )
+      ),
     ),
-    switchMap(pageIndex => {
-      let params = { offset: pageIndex * this.pageSize, limit: this.pageSize };
-
+    switchMap((offset) => {
+      let params = { offset: offset, limit : this.pageSize };
       if (this.free === false) {
         params['free'] = false;
       }
       return this.remoteAppService.list(params);
     }),
+    scan((acc, value) => {
+      value.items = acc.items.concat(value.items);
+      return value;
+    }),
+    tap(() => (this.loading$.next(false))),
     share(),
   );
   sysAuthStatus$ = this.SysAuth.sysAuthStatus$;
   installed = new Set<string>();
-  apps$ = this.result$.pipe(map(result => {
-    return result.items
-  }));
-  count$ = this.result$.pipe(map(result => Math.ceil(result.count / this.pageSize)));
+  apps$ = this.result$.pipe(
+    map((result) => {
+      return result.items;
+    }),
+  );
   installing$ = this.remoteAppService.installingList().pipe(
-    map(v => {
+    map((v) => {
       //初始化安装中的列表
-      if(this.installed.size === 0) {
-        v.forEach(name=>this.installed.add(name))
+      if (this.installed.size === 0) {
+        v.forEach((name) => this.installed.add(name));
       }
       return v;
     }),
@@ -69,12 +81,11 @@ export class RemoteAppComponent implements OnInit {
 
   installApp(soft: Software) {
     this.installed.add(soft.package_name);
-
     this.remoteAppService.installApps([soft]);
   }
   updateApp(soft: Software) {
-    this.myUpdateService.updatings.set(soft.package_name,soft)
-    this.installApp(soft)
+    this.myUpdateService.updatings.set(soft.package_name, soft);
+    this.installApp(soft);
   }
   gotoPage(pageIndex: number) {
     this.router.navigate([], { queryParams: { page: pageIndex } });
@@ -84,12 +95,19 @@ export class RemoteAppComponent implements OnInit {
     this.router.navigate([], { queryParams: { page: 0, free: this.free, num: Math.random() } });
   }
 
-  refundeds:number[]=[];
-  refunding(app_id:number){
-    this.refundeds.push(app_id)
+  refundeds: number[] = [];
+  refunding(app_id: number) {
+    this.refundeds.push(app_id);
   }
 
   sysAuthMessage() {
     this.SysAuth.authorizationNotify();
+  }
+  intersecting(bottom: boolean) {
+    if (bottom) {
+      this.offset$.pipe(first()).subscribe((offset) => {
+        this.offset$.next((offset += this.pageSize));
+      });
+    }
   }
 }

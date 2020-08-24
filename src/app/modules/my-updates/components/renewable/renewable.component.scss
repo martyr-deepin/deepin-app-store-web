@@ -4,6 +4,9 @@
   flex-flow: column;
   .renewable_content {
     padding: 0 1.5rem;
+    my-updates-list-item {
+      animation: show 1s;
+    }
   }
 }
 
@@ -36,5 +39,24 @@
     &:nth-child(5) {
       width: 6.5rem;
     }
+  }
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.app_wait {
+  cursor: unset;
+  width: 100%;
+  position: absolute;
+  background-color: var(--main-bg-color);
+  bottom: 0;
+  &:hover {
+    background: unset;
   }
 }

@@ -1,11 +1,10 @@
 import { Component, Input, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { Software, SoftwareService } from 'app/services/software.service';
 import { StoreJobInfo, StoreJobStatus, StoreJobError, StoreJobErrorType, CanFixError } from 'app/modules/client/models/store-job-info';
-import { switchMap, filter } from 'rxjs/operators';
+import { switchMap, filter, first } from 'rxjs/operators';
 import { StoreService } from 'app/modules/client/services/store.service';
 import { JobService } from 'app/services/job.service';
 import { MyUpdatesService } from '../../services/my-updates.service';
-import { Subscription } from 'rxjs';
 import { SysAuthService } from 'app/services/sys-auth.service';
 import { environment } from 'environments/environment';
 import { StoreMode } from 'app/services/storeMode';
@@ -32,29 +31,19 @@ export class ListItemComponent implements OnInit,OnDestroy {
   
   StoreJobStatus = StoreJobStatus;
 
-  subscribe:Subscription;
-  inited:number = 0;
-
   privateStoreAuth = true;
-
-  noIntranetAuthSubscription:Subscription;
  
   ngOnInit(): void {
-    this.noIntranetAuthSubscription = this.sysAuth.noIntranetAuth$.subscribe(res => {
-      this.privateStoreAuth = res;
-    })
   }
 
   ngOnDestroy(): void {
-    if(this.noIntranetAuthSubscription) {
-      this.noIntranetAuthSubscription.unsubscribe();
-    }
   }
 
   async update(event:MouseEvent) {
     /**
      * private store auth logic
      */
+    this.privateStoreAuth = await this.sysAuth.noIntranetAuth$.pipe(first()).toPromise()
     if(environment.appStoreType === StoreMode.IntranetAppStore && !this.privateStoreAuth) {
       this.sysAuth.setAuthMessage();
       return;
