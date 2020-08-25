@@ -2,7 +2,7 @@
   <ng-container *ngIf="!own && supportSignIn">
     <div class="comment_title">
       <div i18n>My Comment</div>
-      <div (click)="dstoreLayer.show()" *ngIf="info">
+      <div (click)="dstoreLayer.show()" *ngIf="info && !disableStatus.disable">
         <span class="comment_question">?</span>
         <ng-container i18n>Report a bug</ng-container>
       </div>
@@ -76,7 +76,7 @@
       <div class="img">
         <img />
       </div>
-      <div (click)="dstoreLayer.close()" class="close">×</div>
+      <div (click)="dstoreLayer.close();reset()" class="close">×</div>
     </header>
     <section class="body" [formGroup]="commentLayerGroup">
       <h3 i18n>Report a bug</h3>
@@ -105,7 +105,7 @@
     </span>
     <footer>
       <div>
-        <button class="default" (click)="dstoreLayer.close()" i18n>Cancel</button>
+        <button class="default" (click)="dstoreLayer.close();reset()" i18n>Cancel</button>
       </div>
       <div class="line"></div>
       <div>

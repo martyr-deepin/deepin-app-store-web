@@ -93,6 +93,8 @@ export class AppCommentComponent implements OnInit, OnChanges {
         app_id: this.appID,
         app_version: this.appVersion
       })
+    }
+    if (changes.pkg) {
       this.init();
     }
   }
@@ -181,4 +183,9 @@ export class AppCommentComponent implements OnInit, OnChanges {
       }
     }
   }
+
+  reset() {
+    this.commentLayerGroup.reset(this.valueSetEmpty);
+  }
+
 }

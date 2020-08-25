@@ -1,5 +1,6 @@
 .score {
   position: relative;
+  letter-spacing: 0.06em;
   &::before {
     content: '★★★★★';
     color: #d8d8d8;
