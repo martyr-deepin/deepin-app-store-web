@@ -66,9 +66,8 @@ export class ScreenBoxComponent implements OnInit {
     this.service.query.check = this.checkboxList
       .filter((item, index) => this.checkedList[index])
       .map((item) => item.value);
-    this.service.offset$.next(0);
     this.service.jobFlush = true;
-    //this.checkedList = this.checkedList.map(item=>false)
+    this.service.offset$.next(0);
   }
 
   appLength$ = this.service.installedSofts$.pipe(

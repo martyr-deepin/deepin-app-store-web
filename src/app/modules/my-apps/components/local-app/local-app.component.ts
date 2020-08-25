@@ -1,18 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, switchMap, first, tap, scan } from 'rxjs/operators';
 
 import { LocalAppService } from '../../services/local-app.service';
 import { AuthService } from 'app/services/auth.service';
 import { Software } from 'app/services/software.service';
+import { JobService } from 'app/services/job.service';
+import { Subscription } from 'rxjs';
+import { StoreService } from 'app/modules/client/services/store.service';
 
 @Component({
   selector: 'dstore-local-app',
   templateUrl: './local-app.component.html',
   styleUrls: ['./local-app.component.scss'],
 })
-export class LocalAppComponent implements OnInit {
-  constructor(private router: Router, private localAppService: LocalAppService, private authService: AuthService) {}
+export class LocalAppComponent implements OnInit, OnDestroy {
+  constructor(
+    private router: Router, 
+    private localAppService: LocalAppService, 
+    private authService: AuthService,
+    private jobService: JobService,
+    private storeService: StoreService,
+  ) {}
+
   readonly DisabledList = [
     'dde',
     'dde-control-center',
@@ -26,6 +36,7 @@ export class LocalAppComponent implements OnInit {
   selected: string;
   removing: string[] = [];
   loading: boolean = false;
+  jobListChange: Subscription;
 
   result$ = this.localAppService.offset$.pipe(
     tap((offset) => {
@@ -59,6 +70,23 @@ export class LocalAppComponent implements OnInit {
   ngOnInit() {
     this.localAppService.offset$.next(0);
     this.localAppService.query = { check: undefined, name: undefined };
+    this.jobListChange = this.jobService.jobList().pipe(
+      map(async () => {
+        if(this.localAppService.cache?.length) {
+          let res = await this.storeService.InstalledPackages().toPromise();
+          if( res.length != this.localAppService.cache.length ) {
+            this.localAppService.jobFlush = true;
+            this.localAppService.dataUpdate$.next(1);
+          }
+        }
+      })
+    ).subscribe()
+  }
+
+  ngOnDestroy(): void {
+    if(this.jobListChange) {
+      this.jobListChange.unsubscribe();
+    }
   }
 
   gotoPage(pageIndex: number) {

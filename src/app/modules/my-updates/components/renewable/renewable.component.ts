@@ -32,6 +32,10 @@ export class RenewableComponent implements OnInit {
     ),
     map((softs) => {
       this.service.softCache = softs;
+      if(!this.service.sysAuthStatus) {
+        this.offset = 0;
+        return [];
+      }
       return softs;
     }),
     tap(() => {

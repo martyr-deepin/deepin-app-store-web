@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { switchMap, map, publishReplay, debounceTime } from 'rxjs/operators';
+import { switchMap, map, publishReplay } from 'rxjs/operators';
 import { refCountDelay } from 'rxjs-etc/operators';
 
 import { chunk, cloneDeep } from 'lodash';
 
 import { JobService } from 'app/services/job.service';
-import { StoreService, LocalApp } from 'app/modules/client/services/store.service';
+import { StoreService } from 'app/modules/client/services/store.service';
 import { StoreJobType } from 'app/modules/client/models/store-job-info';
 import { environment } from 'environments/environment';
 import { SoftwareService, Software } from 'app/services/software.service';
@@ -21,25 +21,17 @@ export class LocalAppService {
     private storeService: StoreService,
     private softwareService: SoftwareService,
   ) {}
-  cache: LocalApp[];
+  
+  cache: any[];
   onRemove: boolean = false;
   offset$ = new BehaviorSubject(0);
   jobFlush = false;
 
-  installed$ = this.jobService.jobList().pipe(
-    debounceTime(300),
-    switchMap(async () => {
-      this.jobFlush = true;
-      if (!this.onRemove) {
-        const data = await this.storeService.InstalledPackages().toPromise();
-        this.cache = data;
-      }
-      this.onRemove = false;
-      return this.cache;
-    }),
-    publishReplay(1),
-    refCountDelay(1000),
-  );
+  dataUpdate$ = new BehaviorSubject(0);
+  
+  instelld$ = this.dataUpdate$.pipe( switchMap( () => 
+    this.storeService.InstalledPackages()
+  ))
 
   list({ offset = 0, pageSize = 20 }) {
     return this.installedSofts$.pipe(
@@ -59,8 +51,9 @@ export class LocalAppService {
     );
   }
 
-  installedSofts$ = this.installed$.pipe(
+  installedSofts$ = this.instelld$.pipe(
     switchMap(async (installed) => {
+      this.cache = cloneDeep(installed);
       installed = installed.sort((a, b) => b.installedTime - a.installedTime);
       if (!installed.length) {
         return [];
@@ -103,6 +96,8 @@ export class LocalAppService {
       } catch {}
       return list;
     }),
+    publishReplay(1),
+    refCountDelay(1000),
   );
 
   removingList() {

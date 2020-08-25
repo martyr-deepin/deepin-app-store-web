@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { map, skip } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { SoftwareService, Software } from 'app/services/software.service';
 import { StorageService, StorageKey } from 'app/services/storage.service';
 import { BehaviorSubject } from 'rxjs';
@@ -55,7 +55,6 @@ export class MyUpdatesService {
   init() {
     this.sysAuthService.sysAuthStatus$
       .pipe(
-        skip(3),
         map((status) => {
           if (this.sysAuthStatus != status) {
             this.sysAuthStatus = status;
@@ -63,6 +62,7 @@ export class MyUpdatesService {
               this.query();
             } else {
               this.renewableApps$.next([]);
+              this.renewableAppsLenght$.next(0);
             }
           }
         }),
@@ -91,7 +91,6 @@ export class MyUpdatesService {
         package_name: package_names.length ? package_names : ['notfund-packages'],
       };
       let softs = await this.softwareService.list({}, param);
-      softs = softs.filter((soft) => soft.package.upgradable);
       this.renewableAppsLenght$.next(softs.length);
       //排除忽略更新的应用
       // const ignoreApps = this.getIgnoreApps();
