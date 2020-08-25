@@ -61,6 +61,11 @@ export class RecommendedComponent implements OnInit, AfterViewInit {
 
   isAllChecked() {
     const list = this.list.filter((item) => !item.disabled);
+    if(list.length === 0) {
+      this.allChecked = false;
+      this.mixed = false;
+      return;
+    }
     let length = list.filter((item) => !item.checked).length;
     if (length > 0 && length < list.length) {
       let st = setTimeout(() => {

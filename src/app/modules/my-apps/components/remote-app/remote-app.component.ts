@@ -27,6 +27,7 @@ export class RemoteAppComponent implements OnInit {
   free = true;
   loading$ = new BehaviorSubject(false);
   offset$ = new BehaviorSubject(0);
+  reload = false;
 
   result$ = this.offset$.pipe(
     tap((offset) => {
@@ -51,7 +52,10 @@ export class RemoteAppComponent implements OnInit {
       return this.remoteAppService.list(params);
     }),
     scan((acc, value) => {
-      value.items = acc.items.concat(value.items);
+      if(!this.reload) {
+        value.items = acc.items.concat(value.items);
+      }
+      this.reload = false;
       return value;
     }),
     tap(() => (this.loading$.next(false))),
@@ -92,7 +96,8 @@ export class RemoteAppComponent implements OnInit {
   }
   freeChange(free: boolean) {
     this.free = free;
-    this.router.navigate([], { queryParams: { page: 0, free: this.free, num: Math.random() } });
+    this.reload = true;
+    this.offset$.next(0);
   }
 
   refundeds: number[] = [];

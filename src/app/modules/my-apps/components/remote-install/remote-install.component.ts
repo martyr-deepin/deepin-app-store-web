@@ -15,9 +15,8 @@ export class RemoteInstallComponent implements OnInit {
   change(auto: boolean) {
     this.autoInstallService.setAutoInstall(auto);
   }
-  freeCick() {
+  free_check() {
     this.free = this.free !== false ? false : null;
-    console.log(this.free);
     this.freeMessage.emit(this.free);
   }
 }
