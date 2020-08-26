@@ -5,9 +5,9 @@
           class="grid-stack-item"
           [attr.data-gs-id]="index"
           [attr.data-gs-x]="item.x"
-          [style.top]="item.y*rowHeight+'px'" 
+          [style.top]="item.y*cellHeight+'px'" 
           [attr.data-gs-width]="item.width"
-          [style.height]="item.height*rowHeight+'px'"
+          [style.height]="item.height*cellHeight+'px'"
         >
           <div class="grid-stack-item-content">
             <ng-container

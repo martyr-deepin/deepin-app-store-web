@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ContentChild, Input, ElementRef, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ContentChild, Input, ElementRef, AfterViewInit } from '@angular/core';
 @Component({
   selector: 'm-grid-stack',
   templateUrl: './grid-stack.component.html',
@@ -10,7 +10,7 @@ export class GridStackComponent<T extends GridType> implements OnInit,AfterViewI
   @Input() cellHeight:number;
   @ContentChild(TemplateRef, { static: false }) template: TemplateRef<HTMLElement>;
 
-  rowHeight=60;
+  
   ngOnInit(): void {
     this.dataHandle();
   }
@@ -40,7 +40,7 @@ export class GridStackComponent<T extends GridType> implements OnInit,AfterViewI
 
   setHight(){
     const el = this.el.nativeElement.querySelector('.grid-stack')
-    const sum = this.maxHeight*this.rowHeight+"px";
+    const sum = this.maxHeight*this.cellHeight+"px";
     el.style.height = sum;
   }
 }
