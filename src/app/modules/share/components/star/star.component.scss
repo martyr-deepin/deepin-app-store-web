@@ -1,26 +1,13 @@
 .score {
   position: relative;
-  letter-spacing: 0.06em;
-  &::before {
-    content: '★★★★★';
-    color: #d8d8d8;
-    font-weight: bold;
-    // text-shadow: 0 0 1px #979797;
-  }
-  .rate {
-    position: absolute;
-    overflow: hidden;
-    top: 0;
-    &::before {
-      content: '★★★★★';
-      color: #fbc04f;
-      font-weight: bold;
-      // text-shadow: 0 0 1px #979797;
-    }
+  .font-star {
+    color: transparent;
+    background-clip: text !important; 
   }
   .scoreList {
     display: flex;
     position: absolute;
+    width: 100%;
     left: 0;
     top: 0;
     div {

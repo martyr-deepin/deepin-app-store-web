@@ -1,7 +1,8 @@
 <div class="score"
      (mouseleave)="rateHover=null">
-  <div class="rate"
-       [style.width.em]="rateHover || rate"></div>
+  <div class="font-star" 
+    [style.background] = "'linear-gradient(to right, #fbc04f 0%,#fbc04f '+ (rateHover || rate)/5*100 +'%,#d8d8d8 0%,#d8d8d8 100%)'" 
+  >★★★★★</div>
   <div class="scoreList"
        *ngIf="!readonly">
     <div *ngFor="let i of scoreList"
