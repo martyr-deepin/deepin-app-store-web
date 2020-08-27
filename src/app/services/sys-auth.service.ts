@@ -43,8 +43,6 @@ export class SysAuthService {
       } else {
         this.sysAuthStatus$.next(false);
         this.intranetAuthNotifyType = NotifyType.ExtranetNotAuthorized;
-        // 未授权，退出登录
-        this.authService.logout(true);
       }
     });
   }

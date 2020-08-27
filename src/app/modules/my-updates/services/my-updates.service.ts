@@ -56,14 +56,12 @@ export class MyUpdatesService {
     this.sysAuthService.sysAuthStatus$
       .pipe(
         map((status) => {
-          if (this.sysAuthStatus != status) {
-            this.sysAuthStatus = status;
-            if (status) {
-              this.query();
-            } else {
-              this.renewableApps$.next([]);
-              this.renewableAppsLenght$.next(0);
-            }
+          this.sysAuthStatus = status;
+          if (status) {
+            this.query();
+          } else {
+            this.renewableApps$.next([]);
+            this.renewableAppsLenght$.next(0);
           }
         }),
       )
@@ -84,6 +82,9 @@ export class MyUpdatesService {
 
   query(offset = 0, pageSize = 20) {
     this.storeService.InstalledPackages().subscribe(async (packages) => {
+      if(!(packages instanceof Array)) {
+        packages = []
+      }
       const package_names = packages.filter((pkg) => pkg.upgradable).map((pack) => pack.packageName);
       const param = {
         offset: offset,
@@ -91,7 +92,9 @@ export class MyUpdatesService {
         package_name: package_names.length ? package_names : ['notfund-packages'],
       };
       let softs = await this.softwareService.list({}, param);
-      this.renewableAppsLenght$.next(softs.length);
+      if(this.sysAuthStatus) {
+        this.renewableAppsLenght$.next(softs.length);
+      }
       //排除忽略更新的应用
       // const ignoreApps = this.getIgnoreApps();
       // if (ignoreApps) {

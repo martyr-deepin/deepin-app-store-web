@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'environments/environment';
 import { switchMap } from 'rxjs/operators';
-import { StoreService, Package, QueryParam, InstallParam } from 'app/modules/client/services/store.service';
+import { StoreService, Package, InstallParam } from 'app/modules/client/services/store.service';
 import { PackageService } from './package.service';
 import { DownloadTotalService } from './download-total.service';
 import { AppService, AppJSON, Pricing } from './app.service';
@@ -17,7 +16,6 @@ import { BlacklistOperation } from './blacklist';
 })
 export class SoftwareService {
   constructor(
-    private http: HttpClient,
     private appService: AppService,
     private statService: StatService,
     private storeService: StoreService,
@@ -170,7 +168,7 @@ export class SoftwareService {
         slogan: locale.slogan,
         description: locale.description,
         tags: locale.tags,
-        packages: app.packages.map(pkg => ({ packageURI: 'dpk://deb/' + pkg.name,size: pkg.size })),
+        packages: app.packages.map(pkg => ({ packageURI: 'dpk://deb/' + pkg.name,size: pkg.size,remoteVersion: pkg.version })),
       },
       package: {
         remoteVersion: '',

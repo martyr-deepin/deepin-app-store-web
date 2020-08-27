@@ -52,10 +52,14 @@
         </td>
         <td>
           <label class="info_item" i18n>Version:</label>
-          <ng-container *ngIf="controlRef.package$ | async as package">
+          <ng-container *ngIf="controlRef.package$ | async as package;else remoteRef">
             <label>{{ package.remoteVersion || package.localVersion }}</label>
             <label *ngIf="app.info.changelog" (click)="preDetailRef.toggle($event,true,{x:-13,y:.5})" class="log_btn" i18n>Changelog</label>
           </ng-container>
+          <ng-template #remoteRef>
+            <label>{{ app.info.packages[0].remoteVersion }}</label>
+            <label *ngIf="app.info.changelog" (click)="preDetailRef.toggle($event,true,{x:-13,y:.5})" class="log_btn" i18n>Changelog</label>
+          </ng-template>
         </td>
         <td>
           <label class="info_item" i18n>Size:</label>
@@ -67,7 +71,7 @@
               <ng-container i18n>{{ package.size | sizeHuman }}</ng-container>
             </ng-container>
             <ng-template #CalculatingRef>
-              <ng-container i18n>Calculating</ng-container>
+              <ng-container i18n>{{ app.info.packages[0].size | sizeHuman}}</ng-container>
             </ng-template>
           </label>
         </td>
