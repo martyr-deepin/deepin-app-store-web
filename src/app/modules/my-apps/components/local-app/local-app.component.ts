@@ -56,7 +56,12 @@ export class LocalAppComponent implements OnInit, OnDestroy {
     }),
   );
 
-  removingList$ = this.localAppService.removingList().pipe(map((list) => list));
+  removingList$ = this.localAppService.removingList().pipe(
+    map((list) => {
+      this.removing = list;
+      return list;
+    })
+  );
 
   remove(soft: Software) {
     this.localAppService.onRemove = true;
