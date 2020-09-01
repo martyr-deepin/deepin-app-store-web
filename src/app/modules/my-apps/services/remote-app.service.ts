@@ -61,6 +61,7 @@ export interface RemoteApp {
     id: number;
     active: boolean;
     name:string;
+    package_name:string;
     info: {
       locales: [{
         icon: string;

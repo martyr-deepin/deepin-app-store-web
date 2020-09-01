@@ -135,6 +135,9 @@
 }
 
 dstore-layer ::ng-deep {
+  .layer_content {
+    max-width: 60%;
+  }
   section {
     flex-flow: column;
     h1 {

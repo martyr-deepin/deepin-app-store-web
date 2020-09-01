@@ -10,6 +10,7 @@ import { StatService, AppStat } from './stat.service';
 import { MessageService, MessageType } from './message.service';
 import { BlacklistService } from './blacklist.service';
 import { BlacklistOperation } from './blacklist';
+import { PayStatus } from './order.service';
 
 @Injectable({
   providedIn: 'root',
@@ -27,10 +28,9 @@ export class SoftwareService {
     // Uninstall software after refund
     this.messageService.onMessage<{ app_id: number }>(MessageType.Refund).subscribe(async (msg) => {
       let softs = await this.list({}, { id: [msg.app_id] });
-      if (softs) {
-        softs = softs.filter(soft=>soft.package?.localVersion)
-        this.remove(...softs);
-      }
+      softs.forEach( soft => {
+        this.storeService.appPayStatus({ appId: soft.package_name, status: PayStatus.RefundSuccess })
+      })
     });
   }
   //packages = this.http.get<PackagesURL>('/api/public/packages').toPromise();
@@ -269,7 +269,7 @@ interface Info extends Desc {
   cover: string;
   screenshot: string[];
   packager?: string;
-  packages?: { packageURI: string,size: number }[];
+  packages?: { packageURI: string,size: number, remoteVersion: string }[];
   extra?: {};
   versions?: any[];
 }

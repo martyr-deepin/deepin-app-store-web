@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Channel } from '../utils/channel';
 import { Observable, from } from 'rxjs';
-import { map, shareReplay, share } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import * as _ from 'lodash';
 
-import { StoreJobInfo, StoreJobStatus } from '../models/store-job-info';
+import { StoreJobInfo } from '../models/store-job-info';
+import { AppPayStatus } from 'app/services/order.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StoreService {
   constructor() {}
+
+  appPayStatus(payStatus: AppPayStatus) {
+    return this.execWithCallback('storeDaemon.appPayStatus',payStatus)
+  }
 
   isDBusConnected(): Observable<boolean> {
     return this.execWithCallback('storeDaemon.isDBusConnected');

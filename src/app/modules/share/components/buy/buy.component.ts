@@ -4,10 +4,11 @@ import { timer, Observable } from 'rxjs';
 import { switchMap, share } from 'rxjs/operators';
 import { Software, SoftwareService } from 'app/services/software.service';
 import { Payment } from 'app/services/payment';
-import { OrderService, OrderStatus, OrderJSON } from '../../../../services/order.service';
+import { OrderService, OrderStatus, OrderJSON, PayStatus } from '../../../../services/order.service';
 import { DstoreObject } from 'app/modules/client/utils/dstore-objects';
 import { BuyService } from 'app/services/buy.service';
 import {toDataURL } from 'qrcode';
+import { StoreService } from 'app/modules/client/services/store.service';
 @Component({
   selector: 'm-buy',
   templateUrl: './buy.component.html',
@@ -18,7 +19,8 @@ export class BuyComponent implements OnInit {
     private fb: FormBuilder,
     private orderService: OrderService,
     private buyService: BuyService,
-    private softwareService: SoftwareService
+    private softwareService: SoftwareService,
+    private storeService: StoreService,
   ) {}
   readonly Payment = Payment;
   readonly OrderStatus = OrderStatus;
@@ -57,7 +59,7 @@ export class BuyComponent implements OnInit {
     console.log({ soft: this.soft });
     this.form.patchValue({
       app_id: this.soft.id,
-      app_version: this.soft.package.remoteVersion,
+      app_version: this.soft.package.remoteVersion || this.soft.info.packages[0].remoteVersion,
       amount: this.soft.pricing.price,
     });
   }
@@ -99,6 +101,7 @@ export class BuyComponent implements OnInit {
           if (orderStatus.status === OrderStatus.OrderStatusSuccess) {
             this.success = true;
             //this.order = order;
+            this.storeService.appPayStatus({ appId: this.soft.package_name, status: PayStatus.Payed });
             this.buyService.buy$.next(this.soft);
           }
           return result;

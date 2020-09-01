@@ -10,36 +10,31 @@
   <ng-container *ngIf="sysAuthStatus$ | async; else noAuthorizaedRef">
     <ng-container
       *ngIf="storeMode!== this.StoreMode.IntranetAppStore||(noIntranetAuth$ | async); else noAuthorizaedRef">
-      <ng-container *ngIf="package$ | async as pkg; else installRef">
-        <ng-container *ngIf="!pkg.upgradable; else upgradableRef">
-          <button class="control" *ngIf="pkg.localVersion; else installRef" (click)="openApp($event)">
-            <ng-container i18n>Open</ng-container>
-          </button>
+      <ng-container *ngIf="!soft.free && !(userAppIDs$ | async)?.includes(soft.id); else openRef">
+        <button class="control" (click)="buyApp($event); buyButtonRef.hidden = true" hidden #buyButtonRef>
+          <ng-container i18n>Buy</ng-container>
+        </button>
+        <button class="control price" (click)="buyButtonRef.hidden = false" *ngIf="buyButtonRef.hidden">
+          {{ soft?.pricing?.price / 100 | currency: soft?.pricing?.currency:'symbol-narrow' }}
+        </button>
+      </ng-container>
+      <ng-template #openRef>
+        <ng-container *ngIf="package$ | async as pkg; else installRef">
+          <ng-container *ngIf="!pkg.upgradable; else upgradableRef">
+            <button class="control" *ngIf="pkg.localVersion; else installRef" (click)="openApp($event)">
+              <ng-container i18n>Open</ng-container>
+            </button>
+          </ng-container>
         </ng-container>
         <ng-template #upgradableRef>
           <button class="control" (click)="updateApp($event)">
             <ng-container i18n>Update</ng-container>
           </button>
         </ng-template>
-      </ng-container>
-      <ng-template #installRef>
-        <button class="control" *ngIf="soft.free; else priceRef" (click)="installApp($event)">
-          <ng-container i18n>Install</ng-container>
-        </button>
-        <ng-template #priceRef>
-          <ng-container *ngIf="(userAppIDs$ | async)?.includes(soft.id); else buyRef">
-            <button class="control" (click)="installApp($event)">
-              <ng-container i18n>Install</ng-container>
-            </button>
-          </ng-container>
-          <ng-template #buyRef>
-            <button class="control" (click)="buyApp($event); buyButtonRef.hidden = true" hidden #buyButtonRef>
-              <ng-container i18n>Buy</ng-container>
-            </button>
-            <button class="control price" (click)="buyButtonRef.hidden = false" *ngIf="buyButtonRef.hidden">
-              {{ soft?.pricing?.price / 100 | currency: soft?.pricing?.currency:'symbol-narrow' }}
-            </button>
-          </ng-template>
+        <ng-template #installRef>
+          <button class="control" (click)="installApp($event)">
+            <ng-container i18n>Install</ng-container>
+          </button>
         </ng-template>
       </ng-template>
     </ng-container>
@@ -48,35 +43,22 @@
   <!-- NoAuthorizaed -->
   <ng-template #noAuthorizaedRef>
     <!-- If noAuthorizaed show install Else show unavailable -->
-    <ng-container *ngIf="package$ | async as pkg; else unavailableInstallRef">
-      <ng-container *ngIf="pkg.remoteVersion; else unavailableInstallRef">
-        <button class="control" *ngIf="pkg.localVersion; else installRef" (click)="openApp($event)">
-          <ng-container i18n>Open</ng-container>
-        </button>
-        <ng-template #installRef>
-          <button class="control" *ngIf="soft.free; else priceRef" (click)="sysAuthMessage()">
-            <ng-container i18n>Install</ng-container>
+    <ng-container *ngIf="package$ | async as pkg; else noAuthInstallRef">
+      <ng-container *ngIf="soft.free || (userAppIDs$ | async)?.includes(soft.id); else noFreeInstallRef">
+        <ng-container *ngIf="pkg.localVersion; else noAuthInstallRef">
+          <button (click)="openApp($event)">
+            <ng-container i18n>Open</ng-container>
           </button>
-          <ng-template #priceRef>
-            <ng-container *ngIf="(userAppIDs$ | async)?.includes(soft.id); else buyRef">
-              <button class="control" (click)="sysAuthMessage()">
-                <ng-container i18n>Install</ng-container>
-              </button>
-            </ng-container>
-            <ng-template #buyRef>
-              <button class="control" (click)="sysAuthMessage(); buyButtonRef.hidden = true" hidden #buyButtonRef>
-                <ng-container i18n>Buy</ng-container>
-              </button>
-              <button class="control price" (click)="buyButtonRef.hidden = false" *ngIf="buyButtonRef.hidden">
-                {{ soft?.pricing?.price / 100 | currency: soft?.pricing?.currency:'symbol-narrow' }}
-              </button>
-            </ng-template>
-          </ng-template>
-        </ng-template>
+        </ng-container>
       </ng-container>
     </ng-container>
   </ng-template>
-  <ng-template #unavailableInstallRef>
+  <ng-template #noFreeInstallRef>
+    <button class="control price" (click)="sysAuthMessage()">
+      {{ soft?.pricing?.price / 100 | currency: soft?.pricing?.currency:'symbol-narrow' }}
+    </button>
+  </ng-template>
+  <ng-template #noAuthInstallRef>
     <button class="control" (click)="sysAuthMessage()">
       <ng-container i18n>Install</ng-container>
     </button>

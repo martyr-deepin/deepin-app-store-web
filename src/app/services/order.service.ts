@@ -42,3 +42,16 @@ interface buyParams {
   amount: number;
   method: string;
 }
+
+export interface AppPayStatus {
+  appId:string,
+  status:PayStatus,
+}
+
+export enum PayStatus {
+  Payed = 0,
+  Refunding,
+  RefundSuccess,
+  RefundFailed,
+  Default,
+}
