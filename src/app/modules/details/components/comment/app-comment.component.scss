@@ -61,7 +61,7 @@
     textarea {
       height: 7rem;
       width: 100%;
-      border: 2px solid #e5e5e5;
+      border: 2px solid var(--main-item-hr-color);
       box-sizing: border-box;
       border-radius: 8px;
       resize: none;
@@ -86,6 +86,7 @@
       }
     }
     textarea {
+      color: var(--font-color);
       background-color: var(--main-bg-color);
     }
   }
@@ -173,11 +174,13 @@ dstore-layer ::ng-deep {
         textarea {
           width: 100%;
           height: 8.6rem;
-          border: 2px solid #e5e5e5;
+          border: 2px solid var(--main-item-hr-color);
           box-sizing: border-box;
           border-radius: 8px;
           resize: none;
           padding: 0.3rem 0.6rem;
+          color: var(--font-color);
+          background-color: var(--main-bg-color);
         }
         .text_count {
           position: absolute;
