@@ -2,15 +2,14 @@ import { Component, OnInit, TemplateRef, ContentChild, Input, ElementRef, AfterV
 @Component({
   selector: 'm-grid-stack',
   templateUrl: './grid-stack.component.html',
-  styleUrls: ['./grid-stack.component.scss']
+  styleUrls: ['./grid-stack.component.scss'],
 })
-export class GridStackComponent<T extends GridType> implements OnInit,AfterViewInit {
+export class GridStackComponent<T extends GridType> implements OnInit, AfterViewInit {
   constructor(private el: ElementRef) {}
   @Input() data: Array<T> = [];
-  @Input() cellHeight:number;
+  @Input() cellHeight: number;
   @ContentChild(TemplateRef, { static: false }) template: TemplateRef<HTMLElement>;
 
-  
   ngOnInit(): void {
     this.dataHandle();
   }
@@ -18,29 +17,33 @@ export class GridStackComponent<T extends GridType> implements OnInit,AfterViewI
   ngAfterViewInit() {
     this.setHight();
   }
-  maxHeight:number = 0;
+  maxHeight: number = 0;
   dataHandle() {
-    let cols = new Array<number>(4).fill(0)
-    let top = 0;
+    let cols = new Array<number>(4).fill(0);
     this.data.forEach((value) => {
-      if(value.x>4){
-        value.x = 0;
+      let top = 0;
+      let end = value.x + value.width;
+      let begin = value.x;
+      if (value.x > 3) {
+        end = 3;
+        begin = 3 - value.width;
       }
-      for(let i=value.x;i<(value.x+value.width);i++) {
-        if(cols[i]>top) {
-          top = cols[i]
+      for (let i = begin; i < end; i++) {
+        if (cols[i] > top) {
+          top = cols[i];
         }
-        cols[i] += value.height;
+      }
+      for (let i = begin; i < end; i++) {
+        cols[i] = top + value.height;
       }
       value.y = top;
-      //value['y'] = y;
     });
-    this.maxHeight = cols.sort((a,b)=>b-a)[0]
+    this.maxHeight = cols.sort((a, b) => b - a)[0];
   }
 
-  setHight(){
-    const el = this.el.nativeElement.querySelector('.grid-stack')
-    const sum = this.maxHeight*this.cellHeight+"px";
+  setHight() {
+    const el = this.el.nativeElement.querySelector('.grid-stack');
+    const sum = this.maxHeight * this.cellHeight + 'px';
     el.style.height = sum;
   }
 }

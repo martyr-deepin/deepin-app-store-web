@@ -72,6 +72,7 @@ export class SoftwareService {
         softs = apps.items.map((app) => this.convertApp(app)).filter(Boolean);
       }
     } else {
+      ids = ids.filter(id => id != null);
       const stats = await this.statService.list((param as any) || { offset, limit, category, tag, keyword, id: ids });
       const m = new Map<number, AppJSON>();
       if (stats.count > 0) {
