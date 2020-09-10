@@ -24,4 +24,5 @@ export interface Settings {
   fontFamily: string;
   fontPixelSize: string;
   recommend: string;
+  appid: string;
 }

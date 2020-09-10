@@ -14,6 +14,7 @@ import { ClientService, RequestErrorType } from 'app/services/client.service';
 import { BuyService } from 'app/services/buy.service';
 import { Settings } from 'app/services/settings.service';
 import { StorageKey } from 'app/services/storage.service';
+import { StatService } from 'app/services/stat.service';
 
 @Component({
   selector: 'dstore-main',
@@ -29,7 +30,8 @@ export class MainComponent implements OnInit {
     private searchService: SearchService,
     private softwareService: SoftwareService,
     private clientService: ClientService,
-    private buyService: BuyService
+    private buyService: BuyService,
+    private statService: StatService,
   ) {}
 
   buyDialogShow$ = this.buyService.buyDialogShow$;
@@ -41,6 +43,7 @@ export class MainComponent implements OnInit {
     if (!environment.native) {
       return;
     }
+    this.requestAppDetails();
     this.searchNavigate();
     this.controlNavigate();
     this.switchFont();
@@ -49,20 +52,22 @@ export class MainComponent implements OnInit {
   }
   // switch theme dark or light
   switchTheme() {
-    this.themeService.getTheme().subscribe(theme => {
+    this.themeService.getTheme().subscribe((theme) => {
       console.log('主题切换', theme);
       document.body.className = theme;
     });
   }
   switchActiveColor() {
-    this.themeService.getActiveColor().subscribe(activeColor => {
-      document.getElementsByTagName('html')[0].style.setProperty("--activityColor",activeColor)
-      document.getElementsByTagName('html')[0].style.setProperty("--activityColorHover",this.themeService.switchActiveColor(activeColor))
-    })
+    this.themeService.getActiveColor().subscribe((activeColor) => {
+      document.getElementsByTagName('html')[0].style.setProperty('--activityColor', activeColor);
+      document
+        .getElementsByTagName('html')[0]
+        .style.setProperty('--activityColorHover', this.themeService.switchActiveColor(activeColor));
+    });
   }
   // switch font family and font size
   switchFont() {
-    document.querySelector("html").style.fontSize = environment.fontSize+"px";
+    document.querySelector('html').style.fontSize = environment.fontSize + 'px';
     this.sysFontService.fontChange$.subscribe(([fontFamily, fontSize]) => {
       const HTMLGlobal = document.querySelector('html');
       HTMLGlobal.style.fontFamily = fontFamily;
@@ -72,30 +77,30 @@ export class MainComponent implements OnInit {
   }
   // preview software screenshot
   screenshotPreview() {
-    DstoreObject.openOnlineImage().subscribe(src => {
+    DstoreObject.openOnlineImage().subscribe((src) => {
       fetch(src)
-        .then(resp => resp.blob())
-        .then(blob => {
-          return new Promise<string>(resolve => {
+        .then((resp) => resp.blob())
+        .then((blob) => {
+          return new Promise<string>((resolve) => {
             const reader = new FileReader();
             reader.onload = () => resolve(reader.result as string);
             reader.readAsDataURL(blob);
           });
         })
-        .then(data => {
+        .then((data) => {
           DstoreObject.imageViewer(src, data.slice(data.indexOf(',') + 1));
         });
     });
   }
   // search navigate
   searchNavigate() {
-    this.searchService.openApp$.subscribe(id => {
+    this.searchService.openApp$.subscribe((id) => {
       this.router.navigate(['/list', 'keyword', id, id]);
     });
-    this.searchService.openSearchResult$.subscribe(keyword => {
+    this.searchService.openSearchResult$.subscribe((keyword) => {
       this.router.navigate(['/list', 'keyword', keyword]);
     });
-    this.searchService.requestComplement$.subscribe(async keyword => {
+    this.searchService.requestComplement$.subscribe(async (keyword) => {
       let list = [];
       for (let offset = 0; list.length < 10; offset += 20) {
         const softs = await this.softwareService.list({ keyword, offset });
@@ -103,7 +108,7 @@ export class MainComponent implements OnInit {
           break;
         }
         list = list
-          .concat(softs.map(soft => ({ id: soft.id, name: soft.id.toString(), local_name: soft.info.name })))
+          .concat(softs.map((soft) => ({ id: soft.id, name: soft.id.toString(), local_name: soft.info.name })))
           .slice(0, 10);
       }
       console.log('search result', { list });
@@ -112,18 +117,18 @@ export class MainComponent implements OnInit {
   }
   // control navigate
   async controlNavigate() {
-    this.clientService.onRequestOpenCategory().subscribe(req => {
+    this.clientService.onRequestOpenCategory().subscribe((req) => {
       this.router.navigate(['/list', 'category', req.category]);
       this.clientService.requestFinished({ req_id: req.req_id });
     });
-    this.clientService.onRequestOpenTag().subscribe(req => {
+    this.clientService.onRequestOpenTag().subscribe((req) => {
       this.router.navigate(['/list', 'tag', req.tag]);
       this.clientService.requestFinished({ req_id: req.req_id });
     });
     this.clientService
       .onAppRequest()
       .pipe(
-        switchMap(async body => {
+        switchMap(async (body) => {
           try {
             let soft: Software;
             if (body.pkg_url) {
@@ -183,32 +188,54 @@ export class MainComponent implements OnInit {
       )
       .subscribe();
   }
+  //sdk navigate
+  requestAppDetails() {
+    const { channel } = window['dstore'];
+    if (channel) {
+      new Promise<Settings>((resolve) => {
+        channel.objects.settings.getSettings(resolve);
+      }).then((res) => {
+        if (res.appid !== undefined) {
+          this.routeDetail(res.appid);
+        }
+      });
+    }
+    this.clientService.requestAppDetails().subscribe((pkgName) => {
+      this.routeDetail(pkgName);
+    });
+  }
+
+  async routeDetail(pkgName: string) {
+    const stat = await this.statService.list({ package_name: [pkgName] } as any);
+    const id = stat?.items[0]?.app_id;
+    if(id !== void 0) {
+      this.router.navigate(['/list', 'keyword', id, id]);
+    }
+  }
 
   readonly ids: string =
-    '98;1073;157;414;857;715;716;714;129;975;992;1010;\n' +
-    '98;1073;157;414;857;715;716;714;129;975;992;1010;';
+    '98;1073;157;414;857;715;716;714;129;975;992;1010;\n' + '98;1073;157;414;857;715;716;714;129;975;992;1010;';
 
-  recommendedIds$ = new Promise((resolve)=>{
+  recommendedIds$ = new Promise((resolve) => {
     let ids: string;
     const { channel } = window['dstore'];
     if (channel) {
       new Promise<Settings>((resolve) => {
         channel.objects.settings.getSettings(resolve);
-      }).then(res => {
-        if(res.recommend === undefined) {
-          resolve(localStorage[StorageKey.recommendedIds])
-        }else {
+      }).then((res) => {
+        if (res.recommend === undefined) {
+          resolve(localStorage[StorageKey.recommendedIds]);
+        } else {
           ids = res.recommend;
           if (!ids || ids.trim() === '') {
             ids = this.ids;
-          } 
+          }
           localStorage[StorageKey.recommendedIds] = ids;
-          resolve(ids)
+          resolve(ids);
         }
-      })
-    }else {
-      resolve(undefined)
+      });
+    } else {
+      resolve(undefined);
     }
-  })
-    
+  });
 }

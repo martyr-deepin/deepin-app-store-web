@@ -72,6 +72,10 @@ export class ClientService {
     console.log('request finished');
     return Channel.exec('storeDaemon.onRequestFinished', { id: result.req_id, error_type: result.error_type });
   }
+
+  requestAppDetails() {
+    return Channel.connect<string>('storeDaemon.requestAppDetails');
+  }
 }
 interface RequestBody {
   type: 'install' | 'uninstall' | 'update' | 'update_all';
