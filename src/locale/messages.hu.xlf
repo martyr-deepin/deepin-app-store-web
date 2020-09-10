@@ -96,7 +96,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="172fa0aab2cb9ffc177b03a45af1715e0b58997d">
         <source>Loading... Please wait</source>
-        <target>Loading... Please wait</target>
+        <target>Betöltés... Kérem várjon</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/wait/wait.component.html</context>
           <context context-type="linenumber">8</context>
@@ -120,7 +120,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="235945afa74bcf391b9201dcf4a6bba930ddd13b">
         <source>Top <x equiv-text="{{ top }}" id="INTERPOLATION"/></source>
-        <target>Top <x equiv-text="{{ top }}" id="INTERPOLATION"/></target>
+        <target>Legjobb<x equiv-text="{{ top }}" id="INTERPOLATION"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/app-title/app-title.component.html</context>
           <context context-type="linenumber">5</context>
@@ -168,10 +168,18 @@
       </trans-unit>
       <trans-unit datatype="html" id="0013b61359f2f1b3cb30c16d524bc4d778909478">
         <source>Personal Center</source>
-        <target>Personal Center</target>
+        <target>Személyes Központ:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/center-title/center-title.component.html</context>
           <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="1befce3c6f0c468b06ae5199116e5b096a35a3ef">
+        <source>Buy</source>
+        <target>Vásárlás</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
+          <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="c9039b1b13b3ef165b66b3c5d79f810ab1ebb050">
@@ -179,15 +187,15 @@
         <target>Megnyitás</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">25</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">50</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">89</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="047f50bc5b5d17b5bec0196355953e1a5c590ddb">
@@ -195,7 +203,7 @@
         <target>Frissítés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">31</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
@@ -219,23 +227,11 @@
         <target>Telepítés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">27</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">32</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">36</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
           <context context-type="linenumber">63</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">81</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
@@ -244,18 +240,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
           <context context-type="linenumber">85</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="1befce3c6f0c468b06ae5199116e5b096a35a3ef">
-        <source>Buy</source>
-        <target>Buy</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">37</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
-          <context context-type="linenumber">68</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="91ce116be6e8df104128f339912c9207f01265cd">
@@ -268,7 +252,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="fb3545e97e371069768103e01599f35e789d556c">
         <source>Payment:</source>
-        <target>Payment:</target>
+        <target>Fizetés:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">28</context>
@@ -276,7 +260,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="53d20cc6953546db5373b1ae5a686aa655a715bb">
         <source>Pay Now</source>
-        <target>Pay Now</target>
+        <target>Fizetés azonnal</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">53</context>
@@ -284,7 +268,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a446571368a5064dd8408d46f42f6ae725eff658">
         <source>Amount: </source>
-        <target>Amount: </target>
+        <target>Összeg:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">65</context>
@@ -292,7 +276,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="73d9eb7d8af7892f0bc41cc7dad75f7256483628">
         <source>WeChat Pay</source>
-        <target>WeChat Pay</target>
+        <target>WeChat Fizetés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">73</context>
@@ -300,7 +284,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="e2c9907de2386d2f5c27a0370fbaf416b4f4e41c">
         <source>Processing payment, please wait...</source>
-        <target>Processing payment, please wait...</target>
+        <target>Fizetés feldolgozása, kérem várjon ...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">80</context>
@@ -308,7 +292,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="836040c3f2b1e93e8a70a1934f718e1dd481be9d">
         <source>Payment failed, please try again!</source>
-        <target>Payment failed, please try again!</target>
+        <target>Sikertelen fizetés, kérem próbálja újra!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">92</context>
@@ -348,7 +332,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="5904b27bdd419865149a13f58b01e7761636dc00">
         <source>Pay Again</source>
-        <target>Pay Again</target>
+        <target>Fizetés újra</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">96</context>
@@ -356,7 +340,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="20c0f2a993ebb3b275bf29f6621c35b6c946a8fb">
         <source>Network disconnected, and you may not be able to buy the app successfully,</source>
-        <target>Network disconnected, and you may not be able to buy the app successfully,</target>
+        <target>A hálózati kapcsolat megszakadt, ezért előfordulhat, hogy nem tudja sikeresen megvásárolni az alkalmazást,</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">107</context>
@@ -364,7 +348,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="74bdabdacbd39507e152b92733a2d2d0275bd633">
         <source> please check your network first</source>
-        <target> please check your network first</target>
+        <target>kérem, először ellenőrizze a hálózatát</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">108</context>
@@ -372,7 +356,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6cf236d79ba814bc7cd38814d46c588c43079ddb">
         <source>Payment Successful!</source>
-        <target>Payment Successful!</target>
+        <target>Sikeres fizetés!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">121</context>
@@ -380,7 +364,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6195e42e2c172351c7e86620f756a9f9c8eea499">
         <source>Order No.</source>
-        <target>Order No.</target>
+        <target>Rendelési szám</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">124</context>
@@ -388,7 +372,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="9d8357c8b045423277f40ea83439aef0635d1cd7">
         <source>Order Time</source>
-        <target>Order Time</target>
+        <target>Rendelési idő</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">126</context>
@@ -396,7 +380,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="d62e8cfcb1f444a033b402e050b851a7d8a3532f">
         <source>Payment Method</source>
-        <target>Payment Method</target>
+        <target>Fizetési mód</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">128</context>
@@ -492,7 +476,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="71249314fa72f5f9e0d93b8c59f9e148e0ff617f">
         <source>Games</source>
-        <target>Games</target>
+        <target>Játékok</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/category/category.component.html</context>
           <context context-type="linenumber">6</context>
@@ -572,7 +556,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c2a9de3714f5767b174d0424bc8abe2dc37acc41">
         <source>Other</source>
-        <target>Other</target>
+        <target>Egyebek</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/category/category.component.html</context>
           <context context-type="linenumber">11</context>
@@ -632,7 +616,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="721c5049f844116adbebd35d077c25b851549ba1">
         <source>Updates</source>
-        <target>Updates</target>
+        <target>Frissítések</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/side-nav/side-nav.component.html</context>
           <context context-type="linenumber">69</context>
@@ -640,7 +624,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="70fdd741399f7bbf37af6f2c3592ee107227f69e">
         <source>My Apps</source>
-        <target>My Apps</target>
+        <target>Alkalmazásaim</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/side-nav/side-nav.component.html</context>
           <context context-type="linenumber">76</context>
@@ -648,7 +632,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="68de0566204c3540450ff89d5e3cf3ac682c7a27">
         <source> Announcement:<x equiv-text="{{ $notify.content }}" id="INTERPOLATION"/></source>
-        <target> Announcement:<x equiv-text="{{ $notify.content }}" id="INTERPOLATION"/></target>
+        <target>Közlemény:<x equiv-text="{{ $notify.content }}" id="INTERPOLATION"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">3</context>
@@ -656,7 +640,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="f38cdabbc1d33c5153a307c4f0c8f4f22df4276f">
         <source>Request successful</source>
-        <target>Request successful</target>
+        <target>Sikeres kérés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">10</context>
@@ -664,7 +648,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="231e7766e41f05396b33e9798d628f8d1b0f46f9">
         <source>Cache cleared</source>
-        <target>Cache cleared</target>
+        <target>Háttértár törölve</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">11</context>
@@ -672,7 +656,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="8a47f77b90a2cc65a1a37451a36973b54782063b">
         <source>Submission successful</source>
-        <target>Submission successful</target>
+        <target>Sikeres beküldés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">12</context>
@@ -688,7 +672,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="e33d805f0c1ce97c92b68fc882084fef23cca646">
         <source>Request failed</source>
-        <target>Request failed</target>
+        <target>Sikertelen kérés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">18</context>
@@ -696,7 +680,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="9adf078da8da4a1f22687e15f76dae2369a603df">
         <source>Failed to clear cache</source>
-        <target>Failed to clear cache</target>
+        <target>Sikertelen háttértár törlés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">19</context>
@@ -704,7 +688,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="2e20b27eecc880c273a38d792b2a2fee5915157a">
         <source>Submission failed</source>
-        <target>Submission failed</target>
+        <target>Sikertelen beküldés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">20</context>
@@ -716,7 +700,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="98ae65ebba6c43c5cda8bdbd6f03e1daa0595af1">
         <source>Recommended</source>
-        <target>Recommended</target>
+        <target>Ajánlott</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/recommended/recommended.component.html</context>
           <context context-type="linenumber">13</context>
@@ -764,7 +748,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="0c5beac3fe2c2731a51956b0d828195499bed15d">
         <source>Install All</source>
-        <target>Install All</target>
+        <target>Összes telepítése</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/recommended/recommended.component.html</context>
           <context context-type="linenumber">63</context>
@@ -776,7 +760,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a449ddaedd9a79bd39e9e7ef9f74c31e2c649e0b">
         <source>Do you want to leave this page?</source>
-        <target>Do you want to leave this page?</target>
+        <target>El kívánja hagyni az oldalt?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/recommended/recommended.component.html</context>
           <context context-type="linenumber">74</context>
@@ -784,7 +768,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="3eed3c0167ac14df9b8fcf72108d32ea25436c5d">
         <source>Leave</source>
-        <target>Leave</target>
+        <target>Elhagyás</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/recommended/recommended.component.html</context>
           <context context-type="linenumber">76</context>
@@ -792,10 +776,18 @@
       </trans-unit>
       <trans-unit datatype="html" id="75c09bc09c5b5dc2c5f095457cd0c495121668cf">
         <source>Stay Here</source>
-        <target>Stay Here</target>
+        <target>Maradás</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/recommended/recommended.component.html</context>
           <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit datatype="html" id="271a5f10ae4bb5de450076d158073625d9960fb1">
+        <source>No apps available, please contact the administrator of App Store</source>
+        <target>Nincs elérhető alkalmazás. Kérjük, lépjen kapcsolatba az Alkalmazás Áruház rendszergazdájával</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/index/index.component.html</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="ac0f81713a84217c9bd1d9bb460245d8190b073f">
@@ -807,7 +799,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">106</context>
+          <context context-type="linenumber">110</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
@@ -831,20 +823,20 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">145</context>
+          <context context-type="linenumber">149</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">153</context>
+          <context context-type="linenumber">157</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">159</context>
+          <context context-type="linenumber">163</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="2f5c0cf0b18104b3e46f65bbe5d9db6663a1e8e8">
         <source>The topic not found</source>
-        <target>The topic not found</target>
+        <target>A topik nem található</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/index/components/topic-detail/topic-detail.component.html</context>
           <context context-type="linenumber">11</context>
@@ -852,7 +844,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="27e117eee80e72424266dcd113674437d8858931">
         <source>Search results for <x ctype="x-span" equiv-text="&lt;span&gt;" id="START_TAG_SPAN"/><x equiv-text="{{ title }}" id="INTERPOLATION"/><x ctype="x-span" equiv-text="&lt;/span&gt;" id="CLOSE_TAG_SPAN"/></source>
-        <target>Search results for <x ctype="x-span" equiv-text="&lt;span&gt;" id="START_TAG_SPAN"/><x equiv-text="{{ title }}" id="INTERPOLATION"/><x ctype="x-span" equiv-text="&lt;/span&gt;" id="CLOSE_TAG_SPAN"/></target>
+        <target>Keresési eredmények <x ctype="x-span" equiv-text="&lt;span&gt;" id="START_TAG_SPAN"/><x equiv-text="{{ title }}" id="INTERPOLATION"/><x ctype="x-span" equiv-text="&lt;/span&gt;" id="CLOSE_TAG_SPAN"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
           <context context-type="linenumber">10</context>
@@ -860,7 +852,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="91bc9b0905cc70dea1b653d2bd6d302a9a30eb09">
         <source>Apps developed by <x equiv-text="{{ name }}" id="INTERPOLATION"/></source>
-        <target>Apps developed by <x equiv-text="{{ name }}" id="INTERPOLATION"/></target>
+        <target>Az alkalmazás fejlesztője <x equiv-text="{{ name }}" id="INTERPOLATION"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
           <context context-type="linenumber">15</context>
@@ -868,7 +860,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c71d62bdeab0c6090ee4524fd31daa7a14acd76b">
         <source>Apps packaged by <x equiv-text="{{ name }}" id="INTERPOLATION"/></source>
-        <target>Apps packaged by <x equiv-text="{{ name }}" id="INTERPOLATION"/></target>
+        <target>Az alkalmazás csomagolója <x equiv-text="{{ name }}" id="INTERPOLATION"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
           <context context-type="linenumber">18</context>
@@ -876,7 +868,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="07190520c4e8884bfa6feff14b9af54f9bd3d444">
         <source>No search results</source>
-        <target>No search results</target>
+        <target>Nincs keresési eredmény</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
           <context context-type="linenumber">37</context>
@@ -884,7 +876,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="7cc5bb06d460bf558558822eddfecbe84d63b5a4">
         <source><x equiv-text="{{ downloads }}" id="INTERPOLATION"/> downloads</source>
-        <target><x equiv-text="{{ downloads }}" id="INTERPOLATION"/> downloads</target>
+        <target><x equiv-text="{{ downloads }}" id="INTERPOLATION"/> letöltések</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">22</context>
@@ -892,7 +884,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="2424f9fcf779e49e1ccd1095b2d7daa8d66d395b">
         <source><x equiv-text="{{ score_count }}" id="INTERPOLATION"/> ratings</source>
-        <target><x equiv-text="{{ score_count }}" id="INTERPOLATION"/> ratings</target>
+        <target><x equiv-text="{{ score_count }}" id="INTERPOLATION"/> értékelések</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">25</context>
@@ -900,7 +892,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c85caed94bd76ad556d77bff7a566bec46fa1489">
         <source>Refund Policy</source>
-        <target>Refund Policy</target>
+        <target>Pénzvisszatérítési szabályzat</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">40</context>
@@ -910,9 +902,9 @@
         <source>1. Users can request a refund within two hours after payment.
 2. Your first three refund requests are processed automatically, and the refunds are returned to the original account in real time.
 3. The fourth and later refund requests must be reviewed manually (2-3 working days). Your refund will be issued if approved, and you will receive an explanation if rejected.</source>
-        <target>1. Users can request a refund within two hours after payment.
-2. Your first three refund requests are processed automatically, and the refunds are returned to the original account in real time.
-3. The fourth and later refund requests must be reviewed manually (2-3 working days). Your refund will be issued if approved, and you will receive an explanation if rejected.</target>
+        <target>1. A felhasználók a fizetés után két órán belül kérhetnek visszatérítést.
+2. Az első három visszatérítési kérelmet automatikusan feldolgozzuk, és a visszatérítéseket valós időben visszaküldjük az eredeti számlára.
+3. A negyedik és későbbi visszatérítési kérelmet manuálisan kell felülvizsgálni (2-3 munkanap). A visszatérítést jóváhagyás után megadjuk, elutasítás esetén magyarázatot adunk annak okáról.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">38</context>
@@ -952,10 +944,14 @@
       </trans-unit>
       <trans-unit datatype="html" id="994e6a27b92ba37201e3bb9f8ae312f2a46b5b39">
         <source>Changelog</source>
-        <target>Changelog</target>
+        <target>Változáslista</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">57</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
+          <context context-type="linenumber">61</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/renewable/renewable.component.html</context>
@@ -971,7 +967,7 @@
         <target>Méret:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">61</context>
+          <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="e8c021c9d36ccd882cb337c19cbca3067c249d41">
@@ -979,7 +975,7 @@
         <target>Letöltve</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">68</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
@@ -998,32 +994,12 @@
           <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
-      <trans-unit datatype="html" id="abce9dd67f43599b1ece93ed5fd48af06940de0f">
-        <source>
-          <x equiv-text="{{ package.size | sizeHuman }}" id="INTERPOLATION"/>
-        </source>
-        <target>
-          <x equiv-text="{{ package.size | sizeHuman }}" id="INTERPOLATION"/>
-        </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">67</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit datatype="html" id="1a5b6d68dd00f96022a9781b03b407784b5090b0">
-        <source>Calculating</source>
-        <target>Számítás folyamatban</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">70</context>
-        </context-group>
-      </trans-unit>
       <trans-unit datatype="html" id="c865350c1e557f8c00140a145e33f39ff822cdc0">
         <source>Updated Date:</source>
         <target>Frissítés ideje:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">81</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="055d47bb1af14fe2aebd1733bf30d5bf4add46f5">
@@ -1031,15 +1007,15 @@
         <target>Weboldal:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">83</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="fcd2b61b74ed190b5176b5c45599627fa3addfd6">
         <source>Developer:</source>
-        <target>Developer:</target>
+        <target>Fejlesztő:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">91</context>
+          <context context-type="linenumber">95</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="4a22c6843133f0b0d7dc0d28f864f2f90c1de7ad">
@@ -1047,7 +1023,7 @@
         <target>Leírás:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">102</context>
+          <context context-type="linenumber">106</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="e5d8bb389c702588877f039d72178f219453a72d">
@@ -1055,31 +1031,31 @@
         <target>Ismeretlen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">112</context>
+          <context context-type="linenumber">116</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="eec715de352a6b114713b30b640d319fa78207a0">
         <source>Description</source>
-        <target>Description</target>
+        <target>Leírás</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">118</context>
+          <context context-type="linenumber">122</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="c0331aa0a5a4589294b7826d8613515c597812a8">
         <source>CDN supported by UPYUN</source>
-        <target>CDN supported by UPYUN</target>
+        <target>CDN az UPYUN támogatásával</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">131</context>
+          <context context-type="linenumber">135</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="0166106da9d18911cf205d22548b9f4d21008f3f">
         <source>It's in adjustment, you can return to</source>
-        <target>It's in adjustment, you can return to</target>
+        <target>Már beállítva, visszatérhet a</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">146</context>
+          <context context-type="linenumber">150</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="680d5c75b7fd8d37961083608b9fcdc4167b4c43">
@@ -1087,7 +1063,7 @@
         <target>Előző</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">147</context>
+          <context context-type="linenumber">151</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="6dd070f6eb99a4e300bce2af82d76f3d01c61edd">
@@ -1095,7 +1071,7 @@
         <target>Csatlakozás meghiúsult, kérem ellenőrizze a hálózati kapcsolatot és próbálja újra</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">154</context>
+          <context context-type="linenumber">158</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="2631d08f671cb06e269dfe7ce2268ab52ef73375">
@@ -1103,12 +1079,12 @@
         <target>Hiba történt.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
-          <context context-type="linenumber">159</context>
+          <context context-type="linenumber">163</context>
         </context-group>
       </trans-unit>
       <trans-unit datatype="html" id="46105913be7e18027fbaf57f72c41147c49fc8e0">
         <source>User Comments</source>
-        <target>User Comments</target>
+        <target>Felhasználói hozzászólások</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">3</context>
@@ -1116,7 +1092,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="9a1bd0840d2c3901d359e4a58a9c73545b7e9598">
         <source>Current Version</source>
-        <target>Current Version</target>
+        <target>Jelenlegi verzió</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">7</context>
@@ -1124,7 +1100,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="9e5ce729ba1ff21c6bed9417bca2d16cd6b8e1fd">
         <source>History Versions</source>
-        <target>History Versions</target>
+        <target>Korábbi verziók</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">11</context>
@@ -1132,7 +1108,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="71890cc31aaa2b924675a1547355fc690c395146">
         <source>Failed to load comments</source>
-        <target>Failed to load comments</target>
+        <target>Nem sikerült betölteni a megjegyzéseket</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">22</context>
@@ -1140,7 +1116,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="82182068adfbb019055ef30eff0fc438275441fa">
         <source>No user comments available</source>
-        <target>No user comments available</target>
+        <target>Nincs elérhető felhasználói megjegyzés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">25</context>
@@ -1148,7 +1124,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="e7fd1a829016fdc4cae60b85d7307feb0bb3309d">
         <source>My Comment</source>
-        <target>My Comment</target>
+        <target>Saját hozzászólások</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">40</context>
@@ -1160,7 +1136,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="37a1a9afb9eb431fb36181d680e5e0bcc8726a05">
         <source>[Closed Account]</source>
-        <target>[Closed Account]</target>
+        <target>[Törölt felhasználó]</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">49</context>
@@ -1168,7 +1144,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6e5f9a0a3c8d9b1cc1e9c9bda6dc3b8ea64ff9bc">
         <source> [Developer reply]</source>
-        <target> [Developer reply]</target>
+        <target> [Fejlesztői válasz]</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">61</context>
@@ -1176,7 +1152,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="0f03eb1f27fee61229b02cb74d685bb4ad5add94">
         <source>Back to top</source>
-        <target>Back to top</target>
+        <target>Ugrás a tetejére</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">90</context>
@@ -1184,7 +1160,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="743236956b393f7122325a5dc71633112e6ea338">
         <source>Report a bug</source>
-        <target>Report a bug</target>
+        <target>Hiba jelentése</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">7</context>
@@ -1208,7 +1184,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="96e41129ef5d2fa12b7a6ffcab608e9af04d8cbd">
         <source>Comment:</source>
-        <target>Comment:</target>
+        <target>Hozzászólás:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">23</context>
@@ -1216,7 +1192,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="420bca01801378c942f0683d8904b72e9c23cec8">
         <source>Please post your comment after</source>
-        <target>Please post your comment after</target>
+        <target>Kérjük, utána tegye meg észrevételét</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">33</context>
@@ -1224,7 +1200,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="287d3301a32a65a1b31116bda5d3a6463158c42a">
         <source>Sign in</source>
-        <target>Sign in</target>
+        <target>Bejelentkezés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">34</context>
@@ -1232,7 +1208,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c5241f32ed2c3992142d16ddc32a7d7fddf1984c">
         <source>Post your comment here</source>
-        <target>Post your comment here</target>
+        <target>Írja ide a megjegyzését</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">43</context>
@@ -1240,7 +1216,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="4e0276c8e84978b2d250d9a8471dc1014fbee9f7">
         <source>Please rate and post your comment</source>
-        <target>Please rate and post your comment</target>
+        <target>Kérjük, értékelje és tegye meg észrevételét</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">54</context>
@@ -1256,7 +1232,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="eafc7cb251d676d25843aeff194c97097f8fa894">
         <source>Please input your comment</source>
-        <target>Please input your comment</target>
+        <target>Kérem írja meg a hozzászólását</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">56</context>
@@ -1272,7 +1248,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="aa20f809feb37966ee4cad2afcf71dcd37cad1a2">
         <source>Please rate</source>
-        <target>Please rate</target>
+        <target>Kérem értékelje</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">57</context>
@@ -1288,7 +1264,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="7af947253f8e439064c440c7e8b65b79f1697ee8">
         <source>Failed to submit</source>
-        <target>Failed to submit</target>
+        <target>Sikertelen beküldés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">58</context>
@@ -1304,7 +1280,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="f8fd8544fdb9d1c3c9af8407464dc01a079740c8">
         <source>The application is not available</source>
-        <target>The application is not available</target>
+        <target>Az alkalmazás nem elérhető</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">60</context>
@@ -1316,7 +1292,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="71c77bb8cecdf11ec3eead24dd1ba506573fa9cd">
         <source>Submit</source>
-        <target>Submit</target>
+        <target>Beküldés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">66</context>
@@ -1336,7 +1312,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6332ffe44c21d002af92e2bab779f93a353f99e4">
         <source>Give details of the bug, and describe your working steps please</source>
-        <target>Give details of the bug, and describe your working steps please</target>
+        <target>Adja meg a hiba részleteit, és írja le a folyamatot</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">89</context>
@@ -1344,7 +1320,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="5ebd0cb80937e3a7886fafa2a53aaa3d1bbe4da9">
         <source>Please post your comment after using it</source>
-        <target>Please post your comment after using it</target>
+        <target>Kérjük, tegye meg észrevételét, miután használta</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
           <context context-type="linenumber">4</context>
@@ -1356,7 +1332,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="9c23c88c43992129bd206a846000b7d8cb9a286f">
         <source>You are banned</source>
-        <target>You are banned</target>
+        <target>Ön kitiltásra került</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
           <context context-type="linenumber">7</context>
@@ -1364,7 +1340,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="b9675f0672a5c00517d50e9cc9b9d610b49acaee">
         <source>The author bans comments</source>
-        <target>The author bans comments</target>
+        <target>A hosszaszólások a szerző által tiltva</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
           <context context-type="linenumber">10</context>
@@ -1372,7 +1348,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="b2125f73794002b8bd9ab6720ef9e42ac0bb11e0">
         <source>You have posted a comment</source>
-        <target>You have posted a comment</target>
+        <target>Megjegyzést tett közzé</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
           <context context-type="linenumber">13</context>
@@ -1380,7 +1356,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="501169f2e77fecea8c2758007d9980669dbb8c16">
         <source>Due to <x equiv-text="{{ reason }}" id="INTERPOLATION"/>, you cannot post a comment</source>
-        <target>Due to <x equiv-text="{{ reason }}" id="INTERPOLATION"/>, you cannot post a comment</target>
+        <target>Az <x equiv-text="{{ reason }}" id="INTERPOLATION"/>, miatt nem írhat megjegyzést</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
           <context context-type="linenumber">21</context>
@@ -1388,7 +1364,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="b1b2b24fabda7cb53e6a74d24392a039be91412b">
         <source>Processing <x equiv-text="{{ jobs.length }}" id="INTERPOLATION"/> <x equiv-text="{jobs.length, plural, =0 {...} =1 {...} other {...}}" id="ICU"/></source>
-        <target>Processing <x equiv-text="{{ jobs.length }}" id="INTERPOLATION"/> <x equiv-text="{jobs.length, plural, =0 {...} =1 {...} other {...}}" id="ICU"/></target>
+        <target><x equiv-text="{{ jobs.length }}" id="INTERPOLATION"/><x equiv-text="{jobs.length, plural, =0 {...} =1 {...} other {...}}" id="ICU"/> feldolgozása</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
           <context context-type="linenumber">8</context>
@@ -1412,7 +1388,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="fd8d9206d63a691d04bdd851d22964f53766fc56">
         <source><x equiv-text="{{ $m }}" id="INTERPOLATION"/> min</source>
-        <target><x equiv-text="{{ $m }}" id="INTERPOLATION"/> min</target>
+        <target><x equiv-text="{{ $m }}" id="INTERPOLATION"/> perc</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
           <context context-type="linenumber">32</context>
@@ -1420,7 +1396,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="5f3f34164b80472eaee0ca86922ec70aabd55cc5">
         <source><x equiv-text="{{ $s }}" id="INTERPOLATION"/> sec</source>
-        <target><x equiv-text="{{ $s }}" id="INTERPOLATION"/> sec</target>
+        <target><x equiv-text="{{ $s }}" id="INTERPOLATION"/> másodperc</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
           <context context-type="linenumber">36</context>
@@ -1480,7 +1456,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="fa7441de0e4fda8e4c4d6937e5c093aa656abf48">
         <source>Failed to install: broken dependencies, please retry</source>
-        <target>Failed to install: broken dependencies, please retry</target>
+        <target>Nem sikerült telepíteni: hibás függőségek, kérjük próbálkozzon újra</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">3</context>
@@ -1488,7 +1464,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="e10cfabbbae00fe94397161536f247822572c9b4">
         <source>Failed to install: it was interrupted, please retry</source>
-        <target>Failed to install: it was interrupted, please retry</target>
+        <target>Nem sikerült telepíteni: megszakadt, kérjük próbálkozzon újra</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">6</context>
@@ -1496,7 +1472,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a8961af16111ab2b84a767b39eb12002ddf6a61d">
         <source>Failed to download, please retry</source>
-        <target>Failed to download, please retry</target>
+        <target>Nem sikerült letölteni, kérjük próbálkozzon újra</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">8</context>
@@ -1504,7 +1480,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="92f289b1cf7ccff5e1bf6d1fa679655272da2e95">
         <source>Failed to install: dpkg error</source>
-        <target>Failed to install: dpkg error</target>
+        <target>Nem sikerült telepíteni: dpkg hiba</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">9</context>
@@ -1512,7 +1488,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="1d386f8cdde5844dd460714c47a20656ee8c9b23">
         <source>Failed to install: unmet dependencies</source>
-        <target>Failed to install: unmet dependencies</target>
+        <target>Nem sikerült telepíteni: nem teljesült függőségek</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">11</context>
@@ -1520,7 +1496,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="5a2a5eaa80d13170278ecefa1e5ed323bc91ed1e">
         <source> Failed to install: insufficient space, please clean and retry</source>
-        <target> Failed to install: insufficient space, please clean and retry</target>
+        <target>Nem sikerült telepíteni: kevés a hely, kérjük, szabadítson fel helyet, és próbálkozzon újra</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">14</context>
@@ -1548,7 +1524,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="d81f00c85d3b507f3e3d78bfc617a2c66e028391">
         <source>New</source>
-        <target>New</target>
+        <target>Új</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">4</context>
@@ -1556,7 +1532,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="dea597d706dced2e5ee599210b9f3efca0f6bb38">
         <source>Recent</source>
-        <target>Recent</target>
+        <target>Friss</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">8</context>
@@ -1564,7 +1540,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="39fbd7900978de3e8fe21ee784f76368b0ede5e4">
         <source>Pause All</source>
-        <target>Pause All</target>
+        <target>Összes szüneteltetése</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">17</context>
@@ -1572,7 +1548,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="62921597cdaf2661aee0ddaea6e9943e4c2cbf87">
         <source>Resume All</source>
-        <target>Resume All</target>
+        <target>Összes folytatása</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">20</context>
@@ -1580,7 +1556,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="d4c30135c0c5a1661660065c3d303e55c0a9687f">
         <source>Update All</source>
-        <target>Update All</target>
+        <target>Összes frissítése</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">23</context>
@@ -1592,7 +1568,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="7668986b9f753fcd72ad4a00b1a0c4861d1f7fb8">
         <source>Last 30 days</source>
-        <target>Last 30 days</target>
+        <target>Az elmúlt 30 nap</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">32</context>
@@ -1600,7 +1576,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="02e0243b60007368f87dc01e083f232dd025096d">
         <source>Last 7 days</source>
-        <target>Last 7 days</target>
+        <target>Az elmúlt 7 nap</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">33</context>
@@ -1608,7 +1584,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="e7bca9bdedc6382486e9e928c28c08d9c3bf819c">
         <source>Last 3 days</source>
-        <target>Last 3 days</target>
+        <target>Az elmúlt 3 nap</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">34</context>
@@ -1616,7 +1592,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="7fb1099e29660162f9154d5b2feee7743a423df6">
         <source>Today</source>
-        <target>Today</target>
+        <target>Ma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">35</context>
@@ -1624,7 +1600,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="cff1428d10d59d14e45edec3c735a27b5482db59">
         <source>Name</source>
-        <target>Name</target>
+        <target>Név</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/renewable/renewable.component.html</context>
           <context context-type="linenumber">3</context>
@@ -1644,7 +1620,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="8fe73a4787b8068b2ba61f54ab7e0f9af2ea1fc9">
         <source>Version</source>
-        <target>Version</target>
+        <target>Verzió</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/renewable/renewable.component.html</context>
           <context context-type="linenumber">6</context>
@@ -1664,7 +1640,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="1bd5e17c9582661e20763a7634ef07881e33bbd7">
         <source>Action</source>
-        <target>Action</target>
+        <target>Akció</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/renewable/renewable.component.html</context>
           <context context-type="linenumber">7</context>
@@ -1680,7 +1656,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="2558d5a387651e6b5d93d39b53d806e5e54d6b35">
         <source>Date Installed</source>
-        <target>Date Installed</target>
+        <target>Telepítés dátuma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/recently-updated/recently-updated.component.html</context>
           <context context-type="linenumber">7</context>
@@ -1696,7 +1672,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="afb6416dbed6a37b17a6f4ad4f7a14cad170bd90">
         <source>No ratings</source>
-        <target>No ratings</target>
+        <target>Nincs értékelés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
           <context context-type="linenumber">14</context>
@@ -1716,7 +1692,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="d8e950372b04b06ab4c5a81034a1d45f362fb1aa">
         <source>No changelogs</source>
-        <target>No changelogs</target>
+        <target>Nincs változáslista</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
           <context context-type="linenumber">29</context>
@@ -1728,7 +1704,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="ae6cee457adbb55a6ac59472b8a12f12bfce2ce6">
         <source>Ignore this version</source>
-        <target>Ignore this version</target>
+        <target>Ezen verzió figyelmen kívül hagyása</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
           <context context-type="linenumber">54</context>
@@ -1736,7 +1712,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="29583c85e33322e5d03ea2d30ae75b793debe0f2">
         <source>Ignore all updates</source>
-        <target>Ignore all updates</target>
+        <target>Az összes frissítést figyelmen kívül hagyása</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
           <context context-type="linenumber">55</context>
@@ -1744,7 +1720,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="7fdc8522031bbeba05f9d0a020e0b18002243f03">
         <source>Current:</source>
-        <target>Current:</target>
+        <target>Jelenlegi:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
           <context context-type="linenumber">59</context>
@@ -1752,7 +1728,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="15d409daa04c55a3d40410bab3b0c7b730db375c">
         <source>Available:</source>
-        <target>Available:</target>
+        <target>Elérhetőség:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
           <context context-type="linenumber">63</context>
@@ -1760,7 +1736,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="82bb671bd60c07a8cf7fd67524eade9cee63ff5b">
         <source>Local Apps</source>
-        <target>Local Apps</target>
+        <target>Helyi alkalmazások</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/local-app/local-app.component.html</context>
           <context context-type="linenumber">4</context>
@@ -1772,7 +1748,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="caf440292ddeda7e5986f0086a822394e5775058">
         <source>Remote Apps</source>
-        <target>Remote Apps</target>
+        <target>Távoli alkalmazások</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/local-app/local-app.component.html</context>
           <context context-type="linenumber">8</context>
@@ -1784,7 +1760,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="7faaaa08f56427999f3be41df1093ce4089bbd75">
         <source>Size</source>
-        <target>Size</target>
+        <target>Méret</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/local-app/local-app.component.html</context>
           <context context-type="linenumber">28</context>
@@ -1792,7 +1768,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="96f4e3dedbf0d1b3fffa16f2e5341c6719b8cfb0">
         <source>Are you sure you want to uninstall this application?</source>
-        <target>Are you sure you want to uninstall this application?</target>
+        <target>Valóban el kívánja távolítani ezt az alkalmazást?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/local-app/local-app.component.html</context>
           <context context-type="linenumber">60</context>
@@ -1800,7 +1776,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="3d567ca4e86cc0b80ac0d4a17131b42b9124ee8f">
         <source>Uninstalling...</source>
-        <target>Uninstalling...</target>
+        <target>Eltávolítás...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/local-app/local-app.component.html</context>
           <context context-type="linenumber">71</context>
@@ -1832,7 +1808,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="38668245768f805d5b377b1d88efe49712c08ed5">
         <source>Refunding</source>
-        <target>Refunding</target>
+        <target>Visszatérítés folyamatban</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
           <context context-type="linenumber">94</context>
@@ -1844,7 +1820,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="d80a31b2d80af8803b4b1e7143cd3e91b7cc92d2">
         <source>Refund</source>
-        <target>Refund</target>
+        <target>Visszatérítés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
           <context context-type="linenumber">97</context>
@@ -1856,7 +1832,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="b3ee252823339c59dc8c83a52540c8699368a067">
         <source>Two-hour refund period has expired</source>
-        <target>Two-hour refund period has expired</target>
+        <target>A két órás visszatérítési időszak lejárt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
           <context context-type="linenumber">110</context>
@@ -1872,7 +1848,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6d48642a9e3605994dfff2cd1e326c9ec18b4749">
         <source>The application is not available, please retry or give feedback</source>
-        <target>The application is not available, please retry or give feedback</target>
+        <target>Az alkalmazás nem érhető el, kérjük, próbálja újra, vagy adjon visszajelzést</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
           <context context-type="linenumber">120</context>
@@ -1880,7 +1856,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="0b2e98d9b35d8849ed9a5a6532bbcaeac2d95d1f">
         <source>Auto install new app</source>
-        <target>Auto install new app</target>
+        <target>Új alkalmazások automatikus telepítése</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-install/remote-install.component.html</context>
           <context context-type="linenumber">6</context>
@@ -1888,7 +1864,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c329b41c398a3d21eb4b48a2da533f0ea38c3dca">
         <source>Show only paid apps</source>
-        <target>Show only paid apps</target>
+        <target>Csak a fizetős alkalmazások megjelenítése</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-install/remote-install.component.html</context>
           <context context-type="linenumber">12</context>
@@ -1896,7 +1872,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="195fccff33fa0a6c78b03d270f294a1bfc600e42">
         <source>Please select the apps to install</source>
-        <target>Please select the apps to install</target>
+        <target>Kérem válassza ki a telepíteni kívánt alkalmazásokat</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/batch-install/batch-install.component.html</context>
           <context context-type="linenumber">4</context>
@@ -1904,7 +1880,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="1604a7d0a6c7974c2fb70d578cea9341083b3634">
         <source>Inverse</source>
-        <target>Inverse</target>
+        <target>Ellentétes</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/batch-install/batch-install.component.html</context>
           <context context-type="linenumber">24</context>
@@ -1912,7 +1888,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a3c032ffde230f7037db8e9e21c50fa3b1448f38">
         <source>Start Installation</source>
-        <target>Start Installation</target>
+        <target>Telepítés indítása</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/batch-install/batch-install.component.html</context>
           <context context-type="linenumber">33</context>
@@ -1924,7 +1900,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="f30af4a09e075741abc6fb9536fe6a5087583178">
         <source>Refund Request</source>
-        <target>Refund Request</target>
+        <target>Visszafizetési kérelem</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">6</context>
@@ -1932,7 +1908,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="9037f3d684c692447f76c473dbbea55cd82461fa">
         <source>Detailed Reasons:</source>
-        <target>Detailed Reasons:</target>
+        <target>Részletes indoklások:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">8</context>
@@ -1940,7 +1916,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a1e6c11f20d4bf6e8e6b43e3c6d2561b2080645e">
         <source>Suggestions:</source>
-        <target>Suggestions:</target>
+        <target>Javaslatok:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">18</context>
@@ -1948,7 +1924,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c2b90311c81e08c31a2d90a88afeeb109460cc4e">
         <source>Your refund request is approved. The refunds will be returned to the original account in 1-2 working days, please wait patiently.</source>
-        <target>Your refund request is approved. The refunds will be returned to the original account in 1-2 working days, please wait patiently.</target>
+        <target>Visszatérítési kérelmét jóváhagytuk. A visszatérítéseket 1-2 munkanapon belül visszaküldik az eredeti számlára, kérjük, várjon türelmesen.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">40</context>
@@ -1960,7 +1936,11 @@
       </trans-unit>
       <trans-unit datatype="html" id="73edc6fed01d739dd25bc6c81d9f81c28d958a77">
         <source>Your request is under review, which takes 2-3 working days.</source>
-        <target>Your request is under review, which takes 2-3 working days.</target>
+        <target>59/5000
+ 
+ 
+ 
+Kérelme felülvizsgálat alatt áll, amely 2-3 munkanapot vesz igénybe.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">44</context>
@@ -1972,7 +1952,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="aaff35cada193aa9c1ec8630b3e6e4eb32778c9d">
         <source> Please wait patiently. Once approved, the refunds will be returned to the original account.</source>
-        <target> Please wait patiently. Once approved, the refunds will be returned to the original account.</target>
+        <target>Kérjük, várjon türelmesen. A jóváhagyást követően a visszatérítés visszatér az eredeti számlára.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">45</context>
@@ -1984,7 +1964,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="2c5fbc739107fbac37b97ce9b3441cc515be86a9">
         <source>Your order is in exception status, please deal with it first and then request a refund.</source>
-        <target>Your order is in exception status, please deal with it first and then request a refund.</target>
+        <target>A megrendelése kivétel állapotú, kérjük, először dolgozza fel majd kérjen visszatérítést.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">81</context>
@@ -1992,7 +1972,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a6f87856a82187df418e6fcbef708d00f59358e1">
         <source>Your refund request is being processed, please wait patiently.</source>
-        <target>Your refund request is being processed, please wait patiently.</target>
+        <target>A visszatérítési kérelme feldolgozás alatt. Kérjük várjon türelemmel.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">84</context>
@@ -2000,7 +1980,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a6d22b1c074d9fcae92f1f41cd8522f2acb2d740">
         <source>Frequent errors or crashes</source>
-        <target>Frequent errors or crashes</target>
+        <target>Gyakori hibák vagy összeomlások</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">2</context>
@@ -2008,7 +1988,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="acdf55929696feb2f41949890279f6ac53e016c6">
         <source>Complicated operation</source>
-        <target>Complicated operation</target>
+        <target>Bonyolult működés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">3</context>
@@ -2016,7 +1996,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="175166849e127ab3df21e735011c55784390a132">
         <source>High CPU usage</source>
-        <target>High CPU usage</target>
+        <target>Magas CPU használat</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">4</context>
@@ -2024,7 +2004,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="d15a9ca0323cda890ac235ee41ca84729b13d7bc">
         <source>Many advertisements</source>
-        <target>Many advertisements</target>
+        <target>Sok hirdetés/reklám</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">5</context>
@@ -2032,7 +2012,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="2001867439ddcab7acbe3708734d89267008dfbc">
         <source>Bad user experiences</source>
-        <target>Bad user experiences</target>
+        <target>Rossz felhasználói tapasztalatok</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">6</context>
@@ -2040,7 +2020,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="f915a62c39bc4b77472ef3fdb51abb047c1b1c60">
         <source>Poor content</source>
-        <target>Poor content</target>
+        <target>Gyenge tartalom</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">7</context>
@@ -2048,7 +2028,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c77fad159ade99f6694a7d78903df33593206f84">
         <source>Installed apps</source>
-        <target>Installed apps</target>
+        <target>Telepített alkalmazások</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/screen-box.component.html</context>
           <context context-type="linenumber">3</context>
@@ -2056,7 +2036,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="5d44acff92d3d050137d808b12c1f42816581984">
         <source>App filter</source>
-        <target>App filter</target>
+        <target>Alkalmazás szűrő</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/screen-box.component.html</context>
           <context context-type="linenumber">7</context>
@@ -2064,7 +2044,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="aedb2dfda6730c518172efb4d7f1ed8c3062fc29">
         <source>All apps</source>
-        <target>All apps</target>
+        <target>Összes alkalmazás</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/screen-box.component.html</context>
           <context context-type="linenumber">19</context>
@@ -2080,7 +2060,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="4e2f29ed065f9ad6f46098da0ab7d0d130aacb3b">
         <source>Low-rating apps</source>
-        <target>Low-rating apps</target>
+        <target>Alacsony értékelésű alkalmazások</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/components/checkbox-group/checkbox-group.component.html</context>
           <context context-type="linenumber">18</context>
@@ -2088,7 +2068,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="69fd53a5021a2dd01e5d53dee676064d38813686">
         <source>Free apps</source>
-        <target>Free apps</target>
+        <target>Ingyenes alkalmazások</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/components/checkbox-group/checkbox-group.component.html</context>
           <context context-type="linenumber">19</context>
@@ -2096,7 +2076,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="d440f5873112ab3029847ba6e34966b75b264228">
         <source>Paid apps</source>
-        <target>Paid apps</target>
+        <target>Fizetős alkalmazások</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/components/checkbox-group/checkbox-group.component.html</context>
           <context context-type="linenumber">20</context>
@@ -2116,7 +2096,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="e21dd97d84f180b7b4cb450621b9628898604b19">
         <source>Comment Date:</source>
-        <target>Comment Date:</target>
+        <target>Hozzászólás dátuma:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/comments/comments.component.html</context>
           <context context-type="linenumber">28</context>
@@ -2152,7 +2132,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="f49c37418e5cb06f226bc7b3afc5f1a3c04fea21">
         <source>Rate:</source>
-        <target>Rate:</target>
+        <target>Értékelés:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/edit/edit.component.html</context>
           <context context-type="linenumber">25</context>
@@ -2168,7 +2148,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="3fb74cf2ff5212dade6a7cd9a43371f3f0f56c7e">
         <source>Are you sure you want to delete this comment?</source>
-        <target>Are you sure you want to delete this comment?</target>
+        <target>Valóban törölni akarja ezt a hozzászólást?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/edit/edit.component.html</context>
           <context context-type="linenumber">51</context>

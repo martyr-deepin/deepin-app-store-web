@@ -68,10 +68,10 @@
               <ng-container i18n>Downloaded</ng-container>
             </ng-template>
             <ng-container *ngIf="controlRef.package$ | async as package;else CalculatingRef">
-              <ng-container i18n>{{ package.size | sizeHuman }}</ng-container>
+              <ng-container>{{ package.size | sizeHuman }}</ng-container>
             </ng-container>
             <ng-template #CalculatingRef>
-              <ng-container i18n>{{ app.info.packages[0].size | sizeHuman}}</ng-container>
+              <ng-container>{{ app.info.packages[0].size | sizeHuman}}</ng-container>
             </ng-template>
           </label>
         </td>
