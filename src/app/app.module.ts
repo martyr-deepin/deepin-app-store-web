@@ -20,6 +20,12 @@ import { RecommendedComponent } from './components/recommended/recommended.compo
 import { DstoreCheckboxComponent } from "./components/checkbox/checkbox.component";
 import { ConfirmComponent } from './components/confirm/confirm.component';
 
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
+import { 
+  AkitaNgRouterStoreModule 
+} from '@datorama/akita-ng-router-store';
+import { environment } from 'environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +45,8 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     AppRoutingModule,
     ClientModule,
     ShareModule,
+    AkitaNgRouterStoreModule,
+    environment.production ? [] : AkitaNgDevtools.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ProxyInterceptor, multi: true }

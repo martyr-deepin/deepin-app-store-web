@@ -2,20 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'environments/environment';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SectionService {
+  constructor(private http: HttpClient) {
+    // this.http.get('/api/public/section').toPromise();
+  }
   url = `/api/public/section`;
   public globalSection;
   private list = this.http.get(this.url).pipe(
-    map((v) => {
+    map( (v) => {
       // 初始化空仓
       if (v === null || v["section"] === null) {
-        return of(undefined);
+        return undefined;
       }
       let dataList = this.handleData(v);
       dataList.section.dataset.sort((a, b) => {
@@ -25,11 +28,8 @@ export class SectionService {
       return dataList;
     }),
   );
-  constructor(private http: HttpClient) {
-    // this.http.get('/api/public/section').toPromise();
-  }
   async getList() {
-    return await this.list.toPromise();
+    return  await this.list.toPromise();
   }
   handleData(data: any) {
     //console.log(data)

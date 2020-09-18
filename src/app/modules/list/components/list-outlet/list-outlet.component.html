@@ -19,9 +19,7 @@
   </app-app-title>
 </ng-container>
 <ng-container *ngIf="result$ | async as result; else loadRef">
-  <ng-container *ngIf="!loading; else loadRef">
-    <!-- <dstore-list *ngIf="result.length > 0; else emptyRef" [list]="result" [lazyload]="true" (load)="load()"
-      [slogan]="slogan"></dstore-list> -->
+  <ng-container *ngIf="result.length; else loadRef">
     <dstore-list-icon *ngIf="result.length > 0; else emptyRef" [list]="result" [lazyload]="true" (load)="load()" [slogan]="slogan"></dstore-list-icon>
   </ng-container>
 </ng-container>

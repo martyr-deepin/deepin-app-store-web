@@ -1,22 +1,19 @@
-<div>
-    <div class="grid-stack" *ngIf="template">
-      <ng-container *ngFor="let item of data; index as index">
-        <div
-          class="grid-stack-item"
-          [attr.data-gs-id]="index"
-          [attr.data-gs-x]="item.x"
-          [style.top]="item.y*cellHeight+'px'" 
-          [attr.data-gs-width]="item.width"
-          [style.height]="item.height*cellHeight+'px'"
-        >
-          <div class="grid-stack-item-content">
-            <ng-container
-              [ngTemplateOutlet]="template"
-              [ngTemplateOutletContext]="{ $implicit: item, index: index }"
-            ></ng-container>
-          </div>
-        </div>
-      </ng-container>
+<div class="grid-stack" *ngIf="template">
+  <ng-container *ngFor="let item of data; index as index">
+    <div
+      class="grid-stack-item"
+      [attr.data-gs-id]="index"
+      [attr.data-gs-x]="item.x"
+      [style.top]="item.y*cellHeight+'px'" 
+      [attr.data-gs-width]="item.width"
+      [style.height]="item.height*cellHeight+'px'"
+    >
+      <div class="grid-stack-item-content">
+        <ng-container
+          [ngTemplateOutlet]="template"
+          [ngTemplateOutletContext]="{ $implicit: item, index: index }"
+        ></ng-container>
+      </div>
     </div>
-  </div>
-  
+  </ng-container>
+</div>

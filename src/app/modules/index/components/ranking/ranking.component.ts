@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SoftwareService } from 'app/services/software.service';
 import { SectionItemBase } from '../section-item-base';
+import { DatasetQuery } from 'app/store/dataset.query';
+import { DatasetStore } from 'app/store/dataset.store';
 
 @Component({
   selector: 'index-ranking',
@@ -8,8 +10,12 @@ import { SectionItemBase } from '../section-item-base';
   styleUrls: ['./ranking.component.scss'],
 })
 export class RankingComponent extends SectionItemBase implements OnInit {
-  constructor(private softwareService: SoftwareService) {
-    super();
+  constructor(
+    private softwareService: SoftwareService,
+    protected datasetStore: DatasetStore,
+    protected datasetQuery: DatasetQuery,
+  ) {
+    super(datasetStore,datasetQuery);
   }
   ngOnInit() {
     this.load().finally(() => {
@@ -27,6 +33,6 @@ export class RankingComponent extends SectionItemBase implements OnInit {
       }
       softs = [...softs, ...list].slice(0, ranking[0].top);
     }
-    this.softs$ = Promise.resolve(softs);
+    this.setSofts(softs);
   }
 }

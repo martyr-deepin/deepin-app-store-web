@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SoftwareService } from 'app/services/software.service';
 import { SectionItemBase } from '../section-item-base';
 import { KeyvalueService } from 'app/services/keyvalue.service';
+import { map, distinctUntilChanged } from 'rxjs/operators';
+import { DatasetQuery } from 'app/store/dataset.query';
+import { DatasetStore } from 'app/store/dataset.store';
 
 @Component({
   selector: 'index-cover',
@@ -9,17 +12,23 @@ import { KeyvalueService } from 'app/services/keyvalue.service';
   styleUrls: ['./cover.component.scss'],
 })
 export class CoverComponent extends SectionItemBase implements OnInit {
-  constructor(private softwareService: SoftwareService, private keyvalue: KeyvalueService) {
-    super();
+  constructor(
+    private softwareService: SoftwareService,
+    private keyvalue: KeyvalueService,
+    protected datasetStore: DatasetStore,
+    protected datasetQuery: DatasetQuery,
+  ) {
+    super(datasetStore,datasetQuery);
   }
   more: string;
   ngOnInit() {
     const apps: { app_id: number; show: boolean }[] = this.section.items;
     this.more = `more/${this.keyvalue.add(this.section)}`;
-    this.softs$ = this.softwareService
-      .list({ ids: apps.filter(app => app.show).map(app => app.app_id) })
-      .then(v => {
-        return v;
+
+    this.softwareService
+      .list({ ids: apps.filter((app) => app.show).map((app) => app.app_id) })
+      .then((v) => {
+        this.setSofts(v);
       })
       .finally(() => this.loaded.emit(true));
   }

@@ -9,6 +9,8 @@ import { SectionService, SectionItem } from '../../services/section.service';
 import { SoftwareService } from 'app/services/software.service';
 import { KeyvalueService } from 'app/services/keyvalue.service';
 import { environment } from 'environments/environment';
+import { DatasetQuery } from 'app/store/dataset.query';
+import { DatasetStore } from 'app/store/dataset.store';
 
 const timings = 500;
 
@@ -64,8 +66,10 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
     private sectionService: SectionService,
     private softwareService: SoftwareService,
     private activeRouter: ActivatedRoute,
+    protected datasetStore: DatasetStore,
+    protected datasetQuery: DatasetQuery,
   ) {
-    super();
+    super(datasetStore,datasetQuery);
     this.imgUrlOrigin = environment.server;
   }
   imgUrlOrigin = '';
@@ -110,7 +114,7 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
           }
         }),
         switchMap(() => {
-          return timer(3000, 3000).pipe(map(() => this.move(1)));
+          return timer(0, 3000).pipe(map(() => this.move(1)));
         }),
       );
     });
