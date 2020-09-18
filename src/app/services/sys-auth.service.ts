@@ -2,7 +2,6 @@ import { Injectable, NgZone } from '@angular/core';
 import { AuthorizationState } from './authorizationState';
 import { BehaviorSubject, merge, interval } from 'rxjs';
 import { Channel } from 'app/modules/client/utils/channel';
-import { AuthService } from './auth.service';
 import { environment } from 'environments/environment';
 import { StoreMode } from './storeMode';
 
@@ -10,7 +9,7 @@ import { StoreMode } from './storeMode';
   providedIn: 'root',
 })
 export class SysAuthService {
-  constructor(private zone: NgZone, private authService: AuthService) {
+  constructor(private zone: NgZone) {
     this.storeMode = environment.appStoreType;
     this.init();
   }

@@ -1,4 +1,4 @@
 [submodule "vendor-deps"]
 	path = vendor-deps
 	url = ../../web-public/vendor-deps.git
-	branch = deepin-app-store
+	branch = deepin-app-store_6.0
