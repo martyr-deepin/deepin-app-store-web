@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MyUpdatesService } from './services/my-updates.service';
 import { SoftwareService } from 'app/services/software.service';
-import { first, switchMap } from 'rxjs/operators';
+import { first, switchMap, distinctUntilChanged } from 'rxjs/operators';
 import { JobService } from 'app/services/job.service';
 import { StoreJobType, StoreJobStatus } from '../client/models/store-job-info';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
@@ -24,7 +24,7 @@ export class MyUpdatesComponent implements OnInit, OnDestroy {
     private sysAuth: SysAuthService,
   ) {}
 
-  sysAuthStatus$ = this.sysAuth.sysAuthStatus$;
+  sysAuthStatus$ = this.sysAuth.sysAuthStatus$.pipe(distinctUntilChanged());
 
   privateStoreAuth = true;
   ngOnInit() {

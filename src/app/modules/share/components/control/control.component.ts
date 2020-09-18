@@ -1,7 +1,7 @@
 import { Component, Input, HostListener, SimpleChanges, OnChanges, ElementRef, OnDestroy } from '@angular/core';
 import { Software, SoftwareService } from 'app/services/software.service';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
-import { share, map, pairwise } from 'rxjs/operators';
+import { share, map, pairwise, distinctUntilChanged } from 'rxjs/operators';
 import { JobService } from 'app/services/job.service';
 import { trigger, animate, style, transition, keyframes } from '@angular/animations';
 import { StoreJobInfo, StoreJobStatus } from 'app/modules/client/models/store-job-info';
@@ -63,17 +63,35 @@ export class ControlComponent implements OnChanges,OnDestroy {
   ) {}
 
   @Input() soft: Software;
-  job$: Observable<StoreJobInfo>;
   package$ = new BehaviorSubject<Package>(undefined);
   userAppIDs$ = this.userAppService.userAllApp$;
   JobStatus = StoreJobStatus;
   show = false;
   last = false;
   id = Math.random();
-  sysAuthStatus$ = this.sysAuth.sysAuthStatus$;
-  noIntranetAuth$ = this.sysAuth.noIntranetAuth$;
+  sysAuthStatus$ = this.sysAuth.sysAuthStatus$.pipe(distinctUntilChanged());
+  noIntranetAuth$ = this.sysAuth.noIntranetAuth$.pipe(distinctUntilChanged());
   readonly StoreMode = StoreMode;
   storeMode = this.sysAuth.storeMode;
+  job$: Observable<StoreJobInfo> = this.jobService.jobsInfo().pipe(
+    map((jobs) => jobs.find((job) => job.names.includes(this.soft.package_name))),
+    pairwise(),
+    map(([old, job]) => {
+      setTimeout(() => (this.show = Boolean(job)));
+      if (old && !job) {
+        this.last = true;
+        this.queryPackage();
+      }
+      if (!old && !job) {
+        if (this.last) {
+          this.queryPackage();
+          this.last = false;
+        }
+      }
+      return job;
+    }),
+    share(),
+  );
   ngOnChanges(c: SimpleChanges) {
     if (c.soft) {
       this.init();
@@ -89,25 +107,6 @@ export class ControlComponent implements OnChanges,OnDestroy {
   }
   init() {
     this.queryPackageInit();
-    this.job$ = this.jobService.jobsInfo().pipe(
-      map((jobs) => jobs.find((job) => job.names.includes(this.soft.package_name))),
-      pairwise(),
-      map(([old, job]) => {
-        setTimeout(() => (this.show = Boolean(job)));
-        if (old && !job) {
-          this.last = true;
-          this.queryPackage();
-        }
-        if (!old && !job) {
-          if (this.last) {
-            this.queryPackage();
-            this.last = false;
-          }
-        }
-        return job;
-      }),
-      share(),
-    );
   }
   ngOnDestroy(): void {
     if(this.package$) {

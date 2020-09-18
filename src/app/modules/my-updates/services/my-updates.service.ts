@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, distinctUntilChanged } from 'rxjs/operators';
 import { SoftwareService, Software } from 'app/services/software.service';
 import { StorageService, StorageKey } from 'app/services/storage.service';
 import { BehaviorSubject } from 'rxjs';
@@ -54,6 +54,9 @@ export class MyUpdatesService {
 
   init() {
     this.sysAuthService.sysAuthStatus$
+      .pipe(
+        distinctUntilChanged()
+      )
       .pipe(
         map((status) => {
           this.sysAuthStatus = status;

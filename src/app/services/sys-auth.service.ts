@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AuthorizationState } from './authorizationState';
-import { BehaviorSubject, merge, timer } from 'rxjs';
+import { BehaviorSubject, merge, interval } from 'rxjs';
 import { Channel } from 'app/modules/client/utils/channel';
 import { AuthService } from './auth.service';
 import { environment } from 'environments/environment';
@@ -24,7 +24,7 @@ export class SysAuthService {
     (window as any).setAuthorized = (state: boolean) => {
       this.zone.run(() => this.sysAuthStatus$.next(state));
     };
-    merge(Channel.connect('settings.authStateChanged'), timer(5000)).subscribe(() => {
+    merge(Channel.connect('settings.authStateChanged'), interval(5000)).subscribe(() => {
       if (this.storeMode === StoreMode.IntranetAppStore) {
         this.getIntranetAuthState();
       }
