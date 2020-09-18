@@ -1,23 +1,16 @@
 @import 'var-list';
 :host {
-  display: flex;
-  flex-direction: row;
-  justify-items: center;
-  box-sizing: border-box;
-  font-size: 0.82rem;
+  display: grid;
+  grid-template-columns: 4fr 4fr 5fr 4fr 3fr;
   width: 100%;
-  height: 5.46rem;
+  font-size: 0.82rem;
   color: var(--font-color-gray);
   >div {
     border-bottom: 1px solid var(--main-item-hr-color);
-    padding: 0.5rem 0.5rem 0 0;
+    padding: 0.5rem 1rem 0.5rem 0;
+    box-sizing: border-box;
+    height: 5.46rem;
   }
-}
-
-.icon {
-  align-self: center;
-  width: 3.05rem;
-  height: 3.05rem;
 }
 
 .div_style {
@@ -29,10 +22,13 @@
 }
 .title_wrap {
   display: flex;
-  flex: 4;
-  width:0;
   padding:0 !important;
   border-bottom: 0 !important;
+  .icon {
+    align-self: center;
+    width: 3.05rem;
+    height: 3.05rem;
+  }
   .title {
     padding: 1rem 0 0 0.5rem;
     flex:1;
@@ -56,11 +52,9 @@
 }
 
 .log {
-  flex: 5;
   word-break: break-all;
   white-space: pre-wrap;
   position: relative;
-  width: 0;
   //line-height: 3.2rem;
   .log_content {
     max-height: 100%;
@@ -86,7 +80,7 @@
     color: #199ff3;
     position: absolute;
     background-color: var(--main-bg-color);
-    right: 0;
+    right: 1rem;
     font-size: 0.8rem;
     font-weight: 600;
     top: 3.8rem;
@@ -95,10 +89,8 @@
 }
 
 .progress {
-  flex: 4;
   display: flex;
   flex-flow: column;
-  width: 0;
   >div {
     @extend .div_style;
     line-height: 4.6rem;
@@ -106,10 +98,8 @@
 }
 
 .update_date {
-  flex: 3;
   display: flex;
   align-items: center;
-  width: 0;
   >div {
     width: 100%;
   }
@@ -119,8 +109,6 @@
 }
 
 .score {
-  width: 0;
-  flex: 4;
   display: flex;
   align-items: center;
   padding-right: 0.2rem;

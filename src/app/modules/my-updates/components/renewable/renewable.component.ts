@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MyUpdatesService } from '../../services/my-updates.service';
-import { map, scan, tap, debounceTime } from 'rxjs/operators';
+import { map, scan, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { JobService } from 'app/services/job.service';
 import { StoreJobInfo } from 'app/modules/client/models/store-job-info';
 

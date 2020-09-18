@@ -7,7 +7,7 @@ import { chunk } from 'lodash';
   providedIn: 'root',
 })
 export class DeepinidInfoService {
-  private apiURL = '/api/public/uosid';
+  private apiURL = '/api/public/dev';
   constructor(private http: HttpClient) {}
 
   cache = new Map<number, DeepinInfo>();

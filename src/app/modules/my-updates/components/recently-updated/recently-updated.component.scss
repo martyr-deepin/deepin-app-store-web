@@ -15,21 +15,6 @@
   font-weight: 500;
   padding: 0 1.5rem;
   margin-top: 1rem;
-  .th {
-    &:first-child {
-      flex: 4;
-    }
-    &:nth-child(2) {
-      flex: 4;
-    }
-    &:nth-child(3) {
-      flex: 5;
-    }
-    &:nth-child(4) {
-      flex: 4;
-    }
-    &:nth-child(5) {
-      flex: 3;
-    }
-  }
+  display: grid;
+  grid-template-columns: 4fr 4fr 5fr 4fr 3fr;
 }

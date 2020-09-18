@@ -1,17 +1,15 @@
 @import "var-list";
 :host {
-  display: flex;
-  flex-direction: row;
-  justify-items: center;
-  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 6.5fr 3fr 5fr 5fr 6.5rem;
   width: 100%;
-  height: 5.46rem;
   font-size: 0.82rem;
   color: var(--font-color-gray);
   >div {
     border-bottom: 1px solid var(--main-item-hr-color);
-    padding: 0.5rem 0.5rem 0 0;
+    padding: 0.5rem 1rem 0.5rem 0;
     box-sizing: border-box;
+    height: 5.46rem;
   }
 
   .icon {
@@ -21,8 +19,6 @@
   }
 
   .score {
-    width: 0;
-    flex: 5;
     display: flex;
     align-items: center;
     span {
@@ -49,8 +45,6 @@
 
   .title_wrap {
     display: flex;
-    flex: 4.5;
-    width:0;
     padding:0;
     border-bottom: 0;
     .title {
@@ -76,11 +70,9 @@
   }
 
   .log {
-    flex: 5;
     //line-height: 3.2rem;
     position: relative;
-    width: 0;
-
+    
     .log_content {
       max-height: 100%;
       overflow: hidden;
@@ -107,7 +99,7 @@
       color: #199ff3;
       background-color: var(--main-bg-color);
       position: absolute;
-      right: 0;
+      right: 1rem;
       font-size: 0.8rem;
       font-weight: 600;
       top: 3.8rem;
@@ -119,9 +111,7 @@
     color: var(--font-color)
   }
   .progress {
-    flex: 5;
     position: relative;
-    width: 0;
     display: flex;
     align-items: center;
 
