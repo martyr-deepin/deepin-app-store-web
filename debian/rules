@@ -10,6 +10,6 @@ ifneq (,$(wildcard .git/config))
 	git submodule update --init --recursive
 	git submodule update --remote
 else
-	git clone -b deepin-app-store https://gitlab.deepin.io/web-public/vendor-deps.git --depth 1
+	git clone -b deepin-app-store_6.0 https://gitlabwh.uniontech.com/ut200018/vendor-deps.git --depth 1
 endif
 	dh_auto_build
