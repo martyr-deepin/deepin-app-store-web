@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { StoreService, Package } from 'app/modules/client/services/store.service';
 import { SysAuthService } from 'app/services/sys-auth.service';
 import { JobService } from 'app/services/job.service';
+import { LocalAppService } from 'app/modules/my-apps/services/local-app.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,7 @@ export class MyUpdatesService {
     private sysAuthService: SysAuthService,
     private jobService: JobService,
     private zone: NgZone,
+    private localService: LocalAppService,
   ) {
     this.zone.run(() => {
       this.init();
@@ -28,7 +30,7 @@ export class MyUpdatesService {
         if (pkg) {
           if (pkg.localVersion != soft.package.localVersion) {
             this.addRecentlyApps(soft);
-            this.updatings.delete(key);
+            this.localService.dataUpdate$.next(1);
           }
         }
       });
@@ -65,6 +67,7 @@ export class MyUpdatesService {
           } else {
             this.renewableApps$.next([]);
             this.renewableAppsLenght$.next(0);
+            this.localService.dataUpdate$.next(1);
           }
         }),
       )
@@ -125,6 +128,7 @@ export class MyUpdatesService {
     //从可更新列表中移除
     this.softCache = this.softCache.filter((soft) => soft.id != software.id);
     this.renewableApps$.next(this.softCache);
+    this.renewableAppsLenght$.next(this.softCache.length);
     this.updatings.delete(software.package_name);
   }
 

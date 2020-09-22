@@ -50,7 +50,7 @@ import { StoreMode } from 'app/services/storeMode';
     ]),
   ],
 })
-export class ControlComponent implements OnChanges,OnDestroy {
+export class ControlComponent implements OnChanges {
   constructor(
     private elRef: ElementRef<HTMLElement>,
     private softwareService: SoftwareService,
@@ -108,11 +108,11 @@ export class ControlComponent implements OnChanges,OnDestroy {
   init() {
     this.queryPackageInit();
   }
-  ngOnDestroy(): void {
-    if(this.package$) {
-      this.package$.unsubscribe();
-    }
-  }
+  // ngOnDestroy(): void {
+  //   if(this.package$) {
+  //     this.package$.unsubscribe();
+  //   }
+  // }
   queryPackage() {
     this.softwareService
       .query(this.soft)

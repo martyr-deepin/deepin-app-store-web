@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, concat } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { chunk } from 'lodash';
 
 @Injectable({
@@ -8,6 +9,7 @@ import { chunk } from 'lodash';
 })
 export class DeepinidInfoService {
   private apiURL = '/api/public/dev';
+  private oldApiURL = '/api/public/deepinid';
   constructor(private http: HttpClient) {}
 
   cache = new Map<number, DeepinInfo>();
@@ -18,11 +20,21 @@ export class DeepinidInfoService {
 
   getDeepinUserInfo(param: number | Array<number>) {
     if (typeof param === 'number') {
-      return this.http.get<DeepinInfo>(this.apiURL, { params: { uid: param as any } });
+      return this.http.get<DeepinInfo>(this.apiURL, { params: { uid: param as any } }).pipe(
+        catchError(err => {
+          this.apiURL = this.oldApiURL;
+          return this.http.get<DeepinInfo>(this.apiURL, { params: { uid: param as any } });
+        })
+      );
     }
     if (param instanceof Array) {
       const req = chunk(param, 20).map(ids => {
-        return this.http.get<DeepinInfo[]>(this.apiURL, { params: { uid: ids.join(",") as any } });
+        return this.http.get<DeepinInfo[]>(this.apiURL, { params: { uid: ids.join(",") as any } }).pipe(
+          catchError(err => {
+            this.apiURL = this.oldApiURL;
+            return this.http.get<DeepinInfo>(this.apiURL, { params: { uid: param as any } });
+          })
+        );
       });
       return concat(...req);
     }

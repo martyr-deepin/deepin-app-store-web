@@ -46,7 +46,7 @@
     <ng-container *ngIf="package$ | async as pkg; else noAuthInstallRef">
       <ng-container *ngIf="soft.free || (userAppIDs$ | async)?.includes(soft.id); else noFreeInstallRef">
         <ng-container *ngIf="pkg.localVersion; else noAuthInstallRef">
-          <button (click)="openApp($event)">
+          <button class="control" (click)="openApp($event)">
             <ng-container i18n>Open</ng-container>
           </button>
         </ng-container>

@@ -37,6 +37,6 @@ export class PhraseComponent extends SectionItemBase implements OnInit {
       .finally(() => this.loaded.emit(true));
   }
   handleData(id: number) {
-    return this.phraseData.find((v) => v.app_id === id).phrase;
+    return this.phraseData.find((v) => v.app_id === id)?.phrase;
   }
 }

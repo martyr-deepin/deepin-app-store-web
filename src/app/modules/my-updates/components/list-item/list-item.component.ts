@@ -96,6 +96,7 @@ export class ListItemComponent implements OnInit,OnDestroy {
       this.storeService
       .fixError(err.ErrType.toString().split('::')[1])
       .pipe(
+        first(),
         switchMap(
           () => this.storeService.jobListChange(),
           (jobPath, jobList) => jobList.includes(jobPath),

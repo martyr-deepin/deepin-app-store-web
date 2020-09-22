@@ -52,11 +52,12 @@ export class ListOutletComponent implements OnInit, OnDestroy {
             this.auther = parseInt(param.value);
           }
           const order = (query.order as any) || 'download';
-
           this.offset$ = new BehaviorSubject(0);
-          this.offset$.next(0);
+          //this.offset$.next(0);
           return this.offset$.pipe(
-            switchMap((offset) => this.softService.list({}, { order, [routeName]: routeValue, offset, limit: 40 })),
+            switchMap((offset) => {
+              return this.softService.list({}, { order, [routeName]: routeValue, offset, limit: 40 })
+            }),
             retryWhen((errors) =>
               errors.pipe(
                 tap(console.error),
@@ -68,7 +69,9 @@ export class ListOutletComponent implements OnInit, OnDestroy {
               if (routeName === 'ranking') {
                 list = list.slice(0, 100);
               }
-              this.categoryStore.update({ [routeValue]: list });
+              if(list.length) {
+                this.categoryStore.update({ [routeValue]: list });
+              }
             }),
           );
         }),
@@ -82,6 +85,7 @@ export class ListOutletComponent implements OnInit, OnDestroy {
       this.offset$.next(offset + 40);
     });
   }
+
   ngOnDestroy(): void {
     if (this.offset$) {
       this.offset$.unsubscribe();

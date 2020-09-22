@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { switchMap, filter } from 'rxjs/operators';
+import { switchMap, filter, first } from 'rxjs/operators';
 
 import { StoreService } from 'app/modules/client/services/store.service';
 import {
@@ -32,7 +32,6 @@ export class DownloadComponent implements OnInit {
     private storeService: StoreService,
     private jobService: JobService,
     private softwareService: SoftwareService,
-    private updaetSourceListService:UpdateSourceListService
   ) {}
 
   StoreJobType = StoreJobType;
@@ -42,24 +41,24 @@ export class DownloadComponent implements OnInit {
   cancelled = new Set<string>();
   private soft_cache = new Map<string, Software>();
   result$ = this.jobService.jobsInfo().pipe(
-    switchMap(async jobs => {
+    switchMap(async (jobs) => {
       const names = jobs
-        .filter(job => [StoreJobType.install, StoreJobType.download].includes(job.type))
+        .filter((job) => [StoreJobType.install, StoreJobType.download].includes(job.type))
         .reduce((acc, job) => [...acc, ...job.packages], [] as string[])
-        .filter(name => !this.soft_cache.has(name));
+        .filter((name) => !this.soft_cache.has(name));
       if (names.length > 0) {
         const softs = await this.softwareService.list({}, { package_name: names });
-        softs.forEach(soft => this.soft_cache.set(soft.package_name, soft));
-        if(!softs.length) {
-          names.forEach(name=>{
-            this.jobService.clearJob(jobs.find(job=>job.packages.includes(name))?.job)
-          })
+        softs.forEach((soft) => this.soft_cache.set(soft.package_name, soft));
+        if (!softs.length) {
+          names.forEach((name) => {
+            this.jobService.clearJob(jobs.find((job) => job.packages.includes(name))?.job);
+          });
         }
       }
       return jobs.reduce(
         (acc, job) => [
           ...acc,
-          ...job.names.map(name => ({ job, soft: this.soft_cache.get(name) })).filter(v => v.soft),
+          ...job.names.map((name) => ({ job, soft: this.soft_cache.get(name) })).filter((v) => v.soft),
         ],
         [] as { job: StoreJobInfo; soft: Software }[],
       );
@@ -85,7 +84,6 @@ export class DownloadComponent implements OnInit {
       err = { ErrType: StoreJobErrorType.unknown, ErrDetail: job.description };
     }
 
-    this.updaetSourceListService.updateSourceList().toPromise()
     this.jobService.startJob(job.job);
 
     if (CanFixError.includes(err.ErrType)) {
@@ -93,11 +91,12 @@ export class DownloadComponent implements OnInit {
       this.storeService
         .fixError(err.ErrType.toString().split('::')[1])
         .pipe(
+          first(),
           switchMap(
             () => this.storeService.jobListChange(),
             (jobPath, jobList) => jobList.includes(jobPath),
           ),
-          filter(exists => !exists),
+          filter((exists) => !exists),
         )
         .subscribe(() => {
           this.fixing = false;
