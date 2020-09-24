@@ -4,24 +4,18 @@ import { first } from 'rxjs/operators';
 import { KeyvalueService } from 'app/services/keyvalue.service';
 import { SectionTopicItem } from '../../services/section.service';
 import { SoftwareService } from 'app/services/software.service';
-import { SectionItemBase } from '../section-item-base';
-import { DatasetQuery } from 'app/store/dataset.query';
-import { DatasetStore } from 'app/store/dataset.store';
 
 @Component({
   selector: 'dstore-topic-detail',
   templateUrl: './topic-detail.component.html',
   styleUrls: ['./topic-detail.component.scss'],
 })
-export class TopicDetailComponent extends SectionItemBase implements OnInit {
+export class TopicDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private keyvalue: KeyvalueService,
     private softwareService: SoftwareService,
-    protected datasetStore: DatasetStore,
-    protected datasetQuery: DatasetQuery,
   ) {
-    super(datasetStore,datasetQuery);
   }
   @HostBinding('style.background-color') bgColor: string;
   section$ = this.route.paramMap
@@ -36,17 +30,20 @@ export class TopicDetailComponent extends SectionItemBase implements OnInit {
         return data;
       }
     });
+
+  softs$ = this.section$.then((section) => {
+    if (!section) {
+      return null;
+    }
+    this.bgColor = section.background_color;
+    return this.softwareService
+      .list({ ids: section.items.filter((app) => app.show).map((app) => app.app_id) })
+      .then((data) => {
+        return data;
+      });
+  });
+
   ngOnInit() {
-    this.section$.then((section) => {
-      this.softwareService
-        .list({ ids: section.items.filter((app) => app.show).map((app) => app.app_id) })
-        .then((data) => {
-          this.setSofts(data);
-        });
-    });
+    
   }
-}
-interface CarouselItem {
-  app_id: number;
-  show: boolean;
 }

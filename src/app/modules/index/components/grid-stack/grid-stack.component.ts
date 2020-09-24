@@ -2,7 +2,6 @@ import { Component, OnInit, TemplateRef, ContentChild, Input, ElementRef, OnDest
 import { HomeQuery } from 'app/store/home.query';
 import { map } from 'rxjs/operators';
 import { cloneDeep } from 'lodash';
-import { HomeStore } from 'app/store/home.store';
 import { Subscription } from 'rxjs';
 @Component({
   selector: 'm-grid-stack',

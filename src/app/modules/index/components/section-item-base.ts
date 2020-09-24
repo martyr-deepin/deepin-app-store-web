@@ -4,9 +4,8 @@ import { environment } from 'environments/environment';
 import { Section } from '../services/section.service';
 import { DatasetStore } from 'app/store/dataset.store';
 import { DatasetQuery } from 'app/store/dataset.query';
-import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { BehaviorSubject, Subscription } from 'rxjs';
-import { isEqual, difference } from 'lodash';
+import { map, distinctUntilChanged } from 'rxjs/operators';
+import { isEqual } from 'lodash';
 
 export class SectionItemBase {
   @Input() section: Section;

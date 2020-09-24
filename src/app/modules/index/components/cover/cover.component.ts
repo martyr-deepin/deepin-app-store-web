@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { SoftwareService } from 'app/services/software.service';
 import { SectionItemBase } from '../section-item-base';
 import { KeyvalueService } from 'app/services/keyvalue.service';
-import { map, distinctUntilChanged } from 'rxjs/operators';
 import { DatasetQuery } from 'app/store/dataset.query';
 import { DatasetStore } from 'app/store/dataset.store';
 

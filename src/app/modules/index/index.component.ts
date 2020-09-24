@@ -21,11 +21,7 @@ export class IndexComponent implements OnInit {
     private homeQuery: HomeQuery,
   ) {}
   SectionType = SectionType;
-  sectionList$ = this.homeQuery.select('section').pipe(
-    map(res=>{
-      return res;
-    })
-  );
+  sectionList$ = this.homeQuery.select('section');
   dataset$ = this.homeQuery.select(state => {
     return state.section.dataset
   });

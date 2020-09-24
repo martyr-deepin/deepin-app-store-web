@@ -7,7 +7,8 @@ import { AuthService } from 'app/services/auth.service';
 import { Software } from 'app/services/software.service';
 import { JobService } from 'app/services/job.service';
 import { Subscription } from 'rxjs';
-import { StoreService } from 'app/modules/client/services/store.service';
+import { StoreService, LocalApp } from 'app/modules/client/services/store.service';
+import { isEqual } from 'lodash';
 
 @Component({
   selector: 'dstore-local-app',
@@ -77,15 +78,28 @@ export class LocalAppComponent implements OnInit, OnDestroy {
     this.localAppService.query = { check: undefined, name: undefined };
     this.jobListChange = this.jobService.jobList().pipe(
       map(async () => {
-        if(this.localAppService.cache?.length) {
+        if(this.localAppService.cache) {
           let res = await this.storeService.InstalledPackages().toPromise();
-          if( res.length != this.localAppService.cache.length ) {
+          if( this.diffrent(res,this.localAppService.cache) ) {
             this.localAppService.jobFlush = true;
             this.localAppService.dataUpdate$.next(1);
           }
         }
       })
     ).subscribe()
+  }
+  
+  diffrent(arr1: LocalApp[], arr2: LocalApp[]): boolean {
+    if (arr1.length != arr2.length) {
+      return true;
+    }
+    let arrmap1 = arr1.map((local) => {
+      return { name: local.packageName, version: local.localVersion };
+    });
+    let arrmap2 = arr2.map((local) => {
+      return { name: local.packageName, version: local.localVersion };
+    });
+    return !isEqual(arrmap1, arrmap2);
   }
 
   ngOnDestroy(): void {

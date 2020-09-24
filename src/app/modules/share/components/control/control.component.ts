@@ -74,7 +74,7 @@ export class ControlComponent implements OnChanges {
   readonly StoreMode = StoreMode;
   storeMode = this.sysAuth.storeMode;
   job$: Observable<StoreJobInfo> = this.jobService.jobsInfo().pipe(
-    map((jobs) => jobs.find((job) => job.names.includes(this.soft.package_name))),
+    map((jobs) => jobs.find((job) => job.names.includes(this.soft?.package_name))),
     pairwise(),
     map(([old, job]) => {
       setTimeout(() => (this.show = Boolean(job)));

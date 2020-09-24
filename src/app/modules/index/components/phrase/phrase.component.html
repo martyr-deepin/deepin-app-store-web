@@ -7,7 +7,7 @@
       <header>
         <img class="icon" dstoreCover="icon" [src]="soft.info.icon" dstoreCover="icon" />
       </header>
-      <main>
+      <main [class.hover]="controlRef?.show">
 
         <div class="info">
           <span dstoreTips class="name">{{ soft.info.name }}</span>

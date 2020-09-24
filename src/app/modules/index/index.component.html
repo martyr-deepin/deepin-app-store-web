@@ -1,10 +1,10 @@
 <ng-container *ngIf="sectionList$ | async as $sectionList; else $wait">
   <ng-container *ngIf="$sectionList;else $empty">
-    <m-grid-stack [cellHeight]=" cellHeight">
+    <m-grid-stack [cellHeight]="cellHeight">
     <!-- <m-grid-stack [data]="$sectionList.section.dataset" [cellHeight]="65"> -->
       <ng-template let-section let-index="index">
         <section [ngSwitch]="section.type">
-          <ng-container *ngIf="loadedCount >= index">
+          <ng-container>
             <index-carousel *ngSwitchCase="SectionType.Carousel" [section]="section" [index]="index" [style.gridColumnEnd]="'span ' + 3"
               [style.gridRowEnd]="'span ' + 3" (loaded)="loaded()"></index-carousel>
 

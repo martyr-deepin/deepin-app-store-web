@@ -97,6 +97,7 @@ dstore-list-icon {
         display: block;
       }
     }
+    &.hover,
     &:hover {
       background-color: var(--list-hover-color);
       border: solid 1px var(--list-hover-border-color);
