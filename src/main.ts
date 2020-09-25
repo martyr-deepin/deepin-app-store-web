@@ -5,7 +5,7 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 import { persistState } from '@datorama/akita';
 
-const storage = persistState();
+const storage = persistState({include: ['dataset','home']});
 
 const providers = [{ provide: 'persistStorage', useValue: storage }];
 

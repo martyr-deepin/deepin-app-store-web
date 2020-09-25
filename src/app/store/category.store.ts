@@ -3,32 +3,11 @@ import { StoreConfig, Store } from '@datorama/akita';
 import { Software } from 'app/services/software.service';
 
 export interface CategoryState {
-  office: Software[],
-  development: Software[],
-  reading: Software[],
-  graphics: Software[],
-  game: Software[],
-  music: Software[],
-  system: Software[],
-  video: Software[],
-  chat: Software[],
-  others: Software[],
-  internet: Software[],
+  [key: string]: Software[]
 }
 
 export function createInitialState(): CategoryState {
   return {
-    office: [],
-    development: [],
-    reading: [],
-    graphics: [],
-    game: [],
-    music: [],
-    system: [],
-    video: [],
-    chat: [],
-    others: [],
-    internet: [],
   };
 }
 
