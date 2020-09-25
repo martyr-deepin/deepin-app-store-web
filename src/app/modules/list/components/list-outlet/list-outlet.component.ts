@@ -69,9 +69,7 @@ export class ListOutletComponent implements OnInit, OnDestroy {
               if (routeName === 'ranking') {
                 list = list.slice(0, 100);
               }
-              if(list.length) {
-                this.categoryStore.update({ [routeValue]: list });
-              }
+              this.categoryStore.update({ [routeValue]: list });
             }),
           );
         }),
