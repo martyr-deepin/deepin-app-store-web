@@ -8,7 +8,7 @@
       [attr.data-gs-width]="item.width"
       [style.height]="item.height*cellHeight+'px'"
     >
-      <div class="grid-stack-item-content">
+      <div class="grid-stack-item-content" [class.show]="true">
         <ng-container
           [ngTemplateOutlet]="template"
           [ngTemplateOutletContext]="{ $implicit: item, index: index }"

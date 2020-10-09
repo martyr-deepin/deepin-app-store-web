@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
       console.log(new Date().getTime());
       const loading = document.getElementById('loading');
       document.body.removeChild(loading);
+      this.disable_drag();
     });
   }
   async init() {
@@ -113,6 +114,25 @@ export class AppComponent implements OnInit {
       const code = await this.region.region();
       environment.store_env.region = code;
     }
+  }
+
+  disable_drag() {
+    document.body.addEventListener("dragstart",function(event){
+      event.stopPropagation();
+      event.preventDefault();
+    },false)
+    document.body.addEventListener("dragenter",function(event){
+      event.stopPropagation();
+      event.preventDefault();
+    },false)
+    document.body.addEventListener("dragover",function(event){
+      event.stopPropagation();
+      event.preventDefault();
+    },false)
+    document.body.addEventListener("drop",function(event){
+      event.stopPropagation();
+      event.preventDefault();
+    },false)
   }
 }
 

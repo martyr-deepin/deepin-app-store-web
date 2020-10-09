@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { trigger, transition, animate, keyframes, style, state } from '@angular/animations';
-import { Observable, BehaviorSubject, timer } from 'rxjs';
+import { Observable, BehaviorSubject, interval } from 'rxjs';
 import { throttleTime, switchMap, map } from 'rxjs/operators';
 
 import { SectionItemBase } from '../section-item-base';
@@ -114,7 +114,7 @@ export class CarouselComponent extends SectionItemBase implements OnInit {
           }
         }),
         switchMap(() => {
-          return timer(0, 3000).pipe(map(() => this.move(1)));
+          return interval(3000).pipe(map(() => this.move(1)));
         }),
       );
     });
