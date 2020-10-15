@@ -185,7 +185,8 @@ export class AppCommentComponent implements OnInit, OnChanges {
   }
 
   reset() {
-    this.commentLayerGroup.reset(this.valueSetEmpty);
+    this.commentLayerGroup.get('content').setValue("");
+    this.commentLayerGroup.get("score").setValue(0);
   }
 
 }
