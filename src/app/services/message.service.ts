@@ -17,45 +17,45 @@ export enum MessageType {
   providedIn: 'root',
 })
 export class MessageService {
-  constructor(
-    private authService: AuthService, 
-    private clientID: ClientIdService,
-    private storeService:StoreService) {
-    this.authService.info$.subscribe(
-      info => {
-        if(info) {
-          this.qwsMessage()
-        }
+  constructor(private authService: AuthService, private clientID: ClientIdService, private storeService: StoreService) {
+    this.authService.info$.subscribe((info) => {
+      if (info) {
+        this.qwsMessage();
       }
-    )
+    });
   }
 
   message$ = this.storeService.onMessage().pipe(
-    map(msg => JSON.parse(msg) as Message),
+    map((msg) => JSON.parse(msg) as Message),
     publishReplay(1),
     refCountDelay(1000),
-  )
-  
+  );
+
   private Authorization() {
     return 'Bearer ' + localStorage.getItem('token');
   }
- 
+
   private qwsMessage() {
-    const url = new URL(`ws://${new URL(environment.server).host}/api/user/message_stream`);
+    let base = `wss`;
+    if (environment.server.startsWith('http://')) {
+      base = `ws`;
+    }
+    const url = new URL(`${base}://${new URL(environment.server).host}/api/user/message_stream`);
     url.searchParams.set('id', this.clientID.clientID());
     url.searchParams.set('Authorization', this.Authorization());
-    this.storeService.newWebSocket(url.toString())
+    this.storeService.newWebSocket(url.toString());
   }
 
-  onMessage<T>(type?:string) {
+  onMessage<T>(type?: string) {
     let msg$ = this.message$;
-    if(type) {
-      msg$ = msg$.pipe(filter(msg => msg.Type === type));
+    if (type) {
+      msg$ = msg$.pipe(filter((msg) => msg.Type === type));
     }
     return msg$.pipe(
-      map(msg => {
-      return msg.Data as T
-    }));
+      map((msg) => {
+        return msg.Data as T;
+      }),
+    );
   }
 }
 interface Message {
