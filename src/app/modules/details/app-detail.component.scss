@@ -119,6 +119,7 @@
       }
       .description_content {
         @extend .text_overflow;
+        user-select: text;
         .info_description_more {
           position: absolute;
           right: 1rem;
@@ -146,6 +147,7 @@ dstore-layer ::ng-deep {
       font-weight: 400;
     }
     p {
+      user-select: text;
       white-space: pre-wrap;
       text-indent: 2rem;
       margin-bottom: 0;
