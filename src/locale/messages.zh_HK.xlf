@@ -412,7 +412,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="1908513266d3ce2dc37135be38ac4baef11a3a0b">
         <source>Office</source>
-        <target>公司</target>
+        <target>辦公</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/category/category.component.html</context>
           <context context-type="linenumber">2</context>
@@ -428,7 +428,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="7f3f6a4fb2545cacf800f0623582b6d41d1f8791">
         <source>Development</source>
-        <target>發展</target>
+        <target>開發</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/category/category.component.html</context>
           <context context-type="linenumber">3</context>
@@ -588,7 +588,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="92eee6be6de0b11c924e3ab27db30257159c0a7c">
         <source>Home</source>
-        <target> 住家</target>
+        <target>首頁</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/side-nav/side-nav.component.html</context>
           <context context-type="linenumber">5</context>

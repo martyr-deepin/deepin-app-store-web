@@ -4,7 +4,7 @@
     <body>
       <trans-unit datatype="html" id="07db550ae114d9faad3a0cbb68bcc16ab6cd31fc">
         <source>Paused</source>
-        <target>Angehalten</target>
+        <target>Pausiert</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/client/components/progress-button/progress-button.component.html</context>
           <context context-type="linenumber">3</context>
@@ -32,7 +32,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6a66f7b3aeebb8f63d58e87bba3d9f0d30d08cec">
         <source>Downloading</source>
-        <target>Herunterladen</target>
+        <target>Wird heruntergeladen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/client/components/progress-button/progress-button.component.html</context>
           <context context-type="linenumber">7</context>
@@ -44,7 +44,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="b1f8e8e44e54f1c5b03d57215e323265a73a8976">
         <source>Installing</source>
-        <target>Installiere...</target>
+        <target>Wird installiert</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/client/components/progress-button/progress-button.component.html</context>
           <context context-type="linenumber">8</context>
@@ -96,7 +96,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="172fa0aab2cb9ffc177b03a45af1715e0b58997d">
         <source>Loading... Please wait</source>
-        <target>Wird geladen... Bitte warten</target>
+        <target>Wird geladen ... Bitte warten</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/wait/wait.component.html</context>
           <context context-type="linenumber">8</context>

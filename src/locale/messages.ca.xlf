@@ -784,7 +784,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="271a5f10ae4bb5de450076d158073625d9960fb1">
         <source>No apps available, please contact the administrator of App Store</source>
-        <target>No apps available, please contact the administrator of App Store</target>
+        <target>No hi ha aplicacions disponibles. Contacteu amb l'administrador de la Botiga d'aplicacions.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/index/index.component.html</context>
           <context context-type="linenumber">37</context>

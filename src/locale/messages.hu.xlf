@@ -32,7 +32,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6a66f7b3aeebb8f63d58e87bba3d9f0d30d08cec">
         <source>Downloading</source>
-        <target>Letöltés folyamatban</target>
+        <target>Letöltés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/client/components/progress-button/progress-button.component.html</context>
           <context context-type="linenumber">7</context>
@@ -44,7 +44,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="b1f8e8e44e54f1c5b03d57215e323265a73a8976">
         <source>Installing</source>
-        <target>Telepítés folyamatban</target>
+        <target>Telepítés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/client/components/progress-button/progress-button.component.html</context>
           <context context-type="linenumber">8</context>
@@ -68,7 +68,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="04b741bf33a6b8359849d6085278e54b35acd0b9">
         <source>Uninstalling</source>
-        <target>Eltávolítás folyamatban</target>
+        <target>Eltávolítás</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/client/components/progress-button/progress-button.component.html</context>
           <context context-type="linenumber">9</context>
@@ -96,7 +96,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="172fa0aab2cb9ffc177b03a45af1715e0b58997d">
         <source>Loading... Please wait</source>
-        <target>Betöltés... Kérem várjon</target>
+        <target>Betöltés... Kérjük várjon</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/wait/wait.component.html</context>
           <context context-type="linenumber">8</context>
@@ -168,7 +168,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="0013b61359f2f1b3cb30c16d524bc4d778909478">
         <source>Personal Center</source>
-        <target>Személyes Központ:</target>
+        <target>Személyes Központ</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/center-title/center-title.component.html</context>
           <context context-type="linenumber">2</context>
@@ -284,7 +284,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="e2c9907de2386d2f5c27a0370fbaf416b4f4e41c">
         <source>Processing payment, please wait...</source>
-        <target>Fizetés feldolgozása, kérem várjon ...</target>
+        <target>Fizetés feldolgozása, kérjük várjon ...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">80</context>
@@ -292,7 +292,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="836040c3f2b1e93e8a70a1934f718e1dd481be9d">
         <source>Payment failed, please try again!</source>
-        <target>Sikertelen fizetés, kérem próbálja újra!</target>
+        <target>Sikertelen fizetés, kérjük próbálja újra!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">92</context>
@@ -348,7 +348,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="74bdabdacbd39507e152b92733a2d2d0275bd633">
         <source> please check your network first</source>
-        <target>kérem, először ellenőrizze a hálózatát</target>
+        <target>Kérjük először ellenőrizze a hálózatát</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">108</context>
@@ -648,7 +648,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="231e7766e41f05396b33e9798d628f8d1b0f46f9">
         <source>Cache cleared</source>
-        <target>Háttértár törölve</target>
+        <target>Gyorsítótár törölve</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">11</context>
@@ -784,7 +784,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="271a5f10ae4bb5de450076d158073625d9960fb1">
         <source>No apps available, please contact the administrator of App Store</source>
-        <target>Nincs elérhető alkalmazás. Kérjük, lépjen kapcsolatba az Alkalmazás Áruház rendszergazdájával</target>
+        <target>Nincs elérhető alkalmazás. Kérjük lépjen kapcsolatba az Áruház rendszergazdájával</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/index/index.component.html</context>
           <context context-type="linenumber">37</context>
@@ -1068,7 +1068,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6dd070f6eb99a4e300bce2af82d76f3d01c61edd">
         <source>Connection failed, please check your network and refresh</source>
-        <target>Csatlakozás meghiúsult, kérem ellenőrizze a hálózati kapcsolatot és próbálja újra</target>
+        <target>Csatlakozás meghiúsult, kérjük ellenőrizze a hálózati kapcsolatot és próbálja újra</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">158</context>
@@ -1192,7 +1192,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="420bca01801378c942f0683d8904b72e9c23cec8">
         <source>Please post your comment after</source>
-        <target>Kérjük, utána tegye meg észrevételét</target>
+        <target>Kérjük utána tegye meg észrevételét</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">33</context>
@@ -1216,7 +1216,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="4e0276c8e84978b2d250d9a8471dc1014fbee9f7">
         <source>Please rate and post your comment</source>
-        <target>Kérjük, értékelje és tegye meg észrevételét</target>
+        <target>Kérjük értékelje és tegye meg észrevételét</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">54</context>
@@ -1232,7 +1232,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="eafc7cb251d676d25843aeff194c97097f8fa894">
         <source>Please input your comment</source>
-        <target>Kérem írja meg a hozzászólását</target>
+        <target>Kérjük írja meg a hozzászólását</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">56</context>
@@ -1248,7 +1248,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="aa20f809feb37966ee4cad2afcf71dcd37cad1a2">
         <source>Please rate</source>
-        <target>Kérem értékelje</target>
+        <target>Kérjük értékelje</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">57</context>
@@ -1312,7 +1312,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6332ffe44c21d002af92e2bab779f93a353f99e4">
         <source>Give details of the bug, and describe your working steps please</source>
-        <target>Adja meg a hiba részleteit, és írja le a folyamatot</target>
+        <target>Kérjük adja meg a hiba részleteit, és írja le a folyamatot</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">89</context>
@@ -1320,7 +1320,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="5ebd0cb80937e3a7886fafa2a53aaa3d1bbe4da9">
         <source>Please post your comment after using it</source>
-        <target>Kérjük, tegye meg észrevételét, miután használta</target>
+        <target>Kérjük tegye meg észrevételét, miután használta</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
           <context context-type="linenumber">4</context>
@@ -1496,7 +1496,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="5a2a5eaa80d13170278ecefa1e5ed323bc91ed1e">
         <source> Failed to install: insufficient space, please clean and retry</source>
-        <target>Nem sikerült telepíteni: kevés a hely, kérjük, szabadítson fel helyet, és próbálkozzon újra</target>
+        <target>Nem sikerült telepíteni: kevés a hely, kérjük szabadítson fel helyet, és próbálkozzon újra</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">14</context>
@@ -1848,7 +1848,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6d48642a9e3605994dfff2cd1e326c9ec18b4749">
         <source>The application is not available, please retry or give feedback</source>
-        <target>Az alkalmazás nem érhető el, kérjük, próbálja újra, vagy adjon visszajelzést</target>
+        <target>Az alkalmazás nem érhető el, kérjük próbálja újra, vagy adjon visszajelzést</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
           <context context-type="linenumber">120</context>
@@ -1872,7 +1872,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="195fccff33fa0a6c78b03d270f294a1bfc600e42">
         <source>Please select the apps to install</source>
-        <target>Kérem válassza ki a telepíteni kívánt alkalmazásokat</target>
+        <target>Kérjük válassza ki a telepíteni kívánt alkalmazásokat</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/batch-install/batch-install.component.html</context>
           <context context-type="linenumber">4</context>
@@ -1924,7 +1924,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c2b90311c81e08c31a2d90a88afeeb109460cc4e">
         <source>Your refund request is approved. The refunds will be returned to the original account in 1-2 working days, please wait patiently.</source>
-        <target>Visszatérítési kérelmét jóváhagytuk. A visszatérítéseket 1-2 munkanapon belül visszaküldik az eredeti számlára, kérjük, várjon türelmesen.</target>
+        <target>Visszatérítési kérelmét jóváhagytuk. A visszatérítéseket 1-2 munkanapon belül visszaküldik az eredeti számlára, kérjük várjon türelmesen.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">40</context>
@@ -1936,11 +1936,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="73edc6fed01d739dd25bc6c81d9f81c28d958a77">
         <source>Your request is under review, which takes 2-3 working days.</source>
-        <target>59/5000
- 
- 
- 
-Kérelme felülvizsgálat alatt áll, amely 2-3 munkanapot vesz igénybe.</target>
+        <target>Kérelme felülvizsgálat alatt áll, amely 2-3 munkanapot vesz igénybe.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">44</context>
@@ -1952,7 +1948,7 @@ Kérelme felülvizsgálat alatt áll, amely 2-3 munkanapot vesz igénybe.</targe
       </trans-unit>
       <trans-unit datatype="html" id="aaff35cada193aa9c1ec8630b3e6e4eb32778c9d">
         <source> Please wait patiently. Once approved, the refunds will be returned to the original account.</source>
-        <target>Kérjük, várjon türelmesen. A jóváhagyást követően a visszatérítés visszatér az eredeti számlára.</target>
+        <target>Kérjük várjon türelmesen. A jóváhagyást követően a visszatérítés visszatér az eredeti számlára.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">45</context>
@@ -1964,7 +1960,7 @@ Kérelme felülvizsgálat alatt áll, amely 2-3 munkanapot vesz igénybe.</targe
       </trans-unit>
       <trans-unit datatype="html" id="2c5fbc739107fbac37b97ce9b3441cc515be86a9">
         <source>Your order is in exception status, please deal with it first and then request a refund.</source>
-        <target>A megrendelése kivétel állapotú, kérjük, először dolgozza fel majd kérjen visszatérítést.</target>
+        <target>A megrendelése kivétel állapotú, kérjük először dolgozza fel majd kérjen visszatérítést.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">81</context>

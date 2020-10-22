@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file datatype="plaintext" original="ng2.template" source-language="en" target-language="sq">
+  <file datatype="plaintext" original="ng2.template" source-language="en" target-language="bo">
     <body>
       <trans-unit datatype="html" id="07db550ae114d9faad3a0cbb68bcc16ab6cd31fc">
         <source>Paused</source>
-        <target>I ndalur</target>
+        <target>མཚམས་བཞག་ཟིན།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/client/components/progress-button/progress-button.component.html</context>
           <context context-type="linenumber">3</context>
@@ -32,7 +32,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6a66f7b3aeebb8f63d58e87bba3d9f0d30d08cec">
         <source>Downloading</source>
-        <target>Po shkarkohet</target>
+        <target>ཕབ་ལེན་བྱེད་བཞིན་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/client/components/progress-button/progress-button.component.html</context>
           <context context-type="linenumber">7</context>
@@ -44,7 +44,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="b1f8e8e44e54f1c5b03d57215e323265a73a8976">
         <source>Installing</source>
-        <target>Po instalohet</target>
+        <target>སྒྲིག་སྦྱོར་བྱེད་བཞིན་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/client/components/progress-button/progress-button.component.html</context>
           <context context-type="linenumber">8</context>
@@ -68,7 +68,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="04b741bf33a6b8359849d6085278e54b35acd0b9">
         <source>Uninstalling</source>
-        <target>Po çinstalohet</target>
+        <target>བཤིག་འདོན་བྱེད་བཞིན་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/client/components/progress-button/progress-button.component.html</context>
           <context context-type="linenumber">9</context>
@@ -80,7 +80,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c81780f921c4ded2a45dadd68238f428bb5e5308">
         <source>Network error</source>
-        <target>Gabim rrjeti</target>
+        <target>དྲ་བ་ནོར་བ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/wait/wait.component.html</context>
           <context context-type="linenumber">3</context>
@@ -96,7 +96,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="172fa0aab2cb9ffc177b03a45af1715e0b58997d">
         <source>Loading... Please wait</source>
-        <target>Po ngarkohet… Ju lutemi, pritni</target>
+        <target>སྣོན་འཇུག་བྱེད་བཞིན་པས། སྒུག་རོགས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/wait/wait.component.html</context>
           <context context-type="linenumber">8</context>
@@ -112,7 +112,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6058dc6aab021a4ecf68988f0cce40389f4185b1">
         <source><x equiv-text="{{ count }}" id="INTERPOLATION"/> applications</source>
-        <target><x equiv-text="{{ count }}" id="INTERPOLATION"/> aplikacione</target>
+        <target><x equiv-text="{{ count }}" id="INTERPOLATION"/> ཉེར་སྤྱོད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/app-title/app-title.component.html</context>
           <context context-type="linenumber">4</context>
@@ -120,7 +120,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="235945afa74bcf391b9201dcf4a6bba930ddd13b">
         <source>Top <x equiv-text="{{ top }}" id="INTERPOLATION"/></source>
-        <target><x equiv-text="{{ top }}" id="INTERPOLATION"/> Kryesueset</target>
+        <target>མདུན་གྲལ། <x equiv-text="{{ top }}" id="INTERPOLATION"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/app-title/app-title.component.html</context>
           <context context-type="linenumber">5</context>
@@ -128,7 +128,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="822fab38216f64e8166d368b59fe756ca39d301b">
         <source>Downloads</source>
-        <target>Shkarkime</target>
+        <target>ཕབ་ལེན་བྱེད་ཚད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/app-title/app-title.component.html</context>
           <context context-type="linenumber">16</context>
@@ -140,7 +140,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a9b941f25f425bd907b8e23cbaed9e96a85e7db7">
         <source>Rating</source>
-        <target>Vlerësim</target>
+        <target>དཔྱད་སྡུར།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/app-title/app-title.component.html</context>
           <context context-type="linenumber">18</context>
@@ -168,7 +168,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="0013b61359f2f1b3cb30c16d524bc4d778909478">
         <source>Personal Center</source>
-        <target>Qendër Personale</target>
+        <target>སྒེར་གྱི་ལྟེ་བ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/center-title/center-title.component.html</context>
           <context context-type="linenumber">2</context>
@@ -176,7 +176,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="1befce3c6f0c468b06ae5199116e5b096a35a3ef">
         <source>Buy</source>
-        <target>Blijeni</target>
+        <target>ཉོ་བ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
           <context context-type="linenumber">15</context>
@@ -184,7 +184,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c9039b1b13b3ef165b66b3c5d79f810ab1ebb050">
         <source>Open</source>
-        <target>Hap</target>
+        <target>ཕྱེ་བ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
           <context context-type="linenumber">25</context>
@@ -200,7 +200,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="047f50bc5b5d17b5bec0196355953e1a5c590ddb">
         <source>Update</source>
-        <target>Përditësoje</target>
+        <target>གསར་སྒྱུར།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
           <context context-type="linenumber">31</context>
@@ -224,7 +224,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="dee8c41edf822a0124c80cc1e44643f947b3bc5c">
         <source>Install</source>
-        <target>Instaloje</target>
+        <target>སྒྲིག་འཇུག</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/control/control.component.html</context>
           <context context-type="linenumber">36</context>
@@ -244,7 +244,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="91ce116be6e8df104128f339912c9207f01265cd">
         <source>Amount:</source>
-        <target>Vlerë:</target>
+        <target>གཏོང་སྤྲོད་དངུལ་གྲངས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">22</context>
@@ -252,7 +252,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="fb3545e97e371069768103e01599f35e789d556c">
         <source>Payment:</source>
-        <target>Pagesë:</target>
+        <target>གཏོང་སྤྲོད་བྱེད་སྟངས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">28</context>
@@ -260,7 +260,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="53d20cc6953546db5373b1ae5a686aa655a715bb">
         <source>Pay Now</source>
-        <target>Paguani Tani</target>
+        <target>ལམ་སེང་གཏོང་སྤྲོད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">53</context>
@@ -268,7 +268,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a446571368a5064dd8408d46f42f6ae725eff658">
         <source>Amount: </source>
-        <target>Vlerë:</target>
+        <target>དངུལ་གྲངས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">65</context>
@@ -276,7 +276,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="73d9eb7d8af7892f0bc41cc7dad75f7256483628">
         <source>WeChat Pay</source>
-        <target>Pagesë me WeChat</target>
+        <target>འཕྲིན་ཕྲན་བཤེར་ནས་དངུལ་སྤྲོད་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">73</context>
@@ -284,7 +284,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="e2c9907de2386d2f5c27a0370fbaf416b4f4e41c">
         <source>Processing payment, please wait...</source>
-        <target>Pagesa po kryhet, ju lutemi, prisni…</target>
+        <target>གཏོང་སྤྲོད་བྱེད་བཞིན་པས། སྒུག་རོགས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">80</context>
@@ -292,7 +292,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="836040c3f2b1e93e8a70a1934f718e1dd481be9d">
         <source>Payment failed, please try again!</source>
-        <target>Pagesa dështoi, ju lutemi, riprovoni!</target>
+        <target>གཏོང་སྤྲོད་མི་ཐུབ་པས། བསྐྱར་དུ་གཏོང་སྤྲོད་གནང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">92</context>
@@ -300,7 +300,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="d7b35c384aecd25a516200d6921836374613dfe7">
         <source>Cancel</source>
-        <target>Anuloje</target>
+        <target>འདོར་བ། </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">95</context>
@@ -332,7 +332,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="5904b27bdd419865149a13f58b01e7761636dc00">
         <source>Pay Again</source>
-        <target>Paguani Sërish</target>
+        <target>ཡང་བསྐྱར་སྤྲོད་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">96</context>
@@ -340,7 +340,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="20c0f2a993ebb3b275bf29f6621c35b6c946a8fb">
         <source>Network disconnected, and you may not be able to buy the app successfully,</source>
-        <target>U shkëput lidhja me rrjetin dhe mund të mos jeni në gjendje të blini me sukses aplikacionin,</target>
+        <target>ཁྱེད་ཀྱི་དྲ་བ་སྦྲེལ་མེད་པས། རྒྱུན་གཏན་ལྟར་ཉེར་སྤྱོད་ཉོ་མི་ཐུབ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">107</context>
@@ -348,7 +348,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="74bdabdacbd39507e152b92733a2d2d0275bd633">
         <source> please check your network first</source>
-        <target>ju lutemi, së pari kontrolloni rrjetin tuaj</target>
+        <target>སྔོན་ལ་ཁྱེད་ཀྱི་དྲ་བར་རྟོག་ཞིབ་གནང་དང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">108</context>
@@ -356,7 +356,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6cf236d79ba814bc7cd38814d46c588c43079ddb">
         <source>Payment Successful!</source>
-        <target>Pagesë e Suksesshme!</target>
+        <target>དངུལ་སྤྲོད་ཐུབ་སོང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">121</context>
@@ -364,7 +364,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6195e42e2c172351c7e86620f756a9f9c8eea499">
         <source>Order No.</source>
-        <target>Nr. Porosie</target>
+        <target>ཚོང་ཟོག་མངག་ཐོའི་ཨང་གྲངས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">124</context>
@@ -372,7 +372,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="9d8357c8b045423277f40ea83439aef0635d1cd7">
         <source>Order Time</source>
-        <target>Kohë Porosie</target>
+        <target>ཚོང་ཟོག་མངག་པའི་དུས་ཚོད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">126</context>
@@ -380,7 +380,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="d62e8cfcb1f444a033b402e050b851a7d8a3532f">
         <source>Payment Method</source>
-        <target>Metodë Pagese</target>
+        <target>གཏོང་སྤྲོད་བྱེད་ཐབས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">128</context>
@@ -388,7 +388,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="72d1017b7becbd9f94b44708129d2d92bbb52f70">
         <source>AliPay</source>
-        <target>AliPay</target>
+        <target>གཏོང་སྤྲོད་འབོ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">130</context>
@@ -396,7 +396,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="27c10b4cbfefae96b6b16db91c0fe520efb393f9">
         <source>WeChat</source>
-        <target>WeChat</target>
+        <target>འཕྲིན་ཕྲན། </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/buy/buy.component.html</context>
           <context context-type="linenumber">131</context>
@@ -412,7 +412,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="1908513266d3ce2dc37135be38ac4baef11a3a0b">
         <source>Office</source>
-        <target>Zyrë</target>
+        <target>གཞུང་ལས་སློབ་སྦྱོང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/category/category.component.html</context>
           <context context-type="linenumber">2</context>
@@ -428,7 +428,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="7f3f6a4fb2545cacf800f0623582b6d41d1f8791">
         <source>Development</source>
-        <target>Zhvillim</target>
+        <target>ཨང་སྒྲིག་གསར་གཏོད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/category/category.component.html</context>
           <context context-type="linenumber">3</context>
@@ -444,7 +444,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="440387abefa7c51156990554beb9f5f18576decb">
         <source>Reading</source>
-        <target>Lexim</target>
+        <target>ལྟ་ཀློག་ཡིག་སྒྱུར།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/category/category.component.html</context>
           <context context-type="linenumber">4</context>
@@ -460,7 +460,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="b8685c2f51906a91fd8e282f25c7fd9b36b27c77">
         <source>Graphics</source>
-        <target>Grafika</target>
+        <target>རིས་དབྱིབས་པར་རིས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/category/category.component.html</context>
           <context context-type="linenumber">5</context>
@@ -476,7 +476,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="71249314fa72f5f9e0d93b8c59f9e148e0ff617f">
         <source>Games</source>
-        <target>Lojëra</target>
+        <target>རོལ་རྩེད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/category/category.component.html</context>
           <context context-type="linenumber">6</context>
@@ -492,7 +492,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="06a9c25174be5c4e9fca4e8b423410b1900d5a55">
         <source>Music</source>
-        <target>Muzikë</target>
+        <target>རོལ་དབྱངས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/category/category.component.html</context>
           <context context-type="linenumber">7</context>
@@ -508,7 +508,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="8011e20c5bbe51602d459a860fbf29b599b55edd">
         <source>System</source>
-        <target>Sistem</target>
+        <target>མ་ལག་དོ་དམ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/category/category.component.html</context>
           <context context-type="linenumber">8</context>
@@ -524,7 +524,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="2d1ea268a6a9f483dbc2cbfe19bf4256a57a6af4">
         <source>Video</source>
-        <target>Video</target>
+        <target>བརྙན་ཟློས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/category/category.component.html</context>
           <context context-type="linenumber">9</context>
@@ -540,7 +540,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="5adf337be1ad12c915ae18012f1bfa1f2ca4628b">
         <source>Chat</source>
-        <target>Fjalosje</target>
+        <target>ཁ་བརྡ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/category/category.component.html</context>
           <context context-type="linenumber">10</context>
@@ -556,7 +556,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c2a9de3714f5767b174d0424bc8abe2dc37acc41">
         <source>Other</source>
-        <target>Tjetër</target>
+        <target>ཉེར་སྤྱོད་གཞན་དག</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/category/category.component.html</context>
           <context context-type="linenumber">11</context>
@@ -572,7 +572,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="62d7998e0429f2487adc0e8e56e4173275cf7a3d">
         <source>Internet</source>
-        <target>Internet</target>
+        <target>དྲ་བའི་ཉེར་སྤྱོད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/share/components/category/category.component.html</context>
           <context context-type="linenumber">12</context>
@@ -588,7 +588,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="92eee6be6de0b11c924e3ab27db30257159c0a7c">
         <source>Home</source>
-        <target>Kreu</target>
+        <target>གཙོ་ངོས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/side-nav/side-nav.component.html</context>
           <context context-type="linenumber">5</context>
@@ -596,7 +596,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c19df76e4d9f2ee2fec4aeca41fef6a087c8c542">
         <source>Rankings</source>
-        <target>Renditje</target>
+        <target>ཕབ་ལེན་གོ་རིམ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/side-nav/side-nav.component.html</context>
           <context context-type="linenumber">9</context>
@@ -608,7 +608,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="dc75033a5238fdc4f462212c847a45ba8018a3fd">
         <source>Download</source>
-        <target>Shkarkoje</target>
+        <target>ཕབ་ལེན་དོ་དམ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/side-nav/side-nav.component.html</context>
           <context context-type="linenumber">61</context>
@@ -616,7 +616,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="721c5049f844116adbebd35d077c25b851549ba1">
         <source>Updates</source>
-        <target>Përditësime</target>
+        <target>ཉེར་སྤྱོད་གསར་སྒྱུར།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/side-nav/side-nav.component.html</context>
           <context context-type="linenumber">69</context>
@@ -624,7 +624,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="70fdd741399f7bbf37af6f2c3592ee107227f69e">
         <source>My Apps</source>
-        <target>Aplikacionet e Mia</target>
+        <target>ངའི་ཉེར་སྤྱོད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/side-nav/side-nav.component.html</context>
           <context context-type="linenumber">76</context>
@@ -632,7 +632,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="68de0566204c3540450ff89d5e3cf3ac682c7a27">
         <source> Announcement:<x equiv-text="{{ $notify.content }}" id="INTERPOLATION"/></source>
-        <target> Lajmërim:<x equiv-text="{{ $notify.content }}" id="INTERPOLATION"/></target>
+        <target>སྤྱི་བསྒྲགས། <x equiv-text="{{ $notify.content }}" id="INTERPOLATION"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">3</context>
@@ -640,7 +640,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="f38cdabbc1d33c5153a307c4f0c8f4f22df4276f">
         <source>Request successful</source>
-        <target>Kërkesë e suksesshme</target>
+        <target>རེ་སྐུལ་བྱེད་ཐུབ་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">10</context>
@@ -648,7 +648,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="231e7766e41f05396b33e9798d628f8d1b0f46f9">
         <source>Cache cleared</source>
-        <target>Fshehtina u pastrua</target>
+        <target>ཤོང་གསོག་གཙང་སེལ་ཐུབ་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">11</context>
@@ -656,7 +656,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="8a47f77b90a2cc65a1a37451a36973b54782063b">
         <source>Submission successful</source>
-        <target>Parashtrim i suksesshëm</target>
+        <target>འདོན་སྤྲོད་བྱེད་ཐུབ་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">12</context>
@@ -672,7 +672,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="e33d805f0c1ce97c92b68fc882084fef23cca646">
         <source>Request failed</source>
-        <target>Kërkesa dështoi</target>
+        <target>རེ་སྐུལ་བྱེད་མི་ཐུབ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">18</context>
@@ -680,7 +680,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="9adf078da8da4a1f22687e15f76dae2369a603df">
         <source>Failed to clear cache</source>
-        <target>S’u arrit të pastrohej fshehtina</target>
+        <target>ཤོང་གསོག་གཙང་སེལ་མི་ཐུབ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">19</context>
@@ -688,7 +688,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="2e20b27eecc880c273a38d792b2a2fee5915157a">
         <source>Submission failed</source>
-        <target>Parashtrimi dështoi</target>
+        <target>འདོན་སྤྲོད་བྱེད་མི་ཐུབ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/notify/notify.component.html</context>
           <context context-type="linenumber">20</context>
@@ -700,7 +700,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="98ae65ebba6c43c5cda8bdbd6f03e1daa0595af1">
         <source>Recommended</source>
-        <target>I rekomanduar</target>
+        <target>ཁྱེད་ལ་མཚམས་སྦྱོར་བྱ་རྒྱུ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/recommended/recommended.component.html</context>
           <context context-type="linenumber">13</context>
@@ -708,7 +708,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="86288c2ac6b43ed195f0bc8bce825a3ab8151b71">
         <source>Installed</source>
-        <target>U instalua</target>
+        <target>སྒྲིག་སྦྱོར་བྱས་ཟིན།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/recommended/recommended.component.html</context>
           <context context-type="linenumber">19</context>
@@ -736,7 +736,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="dfc3c34e182ea73c5d784ff7c8135f087992dac1">
         <source>All</source>
-        <target>Krejt</target>
+        <target>ཡོངས་འདེམས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/recommended/recommended.component.html</context>
           <context context-type="linenumber">58</context>
@@ -748,7 +748,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="0c5beac3fe2c2731a51956b0d828195499bed15d">
         <source>Install All</source>
-        <target>Instaloji Krejt</target>
+        <target>མཐེབ་གཅིག་སྒྲིག་སྦྱོར།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/recommended/recommended.component.html</context>
           <context context-type="linenumber">63</context>
@@ -760,7 +760,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a449ddaedd9a79bd39e9e7ef9f74c31e2c649e0b">
         <source>Do you want to leave this page?</source>
-        <target>Doni të ikni prej kësaj faqeje?</target>
+        <target>ཁྱེད་ཀྱིས་ངོས་འདི་ནས་ཁ་བྲལ་རྒྱུ་གཏན་འཁེལ་ལམ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/recommended/recommended.component.html</context>
           <context context-type="linenumber">74</context>
@@ -768,7 +768,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="3eed3c0167ac14df9b8fcf72108d32ea25436c5d">
         <source>Leave</source>
-        <target>Braktise</target>
+        <target>བྲལ་རྒྱུ་གཏན་ཁེལ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/recommended/recommended.component.html</context>
           <context context-type="linenumber">76</context>
@@ -776,7 +776,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="75c09bc09c5b5dc2c5f095457cd0c495121668cf">
         <source>Stay Here</source>
-        <target>Qëndro Këtu</target>
+        <target>ངས་ཏོག་ཙམ་བལྟ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/recommended/recommended.component.html</context>
           <context context-type="linenumber">77</context>
@@ -784,7 +784,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="271a5f10ae4bb5de450076d158073625d9960fb1">
         <source>No apps available, please contact the administrator of App Store</source>
-        <target>S’ka aplikacione të gatshme, ju lutemi, lidhuni me përgjegjësin e Shitores së Aplikacioneve</target>
+        <target>ཚོང་ཁང་སྟོང་པ་རེད་འདུག དོ་དམ་པར་འབྲེལ་བ་བྱས་ནས་ཉེར་སྤྱོད་གཤོམ་རྒྱུ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/index/index.component.html</context>
           <context context-type="linenumber">37</context>
@@ -792,7 +792,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="ac0f81713a84217c9bd1d9bb460245d8190b073f">
         <source>More</source>
-        <target>Më tepër</target>
+        <target>དེ་བས་མང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/index/components/title/title.component.html</context>
           <context context-type="linenumber">5</context>
@@ -812,7 +812,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="b9905b17f853f79045218f2d43f572029e54fd5b">
         <source>Sorry</source>
-        <target>Na ndjeni</target>
+        <target>དགོངས་དག</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/index/components/topic-detail/topic-detail.component.html</context>
           <context context-type="linenumber">10</context>
@@ -836,7 +836,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="2f5c0cf0b18104b3e46f65bbe5d9db6663a1e8e8">
         <source>The topic not found</source>
-        <target>S’u gjet tema</target>
+        <target>ཆེད་དོན་འདི་རྙེད་མི་ཐུབ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/index/components/topic-detail/topic-detail.component.html</context>
           <context context-type="linenumber">11</context>
@@ -844,7 +844,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="27e117eee80e72424266dcd113674437d8858931">
         <source>Search results for <x ctype="x-span" equiv-text="&lt;span&gt;" id="START_TAG_SPAN"/><x equiv-text="{{ title }}" id="INTERPOLATION"/><x ctype="x-span" equiv-text="&lt;/span&gt;" id="CLOSE_TAG_SPAN"/></source>
-        <target>Përfundime kërkimi për <x ctype="x-span" equiv-text="&lt;span&gt;" id="START_TAG_SPAN"/><x equiv-text="{{ title }}" id="INTERPOLATION"/><x ctype="x-span" equiv-text="&lt;/span&gt;" id="CLOSE_TAG_SPAN"/></target>
+        <target><x ctype="x-span" equiv-text="&lt;span&gt;" id="START_TAG_SPAN"/><x equiv-text="{{ title }}" id="INTERPOLATION"/><x ctype="x-span" equiv-text="&lt;/span&gt;" id="CLOSE_TAG_SPAN"/>འཚོལ་བའི་མཇུག་འབྲས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
           <context context-type="linenumber">10</context>
@@ -852,7 +852,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="91bc9b0905cc70dea1b653d2bd6d302a9a30eb09">
         <source>Apps developed by <x equiv-text="{{ name }}" id="INTERPOLATION"/></source>
-        <target>Aplikacione të zhvilluar nga <x equiv-text="{{ name }}" id="INTERPOLATION"/></target>
+        <target><x equiv-text="{{ name }}" id="INTERPOLATION"/>ཡི་ཉེར་སྤྱོད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
           <context context-type="linenumber">15</context>
@@ -860,7 +860,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c71d62bdeab0c6090ee4524fd31daa7a14acd76b">
         <source>Apps packaged by <x equiv-text="{{ name }}" id="INTERPOLATION"/></source>
-        <target>Aplikacione të paketuar nga <x equiv-text="{{ name }}" id="INTERPOLATION"/></target>
+        <target><x equiv-text="{{ name }}" id="INTERPOLATION"/>ཐུམ་རྒྱག་པའི་ཉེར་སྤྱོད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
           <context context-type="linenumber">18</context>
@@ -868,7 +868,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="07190520c4e8884bfa6feff14b9af54f9bd3d444">
         <source>No search results</source>
-        <target>S’ka përfundime kërkimi</target>
+        <target>འཚོལ་བའི་མཇུག་འབྲས་མེད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/list/components/list-outlet/list-outlet.component.html</context>
           <context context-type="linenumber">37</context>
@@ -876,7 +876,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="7cc5bb06d460bf558558822eddfecbe84d63b5a4">
         <source><x equiv-text="{{ downloads }}" id="INTERPOLATION"/> downloads</source>
-        <target><x equiv-text="{{ downloads }}" id="INTERPOLATION"/> shkarkime</target>
+        <target>ཕབ་ལེན་བྱེད་ཚད། <x equiv-text="{{ downloads }}" id="INTERPOLATION"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">22</context>
@@ -884,7 +884,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="2424f9fcf779e49e1ccd1095b2d7daa8d66d395b">
         <source><x equiv-text="{{ score_count }}" id="INTERPOLATION"/> ratings</source>
-        <target><x equiv-text="{{ score_count }}" id="INTERPOLATION"/> vlerësime</target>
+        <target>སྐད་གྲངས་དཔྱད་སྡུར་བྱེད་ཐེངས།<x equiv-text="{{ score_count }}" id="INTERPOLATION"/> </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">25</context>
@@ -892,7 +892,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c85caed94bd76ad556d77bff7a566bec46fa1489">
         <source>Refund Policy</source>
-        <target>Rregulla Rimbursimi</target>
+        <target>དངུལ་སློག་པའི་གསལ་བཤད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">40</context>
@@ -902,9 +902,9 @@
         <source>1. Users can request a refund within two hours after payment.
 2. Your first three refund requests are processed automatically, and the refunds are returned to the original account in real time.
 3. The fourth and later refund requests must be reviewed manually (2-3 working days). Your refund will be issued if approved, and you will receive an explanation if rejected.</source>
-        <target>1. Përdoruesit mund të kërkojnë një rimbursim brenda dy orësh nga pagesa. 
-2. Tre kërkesat tuaja të para për rimbursim përpunohen automatikisht, dhe rimbursimet derdhen në llogarinë origjinale aty për aty. 
-3. Kërkesa e katërt dhe të mëvonshme pas saj duhen shqyrtuar dorazi (2-3 ditë biznesi). Nëse miratohet, do të emetohet rimbursimi për ju, dhe do të merrni një shpjegim nëse hidhet poshtë.</target>
+        <target>1. སྤྱོད་མཁན་གྱིས་ཉོས་རྗེས་ཀྱི་ཆུ་ཚོད་གཉིས་ནང་དུ་དངུལ་སློག་དགོས་པའི་རེ་བ་ཞུ་ཆོག
+2. ཚོང་ཁང་གིས་གོང་གསུམ་གྱི་དངུལ་སློག་པའི་རེ་འདུན་ལ་ཞིབ་བཤེར་བྱེད་དགོས་མེད་པ་དང་། དུས་ཐོག་ཏུ་དང་ཐོག་རྩིས་ཐོར་དངུལ་སློག་རྒྱུ། 
+3. དངུལ་སློག་ཐེངས་གསུམ་ཡན་ཡིན་ཚེ་སྟེགས་བུས་ཞིབ་བཤེར་བྱེད་དགོས་（ལས་ཀའི་ཉིན་2-3དགོས།） ཞིབ་བཤེར་བྱས་རྗེས་རང་འགུལ་ངང་དངུལ་སློག་སྲིད་པ་དང་། ཞིབ་བཤེར་མ་ཐུབ་ཚེ་ཁྱེད་ལ་ཞིབ་བཤེར་མ་ཐུབ་པའི་རྒྱུ་མཚན་གསལ་ཞུ་བྱེད་སྲིད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">38</context>
@@ -912,7 +912,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="0cc1dec590ecd74bef71a865fb364779bc42a749">
         <source>Category:</source>
-        <target>Kategori</target>
+        <target>རིགས་དབྱེ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">50</context>
@@ -920,7 +920,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="ca17606ffe979fb5b411861280c33d2ad3e7a216">
         <source>Version:</source>
-        <target>Version:</target>
+        <target>པར་གཞི།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">54</context>
@@ -944,7 +944,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="994e6a27b92ba37201e3bb9f8ae312f2a46b5b39">
         <source>Changelog</source>
-        <target>Regjistër ndryshimesh</target>
+        <target>བྱེད་ནུས་གསར་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">57</context>
@@ -964,7 +964,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="04380b03179685f28fc991c2ae855696d7f6ca44">
         <source>Size:</source>
-        <target>Madhësi:</target>
+        <target>ཆེ་ཆུང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">65</context>
@@ -972,7 +972,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="e8c021c9d36ccd882cb337c19cbca3067c249d41">
         <source>Downloaded</source>
-        <target>Shkarkuar</target>
+        <target>ཕབ་ལེན་བྱས་ཟིན།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">68</context>
@@ -996,7 +996,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c865350c1e557f8c00140a145e33f39ff822cdc0">
         <source>Updated Date:</source>
-        <target>Datë Përditësimi:</target>
+        <target>དུས་ཚོད་གསར་སྒྱུར།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">81</context>
@@ -1004,7 +1004,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="055d47bb1af14fe2aebd1733bf30d5bf4add46f5">
         <source>Website:</source>
-        <target>Sajt:</target>
+        <target>གཞུང་ཕྱོགས་དྲ་ཚིགས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">87</context>
@@ -1012,7 +1012,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="fcd2b61b74ed190b5176b5c45599627fa3addfd6">
         <source>Developer:</source>
-        <target>Zhvillues:</target>
+        <target>རྩོམ་པ་པོ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">95</context>
@@ -1020,7 +1020,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="4a22c6843133f0b0d7dc0d28f864f2f90c1de7ad">
         <source>Description:</source>
-        <target>Përshkrim:</target>
+        <target>ངོ་སྤྲོད་མདོར་བསྡུས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">106</context>
@@ -1028,7 +1028,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="e5d8bb389c702588877f039d72178f219453a72d">
         <source>Unknown</source>
-        <target>I panjohur</target>
+        <target>མི་ཤེས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">116</context>
@@ -1036,7 +1036,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="eec715de352a6b114713b30b640d319fa78207a0">
         <source>Description</source>
-        <target>Përshkrim</target>
+        <target>ངོ་སྤྲོད་མདོར་བསྡུས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">122</context>
@@ -1044,7 +1044,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c0331aa0a5a4589294b7826d8613515c597812a8">
         <source>CDN supported by UPYUN</source>
-        <target>Mbulim CDN nga UPYUN</target>
+        <target>CDNནི་又拍云གྱིས་རྒྱབ་སྐྱོར་བྱས་པ་ཞིག་རེད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">135</context>
@@ -1052,7 +1052,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="0166106da9d18911cf205d22548b9f4d21008f3f">
         <source>It's in adjustment, you can return to</source>
-        <target>Është një përimtim, mund të ktheheni te</target>
+        <target>ཉེར་སྤྱོད་འདི་ལེགས་སྒྲུག་བྱེད་བཞིན་པས། ཁྱེད་ཀྱིས་བསྐྱར་ལོག་བྱེད་ཆོག</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">150</context>
@@ -1060,7 +1060,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="680d5c75b7fd8d37961083608b9fcdc4167b4c43">
         <source>Previous</source>
-        <target>I mëparshmi</target>
+        <target>གོང་མ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">151</context>
@@ -1068,7 +1068,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6dd070f6eb99a4e300bce2af82d76f3d01c61edd">
         <source>Connection failed, please check your network and refresh</source>
-        <target>Lidhja dështoi, ju lutemi, kontrolloni rrjetin tuaj dhe rifreskojeni</target>
+        <target>དྲ་བ་སྲེལ་མི་ཐུབ་པས། ཁྱེད་ཀྱི་དྲ་བར་ཞིབ་བཤེར་བྱས་རྗེས་ཚོད་ལྟ་གྱིས་དང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">158</context>
@@ -1076,7 +1076,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="2631d08f671cb06e269dfe7ce2268ab52ef73375">
         <source>Something goes wrong.</source>
-        <target>Diçka vete ters.</target>
+        <target>གཏིང་ཟབ་ཚོང་ཁང་ལ་ནོར་འཁྲུལ་ཤོར་འདུག</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/app-detail.component.html</context>
           <context context-type="linenumber">163</context>
@@ -1084,7 +1084,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="46105913be7e18027fbaf57f72c41147c49fc8e0">
         <source>User Comments</source>
-        <target>Komente Përdoruesi</target>
+        <target>སྤྱོད་མཁན་གྱི་དཔྱད་གླེང།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">3</context>
@@ -1092,7 +1092,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="9a1bd0840d2c3901d359e4a58a9c73545b7e9598">
         <source>Current Version</source>
-        <target>Versioni i Tanishëm</target>
+        <target>མིག་སྔའི་པར་གཞི།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">7</context>
@@ -1100,7 +1100,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="9e5ce729ba1ff21c6bed9417bca2d16cd6b8e1fd">
         <source>History Versions</source>
-        <target>Versione Historiku</target>
+        <target>ལོ་རྒྱུས་ཀྱི་པར་གཞི།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">11</context>
@@ -1108,7 +1108,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="71890cc31aaa2b924675a1547355fc690c395146">
         <source>Failed to load comments</source>
-        <target>S’u arrit të ngarkoheshin komente</target>
+        <target>དཔྱད་གླེང་ལེན་མི་ཐུབ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">22</context>
@@ -1116,7 +1116,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="82182068adfbb019055ef30eff0fc438275441fa">
         <source>No user comments available</source>
-        <target>S’ka komente përdoruesish</target>
+        <target>མིག་སྔར་སྤྱོད་མཁན་གྱི་དཔྱད་གླེང་གང་ཡང་མེད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">25</context>
@@ -1124,7 +1124,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="e7fd1a829016fdc4cae60b85d7307feb0bb3309d">
         <source>My Comment</source>
-        <target>Komenti Im</target>
+        <target>ངའི་དཔྱད་གླེང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">40</context>
@@ -1136,7 +1136,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="37a1a9afb9eb431fb36181d680e5e0bcc8726a05">
         <source>[Closed Account]</source>
-        <target>[Llogari e Mbyllur]</target>
+        <target>[རྩིསཐོ་སུབ་ཟིན།]</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">49</context>
@@ -1144,7 +1144,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6e5f9a0a3c8d9b1cc1e9c9bda6dc3b8ea64ff9bc">
         <source> [Developer reply]</source>
-        <target>[Përgjigje zhvilluesi]</target>
+        <target>[གསར་གཏོད་པའི་ཨ་ལན།]</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">61</context>
@@ -1152,7 +1152,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="0f03eb1f27fee61229b02cb74d685bb4ad5add94">
         <source>Back to top</source>
-        <target>Mbrapsht te kreu</target>
+        <target>མགོ་ལ་ལོག་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">90</context>
@@ -1160,7 +1160,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="743236956b393f7122325a5dc71633112e6ea338">
         <source>Report a bug</source>
-        <target>Njoftoni një të metë</target>
+        <target>BUGལས་རོགས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">7</context>
@@ -1172,7 +1172,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="758496ccd0c37659b18828f3234eac3915c1a32f">
         <source>Rating:</source>
-        <target>Vlerësim:</target>
+        <target>དཔྱད་སྡུར།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">17</context>
@@ -1184,7 +1184,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="96e41129ef5d2fa12b7a6ffcab608e9af04d8cbd">
         <source>Comment:</source>
-        <target>Koment:</target>
+        <target>དཔྱད་གླེང་སྤེལ་བ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">23</context>
@@ -1192,7 +1192,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="420bca01801378c942f0683d8904b72e9c23cec8">
         <source>Please post your comment after</source>
-        <target>Ju lutemi, postojeni komentin tuaj pas</target>
+        <target>དཔྱད་གླེང་སྤེལ་ན། སྔོན་ལ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">33</context>
@@ -1200,7 +1200,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="287d3301a32a65a1b31116bda5d3a6463158c42a">
         <source>Sign in</source>
-        <target>Hyni</target>
+        <target>རྩིས་ཐོར་འཇུག་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">34</context>
@@ -1208,7 +1208,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c5241f32ed2c3992142d16ddc32a7d7fddf1984c">
         <source>Post your comment here</source>
-        <target>Postoni këtu komentin tuaj</target>
+        <target>ཁྱེད་ཀྱི་དཔྱད་གླེང་འཇུག་རོགས་གནང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">43</context>
@@ -1216,7 +1216,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="4e0276c8e84978b2d250d9a8471dc1014fbee9f7">
         <source>Please rate and post your comment</source>
-        <target>Ju lutemi, vlerësojeni dhe postoni komentin tuaj</target>
+        <target>ཁྱེད་ཀྱི་དཔྱད་གླེང་དང་དཔྱད་སྡུར་འཇུག་རོགས་གནང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">54</context>
@@ -1232,7 +1232,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="eafc7cb251d676d25843aeff194c97097f8fa894">
         <source>Please input your comment</source>
-        <target>Ju lutemi, jepni komentin tuaj</target>
+        <target>ཁྱེད་ཀྱི་དཔྱད་གླེང་འཇུག་རོགས་གནང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">56</context>
@@ -1248,7 +1248,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="aa20f809feb37966ee4cad2afcf71dcd37cad1a2">
         <source>Please rate</source>
-        <target>Ju lutemi, vlerësojeni</target>
+        <target>ཁྱེད་ཀྱི་དཔྱད་སྡུར་འཇུག་རོགས་གནང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">57</context>
@@ -1264,7 +1264,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="7af947253f8e439064c440c7e8b65b79f1697ee8">
         <source>Failed to submit</source>
-        <target>S’u arrit të parashtrohej</target>
+        <target>དཔྱད་གླེང་སྤེལ་ཐུབ་མ་སོང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">58</context>
@@ -1280,7 +1280,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="f8fd8544fdb9d1c3c9af8407464dc01a079740c8">
         <source>The application is not available</source>
-        <target>Aplikacioni s’është i passhëm</target>
+        <target>ཉེར་སྤྱོད་འདི་སྤྱོད་མི་ཐུབ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">60</context>
@@ -1292,7 +1292,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="71c77bb8cecdf11ec3eead24dd1ba506573fa9cd">
         <source>Submit</source>
-        <target>Parashtroje</target>
+        <target>འདོན་སྤྲོད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">66</context>
@@ -1312,7 +1312,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6332ffe44c21d002af92e2bab779f93a353f99e4">
         <source>Give details of the bug, and describe your working steps please</source>
-        <target>Ju lutemi, jepni hollësi të së metës dhe përshkruani hapat për riprodhimin e saj</target>
+        <target>མཉེན་ཆས་ཀྱི་bugཞིབ་ཕྲ་འབྲི་རོགས། ཁྱེད་ཀྱི་བཀོལ་སྤྱོད་བྱེད་རིམ་ཡང་ཟུར་བཀོད་བྱེད་ཆོག</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">89</context>
@@ -1320,7 +1320,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="5ebd0cb80937e3a7886fafa2a53aaa3d1bbe4da9">
         <source>Please post your comment after using it</source>
-        <target>Ju lutemi, postojeni komentin tuaj pasi ta përdorni</target>
+        <target>ཕབ་ལེན་བྱས་ནས་བཀོལ་སྤྱོད་བྱས་རྗེས་དཔྱད་གླེང་གནང་དང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
           <context context-type="linenumber">4</context>
@@ -1332,7 +1332,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="9c23c88c43992129bd206a846000b7d8cb9a286f">
         <source>You are banned</source>
-        <target>Jeni dëbuar</target>
+        <target>ཁྱེད་རང་སྐད་ཆ་བཤད་མི་ཆོག</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
           <context context-type="linenumber">7</context>
@@ -1340,7 +1340,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="b9675f0672a5c00517d50e9cc9b9d610b49acaee">
         <source>The author bans comments</source>
-        <target>Autori i ndalon komentet</target>
+        <target>རྩོམ་པ་པོས་དཔྱད་གླེང་བྱས་མི་ཆོག</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
           <context context-type="linenumber">10</context>
@@ -1348,7 +1348,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="b2125f73794002b8bd9ab6720ef9e42ac0bb11e0">
         <source>You have posted a comment</source>
-        <target>Keni postuar një koment</target>
+        <target>ཁྱེད་ཀྱིས་དཔྱད་གླེང་སྤེལ་ཟིན།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
           <context context-type="linenumber">13</context>
@@ -1356,7 +1356,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="501169f2e77fecea8c2758007d9980669dbb8c16">
         <source>Due to <x equiv-text="{{ reason }}" id="INTERPOLATION"/>, you cannot post a comment</source>
-        <target>Për shkak të <x equiv-text="{{ reason }}" id="INTERPOLATION"/>, s’mund të postoni koment</target>
+        <target><x equiv-text="{{ reason }}" id="INTERPOLATION"/>རྐྱེན་གྱིས། ཁྱེད་རང་དཔྱད་གླེང་སྤེལ་མི་ཆོག</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-disable-reason-text/comment-disable-reason-text.component.html</context>
           <context context-type="linenumber">21</context>
@@ -1364,7 +1364,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="b1b2b24fabda7cb53e6a74d24392a039be91412b">
         <source>Processing <x equiv-text="{{ jobs.length }}" id="INTERPOLATION"/> <x equiv-text="{jobs.length, plural, =0 {...} =1 {...} other {...}}" id="ICU"/></source>
-        <target>Po përpunohet <x equiv-text="{{ jobs.length }}" id="INTERPOLATION"/> <x equiv-text="{jobs.length, plural, =0 {...} =1 {...} other {...}}" id="ICU"/></target>
+        <target><x equiv-text="{{ jobs.length }}" id="INTERPOLATION"/><x equiv-text="{jobs.length, plural, =0 {...} =1 {...} other {...}}" id="ICU"/>སྤེལ་བཞིན་པ། </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
           <context context-type="linenumber">8</context>
@@ -1372,7 +1372,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="aa89c1f96de1bc2fe9a7fdb44604986a29924255">
         <source>{VAR_PLURAL, plural, =0 {task} =1 {task} other {tasks} }</source>
-        <target>{VAR_PLURAL, plural, =0 {punë} =1 {punë} other {punë} }</target>
+        <target>{VAR_PLURAL, plural, =0 {ལས་འགན།} =1 {ལས་འགན།} other {ལས་འགན།} }</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
           <context context-type="linenumber">8</context>
@@ -1380,7 +1380,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="7ebcb099ec39a931331060f46e3a61e4e71524b4">
         <source>Time left: </source>
-        <target>Kohë e mbetur:</target>
+        <target>དུས་ཚོད་ལྷག་མ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
           <context context-type="linenumber">28</context>
@@ -1388,7 +1388,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="fd8d9206d63a691d04bdd851d22964f53766fc56">
         <source><x equiv-text="{{ $m }}" id="INTERPOLATION"/> min</source>
-        <target><x equiv-text="{{ $m }}" id="INTERPOLATION"/> min</target>
+        <target>སྐར་མ།<x equiv-text="{{$m}}" id="INTERPOLATION"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
           <context context-type="linenumber">32</context>
@@ -1396,7 +1396,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="5f3f34164b80472eaee0ca86922ec70aabd55cc5">
         <source><x equiv-text="{{ $s }}" id="INTERPOLATION"/> sec</source>
-        <target><x equiv-text="{{ $s }}" id="INTERPOLATION"/> sek</target>
+        <target>སྐར་ཆ།<x equiv-text="{{$s}}" id="INTERPOLATION"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
           <context context-type="linenumber">36</context>
@@ -1404,7 +1404,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c7b205a4b365871a982ad7e25f423432d47aee93">
         <source>Waiting to download</source>
-        <target>Po pritet për shkarkim</target>
+        <target>ཕབ་ལེན་སྒུག་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
           <context context-type="linenumber">61</context>
@@ -1424,7 +1424,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="36b852bcfc86e28990a9898faccba5ab10cdaf2a">
         <source>Cancelling</source>
-        <target>Po anulohet</target>
+        <target>འདོར་བཞིན་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
           <context context-type="linenumber">68</context>
@@ -1444,7 +1444,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="81cd72e5c2a49c4e6b823b367ba9dc4f3103faf9">
         <source>Waiting to install</source>
-        <target>Po pritet për instalim</target>
+        <target>སྒྲིག་སྦྱོར་སྒུག་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/download/download.component.html</context>
           <context context-type="linenumber">77</context>
@@ -1456,7 +1456,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="fa7441de0e4fda8e4c4d6937e5c093aa656abf48">
         <source>Failed to install: broken dependencies, please retry</source>
-        <target>S’u arrit të instalohej: mosplotësim varësish, ju lutemi, riprovoni</target>
+        <target>སྒྲིག་སྦྱོར་བྱེད་མི་ཐུབ། བརྟེན་པའི་འབྲེལ་བ་གཏོར་སྐྱོན་ཐེབས་པས། ཡང་བསྐྱར་ཚོད་ལྟ་གནང་དང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">3</context>
@@ -1464,7 +1464,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="e10cfabbbae00fe94397161536f247822572c9b4">
         <source>Failed to install: it was interrupted, please retry</source>
-        <target>S’u arrit të instalohej , qe ndërprerë, ju lutemi, riprovoni</target>
+        <target>སྒྲིག་སྦྱོར་བྱེད་མི་ཐུབ། སྒྲིག་སྦྱོར་མཚམས་འཇུག་བྱས་པས། ཡང་བསྐྱར་ཚོད་ལྟ་གནང་དང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">6</context>
@@ -1472,7 +1472,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a8961af16111ab2b84a767b39eb12002ddf6a61d">
         <source>Failed to download, please retry</source>
-        <target>S’u arrit të instalohej, ju lutemi, riprovoni</target>
+        <target>ཕབ་ལེན་བྱེད་མི་ཐུབ་པས། ཡང་བསྐྱར་ཚོད་ལྟ་གནང་དང་། </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">8</context>
@@ -1480,7 +1480,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="92f289b1cf7ccff5e1bf6d1fa679655272da2e95">
         <source>Failed to install: dpkg error</source>
-        <target>S’u arrit të instalohej: gabim dpkg</target>
+        <target>སྒྲིག་སྦྱོར་བྱེད་མི་ཐུབ། dpkgནོར་འདུག</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">9</context>
@@ -1488,7 +1488,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="1d386f8cdde5844dd460714c47a20656ee8c9b23">
         <source>Failed to install: unmet dependencies</source>
-        <target>S’u arrit të instalohej, varësi të paplotësuara</target>
+        <target>སྒྲིག་སྦྱོར་བྱེད་མི་ཐུབ། བརྟེན་པའི་འབྲེལ་བ་འདང་གི་མེད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">11</context>
@@ -1496,7 +1496,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="5a2a5eaa80d13170278ecefa1e5ed323bc91ed1e">
         <source> Failed to install: insufficient space, please clean and retry</source>
-        <target>S’u arrit të instalohej: hapësirë e pamjaftueshme, ju lutemi, spastroni ca dhe riprovoni</target>
+        <target>སྒྲིག་སྦྱོར་བྱེད་མི་ཐུབ། སྒྲིག་སྦྱོར་གྱི་མཚམས་བཅད་པས། ཡང་བསྐྱར་ཚོད་ལྟ་གནང་དང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">14</context>
@@ -1504,7 +1504,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a5fab2ced13ebcd9ef9c0ce37990e7fc020f1be1">
         <source>Failed to install</source>
-        <target>S’u arrit të instalohej</target>
+        <target>སྒྲིག་སྦྱོར་བྱེད་མི་ཐུབ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">17</context>
@@ -1512,7 +1512,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="4f8b2bb476981727ab34ed40fde1218361f92c45">
         <source>Details</source>
-        <target>Hollësi</target>
+        <target>ཞིབ་ཕྲའི་གནས་ཚུལ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/download/components/store-job-error/store-job-error.component.html</context>
           <context context-type="linenumber">19</context>
@@ -1524,7 +1524,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="d81f00c85d3b507f3e3d78bfc617a2c66e028391">
         <source>New</source>
-        <target>I ri</target>
+        <target>གསར་སྒྱུར་བྱ་རྒྱུ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">4</context>
@@ -1532,7 +1532,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="dea597d706dced2e5ee599210b9f3efca0f6bb38">
         <source>Recent</source>
-        <target>Së fundi</target>
+        <target>ཉེ་ཆར་གསར་སྒྱུར།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">8</context>
@@ -1540,7 +1540,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="39fbd7900978de3e8fe21ee784f76368b0ede5e4">
         <source>Pause All</source>
-        <target>Pushoji Krejt</target>
+        <target>ཚང་མ་མཚམས་འཇོག</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">17</context>
@@ -1548,7 +1548,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="62921597cdaf2661aee0ddaea6e9943e4c2cbf87">
         <source>Resume All</source>
-        <target>Rimerri Krejt</target>
+        <target>ཚང་མ་སླར་གསོ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">20</context>
@@ -1556,7 +1556,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="d4c30135c0c5a1661660065c3d303e55c0a9687f">
         <source>Update All</source>
-        <target>Përditësoji Krejt</target>
+        <target>ཚང་མ་གསར་སྒྱུར།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">23</context>
@@ -1568,7 +1568,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="7668986b9f753fcd72ad4a00b1a0c4861d1f7fb8">
         <source>Last 30 days</source>
-        <target>30 ditët e fundit</target>
+        <target>ཉེ་ཆར་ཉིན་30</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">32</context>
@@ -1576,7 +1576,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="02e0243b60007368f87dc01e083f232dd025096d">
         <source>Last 7 days</source>
-        <target>7 ditët e fundit</target>
+        <target>ཉེ་ཆར་ཉིན་7</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">33</context>
@@ -1584,7 +1584,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="e7bca9bdedc6382486e9e928c28c08d9c3bf819c">
         <source>Last 3 days</source>
-        <target>3 ditët e fundit</target>
+        <target>ཉེ་ཆར་ཉིན་3</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">34</context>
@@ -1592,7 +1592,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="7fb1099e29660162f9154d5b2feee7743a423df6">
         <source>Today</source>
-        <target>Sot</target>
+        <target>དེ་རིང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/my-updates.component.html</context>
           <context context-type="linenumber">35</context>
@@ -1600,7 +1600,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="cff1428d10d59d14e45edec3c735a27b5482db59">
         <source>Name</source>
-        <target>Emër</target>
+        <target>ཉེར་སྤྱོད་ཀྱི་མིང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/renewable/renewable.component.html</context>
           <context context-type="linenumber">3</context>
@@ -1620,7 +1620,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="8fe73a4787b8068b2ba61f54ab7e0f9af2ea1fc9">
         <source>Version</source>
-        <target>Version</target>
+        <target>པར་གཞིའི་ཨང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/renewable/renewable.component.html</context>
           <context context-type="linenumber">6</context>
@@ -1640,7 +1640,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="1bd5e17c9582661e20763a7634ef07881e33bbd7">
         <source>Action</source>
-        <target>Veprim</target>
+        <target>བཀོལ་སྤྱོད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/renewable/renewable.component.html</context>
           <context context-type="linenumber">7</context>
@@ -1656,7 +1656,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="2558d5a387651e6b5d93d39b53d806e5e54d6b35">
         <source>Date Installed</source>
-        <target>Datë Instalimi</target>
+        <target>སྒྲིག་སྦྱོར་དུས་ཚོད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/recently-updated/recently-updated.component.html</context>
           <context context-type="linenumber">7</context>
@@ -1672,7 +1672,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="afb6416dbed6a37b17a6f4ad4f7a14cad170bd90">
         <source>No ratings</source>
-        <target>S’ka vlerësime</target>
+        <target>དཔྱད་སྡུར་མེད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
           <context context-type="linenumber">14</context>
@@ -1692,7 +1692,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="d8e950372b04b06ab4c5a81034a1d45f362fb1aa">
         <source>No changelogs</source>
-        <target>S’ka regjistra ndryshimesh</target>
+        <target>ཉིན་ཐོ་གསར་པ་མེད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
           <context context-type="linenumber">29</context>
@@ -1704,7 +1704,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="ae6cee457adbb55a6ac59472b8a12f12bfce2ce6">
         <source>Ignore this version</source>
-        <target>Shpërfille këtë version</target>
+        <target>པར་གཞི་འདི་སྣང་མེད་ཐོངས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
           <context context-type="linenumber">54</context>
@@ -1712,7 +1712,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="29583c85e33322e5d03ea2d30ae75b793debe0f2">
         <source>Ignore all updates</source>
-        <target>Shpërfilli krejt përditësimet</target>
+        <target>དྲན་སྐུལ་མི་བྱེད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
           <context context-type="linenumber">55</context>
@@ -1720,7 +1720,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="7fdc8522031bbeba05f9d0a020e0b18002243f03">
         <source>Current:</source>
-        <target>I tanishëm:</target>
+        <target>མིག་སྔའི་པར་གཞི།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
           <context context-type="linenumber">59</context>
@@ -1728,7 +1728,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="15d409daa04c55a3d40410bab3b0c7b730db375c">
         <source>Available:</source>
-        <target>Të gatshëm:</target>
+        <target>པར་གཞི་གསར་ཤོས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-updates/components/list-item/list-item.component.html</context>
           <context context-type="linenumber">63</context>
@@ -1736,7 +1736,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="82bb671bd60c07a8cf7fd67524eade9cee63ff5b">
         <source>Local Apps</source>
-        <target>Aplikacione Vendore</target>
+        <target>རང་སའི་ཉེར་སྤྱོད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/local-app/local-app.component.html</context>
           <context context-type="linenumber">4</context>
@@ -1748,7 +1748,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="caf440292ddeda7e5986f0086a822394e5775058">
         <source>Remote Apps</source>
-        <target>Aplikacione të Largët</target>
+        <target>སྤྲིན་སྣེའི་ཉེར་སྤྱོད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/local-app/local-app.component.html</context>
           <context context-type="linenumber">8</context>
@@ -1760,7 +1760,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="7faaaa08f56427999f3be41df1093ce4089bbd75">
         <source>Size</source>
-        <target>Madhësi</target>
+        <target>ཆེ་ཆུང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/local-app/local-app.component.html</context>
           <context context-type="linenumber">28</context>
@@ -1768,7 +1768,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="96f4e3dedbf0d1b3fffa16f2e5341c6719b8cfb0">
         <source>Are you sure you want to uninstall this application?</source>
-        <target>Jeni i sigurt se doni të çinstalohet ky aplikacion?</target>
+        <target>ཁྱེད་ཀྱིས་ཉེར་སྤྱོད་འདི་བཤིག་རྒྱུ་གཏན་འཁེལ་ལམ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/local-app/local-app.component.html</context>
           <context context-type="linenumber">60</context>
@@ -1776,7 +1776,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="3d567ca4e86cc0b80ac0d4a17131b42b9124ee8f">
         <source>Uninstalling...</source>
-        <target>Po çinstalohet…</target>
+        <target>བཤིག་འདོན་བྱེད་བཞིན་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/local-app/local-app.component.html</context>
           <context context-type="linenumber">71</context>
@@ -1784,7 +1784,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="68e710782ccb5398b3acb8844caf0b199da2c3da">
         <source>Confirm</source>
-        <target>Ripohojeni</target>
+        <target>གཏན་འཁེལ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/local-app/local-app.component.html</context>
           <context context-type="linenumber">100</context>
@@ -1800,7 +1800,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="1dfba504a0d0bf41da961d89d402dedecde5e30d">
         <source>Uninstall</source>
-        <target>Çinstaloje</target>
+        <target>བཤིག་འདོན།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/local-app/local-app.component.html</context>
           <context context-type="linenumber">106</context>
@@ -1808,7 +1808,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="38668245768f805d5b377b1d88efe49712c08ed5">
         <source>Refunding</source>
-        <target>Rimbursim</target>
+        <target>དངུལ་སློག་བཞིན་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
           <context context-type="linenumber">94</context>
@@ -1820,7 +1820,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="d80a31b2d80af8803b4b1e7143cd3e91b7cc92d2">
         <source>Refund</source>
-        <target>Rimbursoje</target>
+        <target>དངུལ་སློག་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
           <context context-type="linenumber">97</context>
@@ -1832,7 +1832,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="b3ee252823339c59dc8c83a52540c8699368a067">
         <source>Two-hour refund period has expired</source>
-        <target>Periudha prej dy orësh për rimbursime ka skaduar</target>
+        <target>ཉོས་རྗེས་དངུལ་སློག་པའི་ཆུ་ཚོད་གཉིས་ཀྱི་དུས་ཡུན་བརྒལ་འདུག</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
           <context context-type="linenumber">110</context>
@@ -1848,7 +1848,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6d48642a9e3605994dfff2cd1e326c9ec18b4749">
         <source>The application is not available, please retry or give feedback</source>
-        <target>Aplikacioni s’është i passshëm, ju lutemi, riprovoni ose jepni përshtypjet</target>
+        <target>ཉེར་སྤྱོད་འདི་སྤྱོད་མི་ཆོག ཡང་བསྐྱར་ཚོད་ལྟ་བྱེད་པའམ་ཡང་ན་ལན་སྤྲོད་རོགས་གནང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-app/remote-app.component.html</context>
           <context context-type="linenumber">120</context>
@@ -1856,7 +1856,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="0b2e98d9b35d8849ed9a5a6532bbcaeac2d95d1f">
         <source>Auto install new app</source>
-        <target>Vetëinstalo aplikacion të ri</target>
+        <target>རང་འགུལ་ངང་ཉེར་སྤྱོད་གསར་པ་སྒྲིག་སྦྱོར་བྱེད་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-install/remote-install.component.html</context>
           <context context-type="linenumber">6</context>
@@ -1864,7 +1864,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c329b41c398a3d21eb4b48a2da533f0ea38c3dca">
         <source>Show only paid apps</source>
-        <target>Shfaq vetëm aplikacione me pagesë</target>
+        <target>དངུལ་སྤྲོད་དགོས་པའི་ཉེར་སྤྱོད་གཅིག་པུ་གསལ་བ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/remote-install/remote-install.component.html</context>
           <context context-type="linenumber">12</context>
@@ -1872,7 +1872,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="195fccff33fa0a6c78b03d270f294a1bfc600e42">
         <source>Please select the apps to install</source>
-        <target>Ju lutemi, përzgjidhni aplikacione për instalim</target>
+        <target>སྒྲིག་སྦྱོར་བྱ་རྒྱུའི་ཉེར་སྤྱོད་འདེམས་རོགས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/batch-install/batch-install.component.html</context>
           <context context-type="linenumber">4</context>
@@ -1880,7 +1880,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="1604a7d0a6c7974c2fb70d578cea9341083b3634">
         <source>Inverse</source>
-        <target>Së prapthi</target>
+        <target>ལྡོག་འདེམས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/batch-install/batch-install.component.html</context>
           <context context-type="linenumber">24</context>
@@ -1888,7 +1888,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a3c032ffde230f7037db8e9e21c50fa3b1448f38">
         <source>Start Installation</source>
-        <target>Fillo Instalimin</target>
+        <target>སྒྲིག་སྦྱོར་བྱེད་འགོ་ཚུགས་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/batch-install/batch-install.component.html</context>
           <context context-type="linenumber">33</context>
@@ -1900,7 +1900,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="f30af4a09e075741abc6fb9536fe6a5087583178">
         <source>Refund Request</source>
-        <target>Kërkesë Rimbursimi</target>
+        <target>དངུལ་སློག་རེ་ཞུ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">6</context>
@@ -1908,7 +1908,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="9037f3d684c692447f76c473dbbea55cd82461fa">
         <source>Detailed Reasons:</source>
-        <target>Arsye të Hollësishme:</target>
+        <target>དངུལ་སློག་པའི་རྒྱུ་རྐྱེན།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">8</context>
@@ -1916,7 +1916,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a1e6c11f20d4bf6e8e6b43e3c6d2561b2080645e">
         <source>Suggestions:</source>
-        <target>Sugjerime:</target>
+        <target>བསམ་འཆར།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">18</context>
@@ -1924,7 +1924,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c2b90311c81e08c31a2d90a88afeeb109460cc4e">
         <source>Your refund request is approved. The refunds will be returned to the original account in 1-2 working days, please wait patiently.</source>
-        <target>Kërkesa juaj për rimbursim është miratuar. Rimbursimet do të kthehen te llogaria origjinale për 1-2 ditë biznesi, ju lutemi, bëni durim dhe prisni.</target>
+        <target>ཁྱེད་ཀྱི་དངུལ་སློག་པའི་རེ་ཞུ་ཞིབ་བཤེར་བྱས་ཟིན། ཉེར་སྤྱོད་དངུལ་སློག་དེ་ལས་ཀའི་ཉིན་1-2ནངདུ་ཁྱེད་ཀྱི་དང་ཐོག་རྩིས་ཐོར་སློག་སྲིད་པས། སྒུག་རོགས་གནང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">40</context>
@@ -1936,7 +1936,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="73edc6fed01d739dd25bc6c81d9f81c28d958a77">
         <source>Your request is under review, which takes 2-3 working days.</source>
-        <target>Kërkesa juaj është nën shqyrtim, çka lyp 2-3 ditë biznesi.</target>
+        <target>རྒྱབ་སྟེགས་དོ་དམ་པས་ཞིབ་བཤེར་བྱེད་བཞིན་ཡོད་པས། ལས་ཀའི་ཉིན་2-3སྒུག་རོགས་གནང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">44</context>
@@ -1948,7 +1948,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="aaff35cada193aa9c1ec8630b3e6e4eb32778c9d">
         <source> Please wait patiently. Once approved, the refunds will be returned to the original account.</source>
-        <target>Ju lutemi, bëni durim dhe prisni. Sapo të miratohet, rimbursimet do të riderdhen te llogaria origjinale.</target>
+        <target>ཞིབ་བཤེར་བྱས་ཚར་རྗེས་ཁྱེད་ཀྱི་ཉེར་སྤྱོད་ཀྱི་དངུལ་རྣམས་ཁྱེད་ཀྱི་དང་ཐོག་རྩིས་ཐོའི་ནང་དུ་སློག་སྲིད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">45</context>
@@ -1960,7 +1960,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="2c5fbc739107fbac37b97ce9b3441cc515be86a9">
         <source>Your order is in exception status, please deal with it first and then request a refund.</source>
-        <target>Porosia juaj është nën gjendjen përjashtim, ju lutemi, së pari shihni këtë dhe mandej kërkoni një rimbursim.</target>
+        <target>རྒྱུན་གཏན་མིན་པའི་མངག་ཉོ་ཡིན་ཙེ། དངུལ་སློག་རེ་ཞུ་འབུལ་མི་ཆོག སྔོན་ལ་རྒྱུན་གཏན་མིན་མངག་ཉོ་ཐག་གཅོད་བྱེད་དགོས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">81</context>
@@ -1968,7 +1968,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a6f87856a82187df418e6fcbef708d00f59358e1">
         <source>Your refund request is being processed, please wait patiently.</source>
-        <target>Kërkesa juaj për rimbursim po përpunohet, ju lutemi, bëni durim dhe prisni.</target>
+        <target>མངག་ཐོའི་དངུལ་སློག་ཞིབ་བཤེར་བྱེད་བཞིན་ཡོད་པས། ཡང་བསྐྱར་རེ་ཞུ་འབུལ་དོན་མེད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund/refund.component.html</context>
           <context context-type="linenumber">84</context>
@@ -1976,7 +1976,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="a6d22b1c074d9fcae92f1f41cd8522f2acb2d740">
         <source>Frequent errors or crashes</source>
-        <target>Gabime ose vithisje të shpeshta</target>
+        <target>ཉེར་སྤྱོད་རྟག་ཏུ་ནོར་འཁྲུལ་ཤོར་བའམ་ཐོར་སྲིད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1984,7 +1984,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="acdf55929696feb2f41949890279f6ac53e016c6">
         <source>Complicated operation</source>
-        <target>Funksionim i ngatërruar</target>
+        <target>ཉེར་སྤྱོད་བཀོལ་སྤྲོད་རྙོག་དྲ་ཆེ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">3</context>
@@ -1992,7 +1992,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="175166849e127ab3df21e735011c55784390a132">
         <source>High CPU usage</source>
-        <target>Përdorim i lartë i CPU-së</target>
+        <target>ཉེར་སྤྱོད་ཀྱིས་གློག་ཀླད་ཀྱི་ནང་གསོག་ཟིན་ཚད་ཆེ་དྲགས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">4</context>
@@ -2000,7 +2000,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="d15a9ca0323cda890ac235ee41ca84729b13d7bc">
         <source>Many advertisements</source>
-        <target>Shumë reklama</target>
+        <target>བརྡ་ཐོ་དང་བརྡ་ཁྱབ་མང་དྲགས་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">5</context>
@@ -2008,7 +2008,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="2001867439ddcab7acbe3708734d89267008dfbc">
         <source>Bad user experiences</source>
-        <target>Punim jo i mirë për përdoruesin</target>
+        <target>ཉེར་སྤྱོད་ཀྱི་མྱོང་ཚུལ་མི་ལེགས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">6</context>
@@ -2016,7 +2016,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="f915a62c39bc4b77472ef3fdb51abb047c1b1c60">
         <source>Poor content</source>
-        <target>Lëndë e dobët</target>
+        <target>ཉེར་སྤྱོད་ཀྱི་ནང་དོན་སྤུས་ཚད་ཞན། </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/refund-reason/refund-reason.component.html</context>
           <context context-type="linenumber">7</context>
@@ -2024,7 +2024,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="c77fad159ade99f6694a7d78903df33593206f84">
         <source>Installed apps</source>
-        <target>Aplikacione të instaluara</target>
+        <target>སྒྲིག་སྦྱོར་བྱས་ཟིན་པའི་ཉེར་སྤྱོད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/screen-box.component.html</context>
           <context context-type="linenumber">3</context>
@@ -2032,7 +2032,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="5d44acff92d3d050137d808b12c1f42816581984">
         <source>App filter</source>
-        <target>Filtër aplikacionesh</target>
+        <target>ཉེར་སྤྱོད་ལེགས་འདེམས།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/screen-box.component.html</context>
           <context context-type="linenumber">7</context>
@@ -2040,7 +2040,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="aedb2dfda6730c518172efb4d7f1ed8c3062fc29">
         <source>All apps</source>
-        <target>Krejt aplikacionet</target>
+        <target>ཉེར་སྤྱོད་ཚང་མ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/screen-box.component.html</context>
           <context context-type="linenumber">19</context>
@@ -2048,7 +2048,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="7e892ba15f2c6c17e83510e273b3e10fc32ea016">
         <source>Search</source>
-        <target>Kërko</target>
+        <target>འཚོལ་ཞིབ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/components/search-box/search-box.component.html</context>
           <context context-type="linenumber">3</context>
@@ -2056,7 +2056,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="4e2f29ed065f9ad6f46098da0ab7d0d130aacb3b">
         <source>Low-rating apps</source>
-        <target>Aplikacione me pak vlerësim</target>
+        <target>དཔྱད་སྡུར་དམའ་བ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/components/checkbox-group/checkbox-group.component.html</context>
           <context context-type="linenumber">18</context>
@@ -2064,7 +2064,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="69fd53a5021a2dd01e5d53dee676064d38813686">
         <source>Free apps</source>
-        <target>Aplikacione të lira</target>
+        <target>རིན་མེད་ཉེར་སྤྱོད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/components/checkbox-group/checkbox-group.component.html</context>
           <context context-type="linenumber">19</context>
@@ -2072,7 +2072,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="d440f5873112ab3029847ba6e34966b75b264228">
         <source>Paid apps</source>
-        <target>Aplikacione me pagesë</target>
+        <target>རིན་ཡོད་ཉེར་སྤྱོད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-apps/components/screen-box/components/checkbox-group/checkbox-group.component.html</context>
           <context context-type="linenumber">20</context>
@@ -2080,7 +2080,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="2415e1d10667078d7c7a52970880f2930717febe">
         <source>My comments</source>
-        <target>Komentet e mia</target>
+        <target>ངའི་དཔྱད་གླེང་།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/comments/comments.component.html</context>
           <context context-type="linenumber">2</context>
@@ -2092,7 +2092,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="e21dd97d84f180b7b4cb450621b9628898604b19">
         <source>Comment Date:</source>
-        <target>Datë Komenti:</target>
+        <target>དཔྱད་གླེང་བྱེད་པའི་དུས་ཚོད།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/comments/comments.component.html</context>
           <context context-type="linenumber">28</context>
@@ -2104,7 +2104,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="1aa4883bc4f1352f7a0bdd94810a9bf6dc22bd02">
         <source>Removed</source>
-        <target>U hoq</target>
+        <target>སྒྲོམ་ནས་ཕབ་ཟིན།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/comments/comments.component.html</context>
           <context context-type="linenumber">33</context>
@@ -2112,7 +2112,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="28f86ffd419b869711aa13f5e5ff54be6d70731c">
         <source>Edit</source>
-        <target>Përpunojeni</target>
+        <target>བཅོས་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/comments/comments.component.html</context>
           <context context-type="linenumber">38</context>
@@ -2120,7 +2120,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="b2cff053be7721c0ac277bc89c7068bb72019b80">
         <source>Edit Comment</source>
-        <target>Përpunoni Komentin</target>
+        <target>དཔྱད་གླེང་བཅོས་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/edit/edit.component.html</context>
           <context context-type="linenumber">4</context>
@@ -2128,7 +2128,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="f49c37418e5cb06f226bc7b3afc5f1a3c04fea21">
         <source>Rate:</source>
-        <target>Vlerësojeni:</target>
+        <target>དཔྱད་སྡུར།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/edit/edit.component.html</context>
           <context context-type="linenumber">25</context>
@@ -2136,7 +2136,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="826b25211922a1b46436589233cb6f1a163d89b7">
         <source>Delete</source>
-        <target>Fshije</target>
+        <target>སུབ་པ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/edit/edit.component.html</context>
           <context context-type="linenumber">32</context>
@@ -2144,7 +2144,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="3fb74cf2ff5212dade6a7cd9a43371f3f0f56c7e">
         <source>Are you sure you want to delete this comment?</source>
-        <target>Jeni i sigurt se doni të fshihet ky koment?</target>
+        <target>ཁྱེད་ཀྱིས་དཔྱད་གླེང་འདི་སུབ་རྒྱུ་གཏན་འཁེལ་ལམ།</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/my-comments/components/edit/edit.component.html</context>
           <context context-type="linenumber">51</context>

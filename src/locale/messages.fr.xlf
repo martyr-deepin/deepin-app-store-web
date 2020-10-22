@@ -1312,7 +1312,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6332ffe44c21d002af92e2bab779f93a353f99e4">
         <source>Give details of the bug, and describe your working steps please</source>
-        <target>Donner des détails sur le bogue et décrire vos étapes de travail, s'il vous plaît</target>
+        <target>Donnez des détails sur le bogue et décrivez vos étapes de travail, s'il vous plaît</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">89</context>

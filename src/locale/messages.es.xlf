@@ -784,7 +784,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="271a5f10ae4bb5de450076d158073625d9960fb1">
         <source>No apps available, please contact the administrator of App Store</source>
-        <target>No apps available, please contact the administrator of App Store</target>
+        <target>No hay aplicaciones disponibles, por favor contacte con el administrador de la App Store</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/index/index.component.html</context>
           <context context-type="linenumber">37</context>
@@ -1124,7 +1124,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="e7fd1a829016fdc4cae60b85d7307feb0bb3309d">
         <source>My Comment</source>
-        <target>My Comment</target>
+        <target>Mi comentario</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment-list/comment-list.component.html</context>
           <context context-type="linenumber">40</context>
@@ -1160,7 +1160,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="743236956b393f7122325a5dc71633112e6ea338">
         <source>Report a bug</source>
-        <target>Report a bug</target>
+        <target>Reporta un error</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">7</context>
@@ -1192,7 +1192,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="420bca01801378c942f0683d8904b72e9c23cec8">
         <source>Please post your comment after</source>
-        <target>Please post your comment after</target>
+        <target>Por favor, publique su comentario después de</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">33</context>
@@ -1200,7 +1200,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="287d3301a32a65a1b31116bda5d3a6463158c42a">
         <source>Sign in</source>
-        <target>Sign in</target>
+        <target>Iniciar sesión</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">34</context>
@@ -1312,7 +1312,7 @@
       </trans-unit>
       <trans-unit datatype="html" id="6332ffe44c21d002af92e2bab779f93a353f99e4">
         <source>Give details of the bug, and describe your working steps please</source>
-        <target>Give details of the bug, and describe your working steps please</target>
+        <target>Dé los detalles del error, y describa lo ocurrido, por favor.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/details/components/comment/app-comment.component.html</context>
           <context context-type="linenumber">89</context>
