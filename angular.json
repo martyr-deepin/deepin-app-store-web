@@ -17,6 +17,7 @@
           "cs-CZ": "src/locale/messages.cs.xlf",
           "da-DK": "src/locale/messages.da.xlf",
           "de-DE": "src/locale/messages.de.xlf",
+          "dz-BT": "src/locale/messages.bo.xlf",
           "el-GR": "src/locale/messages.el.xlf",
           "en-AU": "src/locale/messages.en_AU.xlf",
           "es-419": "src/locale/messages.es_419.xlf",

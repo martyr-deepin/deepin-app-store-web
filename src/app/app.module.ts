@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule,LOCALE_ID, Inject } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,15 +15,12 @@ import { ProxyInterceptor } from './services/proxy-interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LocalesService } from './services/locales.service';
 import { RecommendedComponent } from './components/recommended/recommended.component';
-import { DstoreCheckboxComponent } from "./components/checkbox/checkbox.component";
+import { DstoreCheckboxComponent } from './components/checkbox/checkbox.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
-import { 
-  AkitaNgRouterStoreModule 
-} from '@datorama/akita-ng-router-store';
+import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { environment } from 'environments/environment';
 
 @NgModule({
@@ -34,7 +31,7 @@ import { environment } from 'environments/environment';
     MainComponent,
     RecommendedComponent,
     DstoreCheckboxComponent,
-    ConfirmComponent
+    ConfirmComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,18 +46,11 @@ import { environment } from 'environments/environment';
     environment.production ? [] : AkitaNgDevtools.forRoot(),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ProxyInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ProxyInterceptor, multi: true },
+    { provide: LOCALE_ID, useValue: 'en' },
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(
-    @Inject(LOCALE_ID) locale_id:string,
-    private localesService:LocalesService
-  ){
-    const locale = locale_id.split(/-|_$/)[0];
-    if(locale !="en") {
-      this.localesService.loadLocale(locale);
-    }
-  }
+  constructor() {}
 }
