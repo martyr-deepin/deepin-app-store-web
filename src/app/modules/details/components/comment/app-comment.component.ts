@@ -1,11 +1,11 @@
-import { Component, Input, OnChanges, ViewChild, ElementRef, SimpleChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, ViewChild, SimpleChanges, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 import { AppComment, CommentDisableStatus, CommentDisableReason, CommentService } from '../../services/comment.service';
-import { AuthService } from 'app/services/auth.service';
+import { AuthService, UserInfo } from 'app/services/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Package } from 'app/modules/client/services/store.service';
 import { environment } from 'environments/environment';
-import { first } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { CommentListComponent } from '../comment-list/comment-list.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LayerComponent } from 'app/modules/share/components/layer/layer.component';
@@ -40,7 +40,20 @@ export class AppCommentComponent implements OnInit, OnChanges {
   @Input() appVersion: string;
   @Input() pkg: Package;
 
-  info$ = this.auth.info$;
+  info$ = this.auth.info$.pipe(
+    map(info => {
+      if(info) {
+        this.queryOwn();
+      } else {
+        this.own = undefined;
+      }
+      this.info = info;
+      return info;
+    })
+  );
+
+  info: UserInfo;
+
   own: AppComment;
   disableStatus: CommentDisableStatus = {
     disable: true,
@@ -79,9 +92,11 @@ export class AppCommentComponent implements OnInit, OnChanges {
     score: 0,
     submitted: null,
   };
+
   ngOnInit() {
-    this.queryOwn();
+    
   }
+
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.appVersion) {
@@ -117,19 +132,15 @@ export class AppCommentComponent implements OnInit, OnChanges {
   login = () => this.authService.login();
 
   async getDisableStatus() {
-    const info = await this.info$.pipe(first()).toPromise();
-    if (info) {
+    if (this.info) {
       this.disableStatus = await this.commentService.getDisableStatus(this.appID, this.appVersion).toPromise();
     }
   }
 
   async queryOwn() {
-    let info = await this.info$.pipe(first()).toPromise();
-    if (info) {
-      this.userAPI.list({ app_id: this.appID, version: this.appVersion }).then((res) => {
-        this.own = res.items[0];
-      });
-    }
+    this.userAPI.list({ app_id: this.appID, version: this.appVersion }).then((res) => {
+      this.own = res.items[0];
+    });
   }
 
   async submitComment() {

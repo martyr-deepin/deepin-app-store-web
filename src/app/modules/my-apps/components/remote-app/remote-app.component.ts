@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, switchMap, share, debounceTime, startWith, scan, first, tap } from 'rxjs/operators';
 import { Software } from 'app/services/software.service';
@@ -7,18 +7,20 @@ import { RemoteAppService, RemoteApp } from './../../services/remote-app.service
 import { SysAuthService } from 'app/services/sys-auth.service';
 import { MessageService, MessageType } from 'app/services/message.service';
 import { MyUpdatesService } from 'app/modules/my-updates/services/my-updates.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { AuthService } from 'app/services/auth.service';
 
 @Component({
   selector: 'dstore-remote-app',
   templateUrl: './remote-app.component.html',
   styleUrls: ['./remote-app.component.scss'],
 })
-export class RemoteAppComponent implements OnInit {
+export class RemoteAppComponent implements OnInit, OnDestroy {
   constructor(
     public router: Router,
     private remoteAppService: RemoteAppService,
     private SysAuth: SysAuthService,
+    private auth: AuthService,
     private messageService: MessageService,
     private myUpdateService: MyUpdatesService,
   ) {}
@@ -78,9 +80,19 @@ export class RemoteAppComponent implements OnInit {
     }),
   );
   refund: RemoteApp = null;
+  authSubscription: Subscription
   ngOnInit() {
-    // this.route.queryParamMap.pipe(() => this.refresh$).subscribe(v => console.log('teest', v));
-    // this.refresh$.subscribe(v => console.log('refresh subscribe'))
+    this.authSubscription = this.auth.info$.subscribe(info => {
+      if(!info) {
+        this.router.navigate(["my/apps","local"]);
+      }
+    })
+  }
+
+  ngOnDestroy() {
+    if(this.authSubscription) {
+      this.authSubscription.unsubscribe()
+    }
   }
 
   installApp(soft: Software) {
