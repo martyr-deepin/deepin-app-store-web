@@ -28,7 +28,6 @@ export class AuthService {
       this.userInfo$.next(null);
       return;
     }
-    await this.getInfo();
     Channel.connect('account.requestLogin').subscribe(() => {
       console.log('requestLogin，profile login');
       this.login();
@@ -42,7 +41,7 @@ export class AuthService {
     Channel.connect('account.userInfoChanged')
       .pipe(startWith(userInfo))
       .subscribe(async ({ UserID }) => {
-        console.log('user changed', UserID);
+        //console.log('user changed', UserID);
         if (!UserID) {
           this.logout();
           return;
@@ -80,10 +79,11 @@ export class AuthService {
     const result = await this.http
       .get<{ jwt_token: string }>('/api/user/login', { params: { code, state } })
       .toPromise();
-    console.log(result);
     localStorage.setItem('token', result.jwt_token);
-    location.reload();
+    this.getInfo();
+    //location.reload();
   }
+
   // 获取商店用户信息
   private async getInfo() {
     try {
@@ -108,9 +108,9 @@ export class AuthService {
     if (accountLogout) {
       await this.accountLogout();
     }
-    if (logged) {
-      location.reload();
-    }
+    // if (logged) {
+    //   location.reload();
+    // }
   }
   // 登出系统用户
   accountLogout() {

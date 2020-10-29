@@ -11,13 +11,13 @@ export class MenuService {
   serve() {
     // menu user info
     this.auth.info$.subscribe(async dInfo => {
-      console.log('menu info', dInfo);
+      //console.log('menu info', dInfo);
       if (!dInfo) {
         Channel.exec('menu.setUserInfo', {});
         return;
       }
       const avatar = await fetch(dInfo.profile_image).then(resp => resp.blob());
-      console.log(avatar);
+      //console.log(avatar);
       const data = await new Promise<string>((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = () => resolve(reader.result as string);
