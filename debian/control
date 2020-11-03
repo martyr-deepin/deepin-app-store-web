@@ -16,5 +16,6 @@ Package: deepin-app-store-data
 Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends},
  deepin-app-store (>=5.6.3.9)
-Description: Deepin App Store Web
- Deepin App Store Client Web.
+Description: A beautiful and easy-to-use application store website.
+ Deepin App Store Web is the front-end part of Deepin App Store client.
+ Power by Angular Library.
